@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 import connector01917.Connector;
-import daointerfaces01917.DALException;
-import daointerfaces01917.RaavareDAO;
-import dto01917.RaavareDTO;
+import cdiofinal.server.DALException;
+import cdiofinal.server.RaavareDAO;
+import cdiofinal.shared.RaavareDTO;
 
 public class MySQLRaavareDAO implements RaavareDAO{
 

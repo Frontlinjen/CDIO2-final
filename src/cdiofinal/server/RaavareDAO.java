@@ -2,7 +2,7 @@ package cdiofinal.server;
 
 import java.util.List;
 
-import dto01917.RaavareDTO;
+import cdiofinal.shared.RaavareDTO;
 
 public interface RaavareDAO {
 	RaavareDTO getRaavare(int raavareId) throws DALException;

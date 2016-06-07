@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connector01917.Connector;
-import daointerfaces01917.DALException;
-import daointerfaces01917.LeverandoerDAO;
-import dto01917.LeverandoerDTO;
+import cdiofinal.server.DALException;
+import cdiofinal.server.LeverandoerDAO;
+import cdiofinal.shared.LeverandoerDTO;
 
 public class MySQLLeverandoerDAO implements LeverandoerDAO {
 
