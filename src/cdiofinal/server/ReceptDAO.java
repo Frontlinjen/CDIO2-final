@@ -2,7 +2,7 @@ package cdiofinal.server;
 
 import java.util.List;
 
-import dto01917.ReceptDTO;
+import cdiofinal.shared.ReceptDTO;
 
 public interface ReceptDAO {
 	ReceptDTO getRecept(int receptId) throws DALException;

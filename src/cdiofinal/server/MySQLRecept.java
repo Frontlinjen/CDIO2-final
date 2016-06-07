@@ -7,9 +7,9 @@ import java.util.List;
 
 
 import connector01917.Connector;
-import daointerfaces01917.DALException;
-import daointerfaces01917.ReceptDAO;
-import dto01917.ReceptDTO;
+import cdiofinal.server.DALException;
+import cdiofinal.server.ReceptDAO;
+import cdiofinal.shared.ReceptDTO;
 
 public class MySQLRecept implements ReceptDAO {
 
