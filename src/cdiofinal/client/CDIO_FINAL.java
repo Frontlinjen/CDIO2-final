@@ -36,7 +36,7 @@ public class CDIO_FINAL implements EntryPoint {
 	{
 		RootPanel container = RootPanel.get("options");
 		String[] buttons = {"List users", "Create new user", "Tilføj råvare"};
-		ClickHandler[] clickers = {new ListUsersClickHandler(), new NewUserClickhandler(), new AddRaavareClickHandler()};
+		ClickHandler[] clickers = {new ListUsersClickHandler(), new NewUserClickhandler(), new NewRaavareClickHandler(), new NewProductBatchClickHandler(), new NewRaavareBatchClickHandler()};
 		for(int i=0;i<buttons.length;++i)
 		{
 			PushButton t = new PushButton(buttons[i]);
