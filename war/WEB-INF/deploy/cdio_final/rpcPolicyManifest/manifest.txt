@@ -1,0 +1,3 @@
+# Module cdio_final
+# RPC service class, partial path of RPC policy file
+cdiofinal.client.AnsatRPCInterface, 94975B0B9985D72645B13B392A86BE69.gwt.rpc
