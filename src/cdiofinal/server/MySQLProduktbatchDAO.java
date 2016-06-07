@@ -10,7 +10,7 @@ import cdiofinal.server.DALException;
 import cdiofinal.server.ProduktBatchDAO;
 import cdiofinal.shared.ProduktBatchDTO;
 
-public class MySQLProduktbatch implements ProduktBatchDAO {
+public class MySQLProduktbatchDAO implements ProduktBatchDAO {
 
 	@Override
 	public ProduktBatchDTO getProduktBatch(int pbId) throws DALException {
