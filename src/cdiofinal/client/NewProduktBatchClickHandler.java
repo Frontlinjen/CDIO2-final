@@ -18,7 +18,7 @@ import cdiofinal.shared.FieldVerifier;
 
 
 public class NewProduktBatchClickHandler extends Composite{
-	ProduktBatchRPCInterfaceAsync Produktbatch = GWT.create(ProduktBatchRPCInterface.class);
+	ProduktBatchRPCInterfaceAsync ProduktbatchRPC = GWT.create(ProduktBatchRPCInterface.class);
 	public void onClick(ClickEvent event) {
 		RootPanel panel = RootPanel.get("contents");
 		panel.clear();
@@ -27,19 +27,19 @@ public class NewProduktBatchClickHandler extends Composite{
 		final TextBox inputPbID = new TextBox();
 		inputPbID.setMaxLength(8);
 		panel.add(inputPbID);
-		
+
 		Label textStatus = new Label("Inds\u00E6t status");
 		final TextBox inputStatus = new TextBox();
 		inputStatus.setMaxLength(1);
 		panel.add(textStatus);
 		panel.add(inputStatus);
-		
+
 		Label textReceptID = new Label("Inds\u00E6t recept_id:");
 		final TextBox inputReceptID = new TextBox();
 		inputReceptID.setMaxLength(8);
 		panel.add(textReceptID);
 		panel.add(inputReceptID);
-		
+
 		final Label status = new Label("Enter fields");
 		Button button = new Button("Create");
 		panel.add(status);
@@ -47,31 +47,27 @@ public class NewProduktBatchClickHandler extends Composite{
 		button.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-			ProduktBatchRPC.createAnsat(new ProduktBatchDTO(input.getValue(), navn.getText(), ini.getText(), pass.getText(), Integer.parseInt(rank.getValue())), new AsyncCallback<Integer>()
-							{
+				ProduktbatchRPC.createProduktBatch(new ProduktBatchDTO(inputPbID.getTabIndex(), inputStatus.getTabIndex(), inputReceptID.getTabIndex()), new AsyncCallback<Integer>()
+				{
 
-								@Override
-								public void onFailure(Throwable caught) {
-									status.setText("Failed to create user");
-									
-								}
+					@Override
+					public void onFailure(Throwable caught) {
+						status.setText("Failed to create productbatch");
 
-								@Override
-								public void onSuccess(Integer result) {
-									status.setText("Successfully created user");		
-									input.setValue("");
-									navn.setValue("");
-									ini.setValue("");
-									pass.setValue("");
-									rank.setValue("");
-								}
-						
-							});
-				}
+					}
+
+					@Override
+					public void onSuccess(Integer result) {
+						status.setText("Successfully created productbatch");		
+						inputPbID.setValue("");
+						inputStatus.setValue("");
+						inputReceptID.setValue("");
+					}
+				});
+
 			}
-			
 		});
 	}
+};
 
 
-}
