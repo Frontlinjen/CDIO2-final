@@ -1,23 +1,23 @@
 package cdiofinal.client;
 
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PasswordTextBox;
-import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 
 import cdiofinal.shared.AnsatDTO;
+import cdiofinal.client.RaavareRPCInterfaceAsync;
 import cdiofinal.shared.FieldVerifier;
 
-public class NewRaavareClickHandler implements ClickHandler {
+public class NewRaavareClickHandler extends Composite {
 
-	@Override
+	RaavareRPCInterfaceAsync RaavareRPC = GWT.create(RaavareRPCInterface.class);
 	public void onClick(ClickEvent event) {
 		RootPanel panel = RootPanel.get("contents"); 
 		panel.clear();
@@ -33,8 +33,55 @@ public class NewRaavareClickHandler implements ClickHandler {
 		panel.add(navnText);
 		panel.add(navn);
 		
+		final Label status = new Label("Enter fields");
+		Button button = new Button("Create");
+		panel.add(status);
+		panel.add(button);
+		button.addClickHandler(new ClickHandler() {
 
-		
-}
+			@Override
+			public void onClick(ClickEvent event) {
+				if(navn.getValue().length()==0)
+				{
+					status.setText("Name not long enough");
+				}
+				else if(!FieldVerifier.isValidName(input.getValue()))
+				{
+					status.setText("CPR invalid");
+				}
+				else if(!Character.isDigit(rank.getValue().charAt(0)))
+					{
+						status.setText("Rank must be a digit");
+					}
+				else if(ini.getText().length() < 3)
+				{
+					status.setText("Ini much be 3 characters");
+				}
+				else
+				{
+				
+					
+//					AnsatRPC.createAnsat(new AnsatDTO(input.getValue(), navn.getText(), ini.getText(), pass.getText(), Integer.parseInt(rank.getValue())), new AsyncCallback<Integer>()
+							{
+
+								@Override
+								public void onFailure(Throwable caught) {
+									status.setText("Failed to create user");
+									
+								}
+
+								@Override
+								public void onSuccess(Integer result) {
+									status.setText("Successfully created user");		
+									input.setValue("");
+									navn.setValue("");
+								}
+						
+							});
+				}
+			}
+			
+		});
+	}
 
 }
