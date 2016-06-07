@@ -6,11 +6,14 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.FieldVerifier;
@@ -26,7 +29,7 @@ import cdiofinal.shared.FieldVerifier;
 //	@Override
 //	public void onKeyPress(KeyPressEvent event) {
 //		if(Character.isWhitespace(event.getCharCode()))
-//		{
+//		{	
 //			((TextBox) event.getSource()).cancelKey();
 //		}
 //	}
@@ -34,45 +37,40 @@ import cdiofinal.shared.FieldVerifier;
 //}
 
 
-public class NewUserClickhandler  implements ClickHandler {
+public class NewUserClickhandler extends Composite {
 	AnsatRPCInterfaceAsync AnsatRPC = GWT.create(AnsatRPCInterface.class);
-	@Override
-	public void onClick(ClickEvent event) {
+	
+	public void onLoad(ClickEvent event) {
 		RootPanel panel = RootPanel.get("contents");
 		panel.clear();
-		Label inputText =  new Label("Inds\u00E6t CPR:"); 
-		panel.add(inputText);
-		final TextBox input = new TextBox();
-		input.setMaxLength(10);
-		panel.add(input);
 		
-		Label navnText = new Label("Inds\u00E6t navn:");
-		final TextBox navn = new TextBox();
-		panel.add(navnText);
+		labeledTextBox CPR = new labeledTextBox("Inds\u00E6t CPR:", 10); 
+		panel.add(CPR);
+		
+		labeledTextBox navn = new labeledTextBox("Inds\u00E6t navn:", 20);
 		panel.add(navn);
 		
-		Label iniText = new Label("Inds\u00E6t Ini:");
-		final TextBox ini = new TextBox();
-		panel.add(iniText);
+		labeledTextBox ini = new labeledTextBox("Inds\u00E6t Ini:", 4);
 		panel.add(ini);
 		
 		
 		Label rankText = new Label("Rank nr:");
-		final TextBox rank = new TextBox();
-		rank.setMaxLength(1);
+		final ListBox ranklist = new ListBox();
+		ranklist.addItem("Operat\u00F8r");
+		ranklist.addItem("Farmaceut");
+		ranklist.addItem("V\u00E6rkf\u00F8rer");
+		ranklist.addItem("Administrator");
 		panel.add(rankText);
-		panel.add(rank);
+		panel.add(ranklist);
 		
-		Label passText = new Label("Inds\u00E6t password:");
-		final PasswordTextBox pass = new PasswordTextBox();
-		panel.add(passText);
+		labeledTextBox pass = new labeledTextBox("Inds\u00E6t password:", 20);
 		panel.add(pass);
 		
 		final Label status = new Label("Enter fields");
 		Button button = new Button("Create");
 		panel.add(status);
 		panel.add(button);
-		button.addClickHandler(new ClickHandler() {
+/*		button.addClickHandler(new ClickHandler() { 
 
 			@Override
 			public void onClick(ClickEvent event) {
@@ -84,10 +82,6 @@ public class NewUserClickhandler  implements ClickHandler {
 				{
 					status.setText("CPR invalid");
 				}
-				else if(!Character.isDigit(rank.getValue().charAt(0)))
-					{
-						status.setText("Rank must be a digit");
-					}
 				else if(ini.getText().length() < 3)
 				{
 					status.setText("Ini much be 3 characters");
@@ -95,7 +89,7 @@ public class NewUserClickhandler  implements ClickHandler {
 				else
 				{
 					
-					AnsatRPC.createAnsat(new AnsatDTO(input.getValue(), navn.getText(), ini.getText(), pass.getText(), Integer.parseInt(rank.getValue())), new AsyncCallback<Integer>()
+					AnsatRPC.createAnsat(new AnsatDTO(input.getValue(), navn.getText(), ini.getText(), pass.getText(), Integer.parseInt(ranklist.getSelectedValue())), new AsyncCallback<Integer>()
 							{
 
 								@Override
@@ -111,7 +105,7 @@ public class NewUserClickhandler  implements ClickHandler {
 									navn.setValue("");
 									ini.setValue("");
 									pass.setValue("");
-									rank.setValue("");
+									ranklist.setItemSelected(0, false);
 								}
 						
 							});
@@ -119,6 +113,22 @@ public class NewUserClickhandler  implements ClickHandler {
 			}
 			
 		});
+*/
+	}
+	
+	private class labeledTextBox extends Composite{
+		private Label label = new Label();
+		private TextBox textBox = new TextBox();
+				
+		public labeledTextBox(String label, int length){
+			VerticalPanel panel = new VerticalPanel();
+			this.label.setText(label);
+			panel.add(this.label);
+			panel.add(textBox);
+			textBox.setMaxLength(length);
+			
+			initWidget(panel);
+		}
 	}
 
 }

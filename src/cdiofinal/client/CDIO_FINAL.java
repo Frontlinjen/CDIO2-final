@@ -10,6 +10,7 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
@@ -36,11 +37,26 @@ public class CDIO_FINAL implements EntryPoint {
 	{
 		RootPanel container = RootPanel.get("options");
 		String[] buttons = {"List users", "Create new user"};
-		ClickHandler[] clickers = {new ListUsersClickHandler(), new NewUserClickhandler()};
+		final Composite[] compositeWidgets = {new ListUsersClickHandler(), new NewUserClickhandler()};
+		ClickHandler[] clickHandlers = new ClickHandler[compositeWidgets.length];
+		for (int i = 0; i < compositeWidgets.length; i++) {
+			final int constant = i;
+			clickHandlers[i] = new ClickHandler() {
+
+				@Override
+				public void onClick(ClickEvent event) {
+					RootPanel panel = RootPanel.get("contents");
+					panel.clear();
+					Composite widget = compositeWidgets[constant];
+					panel.add(widget);
+				}
+				
+			};
+		}
 		for(int i=0;i<buttons.length;++i)
 		{
 			PushButton t = new PushButton(buttons[i]);
-			t.addClickHandler(clickers[i]);
+			t.addClickHandler(clickHandlers[i]);
 			container.add(t);
 		}
 	}

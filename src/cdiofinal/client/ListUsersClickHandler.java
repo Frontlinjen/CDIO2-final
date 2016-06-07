@@ -16,6 +16,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.InvocationException;
+import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -28,7 +29,7 @@ import cdiofinal.shared.AnsatDTO;
 
 
 
-public class ListUsersClickHandler implements ClickHandler, AsyncCallback<AnsatDTO[]> {
+public class ListUsersClickHandler extends Composite implements AsyncCallback<AnsatDTO[]> {
 	
 	final AnsatRPCInterfaceAsync database = (AnsatRPCInterfaceAsync)GWT.create(AnsatRPCInterface.class);
 	List<AnsatDTO> gui;
@@ -197,8 +198,7 @@ public class ListUsersClickHandler implements ClickHandler, AsyncCallback<AnsatD
 	}
 
 	//Fired when the user clicks "list users"
-	@Override
-	public void onClick(ClickEvent event) {
+	public void onLoad(ClickEvent event) {
 		gui = getLayoutList();
 		database.getAnsatList(this);
 	
@@ -211,7 +211,7 @@ public class ListUsersClickHandler implements ClickHandler, AsyncCallback<AnsatD
 		     } catch (IncompatibleRemoteServiceException e) {
 		       Window.alert("Incompatible");
 		     } catch (InvocationException e) {
-		       Window.alert("Failed to invoke\n" + e.getMessage());
+		       Window.alert("Failed to connect to database\n" + e.getMessage());
 		     } catch (Throwable e) {
 		       // last resort -- a very unexpected exception
 		    	 Window.alert("Unknown error");
