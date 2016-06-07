@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import connector01917.Connector;
-import daointerfaces01917.DALException;
-import daointerfaces01917.ReceptKompDAO;
-import dto01917.ReceptKompDTO;
+import cdiofinal.server.Connector;
+import cdiofinal.server.DALException;
+import cdiofinal.server.ReceptKompDAO;
+import cdiofinal.shared.ReceptKompDTO;
 
 public class MySQLReceptKomp implements ReceptKompDAO{
 

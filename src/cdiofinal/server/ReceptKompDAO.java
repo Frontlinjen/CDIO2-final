@@ -2,7 +2,7 @@ package cdiofinal.server;
 
 import java.util.List;
 
-import dto01917.ReceptKompDTO;
+import cdiofinal.shared.ReceptKompDTO;
 
 public interface ReceptKompDAO {
 	ReceptKompDTO getReceptKomp(int receptId, int raavareId) throws DALException;
