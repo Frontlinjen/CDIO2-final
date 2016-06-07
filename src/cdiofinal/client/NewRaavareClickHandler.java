@@ -32,53 +32,9 @@ public class NewRaavareClickHandler implements ClickHandler {
 		final TextBox navn = new TextBox();
 		panel.add(navnText);
 		panel.add(navn);
-		{
 		
-		@Override
-		public void onClick(ClickEvent event) {
-			if(navn.getValue().length()==0)
-			{
-				status.setText("Name not long enough");
-			}
-			else if(!FieldVerifier.isValidName(input.getValue()))
-			{
-				status.setText("CPR invalid");
-			}
-			else if(!Character.isDigit(rank.getValue().charAt(0)))
-				{
-					status.setText("Rank must be a digit");
-				}
-			else if(ini.getText().length() < 3)
-			{
-				status.setText("Ini much be 3 characters");
-			}
-			else
-			{
-				
-				AnsatRPC.createAnsat(new AnsatDTO(input.getValue(), navn.getText(), ini.getText(), pass.getText(), Integer.parseInt(rank.getValue())), new AsyncCallback<Integer>()
-						{
 
-							@Override
-							public void onFailure(Throwable caught) {
-								status.setText("Failed to create user");
-								
-							}
-
-							@Override
-							public void onSuccess(Integer result) {
-								status.setText("Successfully created user");		
-								input.setValue("");
-								navn.setValue("");
-								ini.setValue("");
-								pass.setValue("");
-								rank.setValue("");
-							}
-					
-						});
-			}
-		}
 		
-	});
 }
 
 }
