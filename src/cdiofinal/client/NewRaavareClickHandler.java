@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import cdiofinal.shared.AnsatDTO;
 import cdiofinal.client.RaavareRPCInterfaceAsync;
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.RaavareDTO;
 
 public class NewRaavareClickHandler extends Composite {
 
@@ -43,36 +44,36 @@ public class NewRaavareClickHandler extends Composite {
 			public void onClick(ClickEvent event) {
 				if(navn.getValue().length()==0)
 				{
-					status.setText("Name not long enough");
+					status.setText("Intet navn indtastet");
 				}
 				else if(!FieldVerifier.isValidName(input.getValue()))
 				{
-					status.setText("CPR invalid");
+					status.setText("Name invalid");
 				}
-				else if(!Character.isDigit(rank.getValue().charAt(0)))
-					{
-						status.setText("Rank must be a digit");
-					}
-				else if(ini.getText().length() < 3)
+				else if(input.getMaxLength()==0)
+				{	
+					status.setText("ID'et må ikke være tomt");
+				}
+				else if(input.getMaxLength()>8)
 				{
-					status.setText("Ini much be 3 characters");
+					status.setText("Id'et overskrider den maksimale værdi");
 				}
 				else
 				{
 				
-					
-//					AnsatRPC.createAnsat(new AnsatDTO(input.getValue(), navn.getText(), ini.getText(), pass.getText(), Integer.parseInt(rank.getValue())), new AsyncCallback<Integer>()
+					RaavareRPC.createRaavare(new RaavareDTO(Integer.parseInt(input.getValue()), navn.getText()), new AsyncCallback<Integer>()
+
 							{
 
 								@Override
 								public void onFailure(Throwable caught) {
-									status.setText("Failed to create user");
+									status.setText("Kunne ikke skabe raavaren");
 									
 								}
 
 								@Override
 								public void onSuccess(Integer result) {
-									status.setText("Successfully created user");		
+									status.setText("Successfuld skabelse af raavare");		
 									input.setValue("");
 									navn.setValue("");
 								}
