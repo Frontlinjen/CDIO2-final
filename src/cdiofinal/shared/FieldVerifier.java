@@ -49,4 +49,17 @@ public class FieldVerifier {
 
 		return cpr.length() == 10 && cpr.charAt(0)!='0';
 	}
+	
+	public boolean isValidId (int id){
+		if(id < 1){
+			return false;
+		}
+		else if(id > 99999999){
+			return false;
+		}
+		else if(id < 0 ){
+			return false;
+		}
+		else return true;
+	}
 }
