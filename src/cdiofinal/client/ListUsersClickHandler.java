@@ -70,18 +70,22 @@ public class ListUsersClickHandler extends Composite implements AsyncCallback<An
 				removeColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>() {
 					@Override
 					  public void update(final int index, AnsatDTO object, String value) {
+						if(object.getTitel() != 0){
 							database.deleteAnsat(object, new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
-									
+									Window.alert("Deletion unsuccessful");
 								}
 
 								@Override
 								public void onSuccess(Integer result) {
 									gui.remove(index);
+									Window.alert("Successfully deleted user");
 								}
 								
 							});
+						}
+						else Window.alert("You cannot delete operators!");
 					  }
 				});
 				
