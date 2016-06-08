@@ -38,6 +38,7 @@ public class Central implements EntryPoint{
 				if(!idTB.getText().isEmpty() || !passwordTB.getText().isEmpty()){
 					try{
 						if(database.getAnsat(idTB.getText()).getPassword() == passwordTB.getText()){
+							//Successfully logged in, loading main page
 							RootPanel container = RootPanel.get("options");
 							String[] buttons = {"List users", "Create new user", "Tilføj råvare"};
 							final Composite[] compositeWidgets = {new ListUsersClickHandler(), new NewUserClickhandler(), new NewUserClickhandler(), new NewRaavareClickHandler(), new NewRaavareBatchClickHandler()};
