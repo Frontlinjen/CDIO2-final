@@ -11,7 +11,7 @@ import cdiofinal.server.DALException;
 import cdiofinal.server.ReceptKompDAO;
 import cdiofinal.shared.ReceptKompDTO;
 
-public class MySQLReceptKomp implements ReceptKompDAO{
+public class MySQLReceptKompDAO implements ReceptKompDAO{
 
 	public ReceptKompDTO getReceptKomp(int receptId, int raavareId) throws DALException {
 		ResultSet rs = Connector.doQuery("SELECT * FROM receptkomponent WHERE recept_id = " + receptId + " AND raavare_id = " + raavareId + ";");

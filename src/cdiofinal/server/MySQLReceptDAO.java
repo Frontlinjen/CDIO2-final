@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import connector01917.Connector;
+import cdiofinal.server.Connector;
 import cdiofinal.server.DALException;
 import cdiofinal.server.ReceptDAO;
 import cdiofinal.shared.ReceptDTO;
 
-public class MySQLRecept implements ReceptDAO {
+public class MySQLReceptDAO implements ReceptDAO {
 
 	@Override
 	public ReceptDTO getRecept(int receptId) throws DALException {
