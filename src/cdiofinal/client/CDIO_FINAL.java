@@ -36,8 +36,8 @@ public class CDIO_FINAL implements EntryPoint {
 	public void onModuleLoad() 
 	{
 		RootPanel container = RootPanel.get("options");
-		String[] buttons = {"List users", "Create new user"};
-		final Composite[] compositeWidgets = {new ListUsersClickHandler(), new NewUserClickhandler()};
+		String[] buttons = {"List users", "Create new user", "Tilføj råvare"};
+		final Composite[] compositeWidgets = {new ListUsersClickHandler(), new NewUserClickhandler(), new NewUserClickhandler(), new NewRaavareClickHandler(), new NewProductBatchClickHandler(), new NewRaavareBatchClickHandler()};
 		ClickHandler[] clickHandlers = new ClickHandler[compositeWidgets.length];
 		for (int i = 0; i < compositeWidgets.length; i++) {
 			final int constant = i;
