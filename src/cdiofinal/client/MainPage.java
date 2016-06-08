@@ -9,7 +9,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class MainPage{
+public class MainPage extends Composite{
 	/**
 	 * The message displayed to the user when the server cannot be reached or
 	 * returns an error.

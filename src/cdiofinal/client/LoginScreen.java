@@ -39,6 +39,8 @@ public class LoginScreen implements EntryPoint{
 					try{
 						if(database.getAnsat(idTB.getText()).getPassword() == passwordTB.getText()){
 							//Successfully logged in, loading main page
+							RootPanel.get("contents").clear();
+							RootPanel.get("contents").add(new MainPage());
 						}
 						else{
 							Window.alert("Wrong ID or password");
