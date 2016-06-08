@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLAnsatDAO;
 
-public class Central implements EntryPoint{
+public class LoginScreen implements EntryPoint{
 	/**
 	 * The message displayed to the user when the server cannot be reached or
 	 * returns an error.
@@ -39,30 +39,6 @@ public class Central implements EntryPoint{
 					try{
 						if(database.getAnsat(idTB.getText()).getPassword() == passwordTB.getText()){
 							//Successfully logged in, loading main page
-							RootPanel container = RootPanel.get("options");
-							String[] buttons = {"List users", "Create new user", "Tilføj råvare"};
-							final Composite[] compositeWidgets = {new ListUsersClickHandler(), new NewUserClickhandler(), new NewUserClickhandler(), new NewRaavareClickHandler(), new NewRaavareBatchClickHandler()};
-							ClickHandler[] clickHandlers = new ClickHandler[compositeWidgets.length];
-							for (int i = 0; i < compositeWidgets.length; i++) {
-								final int constant = i;
-								clickHandlers[i] = new ClickHandler() {
-
-									@Override
-									public void onClick(ClickEvent event) {
-										RootPanel panel = RootPanel.get("contents");
-										panel.clear();
-										Composite widget = compositeWidgets[constant];
-										panel.add(widget);
-									}
-									
-								};
-							}
-							for(int i=0;i<buttons.length;++i)
-							{
-								PushButton t = new PushButton(buttons[i]);
-								t.addClickHandler(clickHandlers[i]);
-								container.add(t);
-							}
 						}
 						else{
 							Window.alert("Wrong ID or password");
