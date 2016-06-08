@@ -19,7 +19,7 @@ import cdiofinal.shared.RaavareDTO;
 public class NewRaavareClickHandler extends Composite {
 
 	public void onLoad(ClickEvent event) {
-	RaavareRPCInterfaceAsync RaavareRPC = GWT.create(RaavareRPCInterface.class);
+	final RaavareRPCInterfaceAsync RaavareRPC = GWT.create(RaavareRPCInterface.class);
 		RootPanel panel = RootPanel.get("contents"); 
 		panel.clear();
 		
