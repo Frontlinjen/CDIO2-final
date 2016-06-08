@@ -14,6 +14,12 @@ import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLAnsatDAO;
 
 public class LoginScreen implements EntryPoint{
+	/**
+	 * The message displayed to the user when the server cannot be reached or
+	 * returns an error.
+	 */
+	private static final String SERVER_ERROR = "An error occurred while "
+			+ "attempting to contact the server. Please check your network " + "connection and try again.";
 
 	@Override
 	public void onModuleLoad() {
@@ -32,8 +38,9 @@ public class LoginScreen implements EntryPoint{
 				if(!idTB.getText().isEmpty() || !passwordTB.getText().isEmpty()){
 					try{
 						if(database.getAnsat(idTB.getText()).getPassword() == passwordTB.getText()){
-							//login success
-							//Load CDIO_FINAL.java
+							//Successfully logged in, loading main page
+							RootPanel.get("contents").clear();
+							RootPanel.get("contents").add(new MainPage());
 						}
 						else{
 							Window.alert("Wrong ID or password");
