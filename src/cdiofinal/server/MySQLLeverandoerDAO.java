@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import connector01917.Connector;
+import cdiofinal.server.Connector;
 import cdiofinal.server.DALException;
 import cdiofinal.server.LeverandoerDAO;
 import cdiofinal.shared.LeverandoerDTO;
@@ -13,13 +13,13 @@ import cdiofinal.shared.LeverandoerDTO;
 public class MySQLLeverandoerDAO implements LeverandoerDAO {
 
 	@Override
-	public LeverandoerDTO getLeverandoer(int rvId, String leverandoer) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM leverandoer WHERE raavare_id = " + rvId + " AND leverandoer_navn = '" + leverandoer + "';");
+	public LeverandoerDTO getLeverandoer(int leverandoerId) throws DALException {
+		ResultSet rs = Connector.doQuery("SELECT * FROM leverandoer WHERE leverandoer_id = " + leverandoerId + "';");
 		
 		try{
 			if(!rs.first()) 
-				throw new DALException("Raavaren " + rvId + " findes ikke fra leverand�ren: '" + leverandoer + "'");
-			return new LeverandoerDTO(rs.getInt("raavare_id"), rs.getString("leverandoer_navn"), rs.getDouble("maengde"));
+				throw new DALException("Leverandoeren med leverandoer_id " + leverandoerId + " findes ikke.");
+			return new LeverandoerDTO(rs.getInt("leverandoer_id"), rs.getString("leverandoer_navn"));
 		}
 		catch(SQLException e) 
 		{
@@ -40,7 +40,7 @@ public class MySQLLeverandoerDAO implements LeverandoerDAO {
 			List<LeverandoerDTO> leverandoer = new ArrayList<LeverandoerDTO>();
 			do
 			{
-				LeverandoerDTO lev = new LeverandoerDTO(rs.getInt("raavare_id"), rs.getString("leverandoer_navn"), rs.getDouble("maengde"));
+				LeverandoerDTO lev = new LeverandoerDTO(rs.getInt("leverandoer_id"), rs.getString("leverandoer_navn"));
 				leverandoer.add(lev);
 			}while(rs.next());
 			return leverandoer;
