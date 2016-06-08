@@ -1,6 +1,8 @@
 package cdiofinal.shared;
 
-public class RankDTO {
+import java.io.Serializable;
+
+public class RankDTO implements Serializable{
 	
 	int titel;
 	String rank;

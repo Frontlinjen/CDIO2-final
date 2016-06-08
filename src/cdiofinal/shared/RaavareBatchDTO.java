@@ -1,6 +1,8 @@
 package cdiofinal.shared;
 
-public class RaavareBatchDTO {
+import java.io.Serializable;
+
+public class RaavareBatchDTO implements Serializable{
 	
 	int raavarebatchId;
 	int raavareId;

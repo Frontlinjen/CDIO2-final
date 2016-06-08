@@ -1,5 +1,7 @@
 package cdiofinal.shared;
 
+import java.io.Serializable;
+
 /**
  * Recept Data Objekt
  * 
@@ -7,7 +9,7 @@ package cdiofinal.shared;
  * @version 1.2
  */
 
-public class ReceptDTO 
+public class ReceptDTO implements Serializable
 {
 	/** Recept nr i omraadet 1-99999999 */
 	int receptId;

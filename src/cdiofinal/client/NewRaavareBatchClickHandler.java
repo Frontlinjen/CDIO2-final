@@ -17,7 +17,7 @@ import cdiofinal.shared.FieldVerifier;
 
 
 public class NewRaavareBatchClickHandler extends Composite{
-	RaavareBatchRPCInterfaceAsync RaavarebatchRPC = GWT.create(RaavareBatchRPCInterface.class);
+	final RaavareBatchRPCInterfaceAsync RaavarebatchRPC = GWT.create(RaavareBatchRPCInterface.class);
 	public void onClick(ClickEvent event) {
 		RootPanel panel = RootPanel.get("contents");
 		panel.clear();

@@ -1,6 +1,8 @@
 package cdiofinal.shared;
 
-public class LeverandoerDTO
+import java.io.Serializable;
+
+public class LeverandoerDTO implements Serializable
 {
 	int leverandoerId;             // i omraadet 1-99999999
 	String leverandoerNavn;
