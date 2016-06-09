@@ -20,10 +20,5 @@ public class NewLeverandoerComposite extends Composite{
 	public NewLeverandoerComposite() {
 		initWidget(newLeverandoerUiBinder.createAndBindUi(this));
 	}
-	
-	@UiHandler("idBox")
-	public void onIdChanged(KeyPressEvent e)
-	{
-		statusField.setText(Character.toString(e.getCharCode()));
-	}
+
 }
