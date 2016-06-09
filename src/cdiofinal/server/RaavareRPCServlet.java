@@ -57,16 +57,6 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 		
 	}
 
-	@Override
-	public Integer deleteRaavare(RaavareDTO ans) {
-		try {
-			return database.deleteRaavare(ans);
-			} catch (DALException e){
-				System.out.println("Failed at delete Raavare");
-			}
-			return 0;
-		
-	}
 	public static void main(String[] args) {
 		RaavareRPCServlet servlet = new RaavareRPCServlet();
 		for (RaavareDTO string : servlet.getRaavareList()) {

@@ -10,7 +10,4 @@ public interface RaavareRPCInterface extends RemoteService{
 	RaavareDTO[] getRaavareList();
 	Integer createRaavare(RaavareDTO raa);
 	Integer updateRaavare(RaavareDTO raa);
-	Integer deleteRaavare(RaavareDTO raa);
-	
-
 }
