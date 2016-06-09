@@ -1,15 +1,22 @@
 package cdiofinal.client;
 
+import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.Widget;
+
+import cdiofinal.client.LoginScreen.LoginUIBinder;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class MainPage extends Composite{
+	interface MainPageUiBinder extends UiBinder<Widget, MainPage> {}
+	private static MainPageUiBinder mainPageUiBinder = GWT.create(MainPageUiBinder.class);
 	/**
 	 * The message displayed to the user when the server cannot be reached or
 	 * returns an error.
@@ -17,10 +24,10 @@ public class MainPage extends Composite{
 	private static final String SERVER_ERROR = "An error occurred while "
 			+ "attempting to contact the server. Please check your network " + "connection and try again.";
 
-	/**
-	 * This is the entry point method.
-	 */
-	@Override
+	public MainPage()
+	{
+		initWidget(mainPageUiBinder.createAndBindUi(this));
+	}
 	public void onLoad() 
 	{
 		RootPanel container = RootPanel.get("options");
