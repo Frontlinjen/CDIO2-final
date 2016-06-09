@@ -5,7 +5,7 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 
-@RemoteServiceRelativePath("Ansatte")
+@RemoteServiceRelativePath("ansatte")
 public interface AnsatRPCInterface extends RemoteService{
 	AnsatDTO getAnsat(String cpr);
 	AnsatDTO[] getAnsatList();

@@ -4,12 +4,20 @@ import java.io.Serializable;
 
 public class ProduktBatchKompDTO implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int pbId; 	  // produktbatchets id
 	int raavarebatchId;        // raavarebatchens id
 	double tara;
 	double netto;
 	String cpr;					// cpr-nummer for operatøren
 
+	public ProduktBatchKompDTO()
+	{
+		
+	}
 	
 	public ProduktBatchKompDTO(int pbId, int raavarebatchId, double tara, double netto, String cpr)
 	{
