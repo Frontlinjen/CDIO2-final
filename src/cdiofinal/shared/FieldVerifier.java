@@ -50,6 +50,12 @@ public class FieldVerifier {
 		return String.valueOf(cpr).length() == 10 && String.valueOf(cpr).charAt(0)!='0';
 	}
 	
+	public boolean isValidIni (String ini){
+		if(ini.length()<2 || ini.length()>4)
+			return false;
+		else return true;
+	}
+	
 	public boolean isValidId (int id){
 		if(id < 1){
 			return false;
@@ -63,8 +69,7 @@ public class FieldVerifier {
 	public boolean isValidPassword(String pw){
 		if(pw.length()>8 || pw.length()<3)
 			return false;
-		else
-		return true;
+		else return true;
 	}
 
 }
