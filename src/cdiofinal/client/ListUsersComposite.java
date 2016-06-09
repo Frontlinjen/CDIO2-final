@@ -7,21 +7,20 @@ import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.cell.client.SelectionCell;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
-import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.InvocationException;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
+import cdiofinal.client.NewReceptComposite.NewReceptCompositeUiBinder;
 import cdiofinal.shared.AnsatDTO;
 
 
@@ -29,26 +28,31 @@ import cdiofinal.shared.AnsatDTO;
 
 
 
-public class ListUsersClickHandler extends Composite implements AsyncCallback<AnsatDTO[]> {
+public class ListUsersComposite extends Composite implements AsyncCallback<AnsatDTO[]> {
 	
 	final AnsatRPCInterfaceAsync database = (AnsatRPCInterfaceAsync)GWT.create(AnsatRPCInterface.class);
+	
+	interface ListUsersUiBinder extends UiBinder<Widget, ListUsersComposite> {}
+	private static ListUsersUiBinder listUsersUiBinder = GWT.create(ListUsersUiBinder.class);
+	@UiField(provided=true) CellTable<AnsatDTO> vPanel;
 	List<AnsatDTO> gui;
 	
+	public ListUsersComposite()
+	{
+		initWidget(listUsersUiBinder.createAndBindUi(this));
+	}
 	public List<AnsatDTO> getLayoutList() { //TODO: Show users when clicked
-		RootPanel panel = RootPanel.get("contents");
-		panel.clear();
-		CellTable<AnsatDTO> vPanel = new CellTable<AnsatDTO>();
-		
-				Column<AnsatDTO, String> CPRColumn = getCPRColumn();
+		vPanel = new CellTable<AnsatDTO>();
+		Column<AnsatDTO, String> CPRColumn = getCPRColumn();
 		//CPRColumn.setSortable(true);
-				Column<AnsatDTO, String> nameColumn = getNameColumn();
+		Column<AnsatDTO, String> nameColumn = getNameColumn();
 		//nameColumn.setSortable(true);
-				Column<AnsatDTO, String> iniColumn = getIniColumn();
+		Column<AnsatDTO, String> iniColumn = getIniColumn();
 		//nameColumn.setSortable(true);
-				Column<AnsatDTO, String> rankColumn = getRankColumn();
+		Column<AnsatDTO, String> rankColumn = getRankColumn();
 		//nameColumn.setSortable(true);
-				Column<AnsatDTO, String> saveColumn = getButtonColumn("save");
-				saveColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>() {
+		Column<AnsatDTO, String> saveColumn = getButtonColumn("save");
+		saveColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>() {
 					@Override
 					  public void update(final int index, AnsatDTO object, String value) {
 							database.updateAnsat(object, new AsyncCallback<Integer>() {
@@ -202,7 +206,7 @@ public class ListUsersClickHandler extends Composite implements AsyncCallback<An
 	}
 
 	//Fired when the user clicks "list users"
-	public void onLoad(ClickEvent event) {
+	public void onLoad() {
 		gui = getLayoutList();
 		database.getAnsatList(this);
 	
@@ -227,7 +231,7 @@ public class ListUsersClickHandler extends Composite implements AsyncCallback<An
 		{
 			Window.alert("No data recieved.");
 		}
-
+		gui.clear();
 		for (AnsatDTO ansatDTO : result) {
 			gui.add(ansatDTO);
 		}
