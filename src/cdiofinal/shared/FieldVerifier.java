@@ -34,13 +34,42 @@ public class FieldVerifier {
 	 * @return true if valid, false if invalid
 	 */
 	public static boolean isValidName(String name) {
-		if (name == null) {
+		if (name == null) 
+		{
 			return false;
 		}
-		return name.length() > 3;
+		else if (name.length() < 2 || name.length() > 20)
+		{
+			return false;
+		}
+		else
+			for(int i = 0; i < name.length(); i++){
+				if(Character.isDigit(name.charAt(i))){
+					return false;
+				}
+				i++;
+				}
+		return true;
 	}
 	
-	public boolean isValidCpr (int cpr){
+	public static boolean isValidNomNetto(double nom){
+		if (nom < 0.05 || nom > 20.0)
+		{
+			return false;
+		}
+		
+		else return true;
+	}
+	
+	public static boolean isValidTolerance(double tol){
+		if (tol < 0.1 || tol > 10)
+		{
+			return false;
+		}
+		else return true;
+	}
+	
+	public static boolean isValidCpr (int cpr){
 		for(int i = 0; i < String.valueOf(cpr).length(); i++){
 			if(!Character.isDigit(String.valueOf(cpr).charAt(i))){
 				return false;
@@ -50,13 +79,13 @@ public class FieldVerifier {
 		return String.valueOf(cpr).length() == 10 && String.valueOf(cpr).charAt(0)!='0';
 	}
 	
-	public boolean isValidIni (String ini){
+	public static boolean isValidIni (String ini){
 		if(ini.length()<2 || ini.length()>4)
 			return false;
 		else return true;
 	}
 	
-	public boolean isValidId (int id){
+	public static boolean isValidId (int id){
 		if(id < 1){
 			return false;
 		}
@@ -66,7 +95,7 @@ public class FieldVerifier {
 		else return true;
 	}
 	
-	public boolean isValidPassword(String pw){
+	public static boolean isValidPassword(String pw){
 		if(pw.length()>8 || pw.length()<3)
 			return false;
 		else return true;
