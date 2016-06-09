@@ -24,7 +24,7 @@ public class NewProduktbatchComposite extends Composite{
 	}
 	
 	@UiHandler("idBox")
-	public void onCprChanged(KeyPressEvent e)
+	public void onIdChanged(KeyPressEvent e)
 	{
 		statusField.setText(Character.toString(e.getCharCode()));
 	}
