@@ -1,0 +1,13 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+	<g:VerticalPanel>
+		<g:Label text="Indtast Batch nr:"/>
+		<g:IntegerBox ui:field="batchNrBox"/>
+		<g:Label text="Indtast raavare ID"/>
+		<g:IntegerBox ui:field="raavareId"/>
+		<g:Label text="Indtast Leverandør ID"/>
+		<g:IntegerBox ui:field="supplierIdBox"/>
+		<g:Label text="Indtast mængde"/>
+		<g:IntegerBox ui:field="amountBox"/>
+	</g:VerticalPanel>
+</ui:UiBinder>
