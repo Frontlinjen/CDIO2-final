@@ -10,7 +10,6 @@ public interface LeverandoerRPCInterface extends RemoteService{
 	LeverandoerDTO[] getLeverandoerList();
  	Integer createLeverandoer(LeverandoerDTO lev);
 	Integer updateLeverandoer(LeverandoerDTO lev);
-	Integer deleteLeverandoer(LeverandoerDTO lev);
 	
 
 }
