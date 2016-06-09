@@ -2,8 +2,7 @@
     xmlns:g='urn:import:com.google.gwt.user.client.ui'>
      <ui:style>
      	.centered{
-		margin-right: auto;
-		margin-bottom: auto;
+		margin: 0 auto;
 	}
      </ui:style>
   	<g:VerticalPanel styleName='{style.centered}'>

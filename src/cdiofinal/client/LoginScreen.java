@@ -11,6 +11,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -32,8 +33,8 @@ public class LoginScreen extends Composite{
 		String pass = password.getText();
 		String usr = username.getText();
 		//Verify login here
-		//RootPanel.get("contents").clear();
-		//RootPanel.get("contents").add(new MainPage());
+		RootPanel.get("contents").clear();
+		RootPanel.get("contents").add(new MainPage());
 	}
 
 }
