@@ -8,5 +8,4 @@ public interface ProduktBatchKompRPCInterfaceAsync {
 	public void getProduktBatchKompList(AsyncCallback<ProduktBatchKompDTO[]> callback);
 	public void createProduktBatchKomp(ProduktBatchKompDTO pbk, AsyncCallback<Integer> callback);
 	public void updateProduktBatchKomp(ProduktBatchKompDTO pbk, AsyncCallback<Integer> callback);
-	public void deleteProduktBatchKomp(ProduktBatchKompDTO pbk, AsyncCallback<Integer> callback);
 }
