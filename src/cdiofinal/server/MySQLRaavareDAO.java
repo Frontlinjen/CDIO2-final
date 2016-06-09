@@ -4,10 +4,8 @@ import java.util.List;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ArrayList;
 
-import connector01917.Connector;
 import cdiofinal.server.DALException;
 import cdiofinal.server.RaavareDAO;
 import cdiofinal.shared.RaavareDTO;

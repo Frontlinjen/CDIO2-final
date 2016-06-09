@@ -24,7 +24,7 @@ public class MainPage extends Composite{
 	{
 		RootPanel container = RootPanel.get("options");
 		String[] buttons = {"List users", "Create new user", "Tilføj råvare"};
-		final Composite[] compositeWidgets = {new ListUsersClickHandler(), new NewUserComposite(), new NewUserComposite(), new NewRaavareClickHandler(), new NewRaavareBatchClickHandler()};
+		final Composite[] compositeWidgets = {new ListUsersClickHandler(), new NewUserComposite(), new NewUserComposite(), new NewRaaLevClickHandler(), new NewRaavareBatchClickHandler()};
 		ClickHandler[] clickHandlers = new ClickHandler[compositeWidgets.length];
 		for (int i = 0; i < compositeWidgets.length; i++) {
 			final int constant = i;
