@@ -5,5 +5,7 @@
 		<g:textbox ui:field="nameBox"/>
 		<g:Label text="Indsæt Id"/>
 		<g:IntegerBox ui:field="idBox"/>
-	</g:VerticalPanel>
-</ui:UiBinder>
+        <g:Label ui:field="statusField" text="Enter Fields"/>
+        <g:Button text="Create"/>
+    </g:VerticalPanel>
+  </ui:UiBinder>

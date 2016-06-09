@@ -53,6 +53,9 @@ public class NewRaavareBatchClickHandler extends Composite{
 		button.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
+				
+				
+				
 				RaavarebatchRPC.createRaavareBatch(new RaavareBatchDTO(inputRbID.getTabIndex(), inputRaavareID.getTabIndex(), inputLeverandoerID.getTabIndex(), inputMaengde.getTabIndex()), new AsyncCallback<Integer>()
 				{
 

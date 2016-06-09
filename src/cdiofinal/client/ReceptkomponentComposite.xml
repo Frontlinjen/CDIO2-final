@@ -1,0 +1,15 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+   xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <g:VerticalPanel>
+		<g:Label text="Indsaet Receptens Id:"/>
+        <g:TextBox ui:field="re_idBox"/>
+		<g:Label text="Indsaet Råvarens Id:"/>
+        <g:TextBox ui:field="raa_idBox"/>
+		<g:Label text="Indsaet den nomielle netto:"/>
+        <g:TextBox ui:field="nom_nettoBox"/>
+		<g:Label text="Indsaet tolerancen:"/>
+        <g:TextBox ui:field="tolBox"/>
+        <g:Label ui:field="statusField" text="Enter Fields"/>
+        <g:Button text="Create"/>
+    </g:VerticalPanel>
+  </ui:UiBinder>
