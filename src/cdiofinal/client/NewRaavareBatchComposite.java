@@ -23,9 +23,5 @@ public class NewRaavareBatchComposite extends Composite{
 		initWidget(newRaavareBatchUiBinder.createAndBindUi(this));
 	}
 	
-	@UiHandler("batchNrBox")
-	public void onbatchNrBoxChanged(KeyPressEvent e)
-	{
-		statusField.setText(Character.toString(e.getCharCode()));
-	}
+
 }

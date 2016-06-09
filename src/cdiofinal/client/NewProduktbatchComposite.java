@@ -22,10 +22,5 @@ public class NewProduktbatchComposite extends Composite{
 	NewProduktbatchComposite() {
 		initWidget(newProduktBatchUiBinder.createAndBindUi(this));
 	}
-	
-	@UiHandler("idBox")
-	public void onIdChanged(KeyPressEvent e)
-	{
-		statusField.setText(Character.toString(e.getCharCode()));
-	}
+
 }
