@@ -11,13 +11,21 @@ import java.io.Serializable;
 
 public class ReceptDTO implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/** Recept nr i omraadet 1-99999999 */
 	int receptId;
 	/** Receptnavn min. 2 max. 20 karakterer */
 	String receptNavn;
 	/** liste af kompenenter i recepten */
 	
-    
+    public ReceptDTO()
+    {
+    	
+    }
+	
 	public ReceptDTO(int receptId, String receptNavn)
 	{
         this.receptId = receptId;

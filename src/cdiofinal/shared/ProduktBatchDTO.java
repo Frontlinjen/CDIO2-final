@@ -4,9 +4,18 @@ import java.io.Serializable;
 
 public class ProduktBatchDTO implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int pbId;                     // i omraadet 1-99999999
 	int status;					// 0: ikke paabegyndt, 1: under produktion, 2: afsluttet
 	int receptId;
+	
+	public ProduktBatchDTO()
+	{
+		
+	}
 	
 	public ProduktBatchDTO(int pbId, int status, int receptId)
 	{

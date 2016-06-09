@@ -4,10 +4,18 @@ import java.io.Serializable;
 
 public class RaavareBatchDTO implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int raavarebatchId;
 	int raavareId;
 	int leverandoerId;
 	double maengde;
+	
+	public RaavareBatchDTO(){
+		
+	}
 	
 	public RaavareBatchDTO(int raavarebatchId, int raavareId, int leverandoerId, double maengde){
 		this.raavarebatchId = raavarebatchId;

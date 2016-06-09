@@ -4,9 +4,18 @@ import java.io.Serializable;
 
 public class LeverandoerDTO implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int leverandoerId;             // i omraadet 1-99999999
 	String leverandoerNavn;
 
+	public LeverandoerDTO()
+	{
+		
+	}
+	
 	public LeverandoerDTO(int leverandoerId, String leverandoerNavn)
 	{
 		this.leverandoerId = leverandoerId;

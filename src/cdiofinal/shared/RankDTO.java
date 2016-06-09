@@ -4,8 +4,17 @@ import java.io.Serializable;
 
 public class RankDTO implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int titel;
 	String rank;
+	
+	public RankDTO()
+	{
+		
+	}
 	
 	public RankDTO(int titel, String rank){
 		this.titel = titel;
