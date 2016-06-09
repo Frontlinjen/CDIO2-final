@@ -56,17 +56,7 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 			return 0;
 		
 	}
-
-	@Override
-	public Integer deleteLeverandoer(LeverandoerDTO lev) {
-		try {
-			return database.deleteLeverandoer(lev);
-			} catch (DALException e){
-				System.out.println("Failed at deleteLeverandoer");
-			}
-			return 0;
-		
-	}
+	
 	public static void main(String[] args) {
 		LeverandoerRPCServlet servlet = new LeverandoerRPCServlet();
 		for (LeverandoerDTO string : servlet.getLeverandoerList()) {

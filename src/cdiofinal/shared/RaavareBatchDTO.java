@@ -32,6 +32,7 @@ public class RaavareBatchDTO implements Serializable{
 	public void setLeverandoerId(int leverandoerId) {this.leverandoerId = leverandoerId;}
 	public double getMaengde() {return maengde;}
 	public void setMaengde(double maengde) {this.maengde = maengde;}
+	@Override
 	public String toString(){
 		return raavarebatchId + "/t" + raavareId + "/t" + leverandoerId + "/t" + maengde;
 	}

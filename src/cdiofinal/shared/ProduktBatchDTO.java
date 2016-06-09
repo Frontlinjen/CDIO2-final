@@ -30,6 +30,7 @@ public class ProduktBatchDTO implements Serializable
 	public void setStatus(int status) { this.status = status; }
 	public int getReceptId() { return receptId; }
 	public void setReceptId(int receptId) { this.receptId = receptId; }
+	@Override
 	public String toString() { return pbId + "\t" + status + "\t" + receptId; }
 }
 

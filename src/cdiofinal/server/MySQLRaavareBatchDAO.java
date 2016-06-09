@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cdiofinal.shared.RaavareBatchDTO;
-import cdiofinal.shared.ReceptKompDTO;
 
 public class MySQLRaavareBatchDAO implements RaavareBatchDAO{
 
@@ -36,14 +35,14 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO{
 	}
 
 	@Override
-	public void createRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
-		Connector.doUpdate("INSERT INTO raavarebatch(raavarebatch_id, raavare_id, leverandoer_id, maengde) VALUES (" + raavarebatch.getRaavarebatchId() + ","
+	public int createRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
+		return Connector.doUpdate("INSERT INTO raavarebatch(raavarebatch_id, raavare_id, leverandoer_id, maengde) VALUES (" + raavarebatch.getRaavarebatchId() + ","
 				+ raavarebatch.getRaavareId() + "," + raavarebatch.getLeverandoerId() + "," + raavarebatch.getMaengde() + ");");
 	}
 
 	@Override
-	public void updateRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
-		Connector.doUpdate("UPDATE raavarebatch SET raavare_id = '" + raavarebatch.getRaavareId() + "', leverandoer_id = '"
+	public int updateRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
+		return Connector.doUpdate("UPDATE raavarebatch SET raavare_id = '" + raavarebatch.getRaavareId() + "', leverandoer_id = '"
 				+ raavarebatch.getLeverandoerId() + "', maengde = '" + raavarebatch.getMaengde() + "' WHERE raavarebatch_id = " + raavarebatch.getRaavarebatchId() + ";");
 	}
 

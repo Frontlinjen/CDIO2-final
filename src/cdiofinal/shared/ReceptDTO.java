@@ -36,6 +36,7 @@ public class ReceptDTO implements Serializable
 	public void setReceptId(int receptId) { this.receptId = receptId; }
 	public String getReceptNavn() { return receptNavn; }
 	public void setReceptNavn(String receptNavn) { this.receptNavn = receptNavn; }
+	@Override
 	public String toString() { 
 		return receptId + "\t" + receptNavn; 
 	}

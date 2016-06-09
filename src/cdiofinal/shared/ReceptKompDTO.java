@@ -29,6 +29,7 @@ public class ReceptKompDTO implements Serializable
 	public void setNomNetto(double nomNetto) { this.nomNetto = nomNetto; }
 	public double getTolerance() { return tolerance; }
 	public void setTolerance(double tolerance) { this.tolerance = tolerance; }
+	@Override
 	public String toString() { 
 		return receptId + "\t" + raavareId + "\t" + nomNetto + "\t" + tolerance; 
 	}

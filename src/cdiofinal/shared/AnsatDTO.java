@@ -54,5 +54,6 @@ public class AnsatDTO implements Serializable
 	public void setPassword(String password) { this.password = password; }
 	public int getTitel() { return titel; }
 	public void setTitel(int titel) { this.titel = titel; }
+	@Override
 	public String toString() { return cpr + "\t" + oprNavn + "\t" + ini + "\t" + password + "\t" + titel; }
 }

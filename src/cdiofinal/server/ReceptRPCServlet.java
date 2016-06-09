@@ -4,13 +4,12 @@ import java.util.List;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.client.RecRPCInterface;
-import cdiofinal.client.ReceptRPCInterface;
 import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLReceptDAO;
 import cdiofinal.shared.ReceptDTO;
 import cdiofinal.shared.ReceptKompDTO;
 
-public class RecRPCServlet extends RemoteServiceServlet implements RecRPCInterface {
+public class ReceptRPCServlet extends RemoteServiceServlet implements RecRPCInterface {
 
 	private static final long serialVersionUID = 1L;
 	MySQLReceptDAO receptDAO = new MySQLReceptDAO();
@@ -60,16 +59,6 @@ public class RecRPCServlet extends RemoteServiceServlet implements RecRPCInterfa
 		
 	}
 
-	@Override
-	public Integer deleteRecept(ReceptDTO ans) {
-		try {
-			return receptDAO.deleteRecept(ans);
-			} catch (DALException e){
-				System.out.println("Failed at delete Recept");
-			}
-			return 0;
-		
-	}
 
 	@Override
 	public ReceptKompDTO getReceptKomp(int recId, int raavareId) {
@@ -111,16 +100,5 @@ public class RecRPCServlet extends RemoteServiceServlet implements RecRPCInterfa
 			}
 			return 0;
 	}
-
-	@Override
-	public Integer deleteReceptKomp(ReceptKompDTO recKomp) {
-		try {
-			return receptKompDAO.deleteReceptKomp(recKomp);
-			} catch (DALException e){
-				System.out.println("Failed at delete ReceptKomp");
-			}
-			return 0;
-	}
-	
 	
 }

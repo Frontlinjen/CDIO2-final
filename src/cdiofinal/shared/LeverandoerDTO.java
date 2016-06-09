@@ -26,6 +26,7 @@ public class LeverandoerDTO implements Serializable
 	public void setLeverandoerId(int leverandoerId) { this.leverandoerId = leverandoerId; }
 	public String getLeverandoerNavn() { return leverandoerNavn; }
 	public void setLeverandoerNavn(String leverandoerNavn) { this.leverandoerNavn = leverandoerNavn; }
+	@Override
 	public String toString() { 
 		return leverandoerId + "\t" + leverandoerNavn; 
 	}

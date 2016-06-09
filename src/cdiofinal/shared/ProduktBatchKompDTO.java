@@ -38,6 +38,7 @@ public class ProduktBatchKompDTO implements Serializable
 	public void setNetto(double netto) { this.netto = netto; }
 	public String getCpr() { return cpr; }
 	public void setCpr(String cpr) { this.cpr = cpr; }
+	@Override
 	public String toString() { 
 		return pbId + "\t" + raavarebatchId +"\t" + tara +"\t" + netto + "\t" + cpr ; 
 	}
