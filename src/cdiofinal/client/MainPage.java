@@ -31,9 +31,8 @@ public class MainPage extends Composite{
 	public void onLoad() 
 	{
 		RootPanel container = RootPanel.get("options");
-		String[] buttons = {"List users", "Create new user", "Tilf�j r�vare"};
+		String[] buttons = {"List users", "Create new user", "Raavare / Leverandoer", "RaavareBatches"};
 		final Composite[] compositeWidgets = {new ListUsersClickHandler(), 
-				new NewUserComposite(), 
 				new NewUserComposite(), 
 				new NewRaaLevClickHandler(), 
 				new NewRaavareBatchClickHandler()};
