@@ -57,7 +57,6 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 		
 	}
 		
-	}
 	public static void main(String[] args) {
 		ProduktBatchKompRPCServlet servlet = new ProduktBatchKompRPCServlet();
 		for (ProduktBatchKompDTO string : servlet.getProduktBatchKompList()) {

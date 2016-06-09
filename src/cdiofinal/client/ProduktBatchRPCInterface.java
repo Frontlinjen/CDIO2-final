@@ -11,5 +11,4 @@ public interface ProduktBatchRPCInterface extends RemoteService{
 	ProduktBatchDTO[] getProduktBatchList();
 	Integer createProduktBatch(ProduktBatchDTO ans);
 	Integer updateProduktBatch(ProduktBatchDTO ans);
-	Integer deleteProduktBatch(ProduktBatchDTO ans);
 }

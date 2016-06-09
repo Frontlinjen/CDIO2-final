@@ -36,16 +36,16 @@ public class MySQLRankDAO implements RankDAO{
 	}
 
 	@Override
-	public void createRank(RankDTO rank) throws DALException {
-		Connector.doUpdate(
+	public int createRank(RankDTO rank) throws DALException {
+		return Connector.doUpdate(
 				"INSERT INTO rank(titel, rank) VALUES " +
 				"(" + rank.getTitel() + ", '" + rank.getRank() + "');"
 			);
 	}
 
 	@Override
-	public void updateRank(RankDTO rank) throws DALException {
-		Connector.doUpdate(
+	public int updateRank(RankDTO rank) throws DALException {
+		return Connector.doUpdate(
 				"UPDATE rank SET rank = '" + rank.getRank() + "' WHERE titel = " + rank.getTitel()
 				+ ";");
 	}

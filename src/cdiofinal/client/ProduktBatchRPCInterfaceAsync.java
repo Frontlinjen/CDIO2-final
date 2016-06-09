@@ -8,6 +8,4 @@ public interface ProduktBatchRPCInterfaceAsync {
 	public void getProduktBatchList(AsyncCallback<ProduktBatchDTO[]> callback);
 	public void createProduktBatch(ProduktBatchDTO pb, AsyncCallback<Integer> callback);
 	public void updateProduktBatch(ProduktBatchDTO pb, AsyncCallback<Integer> callback);
-	public void deleteProduktBatch(ProduktBatchDTO pb, AsyncCallback<Integer> callback);
-
 }

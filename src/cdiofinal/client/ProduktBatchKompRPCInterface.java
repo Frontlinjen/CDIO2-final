@@ -11,5 +11,4 @@ public interface ProduktBatchKompRPCInterface extends RemoteService{
 	ProduktBatchKompDTO[] getProduktBatchKompList();
 	Integer createProduktBatchKomp(ProduktBatchKompDTO pbk);
 	Integer updateProduktBatchKomp(ProduktBatchKompDTO pbk);
-	Integer deleteProduktBatchKomp(ProduktBatchKompDTO pbk);
 }
