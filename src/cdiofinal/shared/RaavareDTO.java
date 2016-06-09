@@ -34,7 +34,8 @@ public class RaavareDTO implements Serializable
     public void setRaavareId(int raavareId) { this.raavareId = raavareId; }
     public String getRaavareNavn() { return raavareNavn; }
     public void setRaavareNavn(String raavareNavn) { this.raavareNavn = raavareNavn; }
-    public String toString() { 
+    @Override
+	public String toString() { 
 		return raavareId + "\t" + raavareNavn; 
 	}
 }

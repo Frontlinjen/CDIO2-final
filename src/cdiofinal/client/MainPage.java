@@ -9,8 +9,6 @@ import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import cdiofinal.client.LoginScreen.LoginUIBinder;
-
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
@@ -28,6 +26,7 @@ public class MainPage extends Composite{
 	{
 		initWidget(mainPageUiBinder.createAndBindUi(this));
 	}
+	@Override
 	public void onLoad() 
 	{
 		RootPanel container = RootPanel.get("options");

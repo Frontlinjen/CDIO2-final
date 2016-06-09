@@ -19,6 +19,7 @@ public class MySQLAnsatDAO implements AnsatDAO {
 			e.printStackTrace();
 		}
 	}
+	@Override
 	public AnsatDTO getAnsat(String cpr) throws DALException {
 		ResultSet rs = Connector.doQuery("SELECT * FROM ansat WHERE cpr = " + cpr + ";");
 	    try {
@@ -29,6 +30,7 @@ public class MySQLAnsatDAO implements AnsatDAO {
 		
 	}
 	
+	@Override
 	public int createAnsat(AnsatDTO ans) throws DALException {		
 			return Connector.doUpdate(
 				"INSERT INTO ansat(cpr, opr_navn, ini, password, titel) VALUES " +
@@ -37,6 +39,7 @@ public class MySQLAnsatDAO implements AnsatDAO {
 			);
 	}
 	
+	@Override
 	public int updateAnsat(AnsatDTO ans) throws DALException {
 		return Connector.doUpdate(
 				"UPDATE ansat SET  opr_navn = '" + ans.getOprNavn() + "', ini =  '" + ans.getIni() + 
@@ -45,6 +48,7 @@ public class MySQLAnsatDAO implements AnsatDAO {
 		);
 	}
 	
+	@Override
 	public List<AnsatDTO> getAnsatList() throws DALException {
 		List<AnsatDTO> list = new ArrayList<AnsatDTO>();
 		ResultSet rs = Connector.doQuery("SELECT * FROM ansat;");
@@ -59,6 +63,7 @@ public class MySQLAnsatDAO implements AnsatDAO {
 		return list;
 	}
 
+	@Override
 	public int deleteAnsat(AnsatDTO ans) throws DALException {
 		return Connector.doUpdate("DELETE FROM ansat WHERE cpr = " + ans.getCpr() + ";");
 	}

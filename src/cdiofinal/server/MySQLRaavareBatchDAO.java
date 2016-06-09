@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cdiofinal.shared.RaavareBatchDTO;
-import cdiofinal.shared.ReceptKompDTO;
 
 public class MySQLRaavareBatchDAO implements RaavareBatchDAO{
 

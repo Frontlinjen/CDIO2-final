@@ -25,6 +25,7 @@ public class RankDTO implements Serializable{
 	public void setTitel(int titel) {this.titel = titel;}
 	public String getRank() {return rank;}
 	public void setRank(String rank) {this.rank = rank;}
+	@Override
 	public String toString(){
 		return titel + "/t" + rank + "/t";
 	}

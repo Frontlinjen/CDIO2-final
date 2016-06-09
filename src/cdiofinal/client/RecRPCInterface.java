@@ -3,7 +3,6 @@ package cdiofinal.client;
 import cdiofinal.shared.ReceptDTO;
 import cdiofinal.shared.ReceptKompDTO;
 
-import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("Recept og receptkomponent")

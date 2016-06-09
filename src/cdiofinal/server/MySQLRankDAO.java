@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cdiofinal.shared.RankDTO;
-import cdiofinal.shared.ReceptDTO;
 
 public class MySQLRankDAO implements RankDAO{
 
