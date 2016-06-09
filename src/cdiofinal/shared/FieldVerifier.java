@@ -59,4 +59,13 @@ public class FieldVerifier {
 		}
 		else return true;
 	}
+	
+	public boolean isValidPassword(String pw){
+		if(pw.length()>8 || pw.length()<3)
+			return false;
+		else
+		return true;
+	}
+
 }
+
