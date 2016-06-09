@@ -11,15 +11,14 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 
-import cdiofinal.shared.AnsatDTO;
-import cdiofinal.client.RaavareRPCInterfaceAsync;
+import cdiofinal.client.RaaLevRPCInterfaceAsync;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.RaavareDTO;
 
-public class NewRaavareClickHandler extends Composite {
+public class NewRaaLevClickHandler extends Composite {
 
 	public void onLoad(ClickEvent event) {
-	final RaavareRPCInterfaceAsync RaavareRPC = GWT.create(RaavareRPCInterface.class);
+	final RaaLevRPCInterfaceAsync RaavareRPC = GWT.create(RaaLevRPCInterface.class);
 		RootPanel panel = RootPanel.get("contents"); 
 		panel.clear();
 		
