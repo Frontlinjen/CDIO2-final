@@ -1,0 +1,9 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+	<g:VerticalPanel>
+		<g:Label text="Indsæt navn:"/>
+		<g:textbox ui:field="nameBox"/>
+		<g:Label text="Indsæt Id"/>
+		<g:IntegerBox ui:field="idBox"/>
+	</g:VerticalPanel>
+</ui:UiBinder>
