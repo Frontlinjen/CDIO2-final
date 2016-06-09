@@ -37,7 +37,7 @@ import cdiofinal.shared.FieldVerifier;
 //}
 
 
-public class NewUserClickhandler extends Composite {
+public class NewUserComposite extends Composite {
 	AnsatRPCInterfaceAsync AnsatRPC = GWT.create(AnsatRPCInterface.class);
 	
 	public void onLoad(ClickEvent event) {
