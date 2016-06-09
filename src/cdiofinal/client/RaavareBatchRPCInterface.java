@@ -11,5 +11,4 @@ public interface RaavareBatchRPCInterface extends RemoteService{
 	RaavareBatchDTO[] getRaavareBatchList();
 	Integer createRaavareBatch(RaavareBatchDTO ans);
 	Integer updateRaavareBatch(RaavareBatchDTO ans);
-	Integer deleteRaavareBatch(RaavareBatchDTO ans);
 }

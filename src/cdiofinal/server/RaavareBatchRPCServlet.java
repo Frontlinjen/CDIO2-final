@@ -57,16 +57,6 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 		
 	}
 
-	@Override
-	public Integer deleteRaavareBatch(RaavareBatchDTO ans) {
-		try {
-			return database.deleteRaavareBatch(ans);
-			} catch (DALException e){
-				System.out.println("Failed at delete RaavareBatch");
-			}
-			return 0;
-		
-	}
 	public static void main(String[] args) {
 		RaavareBatchRPCServlet servlet = new RaavareBatchRPCServlet();
 		for (RaavareBatchDTO string : servlet.getRaavareBatchList()) {
