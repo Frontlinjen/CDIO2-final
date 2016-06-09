@@ -1,0 +1,37 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+ 		<ui:style>
+ 			.centerBox
+ 			{
+ 				background-color: Gray;
+ 				margin: 0 auto;
+ 			}
+ 		</ui:style>
+	  	<g:VerticalPanel styleName='{style.centerBox}'>
+	  		<g:Label text="Indsæt CPR:"/>
+	  		<g:TextBox ui:field="cprBox"/>
+	  		<g:Label text="Indsæt navn:"/>
+	  		<g:TextBox ui:field="nameBox"/>
+	  		<g:Label text="Indsaet INI:"/>
+	  		<g:TextBox ui:field="iniBox"/>
+	  		<g:Label text="Vælg rank:"/>
+	  		<g:ListBox ui:field='rankBox'>
+	  			<g:item>
+	  				Operatoer
+	  			</g:item>
+	  			<g:item>
+	  				Vaerkfoerer
+	  			</g:item>
+	  			<g:item>
+	  				Farmaceut
+	  			</g:item>
+	  			<g:item>
+	  				Administration
+	  			</g:item>
+	  		</g:ListBox>
+	  		<g:Label text="Password:"/>
+	  		<g:PasswordTextBox ui:field="passBox"/>
+	  		<g:Label ui:field="statusField" text="Enter Fields"/>
+	  		<g:Button text="Create"/>
+	  	</g:VerticalPanel>
+  </ui:UiBinder>

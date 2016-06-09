@@ -20,7 +20,8 @@ public class MainPage extends Composite{
 	/**
 	 * This is the entry point method.
 	 */
-	public void onModuleLoad() 
+	@Override
+	public void onLoad() 
 	{
 		RootPanel container = RootPanel.get("options");
 		String[] buttons = {"List users", "Create new user", "Tilføj råvare"};
