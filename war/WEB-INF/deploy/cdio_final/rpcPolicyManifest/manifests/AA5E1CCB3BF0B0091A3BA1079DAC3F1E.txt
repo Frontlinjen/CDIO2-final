@@ -1,2 +1,0 @@
-serviceClass: cdiofinal.client.AnsatRPCInterface
-path: 94975B0B9985D72645B13B392A86BE69.gwt.rpc
