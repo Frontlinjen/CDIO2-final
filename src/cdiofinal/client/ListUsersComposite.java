@@ -16,11 +16,9 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.InvocationException;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
-import cdiofinal.client.NewReceptComposite.NewReceptCompositeUiBinder;
 import cdiofinal.shared.AnsatDTO;
 
 
@@ -34,7 +32,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	
 	interface ListUsersUiBinder extends UiBinder<Widget, ListUsersComposite> {}
 	private static ListUsersUiBinder listUsersUiBinder = GWT.create(ListUsersUiBinder.class);
-	@UiField(provided=true) CellTable<AnsatDTO> vPanel;
+	@UiField(provided=false) CellTable<AnsatDTO> vPanel;
 	List<AnsatDTO> gui;
 	
 	public ListUsersComposite()
@@ -136,7 +134,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 				};
 				rankColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>(){
 
-					  public void update(int index, final AnsatDTO ansat, final String value) {
+					  @Override
+					public void update(int index, final AnsatDTO ansat, final String value) {
 						switch(value)
 						{
 						case "Operat\u00F8r":
@@ -169,7 +168,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 				};
 				iniColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>(){
 
-					  public void update(int index, final AnsatDTO ansat, final String value) {
+					  @Override
+					public void update(int index, final AnsatDTO ansat, final String value) {
 						  		ansat.setIni(value);
 					  }});
 		return iniColumn;
@@ -198,13 +198,15 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 				};
 		nameColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>(){
 
-			  public void update(int index, final AnsatDTO ansat, final String value) {
+			  @Override
+			public void update(int index, final AnsatDTO ansat, final String value) {
 				  		ansat.setOprNavn(value);
 			  }});
 		return nameColumn;
 	}
 
 	//Fired when the user clicks "list users"
+	@Override
 	public void onLoad() {
 		gui = getLayoutList();
 		database.getAnsatList(this);

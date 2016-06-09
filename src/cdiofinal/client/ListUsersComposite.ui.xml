@@ -1,6 +1,7 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-    xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'
+    xmlns:c='urn:import:com.google.gwt.user.cellview.client'>
     <g:HTMLPanel>
- 		<ui:CellTable ui:field='vPanel'/>
+ 		<c:CellTable ui:field='vPanel'/>
  	</g:HTMLPanel>
   </ui:UiBinder>
