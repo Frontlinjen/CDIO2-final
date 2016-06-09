@@ -24,7 +24,7 @@ public class NewRaavareBatchComposite extends Composite{
 	}
 	
 	@UiHandler("batchNrBox")
-	public void onCprChanged(KeyPressEvent e)
+	public void onbatchNrBoxChanged(KeyPressEvent e)
 	{
 		statusField.setText(Character.toString(e.getCharCode()));
 	}
