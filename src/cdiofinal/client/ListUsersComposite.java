@@ -106,7 +106,6 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 		
 		
 		userList.addDataDisplay(vPanel);		
-		panel.add(vPanel);
 		
 		return userList.getList();
 	}
