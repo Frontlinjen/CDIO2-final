@@ -40,14 +40,14 @@ public class FieldVerifier {
 		return name.length() > 3;
 	}
 	
-	public boolean isValidCpr (String cpr){
-		for(int i = 0; i < cpr.length(); i++){
-			if(!Character.isDigit(cpr.charAt(i))){
+	public boolean isValidCpr (int cpr){
+		for(int i = 0; i < String.valueOf(cpr).length(); i++){
+			if(!Character.isDigit(String.valueOf(cpr).charAt(i))){
 				return false;
 			}
 		}
 
-		return cpr.length() == 10 && cpr.charAt(0)!='0';
+		return String.valueOf(cpr).length() == 10 && String.valueOf(cpr).charAt(0)!='0';
 	}
 	
 	public boolean isValidId (int id){
@@ -55,9 +55,6 @@ public class FieldVerifier {
 			return false;
 		}
 		else if(id > 99999999){
-			return false;
-		}
-		else if(id < 0 ){
 			return false;
 		}
 		else return true;

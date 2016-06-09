@@ -12,13 +12,13 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 
 import cdiofinal.shared.ReceptDTO;
-import cdiofinal.client.ReceptRPCInterfaceAsync;
+import cdiofinal.client.RecRPCInterfaceAsync;
 import cdiofinal.shared.FieldVerifier;
 
-public class NewReceptClickHandler extends Composite {
+public class NewRecClickHandler extends Composite {
 	
 	FieldVerifier fieldV = new FieldVerifier();
-	ReceptRPCInterfaceAsync ReceptRPC = GWT.create(ReceptRPCInterface.class);
+	RecRPCInterfaceAsync ReceptRPC = GWT.create(RecRPCInterface.class);
 	public void onClick(ClickEvent event) {
 		RootPanel panel = RootPanel.get("contents");
 		panel.clear();
