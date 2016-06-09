@@ -12,10 +12,8 @@ public interface RecRPCInterface {
 	ReceptDTO[] getReceptList();
 	Integer createRecept(ReceptDTO rec);
 	Integer updateRecept(ReceptDTO rec);
-	Integer deleteRecept(ReceptDTO rec);
 	ReceptKompDTO getReceptKomp(int recId, int raavareId);
 	ReceptKompDTO[] getReceptKompList();
 	Integer createReceptKomp(ReceptKompDTO recKomp);
 	Integer updateReceptKomp(ReceptKompDTO recKomp);
-	Integer deleteReceptKomp(ReceptKompDTO recKomp);
 }
