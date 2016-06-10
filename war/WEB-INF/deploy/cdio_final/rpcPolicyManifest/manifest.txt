@@ -1,3 +1,8 @@
 # Module cdio_final
 # RPC service class, partial path of RPC policy file
-cdiofinal.client.AnsatRPCInterface, 94975B0B9985D72645B13B392A86BE69.gwt.rpc
+cdiofinal.client.RaavareBatchRPCInterface, DB0A63A674F07914DA7B6C081429F9A1.gwt.rpc
+cdiofinal.client.ReceptRPCInterface, D1ED16C147FB14B8E0CB0D278FACA9DE.gwt.rpc
+cdiofinal.client.LeverandoerRPCInterface, EEB6DA7CCAC8445E8E5B2E01C93EA3E3.gwt.rpc
+cdiofinal.client.AnsatRPCInterface, 56872E82D6B600CE41019BFD72533153.gwt.rpc
+cdiofinal.client.ProduktBatchRPCInterface, 8FED389C2D01D36E8273BDAB1D297006.gwt.rpc
+cdiofinal.client.RaavareRPCInterface, AE013119C431E16B3E274628E2F24752.gwt.rpc

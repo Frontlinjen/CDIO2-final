@@ -19,8 +19,10 @@ import cdiofinal.shared.FieldVerifier;
 
 public class NewProduktbatchComposite extends Composite{
 	final ProduktBatchRPCInterfaceAsync database = (ProduktBatchRPCInterfaceAsync)GWT.create(ProduktBatchRPCInterface.class);
+	
 	interface NewProduktbatchUIBinder extends UiBinder<Widget, NewProduktbatchComposite> {}
 	private static NewProduktbatchUIBinder newProduktBatchUiBinder = GWT.create(NewProduktbatchUIBinder.class);
+	
 	@UiField TextBox idBox;
 	@UiField ListBox statusBox;
 	@UiField TextBox recIdBox;
@@ -32,10 +34,17 @@ public class NewProduktbatchComposite extends Composite{
 	MySQLReceptDAO rdao = new MySQLReceptDAO();	
 	
 	@UiHandler("submitButton")
-	public void onSubmitPressed(ClickEvent e) throws NumberFormatException, DALException
+	public void onSubmitPressed(ClickEvent e) throws DALException
 	{
-		if (!FieldVerifier.isValidId(Integer.parseInt(idBox.getText()))) {
-			System.out.println("Id'et er ugyldigt. (1-99999999");
+		try
+		{
+			if (!FieldVerifier.isValidId(Integer.parseInt(idBox.getText()))) {
+				System.out.println("Id'et er ugyldigt. (1-99999999");
+			}
+		}
+		catch(Exception excep)
+		{
+			throw new DALException(excep.getMessage());
 		}
 
 //		else

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.RankDTO;
 
 public class RankRPCServlet extends RemoteServiceServlet implements RankDAO{
