@@ -8,8 +8,10 @@ import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.cell.client.SelectionCell;
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.Window;
@@ -42,6 +44,15 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 		initWidget(listUsersUiBinder.createAndBindUi(this));
 		gui = getLayoutList();
 	}
+	
+	@UiHandler("newElement")
+	public void onClick(ClickHandler e)
+	{
+		Popupcontainer p = new Popupcontainer(new NewUserComposite());
+		
+	}
+	
+	
 	public List<AnsatDTO> getLayoutList() { //TODO: Show users when clicked
 		Column<AnsatDTO, String> CPRColumn = getCPRColumn();
 		//CPRColumn.setSortable(true);
@@ -176,7 +187,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 
 					  @Override
 					public void update(int index, final AnsatDTO ansat, final String value) {
-						  		ansat.setIni(value);
+						  //		ansat.setIni(value);
+						  
 					  }});
 		return iniColumn;
 	}
