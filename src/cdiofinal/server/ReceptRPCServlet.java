@@ -4,16 +4,16 @@ import java.util.List;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.client.RecRPCInterface;
+import cdiofinal.client.ReceptRPCInterface;
 import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLReceptDAO;
 import cdiofinal.shared.ReceptDTO;
 import cdiofinal.shared.ReceptKompDTO;
 
-public class ReceptRPCServlet extends RemoteServiceServlet implements RecRPCInterface {
+public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCInterface {
 
 	private static final long serialVersionUID = 1L;
 	MySQLReceptDAO receptDAO = new MySQLReceptDAO();
-	MySQLReceptKompDAO receptKompDAO = new MySQLReceptKompDAO();
 	
 	
 	@Override
@@ -58,47 +58,4 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements RecRPCInte
 			return 0;
 		
 	}
-
-
-	@Override
-	public ReceptKompDTO getReceptKomp(int recId, int raavareId) {
-		try {
-			return receptKompDAO.getReceptKomp(recId, raavareId);
-		} catch (DALException e) {
-			System.out.println("Failed at getReceptKomp");
-		}
-		return null;
-	}
-
-	@Override
-	public ReceptKompDTO[] getReceptKompList() {
-		try {
-			List<ReceptKompDTO> receptkomp = receptKompDAO.getReceptKompList();
-			ReceptKompDTO[] receptKompArray = new ReceptKompDTO[receptkomp.size()];
-			return receptkomp.toArray(receptKompArray);
-		} catch (DALException e) {
-			return null;
-		}	
-	}
-
-	@Override
-	public Integer createReceptKomp(ReceptKompDTO recKomp) {
-		try {
-			return receptKompDAO.createReceptKomp(recKomp);
-			} catch (DALException e){
-				System.out.println("Failed at create ReceptKomp");
-			}
-			return 0;
-	}
-
-	@Override
-	public Integer updateReceptKomp(ReceptKompDTO recKomp) {
-		try {
-			return receptKompDAO.updateReceptKomp(recKomp);
-			} catch (DALException e){
-				System.out.println("Failed at update ReceptKomp");
-			}
-			return 0;
-	}
-	
 }

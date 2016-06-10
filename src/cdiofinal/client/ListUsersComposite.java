@@ -8,6 +8,7 @@ import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.cell.client.SelectionCell;
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -20,6 +21,7 @@ import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.InvocationException;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
@@ -46,12 +48,16 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	}
 	
 	@UiHandler("newElement")
-	public void onClick(ClickHandler e)
+	public void onClick(ClickEvent e)
 	{
 		Popupcontainer p = new Popupcontainer(new NewUserComposite());
-		
+//		DialogBox d = new DialogBox();
+//		d.add(comp);
+//		d.center();
+//		d.show();
+		p.center();
 	}
-	
+
 	
 	public List<AnsatDTO> getLayoutList() { //TODO: Show users when clicked
 		Column<AnsatDTO, String> CPRColumn = getCPRColumn();
