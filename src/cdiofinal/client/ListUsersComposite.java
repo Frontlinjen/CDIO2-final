@@ -6,6 +6,7 @@ import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.cell.client.SelectionCell;
+import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -181,7 +182,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	}
 
 	private Column<AnsatDTO, String> getCPRColumn() {
-		EditTextCell cprCell = new EditTextCell();
+		TextCell cprCell = new TextCell();
 		Column<AnsatDTO, String> cprColumn = new Column<AnsatDTO, String>(cprCell)
 				{
 					@Override
