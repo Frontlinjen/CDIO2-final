@@ -1,11 +1,13 @@
 package cdiofinal.server;
 import java.util.List;
 
+import com.google.gwt.dev.protobuf.UnknownFieldSet.Field;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.client.RaavareRPCInterface;
 import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLRaavareDAO;
+import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.RaavareDTO;
 
 public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRPCInterface {
@@ -38,6 +40,7 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 
 	@Override
 	public Integer createRaavare(RaavareDTO ans) {
+		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidName(ans.getRaavareNavn())==true)
 		try {
 		return database.createRaavare(ans);
 		} catch (DALException e){
@@ -48,6 +51,7 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 
 	@Override
 	public Integer updateRaavare(RaavareDTO ans) {
+		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidName(ans.getRaavareNavn())==true)
 		try {
 			return database.updateRaavare(ans);
 			} catch (DALException e){

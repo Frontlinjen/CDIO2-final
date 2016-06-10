@@ -44,11 +44,11 @@ public class NewUserComposite extends Composite implements AsyncCallback<Integer
 		}
 		else if(!FieldVerifier.isValidName(nameBox.getValue()))
 		{
-			System.out.println("Navnet er ugyldigt. Benyt kun bogstaver, med en længde mellem 2-20 karaktere");
+			System.out.println("Navnet er ugyldigt. Benyt kun bogstaver, med en lï¿½ngde mellem 2-20 karaktere");
 		}
 		else if(!FieldVerifier.isValidIni(iniBox.getValue()))
 		{
-			System.out.println("Initialerne er ugyldige. Benyt kun bogstaver, med en længde mellem 2-20 karaktere");
+			System.out.println("Initialerne er ugyldige. Benyt kun bogstaver, med en lï¿½ngde mellem 2-20 karaktere");
 		}
 		else if(!FieldVerifier.isValidPassword(passBox.getValue()))
 		{

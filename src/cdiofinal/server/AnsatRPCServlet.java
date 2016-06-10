@@ -7,6 +7,7 @@ import cdiofinal.client.AnsatRPCInterface;
 import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLAnsatDAO;
 import cdiofinal.shared.AnsatDTO;
+import cdiofinal.shared.FieldVerifier;
 
 public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInterface {
 
@@ -37,6 +38,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 
 	@Override
 	public Integer createAnsat(AnsatDTO ans) {
+		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
 		return database.createAnsat(ans);
 		} catch (DALException e){
@@ -47,6 +49,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 
 	@Override
 	public Integer updateAnsat(AnsatDTO ans) {
+		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
 			return database.updateAnsat(ans);
 			} catch (DALException e){
@@ -58,6 +61,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 
 	@Override
 	public Integer deleteAnsat(AnsatDTO ans) {
+		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
 			return database.deleteAnsat(ans);
 			} catch (DALException e){
