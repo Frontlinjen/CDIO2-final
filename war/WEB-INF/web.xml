@@ -76,6 +76,26 @@
     <url-pattern>/cdio_final/raavare</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>ReceptService</servlet-name>
+    <servlet-class>cdiofinal.server.receptRPCServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ReceptService</servlet-name>
+    <url-pattern>/cdio_final/recept</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ReceptKomponentService</servlet-name>
+    <servlet-class>cdiofinal.server.receptKomponentRPCServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ReceptKomponentService</servlet-name>
+    <url-pattern>/cdio_final/receptKomponent</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>CDIO_FINAL.html</welcome-file>
