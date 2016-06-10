@@ -30,11 +30,11 @@ public class NewLeverandoerComposite extends Composite implements AsyncCallback<
 	@UiHandler("submitButton")
 	public void onSubmitPressed(ClickEvent e)
 	{
-		if(!FieldVerifier.isValidId(Integer.parseInt(idBox.getValue())))
+		if(!FieldVerifier.isValidId(Integer.parseInt(idBox.getValue()))==true)
 		{
 			System.out.println("Id'et er ikke inde for intervallet 1-99999999");
 		}
-		else if (!FieldVerifier.isValidName(navnBox.getValue()))
+		else if (!FieldVerifier.isValidName(navnBox.getValue())==true)
 		{
 			System.out.println("Navnet skal være mellem 2-20 karaktere. Benyt kun bogstaver");
 		}

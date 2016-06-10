@@ -3,9 +3,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import cdiofinal.server.AnsatDAO;
-import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLAnsatDAO;
 import cdiofinal.shared.AnsatDTO;
+import cdiofinal.shared.DALException;
 
 public class DatabaseTest {
 	

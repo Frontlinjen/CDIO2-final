@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cdiofinal.server.Connector;
-import cdiofinal.server.DALException;
 import cdiofinal.server.ProduktBatchKompDAO;
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.ProduktBatchKompDTO;
 
 public class MySQLProduktBatchKompDAO implements ProduktBatchKompDAO {

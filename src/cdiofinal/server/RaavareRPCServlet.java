@@ -1,11 +1,13 @@
 package cdiofinal.server;
 import java.util.List;
 
+import com.google.gwt.dev.protobuf.UnknownFieldSet.Field;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.client.RaavareRPCInterface;
-import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLRaavareDAO;
+import cdiofinal.shared.DALException;
+import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.RaavareDTO;
 
 public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRPCInterface {
@@ -15,13 +17,12 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 	
 	
 	@Override
-	public RaavareDTO getRaavare(int raavare_id) {
+	public RaavareDTO getRaavare(int raavare_id) throws DALException{
 		try {
 			return database.getRaavare(raavare_id);
 		} catch (DALException e) {
-			System.out.println("Failed at get Raavare");
+			throw e;
 		}
-		return null;
 	}
 
 	@Override
@@ -37,21 +38,23 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 	}
 
 	@Override
-	public Integer createRaavare(RaavareDTO ans) {
+	public Integer createRaavare(RaavareDTO ans) throws DALException {
+		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidName(ans.getRaavareNavn())==true)
 		try {
 		return database.createRaavare(ans);
 		} catch (DALException e){
-			System.out.println("Failed at create Raavare");
+			throw e;
 		}
 		return 0;
 	}
 
 	@Override
-	public Integer updateRaavare(RaavareDTO ans) {
+	public Integer updateRaavare(RaavareDTO ans) throws DALException{
+		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidName(ans.getRaavareNavn())==true)
 		try {
 			return database.updateRaavare(ans);
 			} catch (DALException e){
-				System.out.println("Failed at update Raavare");
+				throw e;
 			}
 			return 0;
 		

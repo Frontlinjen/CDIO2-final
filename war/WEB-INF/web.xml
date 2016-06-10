@@ -28,7 +28,7 @@
   
     <servlet>
     <servlet-name>ProduktBatchKomponentService</servlet-name>
-    <servlet-class>cdiofinal.server.produktBatchKompRPCServlet</servlet-class>
+    <servlet-class>cdiofinal.server.ProduktBatchKompRPCServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -38,7 +38,7 @@
   
     <servlet>
     <servlet-name>ProduktBatches</servlet-name>
-    <servlet-class>cdiofinal.server.produktBatchRPCServlet</servlet-class>
+    <servlet-class>cdiofinal.server.ProduktBatchRPCServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -48,7 +48,7 @@
   
     <servlet>
     <servlet-name>RankService</servlet-name>
-    <servlet-class>cdiofinal.server.rankRPCServlet</servlet-class>
+    <servlet-class>cdiofinal.server.RankRPCServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -58,7 +58,7 @@
   
   <servlet>
     <servlet-name>RaavareBatchService</servlet-name>
-    <servlet-class>cdiofinal.server.raavareBatchRPCServlet</servlet-class>
+    <servlet-class>cdiofinal.server.RaavareBatchRPCServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -68,7 +68,7 @@
   
   <servlet>
     <servlet-name>RaavareService</servlet-name>
-    <servlet-class>cdiofinal.server.raavareRPCServlet</servlet-class>
+    <servlet-class>cdiofinal.server.RaavareRPCServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -78,7 +78,7 @@
   
   <servlet>
     <servlet-name>ReceptService</servlet-name>
-    <servlet-class>cdiofinal.server.receptRPCServlet</servlet-class>
+    <servlet-class>cdiofinal.server.ReceptRPCServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -88,7 +88,7 @@
   
   <servlet>
     <servlet-name>ReceptKomponentService</servlet-name>
-    <servlet-class>cdiofinal.server.receptKomponentRPCServlet</servlet-class>
+    <servlet-class>cdiofinal.server.ReceptKomponentRPCServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>

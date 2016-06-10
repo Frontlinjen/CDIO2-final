@@ -1,5 +1,6 @@
 package cdiofinal.client;
 
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.RaavareBatchDTO;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
@@ -7,8 +8,8 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("raavareBatches")
 public interface RaavareBatchRPCInterface extends RemoteService{
 	
-	RaavareBatchDTO getRaavareBatch(int rb_id);
+	RaavareBatchDTO getRaavareBatch(int rb_id) throws DALException;
 	RaavareBatchDTO[] getRaavareBatchList();
-	Integer createRaavareBatch(RaavareBatchDTO ans);
-	Integer updateRaavareBatch(RaavareBatchDTO ans);
+	Integer createRaavareBatch(RaavareBatchDTO ans) throws DALException;
+	Integer updateRaavareBatch(RaavareBatchDTO ans) throws DALException;
 }
