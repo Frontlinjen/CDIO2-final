@@ -37,14 +37,7 @@ public class NewProduktBatchKomponentComposite extends Composite{
 		{
 			System.out.println("Id'et er ugyldigt. (1-99999999");
 		}
-		else if(rdao.getRaavareBatch(Integer.parseInt(rb_id.getValue())).getRaavarebatchId() != Integer.parseInt(rb_id.getText()))
-		{
-			System.out.println("Råvarebatchen eksisterer ikke i databasen");
-		}
-//		else if(adao.getAnsat(Integer.parseInt(cprBox.getValue())).getCpr() != Integer.parseInt(cprBox.getValue()))
-//		{
-//			System.out.println("CPR-nummeret findes ikke i databasen");
-//		}
+
 //		else
 //		tilføj ProduktBatchKomponent
 	}

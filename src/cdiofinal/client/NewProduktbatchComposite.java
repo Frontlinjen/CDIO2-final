@@ -18,13 +18,14 @@ import cdiofinal.shared.FieldVerifier;
 
 
 public class NewProduktbatchComposite extends Composite{
+	final ProduktBatchRPCInterfaceAsync database = (ProduktBatchRPCInterfaceAsync)GWT.create(ProduktBatchRPCInterface.class);
 	interface NewProduktbatchUIBinder extends UiBinder<Widget, NewProduktbatchComposite> {}
 	private static NewProduktbatchUIBinder newProduktBatchUiBinder = GWT.create(NewProduktbatchUIBinder.class);
 	@UiField TextBox idBox;
 	@UiField ListBox statusBox;
 	@UiField TextBox recIdBox;
 	@UiField Label statusField;
-	NewProduktbatchComposite() {
+	public NewProduktbatchComposite() {
 		initWidget(newProduktBatchUiBinder.createAndBindUi(this));
 	}
 
@@ -36,10 +37,7 @@ public class NewProduktbatchComposite extends Composite{
 		if (!FieldVerifier.isValidId(Integer.parseInt(idBox.getText()))) {
 			System.out.println("Id'et er ugyldigt. (1-99999999");
 		}
-		else if(rdao.getRecept(Integer.parseInt(recIdBox.getValue())).getReceptId() != Integer.parseInt(recIdBox.getText()))
-		{
-			System.out.println("Recept Id'en eksisterer ikke i databasen");
-		}
+
 //		else
 //		tilføj produktbatch
 	}
