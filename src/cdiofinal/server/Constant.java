@@ -6,10 +6,10 @@ package cdiofinal.server;
 public abstract class Constant
 {
 	public static final String
-		server					= "localhost",  // database-serveren
-		database				=  "vaegt",  //"jdbcdatabase", // navnet paa din database = dit studienummer
-		username				= "root", // dit brugernavn = dit studienummer 
-		password				= ""; // dit password som du har valgt til din database
+		server					= "gruppe12.dynu.com",  // database-serveren
+		database				=  "CDIOFINAL",  //"jdbcdatabase", // navnet paa din database = dit studienummer
+		username				= "gruppe12", // dit brugernavn = dit studienummer 
+		password				= "je2&j=Sd"; // dit password som du har valgt til din database
 	
 	public static final int
 		port					= 3306;

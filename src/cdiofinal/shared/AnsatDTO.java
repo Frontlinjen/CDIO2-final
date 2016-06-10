@@ -9,9 +9,13 @@ import java.io.Serializable;
  * @version 1.2
  */
 
-@SuppressWarnings("serial")
+
 public class AnsatDTO implements Serializable 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/** Operatoer-identifikationsnummer (cpr).*/
 	String cpr;                     
 	/** Operatoernavn (opr_navn) min. 2 max. 20 karakterer */

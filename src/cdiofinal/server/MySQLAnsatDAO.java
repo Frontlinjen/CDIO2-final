@@ -59,7 +59,7 @@ public class MySQLAnsatDAO implements AnsatDAO {
 				list.add(new AnsatDTO(rs.getString("cpr"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("password"), rs.getInt("titel")));
 			}
 		}
-		catch (SQLException e) { throw new DALException(e); }
+		catch (SQLException e) { throw new DALException(e.getMessage()); }
 		return list;
 	}
 
