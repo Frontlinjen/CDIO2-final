@@ -4,8 +4,8 @@ import java.util.List;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.client.RaavareBatchRPCInterface;
-import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLRaavareBatchDAO;
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.RaavareBatchDTO;
 
 public class RaavareBatchRPCServlet extends RemoteServiceServlet implements RaavareBatchRPCInterface {

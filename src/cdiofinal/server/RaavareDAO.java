@@ -2,6 +2,7 @@ package cdiofinal.server;
 
 import java.util.List;
 
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.RaavareDTO;
 
 public interface RaavareDAO {

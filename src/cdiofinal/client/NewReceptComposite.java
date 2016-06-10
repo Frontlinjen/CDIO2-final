@@ -9,7 +9,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-import cdiofinal.server.DALException;
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
 
 public class NewReceptComposite extends Composite {
@@ -33,9 +33,9 @@ public class NewReceptComposite extends Composite {
 		}
 		else if(!FieldVerifier.isValidName(navnBox.getText()))
 		{
-			System.out.println("Navnet er ugyldigt. Benyt kun bogstaver, med en længde mellem 2-20");
+			System.out.println("Navnet er ugyldigt. Benyt kun bogstaver, med en lï¿½ngde mellem 2-20");
 		}
 //		else
-//		tilføj recept
+//		tilfï¿½j recept
 	}
 }

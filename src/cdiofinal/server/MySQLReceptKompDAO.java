@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import cdiofinal.server.Connector;
-import cdiofinal.server.DALException;
 import cdiofinal.server.ReceptKompDAO;
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.ReceptKompDTO;
 
 public class MySQLReceptKompDAO implements ReceptKompDAO{

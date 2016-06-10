@@ -4,8 +4,8 @@ import java.util.List;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.client.LeverandoerRPCInterface;
-import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLLeverandoerDAO;
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.LeverandoerDTO;
 
 public class LeverandoerRPCServlet extends RemoteServiceServlet implements LeverandoerRPCInterface {

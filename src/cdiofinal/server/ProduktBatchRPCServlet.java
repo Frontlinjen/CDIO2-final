@@ -5,8 +5,8 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.client.NewProduktbatchComposite;
 import cdiofinal.client.ProduktBatchRPCInterface;
-import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLProduktbatchDAO;
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.ProduktBatchDTO;
 

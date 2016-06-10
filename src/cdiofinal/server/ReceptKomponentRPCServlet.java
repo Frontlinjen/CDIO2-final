@@ -3,6 +3,7 @@ package cdiofinal.server;
 import java.util.List;
 
 import cdiofinal.client.ReceptKomponentRPCInterface;
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.ReceptKompDTO;
 
 public class ReceptKomponentRPCServlet implements ReceptKomponentRPCInterface{

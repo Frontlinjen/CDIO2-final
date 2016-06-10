@@ -10,10 +10,9 @@ import com.google.gwt.user.client.ui.IntegerBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
-import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLLeverandoerDAO;
 import cdiofinal.server.MySQLRaavareDAO;
-
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
 
 
@@ -39,7 +38,7 @@ public class NewRaavareBatchComposite extends Composite{
 			System.out.println("Batch ID'en eksisterer ikke gyldig. (1-99999999");
 		}
 //		else
-//		tilføj raavareBatch			
+//		tilfï¿½j raavareBatch			
 	}
 
 }

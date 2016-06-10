@@ -5,8 +5,8 @@ import com.google.gwt.dev.protobuf.UnknownFieldSet.Field;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.client.RaavareRPCInterface;
-import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLRaavareDAO;
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.RaavareDTO;
 

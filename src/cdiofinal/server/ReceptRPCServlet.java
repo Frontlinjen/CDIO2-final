@@ -5,8 +5,8 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.client.RecRPCInterface;
 import cdiofinal.client.ReceptRPCInterface;
-import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLReceptDAO;
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.ReceptDTO;
 import cdiofinal.shared.ReceptKompDTO;
 

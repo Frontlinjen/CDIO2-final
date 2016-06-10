@@ -7,8 +7,8 @@ import java.util.List;
 
 
 import cdiofinal.server.Connector;
-import cdiofinal.server.DALException;
 import cdiofinal.server.ReceptDAO;
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.ReceptDTO;
 
 public class MySQLReceptDAO implements ReceptDAO {

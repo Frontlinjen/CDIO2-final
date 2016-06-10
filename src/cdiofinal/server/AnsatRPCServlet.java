@@ -4,9 +4,9 @@ import java.util.List;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.client.AnsatRPCInterface;
-import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLAnsatDAO;
 import cdiofinal.shared.AnsatDTO;
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
 
 public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInterface {

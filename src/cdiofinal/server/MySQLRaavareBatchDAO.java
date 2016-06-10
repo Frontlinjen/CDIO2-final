@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.RaavareBatchDTO;
 
 public class MySQLRaavareBatchDAO implements RaavareBatchDAO{
