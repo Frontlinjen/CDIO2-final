@@ -2,10 +2,12 @@ package cdiofinal.server;
 
 import java.util.List;
 
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import cdiofinal.client.ReceptKomponentRPCInterface;
 import cdiofinal.shared.ReceptKompDTO;
 
-public class ReceptKomponentRPCServlet implements ReceptKomponentRPCInterface{
+public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements ReceptKomponentRPCInterface{
 	private static final long serialVersionUID = 1L;
 	MySQLReceptKompDAO receptKompDAO = new MySQLReceptKompDAO();
 	

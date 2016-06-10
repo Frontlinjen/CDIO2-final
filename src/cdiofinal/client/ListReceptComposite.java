@@ -23,7 +23,7 @@ import cdiofinal.shared.ReceptDTO;
 
 public class ListReceptComposite extends Composite implements AsyncCallback<ReceptDTO[]> {
 	
-	final RecRPCInterfaceAsync database = (RecRPCInterfaceAsync)GWT.create(RecRPCInterface.class);
+	final ReceptRPCInterfaceAsync database = (ReceptRPCInterfaceAsync)GWT.create(ReceptRPCInterface.class);
 	
 	interface ListReceptUiBinder extends UiBinder<Widget, ListReceptComposite> {}
 	private static ListReceptUiBinder listReceptUiBinder = GWT.create(ListReceptUiBinder.class);

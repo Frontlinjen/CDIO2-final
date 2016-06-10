@@ -25,6 +25,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
 import cdiofinal.shared.AnsatDTO;
+import cdiofinal.shared.FieldVerifier;
 
 
 
@@ -39,6 +40,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	private static ListUsersUiBinder listUsersUiBinder = GWT.create(ListUsersUiBinder.class);
 	@UiField(provided=true) CellTable<AnsatDTO> vPanel;
 	private List<AnsatDTO> gui;
+	private FieldVerifier verifier = new FieldVerifier();
 	public ListUsersComposite()
 	{
 		vPanel = new CellTable<AnsatDTO>();
@@ -151,7 +153,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 		            }
 				};
 				rankColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>(){
-
+				//	if
 					  @Override
 					public void update(int index, final AnsatDTO ansat, final String value) {
 						switch(value)
@@ -176,8 +178,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	}
 
 	private Column<AnsatDTO, String> getIniColumn() {
-		EditTextCell iniCell = new EditTextCell();
-		Column<AnsatDTO, String> iniColumn = new Column<AnsatDTO, String>(iniCell)
+		final EditTextCell iniCell = new EditTextCell();
+		final Column<AnsatDTO, String> iniColumn = new Column<AnsatDTO, String>(iniCell)
 				{
 					@Override
 					public String getValue(AnsatDTO user) {
@@ -187,10 +189,15 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 					}
 				};
 				iniColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>(){
-
 					  @Override
 					public void update(int index, final AnsatDTO ansat, final String value) {
-						  		ansat.setIni(value);
+						  if(verifier.isValidIni(value)){
+						  	ansat.setIni(value);
+						  }
+						  else
+						  {
+							iniCell.clearViewData(ansat);
+						  }
 					  }});
 		return iniColumn;
 	}
@@ -224,7 +231,10 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 
 			  @Override
 			public void update(int index, final AnsatDTO ansat, final String value) {
-				  		ansat.setOprNavn(value);
+			//	  if(verifier.isValidName(value)){
+					  ansat.setOprNavn(value);
+			//	  }
+	//			  else
 			  }});
 		return nameColumn;
 	}

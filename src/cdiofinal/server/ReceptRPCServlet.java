@@ -3,7 +3,6 @@ import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-import cdiofinal.client.RecRPCInterface;
 import cdiofinal.client.ReceptRPCInterface;
 import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLReceptDAO;
