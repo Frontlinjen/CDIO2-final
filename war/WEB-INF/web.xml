@@ -16,6 +16,76 @@
     <url-pattern>/cdio_final/ansatte</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+    <servlet-name>LeverandoerService</servlet-name>
+    <servlet-class>cdiofinal.server.LeverandoerRPCServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>LeverandoerService</servlet-name>
+    <url-pattern>/cdio_final/leverandoer</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>ProduktBatchKomponentService</servlet-name>
+    <servlet-class>cdiofinal.server.produktBatchKompRPCServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ProduktBatchKomponentService</servlet-name>
+    <url-pattern>/cdio_final/produktBatchKomponenter</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>ProduktBatches</servlet-name>
+    <servlet-class>cdiofinal.server.produktBatchRPCServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ProduktBatches</servlet-name>
+    <url-pattern>/cdio_final/produktBatches</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>RankService</servlet-name>
+    <servlet-class>cdiofinal.server.rankRPCServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>RankService</servlet-name>
+    <url-pattern>/cdio_final/rank</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RecService</servlet-name>
+    <servlet-class>cdiofinal.server.RecRPCServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>RecService</servlet-name>
+    <url-pattern>/cdio_final/receptOgReceptkomponent</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RaavareBatchService</servlet-name>
+    <servlet-class>cdiofinal.server.raavareBatchRPCServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>RaavareBatchService</servlet-name>
+    <url-pattern>/cdio_final/raavareBatch</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RaavareService</servlet-name>
+    <servlet-class>cdiofinal.server.raavareRPCServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>RaavareService</servlet-name>
+    <url-pattern>/cdio_final/raavare</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>CDIO_FINAL.html</welcome-file>

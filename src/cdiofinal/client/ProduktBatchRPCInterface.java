@@ -4,7 +4,7 @@ import cdiofinal.shared.ProduktBatchDTO;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("ProduktBatches")
+@RemoteServiceRelativePath("produktBatches")
 public interface ProduktBatchRPCInterface extends RemoteService{
 	
 	ProduktBatchDTO getProduktBatch(int pb_id);
