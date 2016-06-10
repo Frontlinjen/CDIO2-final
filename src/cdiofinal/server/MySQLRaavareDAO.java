@@ -12,15 +12,17 @@ import cdiofinal.shared.RaavareDTO;
 
 public class MySQLRaavareDAO implements RaavareDAO{
 
-	public MySQLRaavareDAO() throws DALException
-	{
-		try {
-			new Connector();
-		} catch(Exception e)
-		{
-			throw new DALException(e.getMessage());
-		}
-	}
+//	
+//	public MySQLRaavareDAO()
+//	{
+//		//Connects to database: 
+//		try {
+//			new Connector();
+//		} catch (Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//	}
 	@Override
 	public RaavareDTO getRaavare(int raavareId) throws DALException {
 		ResultSet rs = Connector.doQuery("SELECT * FROM raavare WHERE raavare_id = " + raavareId + ";");
