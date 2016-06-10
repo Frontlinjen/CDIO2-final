@@ -19,8 +19,9 @@ public class MySQLAnsatDAO implements AnsatDAO {
 			e.printStackTrace();
 		}
 	}
+	
 	@Override
-	public AnsatDTO getAnsat(int cpr) throws DALException {
+	public AnsatDTO getAnsat(String cpr) throws DALException {
 		ResultSet rs = Connector.doQuery("SELECT * FROM ansat WHERE cpr = " + cpr + ";");
 	    try {
 	    	if (!rs.first()) throw new DALException("Den ansatte med cprnr " + cpr + " findes ikke");
@@ -67,5 +68,6 @@ public class MySQLAnsatDAO implements AnsatDAO {
 	public int deleteAnsat(AnsatDTO ans) throws DALException {
 		return Connector.doUpdate("DELETE FROM ansat WHERE cpr = " + ans.getCpr() + ";");
 	}
+
 }
 	
