@@ -19,6 +19,8 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
+
+import cdiofinal.shared.LeverandoerDTO;
 import cdiofinal.shared.ReceptDTO;
 
 public class ListReceptComposite extends Composite implements AsyncCallback<ReceptDTO[]> {
@@ -27,16 +29,17 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 	
 	interface ListReceptUiBinder extends UiBinder<Widget, ListReceptComposite> {}
 	private static ListReceptUiBinder listReceptUiBinder = GWT.create(ListReceptUiBinder.class);
-	@UiField(provided=false) CellTable<ReceptDTO> vPanel;
+	@UiField(provided=true) CellTable<ReceptDTO> vPanel;
 	List<ReceptDTO> gui;
 	
 	public ListReceptComposite()
 	{
+		vPanel = new CellTable<ReceptDTO>();
 		initWidget(listReceptUiBinder.createAndBindUi(this));
+		gui = getLayoutList();
 	}
 	
 	public List<ReceptDTO> getLayoutList() { //TODO: Show users when clicked
-		vPanel = new CellTable<ReceptDTO>();
 		Column<ReceptDTO, String> receptIDColumn = getReceptIDColumn();
 		//CPRColumn.setSortable(true);
 		Column<ReceptDTO, String> receptNameColumn = getReceptNameColumn();

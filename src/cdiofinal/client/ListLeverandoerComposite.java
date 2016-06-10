@@ -22,6 +22,7 @@ import com.google.gwt.view.client.ListDataProvider;
 
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.LeverandoerDTO;
+import cdiofinal.shared.RaavareBatchDTO;
 
 
 
@@ -34,16 +35,18 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 	
 	interface ListLeverandoerUiBinder extends UiBinder<Widget, ListLeverandoerComposite> {}
 	private static ListLeverandoerUiBinder listLeverandoerUiBinder = GWT.create(ListLeverandoerUiBinder.class);
-	@UiField(provided=false) CellTable<LeverandoerDTO> vPanel;
+	@UiField(provided=true) CellTable<LeverandoerDTO> vPanel;
 	List<LeverandoerDTO> gui;
 	
 	public ListLeverandoerComposite()
 	{
+		vPanel = new CellTable<LeverandoerDTO>();
 		initWidget(listLeverandoerUiBinder.createAndBindUi(this));
+		gui = getLayoutList();
+		
 	}
 	
 	public List<LeverandoerDTO> getLayoutList() { //TODO: Show users when clicked
-		vPanel = new CellTable<LeverandoerDTO>();
 		Column<LeverandoerDTO, String> IDColumn = getIDColumn();
 		//IDColumn.setSortable(true);
 		Column<LeverandoerDTO, String> nameColumn = getNameColumn();
@@ -137,7 +140,6 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 	//Fired when the user clicks "list leverandoer"
 	@Override
 	public void onLoad() {
-		gui = getLayoutList();
 		database.getLeverandoerList(this);
 	
 	}

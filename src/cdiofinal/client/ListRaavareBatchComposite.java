@@ -18,6 +18,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
 import cdiofinal.shared.RaavareBatchDTO;
+import cdiofinal.shared.RaavareDTO;
 
 
 
@@ -30,15 +31,16 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 	
 	interface ListRaavareBatchUiBinder extends UiBinder<Widget, ListRaavareBatchComposite> {}
 	private static ListRaavareBatchUiBinder listRaavareBatchUiBinder = GWT.create(ListRaavareBatchUiBinder.class);
-	@UiField(provided=false) CellTable<RaavareBatchDTO> vPanel;
+	@UiField(provided=true) CellTable<RaavareBatchDTO> vPanel;
 	List<RaavareBatchDTO> gui;
 	
 	public ListRaavareBatchComposite()
 	{
+		vPanel = new CellTable<RaavareBatchDTO>();
 		initWidget(listRaavareBatchUiBinder.createAndBindUi(this));
+		gui = getLayoutList();
 	}
 	public List<RaavareBatchDTO> getLayoutList() { //TODO: Show users when clicked
-		vPanel = new CellTable<RaavareBatchDTO>();
 		Column<RaavareBatchDTO, String> raavareBatchIDColumn = getRaavareBatchIDColumn();
 		//CPRColumn.setSortable(true);
 		Column<RaavareBatchDTO, String> raavareIDColumn = getRaavareIDColumn();
@@ -171,7 +173,6 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 	//Fired when the user clicks "list users"
 	@Override
 	public void onLoad() {
-		gui = getLayoutList();
 		database.getRaavareBatchList(this);
 	
 	}

@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
+import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.RaavareDTO;
 
 
@@ -30,15 +31,16 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 	
 	interface ListRaavareUiBinder extends UiBinder<Widget, ListRaavareComposite> {}
 	private static ListRaavareUiBinder listRaavareUiBinder = GWT.create(ListRaavareUiBinder.class);
-	@UiField(provided=false) CellTable<RaavareDTO> vPanel;
+	@UiField(provided=true) CellTable<RaavareDTO> vPanel;
 	List<RaavareDTO> gui;
 	
 	public ListRaavareComposite()
 	{
+		vPanel = new CellTable<RaavareDTO>();
 		initWidget(listRaavareUiBinder.createAndBindUi(this));
+		gui = getLayoutList();
 	}
 	public List<RaavareDTO> getLayoutList() { //TODO: Show users when clicked
-		vPanel = new CellTable<RaavareDTO>();
 		Column<RaavareDTO, String> IDColumn = getIDColumn();
 		Column<RaavareDTO, String> nameColumn = getNameColumn();
 		Column<RaavareDTO, String> saveColumn = getButtonColumn("save");
@@ -126,7 +128,6 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 	//Fired when the user clicks "list users"
 	@Override
 	public void onLoad() {
-		gui = getLayoutList();
 		database.getRaavareList(this);
 	
 	}
