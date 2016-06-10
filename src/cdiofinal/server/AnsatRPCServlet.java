@@ -17,7 +17,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	@Override
 	public AnsatDTO getAnsat(String cpr) {
 		try {
-			return database.getAnsat(cpr);
+			return database.getAnsat(Integer.parseInt(cpr));
 		} catch (DALException e) {
 			System.out.println("Failed at getAnsat");
 		}
@@ -26,7 +26,6 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 
 	@Override
 	public AnsatDTO[] getAnsatList() {
-					
 					try {
 						List<AnsatDTO> ansatte = database.getAnsatList();
 						AnsatDTO[] ansatteArray = new AnsatDTO[ansatte.size()];
@@ -67,12 +66,5 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 			return 0;
 		
 	}
-	public static void main(String[] args) {
-		AnsatRPCServlet servlet = new AnsatRPCServlet();
-		for (AnsatDTO string : servlet.getAnsatList()) {
-			System.out.println(string);
-		}
-		
-    }
 	
 }

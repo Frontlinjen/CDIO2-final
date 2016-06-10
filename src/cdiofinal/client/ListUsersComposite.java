@@ -32,15 +32,15 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	
 	interface ListUsersUiBinder extends UiBinder<Widget, ListUsersComposite> {}
 	private static ListUsersUiBinder listUsersUiBinder = GWT.create(ListUsersUiBinder.class);
-	@UiField(provided=false) CellTable<AnsatDTO> vPanel;
+	@UiField(provided=true) CellTable<AnsatDTO> vPanel;
 	List<AnsatDTO> gui;
-	
 	public ListUsersComposite()
 	{
+		vPanel = new CellTable<AnsatDTO>();
 		initWidget(listUsersUiBinder.createAndBindUi(this));
+		gui = getLayoutList();
 	}
 	public List<AnsatDTO> getLayoutList() { //TODO: Show users when clicked
-		vPanel = new CellTable<AnsatDTO>();
 		Column<AnsatDTO, String> CPRColumn = getCPRColumn();
 		//CPRColumn.setSortable(true);
 		Column<AnsatDTO, String> nameColumn = getNameColumn();
@@ -129,6 +129,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 				{
 					@Override
 		            public String getValue(AnsatDTO object) {
+						if(object==null)
+							return "ERROR";
 		                return ranks[object.getTitel()];  //pass integer as i here at runtime
 		            }
 				};
@@ -163,6 +165,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 				{
 					@Override
 					public String getValue(AnsatDTO user) {
+						if(user==null)
+							return "ERROR";
 						return user.getIni();
 					}
 				};
@@ -181,6 +185,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 				{
 					@Override
 					public String getValue(AnsatDTO user) {
+						if (user==null) 
+							return "Øv";
 						return user.getCpr();
 					}
 				};
@@ -193,6 +199,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 				{
 					@Override
 					public String getValue(AnsatDTO user) {
+						if(user==null)
+							return "ERROR";
 						return user.getOprNavn();
 					}
 				};
@@ -208,7 +216,6 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	//Fired when the user clicks "list users"
 	@Override
 	public void onLoad() {
-		gui = getLayoutList();
 		database.getAnsatList(this);
 	
 	}
@@ -234,7 +241,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 		}
 		gui.clear();
 		for (AnsatDTO ansatDTO : result) {
-			gui.add(ansatDTO);
+			if(result!=null)
+				gui.add(ansatDTO);
 		}
 	}
 	
