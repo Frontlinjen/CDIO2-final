@@ -1,7 +1,7 @@
 package cdiofinal.client;
+
 import java.util.Arrays;
 import java.util.List;
-
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.FieldUpdater;
@@ -15,46 +15,40 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.InvocationException;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
+import cdiofinal.client.ListUsersComposite.ListUsersUiBinder;
+import cdiofinal.shared.ReceptDTO;
 
-import cdiofinal.shared.AnsatDTO;
-
-
-
-
-
-
-public class ListUsersComposite extends Composite implements AsyncCallback<AnsatDTO[]> {
+public class ListReceptComposite extends Composite implements AsyncCallback<ReceptDTO[]> {
 	
-	final AnsatRPCInterfaceAsync database = (AnsatRPCInterfaceAsync)GWT.create(AnsatRPCInterface.class);
+	final RecRPCInterfaceAsync database = (RecRPCInterfaceAsync)GWT.create(RecRPCInterface.class);
 	
-	interface ListUsersUiBinder extends UiBinder<Widget, ListUsersComposite> {}
-	private static ListUsersUiBinder listUsersUiBinder = GWT.create(ListUsersUiBinder.class);
-	@UiField(provided=true) CellTable<AnsatDTO> vPanel;
-	private List<AnsatDTO> gui;
-	public ListUsersComposite()
+	interface ListReceptUiBinder extends UiBinder<Widget, ListReceptComposite> {}
+	private static ListReceptUiBinder listReceptUiBinder = GWT.create(ListReceptUiBinder.class);
+	@UiField(provided=false) CellTable<ReceptDTO> vPanel;
+	List<ReceptDTO> gui;
+	
+	public ListReceptComposite()
 	{
-		vPanel = new CellTable<AnsatDTO>();
-		initWidget(listUsersUiBinder.createAndBindUi(this));
-		gui = getLayoutList();
+		initWidget(listReceptUiBinder.createAndBindUi(this));
 	}
-	public List<AnsatDTO> getLayoutList() { //TODO: Show users when clicked
-		Column<AnsatDTO, String> CPRColumn = getCPRColumn();
+	public List<ReceptDTO> getLayoutList() { //TODO: Show users when clicked
+		vPanel = new CellTable<ReceptDTO>();
+		Column<ReceptDTO, String> CPRColumn = getCPRColumn();
 		//CPRColumn.setSortable(true);
-		Column<AnsatDTO, String> nameColumn = getNameColumn();
+		Column<ReceptDTO, String> nameColumn = getNameColumn();
 		//nameColumn.setSortable(true);
-		Column<AnsatDTO, String> iniColumn = getIniColumn();
+		Column<ReceptDTO, String> iniColumn = getIniColumn();
 		//nameColumn.setSortable(true);
-		Column<AnsatDTO, String> rankColumn = getRankColumn();
+		Column<ReceptDTO, String> rankColumn = getRankColumn();
 		//nameColumn.setSortable(true);
-		Column<AnsatDTO, String> saveColumn = getButtonColumn("save");
-		saveColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>() {
+		Column<ReceptDTO, String> saveColumn = getButtonColumn("save");
+		saveColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>() {
 					@Override
-					  public void update(final int index, AnsatDTO object, String value) {
-							database.updateAnsat(object, new AsyncCallback<Integer>() {
+					  public void update(final int index, ReceptDTO object, String value) {
+							database.updateRecept(object, new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
 									Window.alert("Update unsuccessful");
@@ -69,12 +63,12 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 					  }
 				});
 				
-				Column<AnsatDTO, String> removeColumn = getButtonColumn("remove");
-				removeColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>() {
+				Column<ReceptDTO, String> removeColumn = getButtonColumn("remove");
+				removeColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>() {
 					@Override
-					  public void update(final int index, AnsatDTO object, String value) {
+					  public void update(final int index, ReceptDTO object, String value) {
 						if(object.getTitel() != 0){
-							database.deleteAnsat(object, new AsyncCallback<Integer>() {
+							database.deleteRecept(object, new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
 									Window.alert("Deletion unsuccessful");
@@ -100,7 +94,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 		vPanel.addColumn(removeColumn, "");
 		
 		
-		ListDataProvider<AnsatDTO> userList = new ListDataProvider<AnsatDTO>();
+		ListDataProvider<ReceptDTO> userList = new ListDataProvider<ReceptDTO>();
 		
 		
 		
@@ -109,12 +103,12 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 		return userList.getList();
 	}
 
-	private Column<AnsatDTO, String> getButtonColumn(final String value) {
+	private Column<ReceptDTO, String> getButtonColumn(final String value) {
 		ButtonCell button = new ButtonCell();
-		Column<AnsatDTO, String> buttonColumn = new Column<AnsatDTO, String>(button)
+		Column<ReceptDTO, String> buttonColumn = new Column<ReceptDTO, String>(button)
 				{
 					@Override
-					public String getValue(AnsatDTO user)
+					public String getValue(ReceptDTO user)
 					{
 						return value;
 					}
@@ -123,35 +117,33 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 		return buttonColumn;
 	}
 
-	private Column<AnsatDTO, String> getRankColumn() {
+	private Column<ReceptDTO, String> getRankColumn() {
 		final String[] ranks = new String[] {"Operat\u00F8r", "V\u00E6rkf\u00F8rer", "Farmaceut", "Administrator"};
 		SelectionCell rankCell = new SelectionCell(Arrays.asList(ranks));
-		Column<AnsatDTO, String> rankColumn = new Column<AnsatDTO, String>(rankCell)
+		Column<ReceptDTO, String> rankColumn = new Column<ReceptDTO, String>(rankCell)
 				{
 					@Override
-		            public String getValue(AnsatDTO object) {
-						if(object==null)
-							return "ERROR";
+		            public String getValue(ReceptDTO object) {
 		                return ranks[object.getTitel()];  //pass integer as i here at runtime
 		            }
 				};
-				rankColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>(){
+				rankColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>(){
 
 					  @Override
-					public void update(int index, final AnsatDTO ansat, final String value) {
+					public void update(int index, final ReceptDTO Recept, final String value) {
 						switch(value)
 						{
 						case "Operat\u00F8r":
-							ansat.setTitel(0);
+							Recept.setTitel(0);
 							break;
 						case "V\u00E6rkf\u00F8rer":
-							ansat.setTitel(1);
+							Recept.setTitel(1);
 							break;
 						case "Farmaceut":
-							ansat.setTitel(2);
+							Recept.setTitel(2);
 							break;
 						case "Administrator":
-							ansat.setTitel(3);
+							Recept.setTitel(3);
 							break;
 						
 						}
@@ -160,56 +152,50 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 		return rankColumn;
 	}
 
-	private Column<AnsatDTO, String> getIniColumn() {
+	private Column<ReceptDTO, String> getIniColumn() {
 		EditTextCell iniCell = new EditTextCell();
-		Column<AnsatDTO, String> iniColumn = new Column<AnsatDTO, String>(iniCell)
+		Column<ReceptDTO, String> iniColumn = new Column<ReceptDTO, String>(iniCell)
 				{
 					@Override
-					public String getValue(AnsatDTO user) {
-						if(user==null)
-							return "ERROR";
+					public String getValue(ReceptDTO user) {
 						return user.getIni();
 					}
 				};
-				iniColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>(){
+				iniColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>(){
 
 					  @Override
-					public void update(int index, final AnsatDTO ansat, final String value) {
-						  		ansat.setIni(value);
+					public void update(int index, final ReceptDTO Recept, final String value) {
+						  		Recept.setIni(value);
 					  }});
 		return iniColumn;
 	}
 
-	private Column<AnsatDTO, String> getCPRColumn() {
+	private Column<ReceptDTO, String> getCPRColumn() {
 		EditTextCell cprCell = new EditTextCell();
-		Column<AnsatDTO, String> cprColumn = new Column<AnsatDTO, String>(cprCell)
+		Column<ReceptDTO, String> cprColumn = new Column<ReceptDTO, String>(cprCell)
 				{
 					@Override
-					public String getValue(AnsatDTO user) {
-						if (user==null) 
-							return "�v";
+					public String getValue(ReceptDTO user) {
 						return user.getCpr();
 					}
 				};
 		return cprColumn;
 	}
 	
-	private Column<AnsatDTO, String> getNameColumn() {
+	private Column<ReceptDTO, String> getNameColumn() {
 		EditTextCell nameCell = new EditTextCell();
-		Column<AnsatDTO, String> nameColumn = new Column<AnsatDTO, String>(nameCell)
+		Column<ReceptDTO, String> nameColumn = new Column<ReceptDTO, String>(nameCell)
 				{
 					@Override
-					public String getValue(AnsatDTO user) {
-						if(user==null)
-							return "ERROR";
+					public String getValue(ReceptDTO user) {
 						return user.getOprNavn();
 					}
 				};
-		nameColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>(){
+		nameColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>(){
 
 			  @Override
-			public void update(int index, final AnsatDTO ansat, final String value) {
-				  		ansat.setOprNavn(value);
+			public void update(int index, final ReceptDTO Recept, final String value) {
+				  		Recept.setOprNavn(value);
 			  }});
 		return nameColumn;
 	}
@@ -217,7 +203,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	//Fired when the user clicks "list users"
 	@Override
 	public void onLoad() {
-		database.getAnsatList(this);
+		gui = getLayoutList();
+		database.getReceptList(this);
 	
 	}
 
@@ -235,18 +222,20 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 		     }
 	}
 	@Override
-	public void onSuccess(AnsatDTO[] result) {
+	public void onSuccess(ReceptDTO[] result) {
 		if(result==null)
 		{
 			Window.alert("No data recieved.");
 		}
 		gui.clear();
-		for (AnsatDTO ansatDTO : result) {
-			if(result!=null)
-				gui.add(ansatDTO);
+		for (ReceptDTO ReceptDTO : result) {
+			gui.add(ReceptDTO);
 		}
 	}
 	
+
+
+}
 
 
 }

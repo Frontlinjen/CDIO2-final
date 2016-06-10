@@ -2,6 +2,21 @@
     xmlns:g='urn:import:com.google.gwt.user.client.ui'
     xmlns:c='urn:import:com.google.gwt.user.cellview.client'>
     <g:HTMLPanel>
- 		<c:CellTable ui:field='vPanel'/>
+        <table cellspacing='0' cellpadding='0'>
+            <tr>
+                <td>
+            		<c:CellTable ui:field='vPanel'/>
+            	</td>
+            </tr>
+            <tr>
+                <td align='center'>
+                    <div style='background-color:#E0E0E0; margin: 0; padding: 2px'>
+                         <g:Button text='Add new' ui:field='newElement'/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+ 		
  	</g:HTMLPanel>
   </ui:UiBinder>
