@@ -57,16 +57,6 @@
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>RecService</servlet-name>
-    <servlet-class>cdiofinal.server.RecRPCServlet</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>RecService</servlet-name>
-    <url-pattern>/cdio_final/receptOgReceptkomponent</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
     <servlet-name>RaavareBatchService</servlet-name>
     <servlet-class>cdiofinal.server.raavareBatchRPCServlet</servlet-class>
   </servlet>
@@ -84,6 +74,26 @@
   <servlet-mapping>
     <servlet-name>RaavareService</servlet-name>
     <url-pattern>/cdio_final/raavare</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ReceptService</servlet-name>
+    <servlet-class>cdiofinal.server.receptRPCServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ReceptService</servlet-name>
+    <url-pattern>/cdio_final/recept</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ReceptKomponentService</servlet-name>
+    <servlet-class>cdiofinal.server.receptKomponentRPCServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ReceptKomponentService</servlet-name>
+    <url-pattern>/cdio_final/receptKomponent</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->

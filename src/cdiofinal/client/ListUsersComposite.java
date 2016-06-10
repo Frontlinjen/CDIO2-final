@@ -9,6 +9,7 @@ import com.google.gwt.cell.client.SelectionCell;
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -49,12 +50,14 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	@UiHandler("newElement")
 	public void onClick(ClickEvent e)
 	{
-		NewUserComposite comp = new NewUserComposite();
-		DialogBox d = new DialogBox();
-		d.add(comp);
-		d.center();
-		d.show();
+		Popupcontainer p = new Popupcontainer(new NewUserComposite());
+//		DialogBox d = new DialogBox();
+//		d.add(comp);
+//		d.center();
+//		d.show();
+		p.center();
 	}
+
 	
 	public List<AnsatDTO> getLayoutList() { //TODO: Show users when clicked
 		Column<AnsatDTO, String> CPRColumn = getCPRColumn();
@@ -190,7 +193,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 
 					  @Override
 					public void update(int index, final AnsatDTO ansat, final String value) {
-						  		ansat.setIni(value);
+						  //		ansat.setIni(value);
+						  
 					  }});
 		return iniColumn;
 	}
