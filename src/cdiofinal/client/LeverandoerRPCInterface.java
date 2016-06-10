@@ -4,7 +4,7 @@ import cdiofinal.shared.LeverandoerDTO;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("Leverandoer")
+@RemoteServiceRelativePath("leverandoer")
 public interface LeverandoerRPCInterface extends RemoteService{
 	LeverandoerDTO getLeverandoer(int rvId);
 	LeverandoerDTO[] getLeverandoerList();
