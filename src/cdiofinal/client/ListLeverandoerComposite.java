@@ -101,6 +101,12 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 						return Integer.toString(leverandoer.getLeverandoerId());
 					}
 				};
+				idColumn.setFieldUpdater(new FieldUpdater<LeverandoerDTO, String>(){
+
+					  @Override
+					public void update(int index, final LeverandoerDTO leverandoer, final String value) {
+						  		leverandoer.setLeverandoerId(Integer.parseInt(value));
+					  }});
 		return idColumn;
 	}
 	
