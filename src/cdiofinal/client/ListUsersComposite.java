@@ -15,6 +15,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.InvocationException;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
@@ -33,7 +34,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	interface ListUsersUiBinder extends UiBinder<Widget, ListUsersComposite> {}
 	private static ListUsersUiBinder listUsersUiBinder = GWT.create(ListUsersUiBinder.class);
 	@UiField(provided=true) CellTable<AnsatDTO> vPanel;
-	List<AnsatDTO> gui;
+	private List<AnsatDTO> gui;
 	public ListUsersComposite()
 	{
 		vPanel = new CellTable<AnsatDTO>();
