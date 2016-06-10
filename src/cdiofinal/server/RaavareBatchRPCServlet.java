@@ -16,13 +16,12 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 	
 	
 	@Override
-	public RaavareBatchDTO getRaavareBatch(int rb_id) {
+	public RaavareBatchDTO getRaavareBatch(int rb_id) throws DALException{
 		try {
 			return database.getRaavareBatch(rb_id);
 		} catch (DALException e) {
-			System.out.println("Failed at get RaavareBatch");
+			throw e;
 		}
-		return null;
 	}
 
 	@Override
@@ -38,23 +37,23 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 	}
 
 	@Override
-	public Integer createRaavareBatch(RaavareBatchDTO ans) {
+	public Integer createRaavareBatch(RaavareBatchDTO ans) throws DALException{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidId(ans.getLeverandoerId())==true || FieldVerifier.isValidId(ans.getRaavarebatchId()))
 		try {
 		return database.createRaavareBatch(ans);
 		} catch (DALException e){
-			System.out.println("Failed at create RaavareBatch");
+			throw e;
 		}
 		return 0;
 	}
 
 	@Override
-	public Integer updateRaavareBatch(RaavareBatchDTO ans) {
+	public Integer updateRaavareBatch(RaavareBatchDTO ans) throws DALException{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidId(ans.getLeverandoerId())==true || FieldVerifier.isValidId(ans.getRaavarebatchId()))
 		try {
 			return database.updateRaavareBatch(ans);
 			} catch (DALException e){
-				System.out.println("Failed at update RaavareBatch");
+				throw e;
 			}
 			return 0;
 		

@@ -18,13 +18,12 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 	
 	
 	@Override
-	public ReceptDTO getRecept(int recept_id) {
+	public ReceptDTO getRecept(int recept_id) throws DALException{
 		try {
 			return receptDAO.getRecept(recept_id);
 		} catch (DALException e) {
-			System.out.println("Failed at getRecept");
+			throw e;
 		}
-		return null;
 	}
 
 	@Override
@@ -40,24 +39,22 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 	}
 
 	@Override
-	public Integer createRecept(ReceptDTO ans) {
+	public Integer createRecept(ReceptDTO ans) throws DALException{
 		if(FieldVerifier.isValidId(ans.getReceptId())==true || FieldVerifier.isValidName(ans.getReceptNavn()) == true)
 		try {
 		return receptDAO.createRecept(ans);
 		} catch (DALException e){
-			System.out.println("Failed at create Recept");
+			throw e;
 		}
 		return 0;
 	}
 
 	@Override
-	public Integer updateRecept(ReceptDTO ans) {
+	public Integer updateRecept(ReceptDTO ans) throws DALException{
 		try {
 			return receptDAO.updateRecept(ans);
 			} catch (DALException e){
-				System.out.println("Failed at update Recept");
+				throw e;
 			}
-			return 0;
-		
 	}
 }

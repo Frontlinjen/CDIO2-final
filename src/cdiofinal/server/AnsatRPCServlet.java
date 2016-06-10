@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import cdiofinal.shared.DALException;
 import cdiofinal.client.AnsatRPCInterface;
 import cdiofinal.server.MySQLAnsatDAO;
 import cdiofinal.shared.AnsatDTO;
@@ -16,13 +17,12 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	
 	
 	@Override
-	public AnsatDTO getAnsat(String cpr) {
+	public AnsatDTO getAnsat(String cpr) throws DALException {
 		try {
 			return database.getAnsat(cpr);
 		} catch (DALException e) {
-			System.out.println("Failed at getAnsat");
+			throw e;
 		}
-		return null;
 	}
 
 	@Override
@@ -37,35 +37,35 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	}
 
 	@Override
-	public Integer createAnsat(AnsatDTO ans) {
+	public Integer createAnsat(AnsatDTO ans) throws DALException{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
 		return database.createAnsat(ans);
 		} catch (DALException e){
-			System.out.println("Failed at createAnsat");
+			throw e;
 		}
 		return 0;
 	}
 
 	@Override
-	public Integer updateAnsat(AnsatDTO ans) {
+	public Integer updateAnsat(AnsatDTO ans) throws DALException{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
 			return database.updateAnsat(ans);
 			} catch (DALException e){
-				System.out.println("Failed at updateAnsat");
+				throw e;
 			}
 			return 0;
 		
 	}
 
 	@Override
-	public Integer deleteAnsat(AnsatDTO ans) {
+	public Integer deleteAnsat(AnsatDTO ans) throws DALException{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
 			return database.deleteAnsat(ans);
 			} catch (DALException e){
-				System.out.println("Failed at deleteAnsat");
+				throw e;
 			}
 			return 0;
 		

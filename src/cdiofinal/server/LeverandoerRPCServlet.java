@@ -3,9 +3,9 @@ import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import cdiofinal.shared.DALException;
 import cdiofinal.client.LeverandoerRPCInterface;
 import cdiofinal.server.MySQLLeverandoerDAO;
-import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.LeverandoerDTO;
 
@@ -16,13 +16,12 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 	
 	
 	@Override
-	public LeverandoerDTO getLeverandoer(int id) {
+	public LeverandoerDTO getLeverandoer(int id) throws DALException{
 		try {
 			return database.getLeverandoer(id);
 		} catch (DALException e) {
-			System.out.println("Failed at getLeverandoer");
+			throw e;
 		}
-		return null;
 	}
 
 	@Override
@@ -38,23 +37,23 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 	}
 
 	@Override
-	public Integer createLeverandoer(LeverandoerDTO lev) {
+	public Integer createLeverandoer(LeverandoerDTO lev) throws DALException{
 		if(FieldVerifier.isValidId(lev.getLeverandoerId())==true || FieldVerifier.isValidName(lev.getLeverandoerNavn())==true)
 		try {
 		return database.createLeverandoer(lev);
 		} catch (DALException e){
-			System.out.println("Failed at createLeverandoer");
+			throw e;
 		}
 		return 0;
 	}
 
 	@Override
-	public Integer updateLeverandoer(LeverandoerDTO lev) {
+	public Integer updateLeverandoer(LeverandoerDTO lev) throws DALException{
 		if(FieldVerifier.isValidId(lev.getLeverandoerId())==true || FieldVerifier.isValidName(lev.getLeverandoerNavn())==true)
 		try {
 			return database.updateLeverandoer(lev);
 			} catch (DALException e){
-				System.out.println("Failed at updateLeverandoer");
+				throw e;
 			}
 			return 0;
 		
