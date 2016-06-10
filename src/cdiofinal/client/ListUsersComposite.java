@@ -188,7 +188,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 					@Override
 					public String getValue(AnsatDTO user) {
 						if (user==null) 
-							return "Øv";
+							return "ï¿½v";
 						return user.getCpr();
 					}
 				};

@@ -62,7 +62,7 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 				
 		vPanel.addColumn(IDColumn, "ID");
 		vPanel.addColumn(nameColumn, "Name");
-		
+		vPanel.addColumn(saveColumn, "");
 		
 		ListDataProvider<RaavareDTO> userList = new ListDataProvider<RaavareDTO>();
 		
