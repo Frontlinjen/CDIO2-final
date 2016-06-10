@@ -3,15 +3,20 @@ import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import cdiofinal.client.NewProduktbatchComposite;
 import cdiofinal.client.ProduktBatchRPCInterface;
 import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLProduktbatchDAO;
+import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.ProduktBatchDTO;
 
 public class ProduktBatchRPCServlet extends RemoteServiceServlet implements ProduktBatchRPCInterface {
 
 	private static final long serialVersionUID = 1L;
 	MySQLProduktbatchDAO database = new MySQLProduktbatchDAO();
+	MySQLReceptDAO rdao = new MySQLReceptDAO();
+	NewProduktbatchComposite pbcom = new NewProduktbatchComposite(); 
+	
 	
 	
 	@Override
@@ -38,16 +43,25 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 
 	@Override
 	public Integer createProduktBatch(ProduktBatchDTO prba) {
+		if(!FieldVerifier.isValidId((prba.getReceptId()))==true || !FieldVerifier.isValidId(prba.getPbId())==true){
+			System.out.println("Id'et er ugyldigt. (1-99999999");
+		}
+		else
 		try {
 		return database.createProduktBatch(prba);
 		} catch (DALException e){
 			System.out.println("Failed at createProduktBatch");
 		}
 		return 0;
+		
 	}
 
 	@Override
 	public Integer updateProduktBatch(ProduktBatchDTO prba) {
+		if(!FieldVerifier.isValidId((prba.getReceptId()))==true || !FieldVerifier.isValidId(prba.getPbId())==true){
+			System.out.println("Id'et er ugyldigt. (1-99999999");
+		}
+		else
 		try {
 			return database.updateProduktBatch(prba);
 			} catch (DALException e){

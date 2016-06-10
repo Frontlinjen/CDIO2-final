@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
+import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.LeverandoerDTO;
 
 
@@ -61,7 +62,8 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 		saveColumn.setFieldUpdater(new FieldUpdater<LeverandoerDTO, String>() {
 					@Override
 					  public void update(final int index, LeverandoerDTO object, String value) {
-							database.updateLeverandoer(object, new AsyncCallback<Integer>() {
+						if(FieldVerifier.isValidName(object.getLeverandoerNavn())==true)	
+						database.updateLeverandoer(object, new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
 									Window.alert("Update unsuccessful");
