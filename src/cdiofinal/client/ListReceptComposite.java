@@ -1,11 +1,9 @@
 package cdiofinal.client;
 
-import java.util.Arrays;
 import java.util.List;
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.FieldUpdater;
-import com.google.gwt.cell.client.SelectionCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -18,7 +16,6 @@ import com.google.gwt.user.client.rpc.InvocationException;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
-import cdiofinal.client.ListUsersComposite.ListUsersUiBinder;
 import cdiofinal.shared.ReceptDTO;
 
 public class ListReceptComposite extends Composite implements AsyncCallback<ReceptDTO[]> {
@@ -36,14 +33,9 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 	}
 	public List<ReceptDTO> getLayoutList() { //TODO: Show users when clicked
 		vPanel = new CellTable<ReceptDTO>();
-		Column<ReceptDTO, String> CPRColumn = getCPRColumn();
+		Column<ReceptDTO, String> receptIDColumn = getReceptIDColumn();
 		//CPRColumn.setSortable(true);
-		Column<ReceptDTO, String> nameColumn = getNameColumn();
-		//nameColumn.setSortable(true);
-		Column<ReceptDTO, String> iniColumn = getIniColumn();
-		//nameColumn.setSortable(true);
-		Column<ReceptDTO, String> rankColumn = getRankColumn();
-		//nameColumn.setSortable(true);
+		Column<ReceptDTO, String> receptNameColumn = getReceptNameColumn();
 		Column<ReceptDTO, String> saveColumn = getButtonColumn("save");
 		saveColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>() {
 					@Override
@@ -63,44 +55,18 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 					  }
 				});
 				
-				Column<ReceptDTO, String> removeColumn = getButtonColumn("remove");
-				removeColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>() {
-					@Override
-					  public void update(final int index, ReceptDTO object, String value) {
-						if(object.getTitel() != 0){
-							database.deleteRecept(object, new AsyncCallback<Integer>() {
-								@Override
-								public void onFailure(Throwable caught) {
-									Window.alert("Deletion unsuccessful");
-								}
-
-								@Override
-								public void onSuccess(Integer result) {
-									gui.remove(index);
-									Window.alert("Successfully deleted user");
-								}
-								
-							});
-						}
-						else Window.alert("You cannot delete operators!");
-					  }
-				});
-				
-		vPanel.addColumn(CPRColumn, "CPR");
-		vPanel.addColumn(nameColumn, "Name");
-		vPanel.addColumn(iniColumn, "Ini");
-		vPanel.addColumn(rankColumn, "Rank");
+		vPanel.addColumn(receptIDColumn, "recept_id");
+		vPanel.addColumn(receptNameColumn, "recept_name");
 		vPanel.addColumn(saveColumn, "");
-		vPanel.addColumn(removeColumn, "");
 		
 		
-		ListDataProvider<ReceptDTO> userList = new ListDataProvider<ReceptDTO>();
+		ListDataProvider<ReceptDTO> receptList = new ListDataProvider<ReceptDTO>();
 		
 		
 		
-		userList.addDataDisplay(vPanel);		
+		receptList.addDataDisplay(vPanel);		
 		
-		return userList.getList();
+		return receptList.getList();
 	}
 
 	private Column<ReceptDTO, String> getButtonColumn(final String value) {
@@ -108,7 +74,7 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 		Column<ReceptDTO, String> buttonColumn = new Column<ReceptDTO, String>(button)
 				{
 					@Override
-					public String getValue(ReceptDTO user)
+					public String getValue(ReceptDTO recept)
 					{
 						return value;
 					}
@@ -117,90 +83,45 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 		return buttonColumn;
 	}
 
-	private Column<ReceptDTO, String> getRankColumn() {
-		final String[] ranks = new String[] {"Operat\u00F8r", "V\u00E6rkf\u00F8rer", "Farmaceut", "Administrator"};
-		SelectionCell rankCell = new SelectionCell(Arrays.asList(ranks));
-		Column<ReceptDTO, String> rankColumn = new Column<ReceptDTO, String>(rankCell)
-				{
-					@Override
-		            public String getValue(ReceptDTO object) {
-		                return ranks[object.getTitel()];  //pass integer as i here at runtime
-		            }
-				};
-				rankColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>(){
-
-					  @Override
-					public void update(int index, final ReceptDTO Recept, final String value) {
-						switch(value)
-						{
-						case "Operat\u00F8r":
-							Recept.setTitel(0);
-							break;
-						case "V\u00E6rkf\u00F8rer":
-							Recept.setTitel(1);
-							break;
-						case "Farmaceut":
-							Recept.setTitel(2);
-							break;
-						case "Administrator":
-							Recept.setTitel(3);
-							break;
-						
-						}
-						  		
-					  }});
-		return rankColumn;
-	}
-
-	private Column<ReceptDTO, String> getIniColumn() {
-		EditTextCell iniCell = new EditTextCell();
-		Column<ReceptDTO, String> iniColumn = new Column<ReceptDTO, String>(iniCell)
-				{
-					@Override
-					public String getValue(ReceptDTO user) {
-						return user.getIni();
-					}
-				};
-				iniColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>(){
-
-					  @Override
-					public void update(int index, final ReceptDTO Recept, final String value) {
-						  		Recept.setIni(value);
-					  }});
-		return iniColumn;
-	}
-
-	private Column<ReceptDTO, String> getCPRColumn() {
-		EditTextCell cprCell = new EditTextCell();
-		Column<ReceptDTO, String> cprColumn = new Column<ReceptDTO, String>(cprCell)
-				{
-					@Override
-					public String getValue(ReceptDTO user) {
-						return user.getCpr();
-					}
-				};
-		return cprColumn;
-	}
 	
-	private Column<ReceptDTO, String> getNameColumn() {
+
+	private Column<ReceptDTO, String> getReceptIDColumn() {
+		EditTextCell idCell = new EditTextCell();
+		Column<ReceptDTO, String> idColumn = new Column<ReceptDTO, String>(idCell)
+				{
+					@Override
+					public String getValue(ReceptDTO recept) {
+						return Integer.toString(recept.getReceptId());
+					}
+				};
+				idColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>(){
+
+					  @Override
+					public void update(int index, final ReceptDTO Recept, final String value) {
+						  		Recept.setReceptId(Integer.parseInt(value));
+					  }});
+		return idColumn;
+	}
+
+	private Column<ReceptDTO, String> getReceptNameColumn() {
 		EditTextCell nameCell = new EditTextCell();
 		Column<ReceptDTO, String> nameColumn = new Column<ReceptDTO, String>(nameCell)
 				{
 					@Override
-					public String getValue(ReceptDTO user) {
-						return user.getOprNavn();
+					public String getValue(ReceptDTO recept) {
+						return recept.getReceptNavn();
 					}
 				};
-		nameColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>(){
+				nameColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>(){
 
-			  @Override
-			public void update(int index, final ReceptDTO Recept, final String value) {
-				  		Recept.setOprNavn(value);
-			  }});
+					  @Override
+					public void update(int index, final ReceptDTO Recept, final String value) {
+						  		Recept.setReceptNavn(value);
+					  }});
 		return nameColumn;
 	}
 
-	//Fired when the user clicks "list users"
+	//Fired when the recept clicks "list recepts"
 	@Override
 	public void onLoad() {
 		gui = getLayoutList();
@@ -237,5 +158,3 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 
 }
 
-
-}
