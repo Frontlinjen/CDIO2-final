@@ -3,10 +3,11 @@ import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-import cdiofinal.client.RecRPCInterface;
 import cdiofinal.client.ReceptRPCInterface;
+import cdiofinal.client.ReceptRPCInterfaceAsync;
 import cdiofinal.server.MySQLReceptDAO;
 import cdiofinal.shared.DALException;
+import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.ReceptDTO;
 import cdiofinal.shared.ReceptKompDTO;
 
@@ -40,6 +41,7 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 
 	@Override
 	public Integer createRecept(ReceptDTO ans) {
+		if(FieldVerifier.isValidId(ans.getReceptId())==true || FieldVerifier.isValidName(ans.getReceptNavn()) == true)
 		try {
 		return receptDAO.createRecept(ans);
 		} catch (DALException e){

@@ -6,6 +6,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import cdiofinal.client.RaavareBatchRPCInterface;
 import cdiofinal.server.MySQLRaavareBatchDAO;
 import cdiofinal.shared.DALException;
+import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.RaavareBatchDTO;
 
 public class RaavareBatchRPCServlet extends RemoteServiceServlet implements RaavareBatchRPCInterface {
@@ -38,6 +39,7 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 
 	@Override
 	public Integer createRaavareBatch(RaavareBatchDTO ans) {
+		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidId(ans.getLeverandoerId())==true || FieldVerifier.isValidId(ans.getRaavarebatchId()))
 		try {
 		return database.createRaavareBatch(ans);
 		} catch (DALException e){
@@ -48,6 +50,7 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 
 	@Override
 	public Integer updateRaavareBatch(RaavareBatchDTO ans) {
+		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidId(ans.getLeverandoerId())==true || FieldVerifier.isValidId(ans.getRaavarebatchId()))
 		try {
 			return database.updateRaavareBatch(ans);
 			} catch (DALException e){
