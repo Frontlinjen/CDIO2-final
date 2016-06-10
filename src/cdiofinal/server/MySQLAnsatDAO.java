@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import cdiofinal.shared.AnsatDTO;
+import cdiofinal.shared.DALException;
 
 import java.util.ArrayList;
 

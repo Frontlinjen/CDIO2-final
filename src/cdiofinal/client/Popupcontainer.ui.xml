@@ -1,0 +1,17 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <g:HTMLPanel>
+         <table>
+             <tr>
+                 <td align='right'>
+                     <g:Button text='Close' ui:field="CloseButton"/>
+                 </td>
+             </tr>
+             <tr>
+                 <td valign='top'>
+                     <g:SimplePanel ui:field="container"/>
+                 </td>
+             </tr>
+         </table>
+ 	</g:HTMLPanel>
+  </ui:UiBinder>

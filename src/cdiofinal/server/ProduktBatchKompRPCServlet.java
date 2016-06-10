@@ -4,8 +4,9 @@ import java.util.List;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.client.ProduktBatchKompRPCInterface;
-import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLProduktBatchKompDAO;
+import cdiofinal.shared.DALException;
+import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.ProduktBatchKompDTO;
 
 public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements ProduktBatchKompRPCInterface {
@@ -15,11 +16,11 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 	
 	
 	@Override
-	public ProduktBatchKompDTO getProduktBatchKomp(int pbid, int rabaid) {
+	public ProduktBatchKompDTO getProduktBatchKomp(int pbid, int rabaid) throws DALException {
 		try {
 			return database.getProduktBatchKomp(pbid, rabaid);
 		} catch (DALException e) {
-			System.out.println("Failed at getProduktBatchKomp");
+			throw e;
 		}
 		return null;
 	}
@@ -38,6 +39,7 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 
 	@Override
 	public Integer createProduktBatchKomp(ProduktBatchKompDTO pbk) {
+		if(FieldVerifier.isValidId(pbk.getPbId())==true || FieldVerifier.isValidId(pbk.getRaavarebatchId())==true || FieldVerifier.isValidCpr(Integer.parseInt(pbk.getCpr())))
 		try {
 		return database.createProduktBatchKomp(pbk);
 		} catch (DALException e){
@@ -48,6 +50,7 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 
 	@Override
 	public Integer updateProduktBatchKomp(ProduktBatchKompDTO pbk) {
+		if(FieldVerifier.isValidId(pbk.getPbId())==true || FieldVerifier.isValidId(pbk.getRaavarebatchId())==true || FieldVerifier.isValidCpr(Integer.parseInt(pbk.getCpr())))
 		try {
 			return database.updateProduktBatchKomp(pbk);
 			} catch (DALException e){

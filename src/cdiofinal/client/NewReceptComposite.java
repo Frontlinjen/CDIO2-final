@@ -10,12 +10,12 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-import cdiofinal.server.DALException;
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.ReceptDTO;
 
 public class NewReceptComposite extends Composite implements AsyncCallback<Integer>{
-	final RecRPCInterfaceAsync database = (RecRPCInterfaceAsync)GWT.create(RecRPCInterface.class);
+	final ReceptRPCInterfaceAsync database = (ReceptRPCInterfaceAsync)GWT.create(ReceptRPCInterface.class);
 	interface NewReceptCompositeUiBinder extends UiBinder<Widget, NewReceptComposite> {}
 	private static NewReceptCompositeUiBinder newReceptUiBinder = GWT.create(NewReceptCompositeUiBinder.class);
 	@UiField TextBox idBox;
@@ -36,7 +36,7 @@ public class NewReceptComposite extends Composite implements AsyncCallback<Integ
 		}
 		else if(!FieldVerifier.isValidName(navnBox.getText())==true)
 		{
-			System.out.println("Navnet er ugyldigt. Benyt kun bogstaver, med en længde mellem 2-20");
+			System.out.println("Navnet er ugyldigt. Benyt kun bogstaver, med en lï¿½ngde mellem 2-20");
 		}
 		else
 			
@@ -54,6 +54,5 @@ public class NewReceptComposite extends Composite implements AsyncCallback<Integ
 		statusField.setText("Succesfully created Recept");
 		idBox.setValue("");
 		navnBox.setValue("");
-		
 	}
 }

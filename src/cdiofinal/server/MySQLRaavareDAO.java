@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import cdiofinal.server.DALException;
 import cdiofinal.server.RaavareDAO;
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.RaavareDTO;
 
 public class MySQLRaavareDAO implements RaavareDAO{

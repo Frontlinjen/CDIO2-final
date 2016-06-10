@@ -1,4 +1,4 @@
-package cdiofinal.server;
+package cdiofinal.shared;
 
 public class DALException extends Exception
 {

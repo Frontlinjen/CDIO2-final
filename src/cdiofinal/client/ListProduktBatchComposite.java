@@ -41,16 +41,6 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 		initWidget(listProduktBatchUiBinder.createAndBindUi(this));
 	}
 	
-	@UiHandler("newElement")
-	public void onClick(ClickEvent e)
-	{
-		NewProduktbatchComposite comp = new NewProduktbatchComposite();
-		DialogBox d = new DialogBox();
-		d.add(comp);
-		d.center();
-		d.show();
-	}
-	
 	public List<ProduktBatchDTO> getLayoutList() { //TODO: Show users when clicked
 		vPanel = new CellTable<ProduktBatchDTO>();
 		Column<ProduktBatchDTO, String> pbIDColumn = getPbIDColumn();
