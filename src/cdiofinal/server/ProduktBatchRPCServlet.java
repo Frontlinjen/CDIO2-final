@@ -16,7 +16,6 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 	private static final long serialVersionUID = 1L;
 	MySQLProduktbatchDAO database = new MySQLProduktbatchDAO();
 	MySQLReceptDAO rdao = new MySQLReceptDAO();
-	NewProduktbatchComposite pbcom = new NewProduktbatchComposite(); 
 
 
 
