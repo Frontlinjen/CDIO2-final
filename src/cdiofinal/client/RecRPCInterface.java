@@ -5,7 +5,7 @@ import cdiofinal.shared.ReceptKompDTO;
 
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("Recept og receptkomponent")
+@RemoteServiceRelativePath("receptOgReceptkomponent")
 public interface RecRPCInterface {
 	ReceptDTO getRecept(int recId);
 	ReceptDTO[] getReceptList();
