@@ -6,6 +6,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import cdiofinal.client.LeverandoerRPCInterface;
 import cdiofinal.server.DALException;
 import cdiofinal.server.MySQLLeverandoerDAO;
+import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.LeverandoerDTO;
 
 public class LeverandoerRPCServlet extends RemoteServiceServlet implements LeverandoerRPCInterface {
@@ -38,6 +39,7 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 
 	@Override
 	public Integer createLeverandoer(LeverandoerDTO lev) {
+		if(FieldVerifier.isValidId(lev.getLeverandoerId())==true || FieldVerifier.isValidName(lev.getLeverandoerNavn())==true)
 		try {
 		return database.createLeverandoer(lev);
 		} catch (DALException e){
@@ -48,6 +50,7 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 
 	@Override
 	public Integer updateLeverandoer(LeverandoerDTO lev) {
+		if(FieldVerifier.isValidId(lev.getLeverandoerId())==true || FieldVerifier.isValidName(lev.getLeverandoerNavn())==true)
 		try {
 			return database.updateLeverandoer(lev);
 			} catch (DALException e){
