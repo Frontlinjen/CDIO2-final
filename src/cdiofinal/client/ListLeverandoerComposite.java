@@ -42,16 +42,6 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 		initWidget(listLeverandoerUiBinder.createAndBindUi(this));
 	}
 	
-	@UiHandler("newElement")
-	public void onClick(ClickEvent e)
-	{
-		NewLeverandoerComposite comp = new NewLeverandoerComposite();
-		DialogBox d = new DialogBox();
-		d.add(comp);
-		d.center();
-		d.show();
-	}
-	
 	public List<LeverandoerDTO> getLayoutList() { //TODO: Show users when clicked
 		vPanel = new CellTable<LeverandoerDTO>();
 		Column<LeverandoerDTO, String> IDColumn = getIDColumn();

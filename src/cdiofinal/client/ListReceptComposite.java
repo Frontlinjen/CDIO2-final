@@ -35,16 +35,6 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 		initWidget(listReceptUiBinder.createAndBindUi(this));
 	}
 	
-	@UiHandler("newElement")
-	public void onClick(ClickEvent e)
-	{
-		NewReceptComposite comp = new NewReceptComposite();
-		DialogBox d = new DialogBox();
-		d.add(comp);
-		d.center();
-		d.show();
-	}
-	
 	public List<ReceptDTO> getLayoutList() { //TODO: Show users when clicked
 		vPanel = new CellTable<ReceptDTO>();
 		Column<ReceptDTO, String> receptIDColumn = getReceptIDColumn();
