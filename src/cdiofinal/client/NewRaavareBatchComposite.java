@@ -11,13 +11,7 @@ import com.google.gwt.user.client.ui.IntegerBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
-<<<<<<< HEAD
-import cdiofinal.server.DALException;
-=======
-import cdiofinal.server.MySQLLeverandoerDAO;
-import cdiofinal.server.MySQLRaavareDAO;
 import cdiofinal.shared.DALException;
->>>>>>> branch 'master' of https://github.com/G16CDIO/CDIO2-final.git
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.RaavareBatchDTO;
 
