@@ -20,7 +20,7 @@ public class MySQLAnsatDAO implements AnsatDAO {
 		}
 	}
 	@Override
-	public AnsatDTO getAnsat(String cpr) throws DALException {
+	public AnsatDTO getAnsat(int cpr) throws DALException {
 		ResultSet rs = Connector.doQuery("SELECT * FROM ansat WHERE cpr = " + cpr + ";");
 	    try {
 	    	if (!rs.first()) throw new DALException("Den ansatte med cprnr " + cpr + " findes ikke");

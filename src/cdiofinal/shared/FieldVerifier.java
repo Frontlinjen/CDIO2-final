@@ -1,5 +1,8 @@
 package cdiofinal.shared;
 
+import cdiofinal.server.MySQLLeverandoerDAO;
+import cdiofinal.server.MySQLRaavareDAO;
+
 /**
  * <p>
  * FieldVerifier validates that the name the user enters is valid.
