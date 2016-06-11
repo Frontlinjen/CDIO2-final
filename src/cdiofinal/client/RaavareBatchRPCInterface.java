@@ -9,7 +9,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 public interface RaavareBatchRPCInterface extends RemoteService{
 	
 	RaavareBatchDTO getRaavareBatch(int rb_id) throws DALException;
-	RaavareBatchDTO[] getRaavareBatchList();
+	RaavareBatchDTO[] getRaavareBatchList() throws DALException;
 	Integer createRaavareBatch(RaavareBatchDTO ans) throws DALException;
 	Integer updateRaavareBatch(RaavareBatchDTO ans) throws DALException;
 }

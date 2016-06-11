@@ -16,17 +16,11 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.InvocationException;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.LeverandoerDTO;
-import cdiofinal.shared.RaavareBatchDTO;
-
-
-
-
 
 
 public class ListLeverandoerComposite extends Composite implements AsyncCallback<LeverandoerDTO[]> {
@@ -42,8 +36,14 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 	{
 		vPanel = new CellTable<LeverandoerDTO>();
 		initWidget(listLeverandoerUiBinder.createAndBindUi(this));
-		gui = getLayoutList();
-		
+		gui = getLayoutList();	
+	}
+	
+	@UiHandler("newElement")
+	public void onClick(ClickEvent e)
+	{
+		Popupcontainer p = new Popupcontainer(new NewLeverandoerComposite());
+		p.center();
 	}
 	
 	public List<LeverandoerDTO> getLayoutList() { //TODO: Show users when clicked

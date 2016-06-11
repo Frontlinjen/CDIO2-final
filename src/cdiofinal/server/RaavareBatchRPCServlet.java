@@ -20,19 +20,19 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 		try {
 			return database.getRaavareBatch(rb_id);
 		} catch (DALException e) {
-			throw e;
+			throw new DALException("An error occoured when getting a raavarebatch. Please contact your sysadmin.");
 		}
 	}
 
 	@Override
-	public RaavareBatchDTO[] getRaavareBatchList() {
+	public RaavareBatchDTO[] getRaavareBatchList() throws DALException{
 					
 					try {
 						List<RaavareBatchDTO> raavarebatches = database.getRaavarebatchList();
 						RaavareBatchDTO[] raavarebatchesArray = new RaavareBatchDTO[raavarebatches.size()];
 						return raavarebatches.toArray(raavarebatchesArray);
 					} catch (DALException e) {
-						return null;
+						throw new DALException("An error occoured when getting raavarebatch list. Please contact your sysadmin.");
 					}			
 	}
 
@@ -42,7 +42,7 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 		try {
 		return database.createRaavareBatch(ans);
 		} catch (DALException e){
-			throw e;
+			throw new DALException("An error occoured when creating a raavarebatch. Please contact your sysadmin.");
 		}
 		return 0;
 	}
@@ -53,18 +53,10 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 		try {
 			return database.updateRaavareBatch(ans);
 			} catch (DALException e){
-				throw e;
+				throw new DALException("An error occoured when updating a raavarebatch. Please contact your sysadmin.");
 			}
 			return 0;
 		
 	}
 
-	public static void main(String[] args) {
-		RaavareBatchRPCServlet servlet = new RaavareBatchRPCServlet();
-		for (RaavareBatchDTO string : servlet.getRaavareBatchList()) {
-			System.out.println(string);
-		}
-		
-    }
-	
 }

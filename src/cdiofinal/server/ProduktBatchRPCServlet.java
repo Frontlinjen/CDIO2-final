@@ -4,10 +4,8 @@ import java.util.List;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.shared.DALException;
-import cdiofinal.client.NewProduktbatchComposite;
 import cdiofinal.client.ProduktBatchRPCInterface;
 import cdiofinal.server.MySQLProduktbatchDAO;
-import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.ProduktBatchDTO;
 
@@ -24,19 +22,19 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 		try {
 			return database.getProduktBatch(pbid);
 		} catch (DALException e) {
-			throw e;
+			throw new DALException("An error occoured when getting a produktbatch. Please contact your sysadmin.");
 		}
 	}
 
 	@Override
-	public ProduktBatchDTO[] getProduktBatchList() {
+	public ProduktBatchDTO[] getProduktBatchList() throws DALException{
 
 		try {
 			List<ProduktBatchDTO> produktbatches = database.getProduktBatchList();
 			ProduktBatchDTO[] produktbatchesArray = new ProduktBatchDTO[produktbatches.size()];
 			return produktbatches.toArray(produktbatchesArray);
 		} catch (DALException e) {
-			return null;
+			throw new DALException("An error occoured when getting the produktbatch list. Please contact your sysadmin.");
 		}			
 	}
 
@@ -49,7 +47,7 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 			try {
 				return database.createProduktBatch(prba);
 			} catch (DALException e){
-				throw e;
+				throw new DALException("An error occoured when creating a produktbatch. Please contact your sysadmin.");
 			}
 		return 0;
 
@@ -64,17 +62,9 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 			try {
 				return database.updateProduktBatch(prba);
 			} catch (DALException e){
-				throw e;
+				throw new DALException("An error occoured when updating a produktbatch. Please contact your sysadmin.");
 			}
 		return 0;
-
-	}
-
-	public static void main(String[] args) {
-		ProduktBatchRPCServlet servlet = new ProduktBatchRPCServlet();
-		for (ProduktBatchDTO string : servlet.getProduktBatchList()) {
-			System.out.println(string);
-		}
 
 	}
 

@@ -5,8 +5,10 @@ import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.Window;
@@ -18,11 +20,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
 import cdiofinal.shared.RaavareBatchDTO;
-import cdiofinal.shared.RaavareDTO;
-
-
-
-
 
 
 public class ListRaavareBatchComposite extends Composite implements AsyncCallback<RaavareBatchDTO[]> {
@@ -40,6 +37,14 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 		initWidget(listRaavareBatchUiBinder.createAndBindUi(this));
 		gui = getLayoutList();
 	}
+	
+	@UiHandler("newElement")
+	public void onClick(ClickEvent e)
+	{
+		Popupcontainer p = new Popupcontainer(new NewRaavareBatchComposite());
+		p.center();
+	}
+	
 	public List<RaavareBatchDTO> getLayoutList() { //TODO: Show users when clicked
 		Column<RaavareBatchDTO, String> raavareBatchIDColumn = getRaavareBatchIDColumn();
 		//CPRColumn.setSortable(true);

@@ -20,19 +20,19 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 		try {
 			return database.getLeverandoer(id);
 		} catch (DALException e) {
-			throw e;
+			throw new DALException("An error occoured when getting a leverandoer. Please contact your sysadmin.");
 		}
 	}
 
 	@Override
-	public LeverandoerDTO[] getLeverandoerList() {
+	public LeverandoerDTO[] getLeverandoerList() throws DALException{
 					
 					try {
 						List<LeverandoerDTO> leverandoerer = database.getLeverandoerList();
 						LeverandoerDTO[] leverandoerArray = new LeverandoerDTO[leverandoerer.size()];
 						return leverandoerer.toArray(leverandoerArray);
 					} catch (DALException e) {
-						return null;
+						throw new DALException("An error occoured when getting leverandoer list. Please contact your sysadmin.");
 					}			
 	}
 
@@ -42,7 +42,7 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 		try {
 		return database.createLeverandoer(lev);
 		} catch (DALException e){
-			throw e;
+			throw new DALException("An error occoured when creating a leverandoer. Please contact your sysadmin.");
 		}
 		return 0;
 	}
@@ -53,18 +53,10 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 		try {
 			return database.updateLeverandoer(lev);
 			} catch (DALException e){
-				throw e;
+				throw new DALException("An error occoured when updating a leverandoer. Please contact your sysadmin.");
 			}
 			return 0;
 		
 	}
-	
-	public static void main(String[] args) {
-		LeverandoerRPCServlet servlet = new LeverandoerRPCServlet();
-		for (LeverandoerDTO string : servlet.getLeverandoerList()) {
-			System.out.println(string);
-		}
-		
-    }
-	
+
 }
