@@ -131,7 +131,6 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 	//Fired when the recept clicks "list recepts"
 	@Override
 	public void onLoad() {
-		gui = getLayoutList();
 		database.getReceptList(this);
 	
 	}
