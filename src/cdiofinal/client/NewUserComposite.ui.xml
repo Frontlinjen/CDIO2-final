@@ -3,7 +3,7 @@
  		<ui:style>
  			.centerBox
  			{
- 				background-color: Gray;
+ 				background-color: white;
  				margin: 0 auto;
  			}
  		</ui:style>
