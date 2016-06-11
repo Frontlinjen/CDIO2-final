@@ -26,7 +26,7 @@ import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.FieldVerifier;
 
 
-public class ListUsersComposite extends Composite implements AsyncCallback<AnsatDTO[]> {
+public class ListUsersComposite extends Composite implements AsyncCallback<AnsatDTO[]>, NewElementCreatedCallback<AnsatDTO> {
 	
 	final AnsatRPCInterfaceAsync database = (AnsatRPCInterfaceAsync)GWT.create(AnsatRPCInterface.class);
 	
@@ -46,8 +46,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	public void onClick(ClickEvent e)
 	{
 
-		Popupcontainer p = new Popupcontainer(new NewUserComposite());
-
+		Popupcontainer p = new Popupcontainer(new NewUserComposite(this));
 		p.show();
 	}
 
@@ -264,6 +263,12 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 			if(result!=null)
 				gui.add(ansatDTO);
 		}
+	}
+
+	@Override
+	public void onElementCreated(AnsatDTO object) {
+		gui.add(object);
+		
 	}
 	
 
