@@ -16,7 +16,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	
 	
 	@Override
-	public AnsatDTO getAnsat(String cpr) throws DALException {
+	public AnsatDTO getAnsat(String cpr, String token) throws DALException {
 		try {
 			return database.getAnsat(cpr);
 		} catch (DALException e) {
@@ -25,7 +25,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	}
 
 	@Override
-	public AnsatDTO[] getAnsatList() throws DALException{
+	public AnsatDTO[] getAnsatList(String token) throws DALException{
 					try {
 						List<AnsatDTO> ansatte = database.getAnsatList();
 						AnsatDTO[] ansatteArray = new AnsatDTO[ansatte.size()];
@@ -36,18 +36,19 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	}
 
 	@Override
-	public Integer createAnsat(AnsatDTO ans) throws DALException{
+	public AnsatDTO createAnsat(AnsatDTO ans, String token) throws DALException{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
-		return database.createAnsat(ans);
+		if(database.createAnsat(ans)!=0)
+			return ans;
 		} catch (DALException e){
 			throw new DALException("An error occoured when creating a new user. Please contact your sysadmin.");
 		}
-		return 0;
+		return null;
 	}
 
 	@Override
-	public Integer updateAnsat(AnsatDTO ans) throws DALException{
+	public Integer updateAnsat(AnsatDTO ans, String token) throws DALException{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
 			return database.updateAnsat(ans);
@@ -59,7 +60,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	}
 
 	@Override
-	public Integer deleteAnsat(AnsatDTO ans) throws DALException{
+	public Integer deleteAnsat(AnsatDTO ans, String token) throws DALException{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
 			return database.deleteAnsat(ans);
