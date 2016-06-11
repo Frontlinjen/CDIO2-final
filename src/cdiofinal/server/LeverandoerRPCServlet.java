@@ -16,7 +16,7 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 	
 	
 	@Override
-	public LeverandoerDTO getLeverandoer(int id) throws DALException{
+	public LeverandoerDTO getLeverandoer(int id, String token) throws DALException{
 		try {
 			return database.getLeverandoer(id);
 		} catch (DALException e) {
@@ -25,7 +25,7 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 	}
 
 	@Override
-	public LeverandoerDTO[] getLeverandoerList() throws DALException{
+	public LeverandoerDTO[] getLeverandoerList(String token) throws DALException{
 					
 					try {
 						List<LeverandoerDTO> leverandoerer = database.getLeverandoerList();
@@ -37,18 +37,19 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 	}
 
 	@Override
-	public Integer createLeverandoer(LeverandoerDTO lev) throws DALException{
+	public LeverandoerDTO createLeverandoer(LeverandoerDTO lev, String token) throws DALException{
 		if(FieldVerifier.isValidId(lev.getLeverandoerId())==true || FieldVerifier.isValidName(lev.getLeverandoerNavn())==true)
 		try {
-		return database.createLeverandoer(lev);
+			if(database.createLeverandoer(lev)!=0){
+				return lev;
+			}
 		} catch (DALException e){
 			throw new DALException("An error occoured when creating a leverandoer. Please contact your sysadmin.");
 		}
-		return 0;
 	}
 
 	@Override
-	public Integer updateLeverandoer(LeverandoerDTO lev) throws DALException{
+	public Integer updateLeverandoer(LeverandoerDTO lev, String token) throws DALException{
 		if(FieldVerifier.isValidId(lev.getLeverandoerId())==true || FieldVerifier.isValidName(lev.getLeverandoerNavn())==true)
 		try {
 			return database.updateLeverandoer(lev);
