@@ -7,6 +7,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -20,8 +21,8 @@ public class Popupcontainer extends Composite {
 	{
 		initWidget(popupContainerUiBinder.createAndBindUi(this));
 		container.add(w);
+		d.setPopupPosition(650 , 200);
 		d.add(this);
-		d.center();
 	}
 	public void show()
 	{
