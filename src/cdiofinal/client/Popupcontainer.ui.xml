@@ -1,11 +1,11 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
     xmlns:g='urn:import:com.google.gwt.user.client.ui'>
     <g:HTMLPanel>
-         <table>
+         <table style='border: 2px solid black;'>
              <tr>
-                 <td align='right'>
+                 <th align='right'>
                      <g:Button text='Close' ui:field="CloseButton"/>
-                 </td>
+                 </th>		
              </tr>
              <tr>
                  <td valign='top'>

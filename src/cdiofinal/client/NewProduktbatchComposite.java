@@ -30,10 +30,8 @@ public class NewProduktbatchComposite extends Composite{
 		initWidget(newProduktBatchUiBinder.createAndBindUi(this));
 	}
 
-	MySQLReceptDAO rdao = new MySQLReceptDAO();	
-	
 	@UiHandler("submitButton")
-	public void onSubmitPressed(ClickEvent e) throws DALException
+	public void onSubmitPressed(ClickEvent e)
 	{
 		try
 		{
@@ -43,7 +41,7 @@ public class NewProduktbatchComposite extends Composite{
 		}
 		catch(Exception excep)
 		{
-			throw new DALException(excep.getMessage());
+			System.out.println("Something happened");
 		}
 
 //		else

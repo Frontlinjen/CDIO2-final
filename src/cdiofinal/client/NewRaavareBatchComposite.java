@@ -20,11 +20,13 @@ public class NewRaavareBatchComposite extends Composite implements AsyncCallback
 	final RaavareBatchRPCInterfaceAsync database = (RaavareBatchRPCInterfaceAsync)GWT.create(RaavareBatchRPCInterface.class);
 	interface NewRaavareBatchUIBinder extends UiBinder<Widget, NewRaavareBatchComposite> {}
 	private static NewRaavareBatchUIBinder newRaavareBatchUiBinder = GWT.create(NewRaavareBatchUIBinder.class);
+	
 	@UiField IntegerBox batchNrBox;
 	@UiField IntegerBox raavareId;
 	@UiField IntegerBox supplierIdBox;
 	@UiField IntegerBox amountBox;
 	@UiField Label statusField;
+	
 	NewRaavareBatchComposite() {
 		initWidget(newRaavareBatchUiBinder.createAndBindUi(this));
 	}
@@ -32,7 +34,7 @@ public class NewRaavareBatchComposite extends Composite implements AsyncCallback
 	FieldVerifier f = new FieldVerifier();
 
 	@UiHandler("submitButton")
-	public void onSubmitPressed(ClickEvent e) throws DALException
+	public void onSubmitPressed(ClickEvent e)
 	{
 		if(!FieldVerifier.isValidId(Integer.parseInt(batchNrBox.getText()))==true)
 		{
