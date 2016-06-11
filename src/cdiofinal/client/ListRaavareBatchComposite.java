@@ -20,11 +20,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
 import cdiofinal.shared.RaavareBatchDTO;
-import cdiofinal.shared.RaavareDTO;
-
-
-
-
 
 
 public class ListRaavareBatchComposite extends Composite implements AsyncCallback<RaavareBatchDTO[]> {

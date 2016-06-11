@@ -2,7 +2,6 @@ package cdiofinal.client;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -36,7 +35,7 @@ public class NewLeverandoerComposite extends Composite implements AsyncCallback<
 		}
 		else if (!FieldVerifier.isValidName(navnBox.getValue())==true)
 		{
-			System.out.println("Navnet skal være mellem 2-20 karaktere. Benyt kun bogstaver");
+			System.out.println("Navnet skal vï¿½re mellem 2-20 karaktere. Benyt kun bogstaver");
 		}
 		else
 

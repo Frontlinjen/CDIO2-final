@@ -19,13 +19,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
-import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.RaavareDTO;
-
-
-
-
-
 
 public class ListRaavareComposite extends Composite implements AsyncCallback<RaavareDTO[]> {
 	
