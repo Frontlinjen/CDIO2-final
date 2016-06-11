@@ -52,12 +52,9 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	@UiHandler("newElement")
 	public void onClick(ClickEvent e)
 	{
-		Popupcontainer p = new Popupcontainer(new NewUserComposite());
-//		DialogBox d = new DialogBox();
-//		d.add(comp);
-//		d.center();
-//		d.show();
-		p.center();
+		NewUserComposite comp = new NewUserComposite();
+		Popupcontainer p = new Popupcontainer(comp);
+		p.show();
 	}
 
 	
