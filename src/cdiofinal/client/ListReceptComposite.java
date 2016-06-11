@@ -39,6 +39,13 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 		gui = getLayoutList();
 	}
 	
+	@UiHandler("newElement")
+	public void onClick(ClickEvent e)
+	{
+		Popupcontainer p = new Popupcontainer(new NewReceptComposite());
+		p.center();
+	}
+	
 	public List<ReceptDTO> getLayoutList() { //TODO: Show users when clicked
 		Column<ReceptDTO, String> receptIDColumn = getReceptIDColumn();
 		//CPRColumn.setSortable(true);

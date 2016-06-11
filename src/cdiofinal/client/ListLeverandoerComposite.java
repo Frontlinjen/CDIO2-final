@@ -42,8 +42,14 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 	{
 		vPanel = new CellTable<LeverandoerDTO>();
 		initWidget(listLeverandoerUiBinder.createAndBindUi(this));
-		gui = getLayoutList();
-		
+		gui = getLayoutList();	
+	}
+	
+	@UiHandler("newElement")
+	public void onClick(ClickEvent e)
+	{
+		Popupcontainer p = new Popupcontainer(new NewLeverandoerComposite());
+		p.center();
 	}
 	
 	public List<LeverandoerDTO> getLayoutList() { //TODO: Show users when clicked

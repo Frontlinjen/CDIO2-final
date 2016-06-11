@@ -44,6 +44,13 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 		gui = getLayoutList();
 	}
 	
+	@UiHandler("newElement")
+	public void onClick(ClickEvent e)
+	{
+		Popupcontainer p = new Popupcontainer(new NewProduktbatchComposite());
+		p.center();
+	}
+	
 	public List<ProduktBatchDTO> getLayoutList() { //TODO: Show users when clicked
 		Column<ProduktBatchDTO, String> pbIDColumn = getPbIDColumn();
 		//IDColumn.setSortable(true);
