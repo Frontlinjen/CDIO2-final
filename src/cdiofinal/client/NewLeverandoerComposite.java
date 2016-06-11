@@ -31,11 +31,11 @@ public class NewLeverandoerComposite extends Composite implements AsyncCallback<
 	{
 		if(!FieldVerifier.isValidId(Integer.parseInt(idBox.getValue()))==true)
 		{
-			System.out.println("Id'et er ikke inde for intervallet 1-99999999");
+			statusField.setText("Id'et er ikke inde for intervallet 1-99999999");
 		}
 		else if (!FieldVerifier.isValidName(navnBox.getValue())==true)
 		{
-			System.out.println("Navnet skal v�re mellem 2-20 karaktere. Benyt kun bogstaver");
+			statusField.setText("Navnet skal v�re mellem 2-20 karaktere. Benyt kun bogstaver");
 		}
 		else
 

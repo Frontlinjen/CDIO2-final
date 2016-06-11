@@ -38,7 +38,7 @@ public class NewRaavareBatchComposite extends Composite implements AsyncCallback
 	{
 		if(!FieldVerifier.isValidId(Integer.parseInt(batchNrBox.getText()))==true)
 		{
-			System.out.println("Batch ID'en eksisterer ikke gyldig. (1-99999999");
+			statusField.setText("Batch ID'en eksisterer ikke gyldig. (1-99999999");
 		}
 		else
 			

@@ -31,11 +31,11 @@ public class NewRaavareComposite extends Composite implements AsyncCallback<Inte
 	{
 		if(!FieldVerifier.isValidId(Integer.parseInt(idBox.getValue()))==true)
 		{
-			System.out.println("Id'et er ugyldigt. (1-99999999");
+			statusField.setText("Id'et er ugyldigt. (1-99999999");
 		}
 		if(!FieldVerifier.isValidName(navnBox.getText())==true)
 		{
-			System.out.println("Navnet er ugyldigt. Benyt kun bogstaver, med en l�ngde mellem 2-20 karaktere");
+			statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver, med en l�ngde mellem 2-20 karaktere");
 		}
 		else
 			database.createRaavare(new RaavareDTO(Integer.parseInt(idBox.getText()), navnBox.getText()), this);

@@ -33,11 +33,11 @@ public class NewReceptComposite extends Composite implements AsyncCallback<Integ
 	{
 		if(!FieldVerifier.isValidId(Integer.parseInt(idBox.getText()))==true)
 		{
-			System.out.println("Ikke et gyldigt id (1-99999999");
+			statusField.setText("Ikke et gyldigt id (1-99999999");
 		}
 		else if(!FieldVerifier.isValidName(navnBox.getText())==true)
 		{
-			System.out.println("Navnet er ugyldigt. Benyt kun bogstaver, med en l�ngde mellem 2-20");
+			statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver, med en l�ngde mellem 2-20");
 		}
 		else
 			

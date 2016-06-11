@@ -37,19 +37,19 @@ public class NewUserComposite extends Composite implements AsyncCallback<Integer
 	{
 		if(!FieldVerifier.isValidCpr(Integer.parseInt(cprBox.getText())))
 		{
-			System.out.println("CPR nummeret er ugyldigt.");
+			statusField.setText("CPR nummeret er ugyldigt.");
 		}
 		else if(!FieldVerifier.isValidName(nameBox.getValue()))
 		{
-			System.out.println("Navnet er ugyldigt. Benyt kun bogstaver, med en l�ngde mellem 2-20 karaktere");
+			statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver, med en l�ngde mellem 2-20 karaktere");
 		}
 		else if(!FieldVerifier.isValidIni(iniBox.getValue()))
 		{
-			System.out.println("Initialerne er ugyldige. Benyt kun bogstaver, med en l�ngde mellem 2-20 karaktere");
+			statusField.setText("Initialerne er ugyldige. Benyt kun bogstaver, med en l�ngde mellem 2-20 karaktere");
 		}
 		else if(!FieldVerifier.isValidPassword(passBox.getValue()))
 		{
-			System.out.println("Passwordet er ugyldigt, hold det mellem 3-8 karakterer");
+			statusField.setText("Passwordet er ugyldigt, hold det mellem 3-8 karakterer");
 		}
 		else
 		
