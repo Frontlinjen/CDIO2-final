@@ -16,7 +16,7 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 	
 	
 	@Override
-	public ProduktBatchKompDTO getProduktBatchKomp(int pbid, int rabaid) throws DALException {
+	public ProduktBatchKompDTO getProduktBatchKomp(int pbid, int rabaid, String token) throws DALException {
 		try {
 			return database.getProduktBatchKomp(pbid, rabaid);
 		} catch (DALException e) {
@@ -25,7 +25,7 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 	}
 
 	@Override
-	public ProduktBatchKompDTO[] getProduktBatchKompList() throws DALException{
+	public ProduktBatchKompDTO[] getProduktBatchKompList(String token) throws DALException{
 					
 					try {
 						List<ProduktBatchKompDTO> produktbatchkomponenter = database.getProduktBatchKompList();
@@ -37,18 +37,20 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 	}
 
 	@Override
-	public Integer createProduktBatchKomp(ProduktBatchKompDTO pbk) throws DALException{
+	public ProduktBatchKompDTO createProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws DALException{
 		if(FieldVerifier.isValidId(pbk.getPbId())==true || FieldVerifier.isValidId(pbk.getRaavarebatchId())==true || FieldVerifier.isValidCpr(Integer.parseInt(pbk.getCpr())))
 		try {
-		return database.createProduktBatchKomp(pbk);
+			if(database.createProduktBatchKomp(pbk)!=0){
+				return pbk;
+			}
 		} catch (DALException e){
 			throw new DALException("An error occoured when creating a produktbatchkomp. Please contact your sysadmin.");
 		}
-		return 0;
+		return null;
 	}
 
 	@Override
-	public Integer updateProduktBatchKomp(ProduktBatchKompDTO pbk) throws DALException{
+	public Integer updateProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws DALException{
 		if(FieldVerifier.isValidId(pbk.getPbId())==true || FieldVerifier.isValidId(pbk.getRaavarebatchId())==true || FieldVerifier.isValidCpr(Integer.parseInt(pbk.getCpr())))
 		try {
 			return database.updateProduktBatchKomp(pbk);

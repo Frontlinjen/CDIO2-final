@@ -16,7 +16,7 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 	
 	
 	@Override
-	public RaavareBatchDTO getRaavareBatch(int rb_id) throws DALException{
+	public RaavareBatchDTO getRaavareBatch(int rb_id, String token) throws DALException{
 		try {
 			return database.getRaavareBatch(rb_id);
 		} catch (DALException e) {
@@ -25,7 +25,7 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 	}
 
 	@Override
-	public RaavareBatchDTO[] getRaavareBatchList() throws DALException{
+	public RaavareBatchDTO[] getRaavareBatchList(String token) throws DALException{
 					
 					try {
 						List<RaavareBatchDTO> raavarebatches = database.getRaavarebatchList();
@@ -37,18 +37,20 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 	}
 
 	@Override
-	public Integer createRaavareBatch(RaavareBatchDTO ans) throws DALException{
+	public RaavareBatchDTO createRaavareBatch(RaavareBatchDTO ans, String token) throws DALException{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidId(ans.getLeverandoerId())==true || FieldVerifier.isValidId(ans.getRaavarebatchId()))
 		try {
-		return database.createRaavareBatch(ans);
+			if(database.createRaavareBatch(ans)!=0){
+				return ans;
+			}
 		} catch (DALException e){
 			throw new DALException("An error occoured when creating a raavarebatch. Please contact your sysadmin.");
 		}
-		return 0;
+		return null;
 	}
 
 	@Override
-	public Integer updateRaavareBatch(RaavareBatchDTO ans) throws DALException{
+	public Integer updateRaavareBatch(RaavareBatchDTO ans, String token) throws DALException{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidId(ans.getLeverandoerId())==true || FieldVerifier.isValidId(ans.getRaavarebatchId()))
 		try {
 			return database.updateRaavareBatch(ans);

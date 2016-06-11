@@ -8,8 +8,8 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("produktBatchKomponenter")
 public interface ProduktBatchKompRPCInterface extends RemoteService{
 	
-	ProduktBatchKompDTO getProduktBatchKomp(int pbid, int rabaid) throws DALException;
-	ProduktBatchKompDTO[] getProduktBatchKompList() throws DALException;
-	Integer createProduktBatchKomp(ProduktBatchKompDTO pbk) throws DALException;
-	Integer updateProduktBatchKomp(ProduktBatchKompDTO pbk) throws DALException;
+	ProduktBatchKompDTO getProduktBatchKomp(int pbid, int rabaid, String token) throws DALException;
+	ProduktBatchKompDTO[] getProduktBatchKompList(String token) throws DALException;
+	ProduktBatchKompDTO createProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws DALException;
+	Integer updateProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws DALException;
 }

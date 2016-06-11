@@ -13,7 +13,7 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 	MySQLReceptKompDAO receptKompDAO = new MySQLReceptKompDAO();
 	
 	@Override
-	public ReceptKompDTO getReceptKomp(int recId, int raavareId) throws DALException{
+	public ReceptKompDTO getReceptKomp(int recId, int raavareId, String token) throws DALException{
 		try {
 			return receptKompDAO.getReceptKomp(recId, raavareId);
 		} catch (DALException e) {
@@ -22,7 +22,7 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 	}
 
 	@Override
-	public ReceptKompDTO[] getReceptKompList() throws DALException{
+	public ReceptKompDTO[] getReceptKompList(String token) throws DALException{
 		try {
 			List<ReceptKompDTO> receptkomp = receptKompDAO.getReceptKompList();
 			ReceptKompDTO[] receptKompArray = new ReceptKompDTO[receptkomp.size()];
@@ -33,16 +33,19 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 	}
 
 	@Override
-	public Integer createReceptKomp(ReceptKompDTO recKomp) throws DALException{
+	public ReceptKompDTO createReceptKomp(ReceptKompDTO recKomp, String token) throws DALException{
 		try {
-			return receptKompDAO.createReceptKomp(recKomp);
+			if(receptKompDAO.createReceptKomp(recKomp)!=0){
+				return recKomp;
+			}
 			} catch (DALException e){
 				throw new DALException("An error occoured when creating a receptkomp. Please contact your sysadmin.");
 			}
+			return null;
 	}
 
 	@Override
-	public Integer updateReceptKomp(ReceptKompDTO recKomp) throws DALException{
+	public Integer updateReceptKomp(ReceptKompDTO recKomp, String token) throws DALException{
 		try {
 			return receptKompDAO.updateReceptKomp(recKomp);
 			} catch (DALException e){

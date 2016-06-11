@@ -8,8 +8,8 @@ import cdiofinal.shared.ReceptDTO;
 
 @RemoteServiceRelativePath("recept")
 public interface ReceptRPCInterface extends RemoteService{
-	ReceptDTO getRecept(int recId) throws DALException;
-	ReceptDTO[] getReceptList() throws DALException;
-	Integer createRecept(ReceptDTO rec) throws DALException;
-	Integer updateRecept(ReceptDTO rec) throws DALException;
+	ReceptDTO getRecept(int recId, String token) throws DALException;
+	ReceptDTO[] getReceptList(String token) throws DALException;
+	ReceptDTO createRecept(ReceptDTO rec, String token) throws DALException;
+	Integer updateRecept(ReceptDTO rec, String token) throws DALException;
 }

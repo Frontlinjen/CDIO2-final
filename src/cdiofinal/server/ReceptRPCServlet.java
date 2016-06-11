@@ -16,7 +16,7 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 	
 	
 	@Override
-	public ReceptDTO getRecept(int recept_id) throws DALException{
+	public ReceptDTO getRecept(int recept_id, String token) throws DALException{
 		try {
 			return receptDAO.getRecept(recept_id);
 		} catch (DALException e) {
@@ -25,7 +25,7 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 	}
 
 	@Override
-	public ReceptDTO[] getReceptList() throws DALException{
+	public ReceptDTO[] getReceptList(String token) throws DALException{
 					
 					try {
 						List<ReceptDTO> recept = receptDAO.getReceptList();
@@ -37,18 +37,20 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 	}
 
 	@Override
-	public Integer createRecept(ReceptDTO ans) throws DALException{
+	public ReceptDTO createRecept(ReceptDTO ans, String token) throws DALException{
 		if(FieldVerifier.isValidId(ans.getReceptId())==true || FieldVerifier.isValidName(ans.getReceptNavn()) == true)
 		try {
-		return receptDAO.createRecept(ans);
+			if(receptDAO.createRecept(ans)!=0){
+				return ans;
+			}
 		} catch (DALException e){
 			throw new DALException("An error occoured when creating a recept. Please contact your sysadmin.");
 		}
-		return 0;
+		return null;
 	}
 
 	@Override
-	public Integer updateRecept(ReceptDTO ans) throws DALException{
+	public Integer updateRecept(ReceptDTO ans, String token) throws DALException{
 		try {
 			return receptDAO.updateRecept(ans);
 			} catch (DALException e){

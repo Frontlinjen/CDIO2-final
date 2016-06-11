@@ -18,7 +18,7 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 
 
 	@Override
-	public ProduktBatchDTO getProduktBatch(int pbid) throws DALException{
+	public ProduktBatchDTO getProduktBatch(int pbid, String token) throws DALException{
 		try {
 			return database.getProduktBatch(pbid);
 		} catch (DALException e) {
@@ -27,7 +27,7 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 	}
 
 	@Override
-	public ProduktBatchDTO[] getProduktBatchList() throws DALException{
+	public ProduktBatchDTO[] getProduktBatchList(String token) throws DALException{
 
 		try {
 			List<ProduktBatchDTO> produktbatches = database.getProduktBatchList();
@@ -39,22 +39,24 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 	}
 
 	@Override
-	public Integer createProduktBatch(ProduktBatchDTO prba) throws DALException{
+	public ProduktBatchDTO createProduktBatch(ProduktBatchDTO prba, String token) throws DALException{
 		if(!FieldVerifier.isValidId((prba.getReceptId()))==true || !FieldVerifier.isValidId(prba.getPbId())==true){
 			System.out.println("Id'et er ugyldigt. (1-99999999");
 		}
 		else
 			try {
-				return database.createProduktBatch(prba);
+				if(database.createProduktBatch(prba)!=0){
+					return prba;
+				}
 			} catch (DALException e){
 				throw new DALException("An error occoured when creating a produktbatch. Please contact your sysadmin.");
 			}
-		return 0;
+		return null;
 
 	}
 
 	@Override
-	public Integer updateProduktBatch(ProduktBatchDTO prba) throws DALException{
+	public Integer updateProduktBatch(ProduktBatchDTO prba, String token) throws DALException{
 		if(!FieldVerifier.isValidId((prba.getReceptId()))==true || !FieldVerifier.isValidId(prba.getPbId())==true){
 			System.out.println("Id'et er ugyldigt. (1-99999999");
 		}

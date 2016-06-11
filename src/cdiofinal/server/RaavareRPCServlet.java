@@ -16,7 +16,7 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 	
 	
 	@Override
-	public RaavareDTO getRaavare(int raavare_id) throws DALException{
+	public RaavareDTO getRaavare(int raavare_id, String token) throws DALException{
 		try {
 			return database.getRaavare(raavare_id);
 		} catch (DALException e) {
@@ -25,7 +25,7 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 	}
 
 	@Override
-	public RaavareDTO[] getRaavareList() throws DALException{
+	public RaavareDTO[] getRaavareList(String token) throws DALException{
 					
 					try {
 						List<RaavareDTO> raavare = database.getRaavareList();
@@ -37,14 +37,16 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 	}
 
 	@Override
-	public Integer createRaavare(RaavareDTO ans) throws DALException {
+	public RaavareDTO createRaavare(RaavareDTO ans, String token) throws DALException {
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidName(ans.getRaavareNavn())==true)
 		try {
-		return database.createRaavare(ans);
+			if(database.createRaavare(ans)!=0){
+				return ans;
+			}
 		} catch (DALException e){
 			throw new DALException("An error occoured when creating a raavare. Please contact your sysadmin.");
 		}
-		return 0;
+		return null;
 	}
 
 	@Override
