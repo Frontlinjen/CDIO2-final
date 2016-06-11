@@ -10,7 +10,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("ansatte")
 public interface AnsatRPCInterface extends RemoteService{
 	AnsatDTO getAnsat(String cpr) throws DALException;
-	AnsatDTO[] getAnsatList();
+	AnsatDTO[] getAnsatList() throws DALException;
 	Integer createAnsat(AnsatDTO ans) throws DALException;
 	Integer updateAnsat(AnsatDTO ans) throws DALException;
 	Integer deleteAnsat(AnsatDTO ans) throws DALException;

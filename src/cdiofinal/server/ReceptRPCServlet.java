@@ -4,12 +4,10 @@ import java.util.List;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.client.ReceptRPCInterface;
-import cdiofinal.client.ReceptRPCInterfaceAsync;
 import cdiofinal.server.MySQLReceptDAO;
 import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.ReceptDTO;
-import cdiofinal.shared.ReceptKompDTO;
 
 public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCInterface {
 
@@ -22,19 +20,19 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 		try {
 			return receptDAO.getRecept(recept_id);
 		} catch (DALException e) {
-			throw e;
+			throw new DALException("An error occoured when getting a recept. Please contact your sysadmin.");
 		}
 	}
 
 	@Override
-	public ReceptDTO[] getReceptList() {
+	public ReceptDTO[] getReceptList() throws DALException{
 					
 					try {
 						List<ReceptDTO> recept = receptDAO.getReceptList();
 						ReceptDTO[] receptArray = new ReceptDTO[recept.size()];
 						return recept.toArray(receptArray);
 					} catch (DALException e) {
-						return null;
+						throw new DALException("An error occoured when getting recept list. Please contact your sysadmin.");
 					}			
 	}
 
@@ -44,7 +42,7 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 		try {
 		return receptDAO.createRecept(ans);
 		} catch (DALException e){
-			throw e;
+			throw new DALException("An error occoured when creating a recept. Please contact your sysadmin.");
 		}
 		return 0;
 	}
@@ -54,7 +52,7 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 		try {
 			return receptDAO.updateRecept(ans);
 			} catch (DALException e){
-				throw e;
+				throw new DALException("An error occoured when updating a recept. Please contact your sysadmin.");
 			}
 	}
 }

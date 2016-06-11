@@ -1,7 +1,6 @@
 package cdiofinal.server;
 import java.util.List;
 
-import com.google.gwt.dev.protobuf.UnknownFieldSet.Field;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.client.RaavareRPCInterface;
@@ -21,19 +20,19 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 		try {
 			return database.getRaavare(raavare_id);
 		} catch (DALException e) {
-			throw e;
+			throw new DALException("An error occoured when getting a raavare. Please contact your sysadmin.");
 		}
 	}
 
 	@Override
-	public RaavareDTO[] getRaavareList() {
+	public RaavareDTO[] getRaavareList() throws DALException{
 					
 					try {
 						List<RaavareDTO> raavare = database.getRaavareList();
 						RaavareDTO[] raavareArray = new RaavareDTO[raavare.size()];
 						return raavare.toArray(raavareArray);
 					} catch (DALException e) {
-						return null;
+						throw new DALException("An error occoured when getting raavare list Please contact your sysadmin.");
 					}			
 	}
 
@@ -43,7 +42,7 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 		try {
 		return database.createRaavare(ans);
 		} catch (DALException e){
-			throw e;
+			throw new DALException("An error occoured when creating a raavare. Please contact your sysadmin.");
 		}
 		return 0;
 	}
@@ -54,18 +53,10 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 		try {
 			return database.updateRaavare(ans);
 			} catch (DALException e){
-				throw e;
+				throw new DALException("An error occoured when updating a raavare. Please contact your sysadmin.");
 			}
 			return 0;
 		
 	}
 
-	public static void main(String[] args) {
-		RaavareRPCServlet servlet = new RaavareRPCServlet();
-		for (RaavareDTO string : servlet.getRaavareList()) {
-			System.out.println(string);
-		}
-		
-    }
-	
 }

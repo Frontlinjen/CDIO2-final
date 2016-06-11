@@ -9,7 +9,7 @@ import cdiofinal.shared.ReceptDTO;
 @RemoteServiceRelativePath("recept")
 public interface ReceptRPCInterface extends RemoteService{
 	ReceptDTO getRecept(int recId) throws DALException;
-	ReceptDTO[] getReceptList();
+	ReceptDTO[] getReceptList() throws DALException;
 	Integer createRecept(ReceptDTO rec) throws DALException;
 	Integer updateRecept(ReceptDTO rec) throws DALException;
 }

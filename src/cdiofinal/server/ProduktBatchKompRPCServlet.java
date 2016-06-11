@@ -20,19 +20,19 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 		try {
 			return database.getProduktBatchKomp(pbid, rabaid);
 		} catch (DALException e) {
-			throw e;
+			throw new DALException("An error occoured when getting a produktbatchkomp. Please contact your sysadmin.");
 		}
 	}
 
 	@Override
-	public ProduktBatchKompDTO[] getProduktBatchKompList() {
+	public ProduktBatchKompDTO[] getProduktBatchKompList() throws DALException{
 					
 					try {
 						List<ProduktBatchKompDTO> produktbatchkomponenter = database.getProduktBatchKompList();
 						ProduktBatchKompDTO[] produktbatchkomponenterArray = new ProduktBatchKompDTO[produktbatchkomponenter.size()];
 						return produktbatchkomponenter.toArray(produktbatchkomponenterArray);
 					} catch (DALException e) {
-						return null;
+						throw new DALException("An error occoured when getting produktbatchkomp list. Please contact your sysadmin.");
 					}			
 	}
 
@@ -42,7 +42,7 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 		try {
 		return database.createProduktBatchKomp(pbk);
 		} catch (DALException e){
-			throw e;
+			throw new DALException("An error occoured when creating a produktbatchkomp. Please contact your sysadmin.");
 		}
 		return 0;
 	}
@@ -53,18 +53,10 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 		try {
 			return database.updateProduktBatchKomp(pbk);
 			} catch (DALException e){
-				throw e;
+				throw new DALException("An error occoured when uppdating a produktbatchkomp. Please contact your sysadmin.");
 			}
 			return 0;
 		
 	}
 		
-	public static void main(String[] args) {
-		ProduktBatchKompRPCServlet servlet = new ProduktBatchKompRPCServlet();
-		for (ProduktBatchKompDTO string : servlet.getProduktBatchKompList()) {
-			System.out.println(string);
-		}
-		
-    }
-	
 }

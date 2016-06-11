@@ -8,7 +8,7 @@ import cdiofinal.shared.ReceptKompDTO;
 @RemoteServiceRelativePath("receptkomponent")
 public interface ReceptKomponentRPCInterface {
 	ReceptKompDTO getReceptKomp(int recId, int raavareId) throws DALException;
-	ReceptKompDTO[] getReceptKompList();
+	ReceptKompDTO[] getReceptKompList() throws DALException;
 	Integer createReceptKomp(ReceptKompDTO recKomp) throws DALException;
 	Integer updateReceptKomp(ReceptKompDTO recKomp) throws DALException;
 }

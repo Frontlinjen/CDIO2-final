@@ -19,9 +19,8 @@ public class RankRPCServlet extends RemoteServiceServlet implements RankDAO{
 			return dao.getRank(titel);
 		}
 		catch(DALException e){
-			System.out.println("Failed at getRank");
+			throw new DALException("An error occoured when getting a rank. Please contact your sysadmin.");
 		}
-		return null;
 	}
 
 	@Override
@@ -30,7 +29,7 @@ public class RankRPCServlet extends RemoteServiceServlet implements RankDAO{
 			List<RankDTO> rank = dao.getRankList();
 			return rank;
 		} catch (DALException e) {
-			return null;
+			throw new DALException("An error occoured when getting rank list. Please contact your sysadmin.");
 		}	
 	}
 	
