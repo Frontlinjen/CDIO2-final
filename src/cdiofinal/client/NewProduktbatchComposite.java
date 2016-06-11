@@ -36,12 +36,12 @@ public class NewProduktbatchComposite extends Composite{
 		try
 		{
 			if (!FieldVerifier.isValidId(Integer.parseInt(idBox.getText()))) {
-				System.out.println("Id'et er ugyldigt. (1-99999999");
+				statusField.setText("Id'et er ugyldigt. (1-99999999");
 			}
 		}
 		catch(Exception excep)
 		{
-			System.out.println("Something happened");
+			statusField.setText("Something happened");
 		}
 
 //		else

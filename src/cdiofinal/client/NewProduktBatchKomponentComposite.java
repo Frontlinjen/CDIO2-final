@@ -38,7 +38,7 @@ public class NewProduktBatchKomponentComposite extends Composite implements Asyn
 	{
 		if(!FieldVerifier.isValidId(Integer.parseInt(pb_idBox.getText()))==true)
 		{
-			System.out.println("Id'et er ugyldigt. (1-99999999");
+			statusField.setText("Id'et er ugyldigt. (1-99999999");
 		}
 		else
 			database.createProduktBatchKomp(new ProduktBatchKompDTO(Integer.parseInt(pb_idBox.getText()), Integer.parseInt(rb_id.getText()), Double.parseDouble(tara.getText()), Double.parseDouble(netto.getText()), cprBox.getText()), this);
