@@ -43,7 +43,7 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 	public void onClick(ClickEvent e)
 	{
 		Popupcontainer p = new Popupcontainer(new NewLeverandoerComposite());
-		p.center();
+		p.show();
 	}
 	
 	public List<LeverandoerDTO> getLayoutList() { //TODO: Show users when clicked

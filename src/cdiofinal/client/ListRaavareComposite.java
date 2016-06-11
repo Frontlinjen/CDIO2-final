@@ -41,7 +41,7 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 	public void onClick(ClickEvent e)
 	{
 		Popupcontainer p = new Popupcontainer(new NewRaavareComposite());
-		p.center();
+		p.show();
 	}
 	
 	public List<RaavareDTO> getLayoutList() { //TODO: Show users when clicked

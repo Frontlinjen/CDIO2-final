@@ -42,7 +42,7 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 	public void onClick(ClickEvent e)
 	{
 		Popupcontainer p = new Popupcontainer(new NewRaavareBatchComposite());
-		p.center();
+		p.show();
 	}
 	
 	public List<RaavareBatchDTO> getLayoutList() { //TODO: Show users when clicked

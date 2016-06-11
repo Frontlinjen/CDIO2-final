@@ -41,7 +41,7 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 	public void onClick(ClickEvent e)
 	{
 		Popupcontainer p = new Popupcontainer(new NewReceptComposite());
-		p.center();
+		p.show();
 	}
 	
 	public List<ReceptDTO> getLayoutList() { //TODO: Show users when clicked

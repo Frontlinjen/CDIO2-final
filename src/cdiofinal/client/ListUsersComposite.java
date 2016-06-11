@@ -50,7 +50,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 //		d.add(comp);
 //		d.center();
 //		d.show();
-		p.center();
+		p.show();
 	}
 
 	

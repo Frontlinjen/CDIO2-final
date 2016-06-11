@@ -42,7 +42,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 	public void onClick(ClickEvent e)
 	{
 		Popupcontainer p = new Popupcontainer(new NewProduktbatchComposite());
-		p.center();
+		p.show();
 	}
 	
 	public List<ProduktBatchDTO> getLayoutList() { //TODO: Show users when clicked
