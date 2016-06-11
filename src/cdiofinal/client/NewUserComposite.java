@@ -22,14 +22,18 @@ public class NewUserComposite extends Composite implements AsyncCallback<Integer
 	final AnsatRPCInterfaceAsync database = (AnsatRPCInterfaceAsync)GWT.create(AnsatRPCInterface.class);
 	interface NewUserUIBinder extends UiBinder<Widget, NewUserComposite> {}
 	private static NewUserUIBinder newUserUiBinder = GWT.create(NewUserUIBinder.class);
+	
+	private NewElementCreatedCallback<AnsatDTO> callback;
+	
 	@UiField TextBox cprBox;
 	@UiField TextBox nameBox;
 	@UiField TextBox iniBox;
 	@UiField ListBox rankBox;
 	@UiField PasswordTextBox passBox;
 	@UiField Label statusField;
-	public NewUserComposite() {
+	public NewUserComposite(NewElementCreatedCallback<AnsatDTO> callback) {
 		initWidget(newUserUiBinder.createAndBindUi(this));
+		this.callback = callback;
 	}
 	
 	@UiHandler("submitButton")
@@ -52,9 +56,11 @@ public class NewUserComposite extends Composite implements AsyncCallback<Integer
 			statusField.setText("Passwordet er ugyldigt, hold det mellem 3-8 karakterer");
 		}
 		else
-		
-			database.createAnsat(new AnsatDTO(cprBox.getText(), nameBox.getText(), iniBox.getText(), passBox.getText(), rankBox.getSelectedIndex()), this);
-		
+		{
+			AnsatDTO newDTO = new AnsatDTO(cprBox.getText(), nameBox.getText(), iniBox.getText(), passBox.getText(), rankBox.getSelectedIndex());
+			database.createAnsat(newDTO, this);
+			callback.onElementCreated(newDTO);
+		}
 		
 	}
 		@Override
