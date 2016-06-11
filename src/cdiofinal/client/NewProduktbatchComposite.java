@@ -2,7 +2,6 @@ package cdiofinal.client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -31,10 +30,8 @@ public class NewProduktbatchComposite extends Composite{
 		initWidget(newProduktBatchUiBinder.createAndBindUi(this));
 	}
 
-	MySQLReceptDAO rdao = new MySQLReceptDAO();	
-	
 	@UiHandler("submitButton")
-	public void onSubmitPressed(ClickEvent e) throws DALException
+	public void onSubmitPressed(ClickEvent e)
 	{
 		try
 		{
@@ -44,7 +41,7 @@ public class NewProduktbatchComposite extends Composite{
 		}
 		catch(Exception excep)
 		{
-			throw new DALException(excep.getMessage());
+			System.out.println("Something happened");
 		}
 
 //		else

@@ -10,20 +10,30 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class Popupcontainer extends DialogBox {
-	/*interface PopupContainerUiBinder extends UiBinder<Widget, Popupcontainer> {}
-	private static PopupContainerUiBinder popupContainerUiBinder = GWT.create(PopupContainerUiBinder.class);*/
-	
+public class Popupcontainer extends Composite {
+	interface PopupContainerUiBinder extends UiBinder<Widget, Popupcontainer> {}
+	private static PopupContainerUiBinder popupContainerUiBinder = GWT.create(PopupContainerUiBinder.class);
+	DialogBox d = new DialogBox();
 	@UiField SimplePanel container;
 
 	public Popupcontainer(Widget w)
 	{
-		//initWidget(popupContainerUiBinder.createAndBindUi(this));
+		initWidget(popupContainerUiBinder.createAndBindUi(this));
 		container.add(w);
+		d.add(this);
+		d.center();
+	}
+	public void show()
+	{
+		d.show();
+	}
+	public void hide()
+	{
+		d.hide();
 	}
 	@UiHandler("CloseButton")
 	public void onClose(ClickEvent e)
 	{
-		container.clear();
+		hide();
 	}
 }

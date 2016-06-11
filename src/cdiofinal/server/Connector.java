@@ -58,12 +58,34 @@ public class Connector
 	
 	public static ResultSet doQuery(String cmd) throws DALException
 	{
+		try
+		{
+			if(conn==null)
+			{
+				new Connector();
+			}
+		}
+		catch(Exception e)
+		{
+			throw new DALException(e.getMessage());
+		}
 		try { return stm.executeQuery(cmd); }
 		catch (SQLException e) { throw new DALException(e); }
 	}
 	
 	public static int doUpdate(String cmd) throws DALException
 	{
+		try
+		{
+			if(conn==null)
+			{
+				new Connector();
+			}
+		}
+		catch(Exception e)
+		{
+			throw new DALException(e.getMessage());
+		}
 		try { return stm.executeUpdate(cmd); }
 		catch (SQLException e) { throw new DALException(e); }
 	}

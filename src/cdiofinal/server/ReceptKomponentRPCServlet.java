@@ -17,18 +17,18 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 		try {
 			return receptKompDAO.getReceptKomp(recId, raavareId);
 		} catch (DALException e) {
-			throw e;
+			throw new DALException("An error occoured when getting a receptkomp. Please contact your sysadmin.");
 		}
 	}
 
 	@Override
-	public ReceptKompDTO[] getReceptKompList(){
+	public ReceptKompDTO[] getReceptKompList() throws DALException{
 		try {
 			List<ReceptKompDTO> receptkomp = receptKompDAO.getReceptKompList();
 			ReceptKompDTO[] receptKompArray = new ReceptKompDTO[receptkomp.size()];
 			return receptkomp.toArray(receptKompArray);
 		} catch (DALException e) {
-			return null;
+			throw new DALException("An error occoured when getting receptkomp list. Please contact your sysadmin.");
 		}	
 	}
 
@@ -37,7 +37,7 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 		try {
 			return receptKompDAO.createReceptKomp(recKomp);
 			} catch (DALException e){
-				throw e;
+				throw new DALException("An error occoured when creating a receptkomp. Please contact your sysadmin.");
 			}
 	}
 
@@ -46,7 +46,7 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 		try {
 			return receptKompDAO.updateReceptKomp(recKomp);
 			} catch (DALException e){
-				throw e;
+				throw new DALException("An error occoured when updating a receptkomp. Please contact your sysadmin.");
 			}
 	}
 }

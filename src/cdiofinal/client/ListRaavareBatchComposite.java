@@ -5,8 +5,10 @@ import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.Window;
@@ -20,25 +22,30 @@ import com.google.gwt.view.client.ListDataProvider;
 import cdiofinal.shared.RaavareBatchDTO;
 
 
-
-
-
-
 public class ListRaavareBatchComposite extends Composite implements AsyncCallback<RaavareBatchDTO[]> {
 	
 	final RaavareBatchRPCInterfaceAsync database = (RaavareBatchRPCInterfaceAsync)GWT.create(RaavareBatchRPCInterface.class);
 	
 	interface ListRaavareBatchUiBinder extends UiBinder<Widget, ListRaavareBatchComposite> {}
 	private static ListRaavareBatchUiBinder listRaavareBatchUiBinder = GWT.create(ListRaavareBatchUiBinder.class);
-	@UiField(provided=false) CellTable<RaavareBatchDTO> vPanel;
+	@UiField(provided=true) CellTable<RaavareBatchDTO> vPanel;
 	List<RaavareBatchDTO> gui;
 	
 	public ListRaavareBatchComposite()
 	{
-		initWidget(listRaavareBatchUiBinder.createAndBindUi(this));
-	}
-	public List<RaavareBatchDTO> getLayoutList() { //TODO: Show users when clicked
 		vPanel = new CellTable<RaavareBatchDTO>();
+		initWidget(listRaavareBatchUiBinder.createAndBindUi(this));
+		gui = getLayoutList();
+	}
+	
+	@UiHandler("newElement")
+	public void onClick(ClickEvent e)
+	{
+		Popupcontainer p = new Popupcontainer(new NewRaavareBatchComposite());
+		p.show();
+	}
+	
+	public List<RaavareBatchDTO> getLayoutList() { //TODO: Show users when clicked
 		Column<RaavareBatchDTO, String> raavareBatchIDColumn = getRaavareBatchIDColumn();
 		//CPRColumn.setSortable(true);
 		Column<RaavareBatchDTO, String> raavareIDColumn = getRaavareIDColumn();
@@ -171,7 +178,6 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 	//Fired when the user clicks "list users"
 	@Override
 	public void onLoad() {
-		gui = getLayoutList();
 		database.getRaavareBatchList(this);
 	
 	}

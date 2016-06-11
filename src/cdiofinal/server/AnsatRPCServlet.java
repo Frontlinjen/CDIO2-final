@@ -7,7 +7,6 @@ import cdiofinal.shared.DALException;
 import cdiofinal.client.AnsatRPCInterface;
 import cdiofinal.server.MySQLAnsatDAO;
 import cdiofinal.shared.AnsatDTO;
-import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
 
 public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInterface {
@@ -21,18 +20,18 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 		try {
 			return database.getAnsat(cpr);
 		} catch (DALException e) {
-			throw e;
+			throw new DALException("An error occoured when getting a user. Please contact your sysadmin.");
 		}
 	}
 
 	@Override
-	public AnsatDTO[] getAnsatList() {
+	public AnsatDTO[] getAnsatList() throws DALException{
 					try {
 						List<AnsatDTO> ansatte = database.getAnsatList();
 						AnsatDTO[] ansatteArray = new AnsatDTO[ansatte.size()];
 						return ansatte.toArray(ansatteArray);
 					} catch (DALException e) {
-						return null;
+						throw new DALException("An error occoured when getting ansat list. Please contact your sysadmin.");
 					}			
 	}
 
@@ -42,7 +41,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 		try {
 		return database.createAnsat(ans);
 		} catch (DALException e){
-			throw e;
+			throw new DALException("An error occoured when creating a new user. Please contact your sysadmin.");
 		}
 		return 0;
 	}
@@ -53,7 +52,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 		try {
 			return database.updateAnsat(ans);
 			} catch (DALException e){
-				throw e;
+				throw new DALException("An error occoured when updating a user. Please contact your sysadmin.");
 			}
 			return 0;
 		
@@ -65,7 +64,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 		try {
 			return database.deleteAnsat(ans);
 			} catch (DALException e){
-				throw e;
+				throw new DALException("An error occoured when deleting a user. Please contact your sysadmin.");
 			}
 			return 0;
 		

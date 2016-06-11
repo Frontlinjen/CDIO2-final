@@ -7,6 +7,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -20,7 +21,7 @@ public class NewReceptComposite extends Composite implements AsyncCallback<Integ
 	private static NewReceptCompositeUiBinder newReceptUiBinder = GWT.create(NewReceptCompositeUiBinder.class);
 	@UiField TextBox idBox;
 	@UiField TextBox navnBox;
-	@UiField TextBox statusField;
+	@UiField Label statusField;
 	public NewReceptComposite() {
 		initWidget(newReceptUiBinder.createAndBindUi(this));
 	}
@@ -28,7 +29,7 @@ public class NewReceptComposite extends Composite implements AsyncCallback<Integ
 	FieldVerifier f = new FieldVerifier();
 		
 	@UiHandler("submitButton")
-	public void onSubmitPressed(ClickEvent e) throws DALException
+	public void onSubmitPressed(ClickEvent e)
 	{
 		if(!FieldVerifier.isValidId(Integer.parseInt(idBox.getText()))==true)
 		{

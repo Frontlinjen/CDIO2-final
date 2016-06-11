@@ -10,16 +10,16 @@ import cdiofinal.shared.DALException;
 import java.util.ArrayList;
 
 public class MySQLAnsatDAO implements AnsatDAO {
-	public MySQLAnsatDAO()
-	{
-		//Connects to database: 
-		try {
-			new Connector();
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
+//	public MySQLAnsatDAO()
+//	{
+//		//Connects to database: 
+//		try {
+//			new Connector();
+//		} catch (Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//	}
 	
 	@Override
 	public AnsatDTO getAnsat(String cpr) throws DALException {
