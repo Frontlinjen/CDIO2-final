@@ -18,7 +18,7 @@ import cdiofinal.client.AnsatRPCInterfaceAsync;
 import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.FieldVerifier;
 
-public class NewUserComposite extends Composite implements AsyncCallback<Integer>{
+public class NewUserComposite extends Composite implements AsyncCallback<AnsatDTO>{
 	final AnsatRPCInterfaceAsync database = (AnsatRPCInterfaceAsync)GWT.create(AnsatRPCInterface.class);
 	interface NewUserUIBinder extends UiBinder<Widget, NewUserComposite> {}
 	private static NewUserUIBinder newUserUiBinder = GWT.create(NewUserUIBinder.class);
@@ -58,7 +58,7 @@ public class NewUserComposite extends Composite implements AsyncCallback<Integer
 		else
 		{
 			AnsatDTO newDTO = new AnsatDTO(cprBox.getText(), nameBox.getText(), iniBox.getText(), passBox.getText(), rankBox.getSelectedIndex());
-			database.createAnsat(newDTO, this);
+			database.createAnsat(newDTO, Token.getToken(), this);
 			callback.onElementCreated(newDTO);
 		}
 		
@@ -70,7 +70,7 @@ public class NewUserComposite extends Composite implements AsyncCallback<Integer
 		}
 	
 		@Override
-		public void onSuccess(Integer result) {
+		public void onSuccess(AnsatDTO result) {
 			statusField.setText("Successfully created user");		
 			cprBox.setValue("");
 			nameBox.setValue("");

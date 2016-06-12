@@ -19,7 +19,7 @@ import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.ProduktBatchKompDTO;
 
 
-public class NewProduktBatchKomponentComposite extends Composite implements AsyncCallback<Integer>{
+public class NewProduktBatchKomponentComposite extends Composite implements AsyncCallback<ProduktBatchKompDTO>{
 	final ProduktBatchKompRPCInterfaceAsync database = (ProduktBatchKompRPCInterfaceAsync)GWT.create(ProduktBatchKompRPCInterface.class);
 	interface NewProduktBatchKomponentUIBinder extends UiBinder<Widget, NewProduktBatchKomponentComposite>{}
 	private static NewProduktBatchKomponentUIBinder newProduktBatchKomponentUIBinder = GWT.create(NewProduktBatchKomponentUIBinder.class);
@@ -41,7 +41,7 @@ public class NewProduktBatchKomponentComposite extends Composite implements Asyn
 			statusField.setText("Id'et er ugyldigt. (1-99999999");
 		}
 		else
-			database.createProduktBatchKomp(new ProduktBatchKompDTO(Integer.parseInt(pb_idBox.getText()), Integer.parseInt(rb_id.getText()), Double.parseDouble(tara.getText()), Double.parseDouble(netto.getText()), cprBox.getText()), this);
+			database.createProduktBatchKomp(new ProduktBatchKompDTO(Integer.parseInt(pb_idBox.getText()), Integer.parseInt(rb_id.getText()), Double.parseDouble(tara.getText()), Double.parseDouble(netto.getText()), cprBox.getText()), Token.getToken(), this);
 //		tilf�j ProduktBatchKomponent
 	}
 
@@ -52,7 +52,7 @@ public class NewProduktBatchKomponentComposite extends Composite implements Asyn
 	}
 
 	@Override
-	public void onSuccess(Integer result) {
+	public void onSuccess(ProduktBatchKompDTO result) {
 		statusField.setText("Successfully created ProduktBatchKomponent");
 		pb_idBox.setText("");
 		rb_id.setValue("");

@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.Widget;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.RaavareDTO;
 
-public class NewRaavareComposite extends Composite implements AsyncCallback<Integer>{
+public class NewRaavareComposite extends Composite implements AsyncCallback<RaavareDTO>{
 	final RaavareRPCInterfaceAsync database = (RaavareRPCInterfaceAsync)GWT.create(RaavareRPCInterface.class);
 	interface NewRaavareUIBinder extends UiBinder<Widget, NewRaavareComposite>{}
 	private static NewRaavareUIBinder newRaavareUIBinder = GWT.create(NewRaavareUIBinder.class);
@@ -38,7 +38,7 @@ public class NewRaavareComposite extends Composite implements AsyncCallback<Inte
 			statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver, med en l�ngde mellem 2-20 karaktere");
 		}
 		else
-			database.createRaavare(new RaavareDTO(Integer.parseInt(idBox.getText()), navnBox.getText()), this);
+			database.createRaavare(new RaavareDTO(Integer.parseInt(idBox.getText()), navnBox.getText()), Token.getToken(), this);
 //		tilf�j r�vare
 	}
 
@@ -49,7 +49,7 @@ public class NewRaavareComposite extends Composite implements AsyncCallback<Inte
 	}
 
 	@Override
-	public void onSuccess(Integer result) {
+	public void onSuccess(RaavareDTO result) {
 		statusField.setText("Successfully created Raavare");
 		idBox.setValue("");
 		navnBox.setValue("");	

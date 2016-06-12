@@ -11,12 +11,11 @@ import com.google.gwt.user.client.ui.IntegerBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
-import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.RaavareBatchDTO;
 
 
-public class NewRaavareBatchComposite extends Composite implements AsyncCallback<Integer>{
+public class NewRaavareBatchComposite extends Composite implements AsyncCallback<RaavareBatchDTO>{
 	final RaavareBatchRPCInterfaceAsync database = (RaavareBatchRPCInterfaceAsync)GWT.create(RaavareBatchRPCInterface.class);
 	interface NewRaavareBatchUIBinder extends UiBinder<Widget, NewRaavareBatchComposite> {}
 	private static NewRaavareBatchUIBinder newRaavareBatchUiBinder = GWT.create(NewRaavareBatchUIBinder.class);
@@ -42,7 +41,7 @@ public class NewRaavareBatchComposite extends Composite implements AsyncCallback
 		}
 		else
 			
-			database.createRaavareBatch(new RaavareBatchDTO(Integer.parseInt(batchNrBox.getText()), Integer.parseInt(raavareId.getText()), Integer.parseInt(supplierIdBox.getText()), Double.parseDouble(amountBox.getText())), this);
+			database.createRaavareBatch(new RaavareBatchDTO(Integer.parseInt(batchNrBox.getText()), Integer.parseInt(raavareId.getText()), Integer.parseInt(supplierIdBox.getText()), Double.parseDouble(amountBox.getText())), Token.getToken(), this);
 			
 	}
 
@@ -53,7 +52,7 @@ public class NewRaavareBatchComposite extends Composite implements AsyncCallback
 	}
 
 	@Override
-	public void onSuccess(Integer result) {
+	public void onSuccess(RaavareBatchDTO result) {
 		statusField.setText("Successful to create RaavareBatch");
 		batchNrBox.setText("");
 		raavareId.setText("");

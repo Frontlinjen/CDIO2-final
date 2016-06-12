@@ -15,7 +15,7 @@ import com.google.gwt.user.client.ui.Widget;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.LeverandoerDTO;
 
-public class NewLeverandoerComposite extends Composite implements AsyncCallback<Integer>{
+public class NewLeverandoerComposite extends Composite implements AsyncCallback<LeverandoerDTO>{
 	final LeverandoerRPCInterfaceAsync database = (LeverandoerRPCInterfaceAsync)GWT.create(LeverandoerRPCInterface.class);
 	interface NewLeverandoerUIBinder extends UiBinder<Widget, NewLeverandoerComposite> {}
 	private static NewLeverandoerUIBinder newLeverandoerUiBinder = GWT.create(NewLeverandoerUIBinder.class);
@@ -39,7 +39,7 @@ public class NewLeverandoerComposite extends Composite implements AsyncCallback<
 		}
 		else
 
-			database.createLeverandoer(new LeverandoerDTO(Integer.parseInt(idBox.getText()), navnBox.getText()), this);
+			database.createLeverandoer(new LeverandoerDTO(Integer.parseInt(idBox.getText()), navnBox.getText()), Token.getToken(), this);
 	}
 
 	@Override
@@ -47,9 +47,8 @@ public class NewLeverandoerComposite extends Composite implements AsyncCallback<
 		statusField.setText("Failed to create leverandoer");
 		
 	}
-
 	@Override
-	public void onSuccess(Integer result) {
+	public void onSuccess(LeverandoerDTO result) {
 		statusField.setText("Successfully created Leverandoer");		
 		idBox.setValue("");
 		navnBox.setValue("");
