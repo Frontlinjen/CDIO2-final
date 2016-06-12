@@ -20,7 +20,11 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	public AnsatDTO getAnsat(String cpr, String token) throws Exception {
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
-				throw new InsufficientAccessException("Invalid token");
+				throw new InsufficientAccessException("Invalid token. Please refresh the page and login again.");
+			else if(database.getAnsat(TokenHandler.getInstance().getUserID(token)).getTitel() < 3)
+			{
+				throw new InsufficientAccessException("You dont have the required access to view this page");
+			}
 			return database.getAnsat(cpr);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a user. Please contact your sysadmin.");
@@ -28,10 +32,14 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	}
 
 	@Override
-	public AnsatDTO[] getAnsatList(String token) throws DALException{
+	public AnsatDTO[] getAnsatList(String token) throws Exception{
 					try {
 						if(TokenHandler.getInstance().validateToken(token)==null)
-							throw new DALException("Invalid token");
+							throw new InsufficientAccessException("Invalid token. Please refresh the page and login again.");
+						else if(database.getAnsat(TokenHandler.getInstance().getUserID(token)).getTitel() < 3)
+						{
+							throw new InsufficientAccessException("You dont have the required access to view this page");
+						}
 						List<AnsatDTO> ansatte = database.getAnsatList();
 						AnsatDTO[] ansatteArray = new AnsatDTO[ansatte.size()];
 						return ansatte.toArray(ansatteArray);
@@ -41,7 +49,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	}
 
 	@Override
-	public AnsatDTO createAnsat(AnsatDTO ans, String token) throws DALException{
+	public AnsatDTO createAnsat(AnsatDTO ans, String token) throws Exception{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
@@ -55,7 +63,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	}
 
 	@Override
-	public Integer updateAnsat(AnsatDTO ans, String token) throws DALException{
+	public Integer updateAnsat(AnsatDTO ans, String token) throws Exception{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
@@ -69,7 +77,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	}
 
 	@Override
-	public Integer deleteAnsat(AnsatDTO ans, String token) throws DALException{
+	public Integer deleteAnsat(AnsatDTO ans, String token) throws Exception{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)

@@ -7,6 +7,7 @@ import cdiofinal.client.ProduktBatchKompRPCInterface;
 import cdiofinal.server.MySQLProduktBatchKompDAO;
 import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.ProduktBatchKompDTO;
 
 public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements ProduktBatchKompRPCInterface {
@@ -19,7 +20,7 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 	public ProduktBatchKompDTO getProduktBatchKomp(int pbid, int rabaid, String token) throws Exception {
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
-				throw new DALException("Invalid token");
+				throw new InsufficientAccessException("Invalid token. Please refresh the page and login again.");
 			return database.getProduktBatchKomp(pbid, rabaid);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a produktbatchkomp. Please contact your sysadmin.");

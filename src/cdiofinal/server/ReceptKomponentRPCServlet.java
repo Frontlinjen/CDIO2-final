@@ -6,6 +6,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import cdiofinal.client.ReceptKomponentRPCInterface;
 import cdiofinal.shared.DALException;
+import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.ReceptKompDTO;
 
 public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements ReceptKomponentRPCInterface{
@@ -16,7 +17,7 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 	public ReceptKompDTO getReceptKomp(int recId, int raavareId, String token) throws Exception{
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
-				throw new DALException("Invalid token");
+				throw new InsufficientAccessException("Invalid token. Please refresh the page and login again.");
 			return receptKompDAO.getReceptKomp(recId, raavareId);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a receptkomp. Please contact your sysadmin.");

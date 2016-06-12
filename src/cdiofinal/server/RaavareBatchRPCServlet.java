@@ -7,6 +7,7 @@ import cdiofinal.client.RaavareBatchRPCInterface;
 import cdiofinal.server.MySQLRaavareBatchDAO;
 import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.RaavareBatchDTO;
 
 public class RaavareBatchRPCServlet extends RemoteServiceServlet implements RaavareBatchRPCInterface {
@@ -19,7 +20,7 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 	public RaavareBatchDTO getRaavareBatch(int rb_id, String token) throws Exception{
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
-				throw new DALException("Invalid token");
+				throw new InsufficientAccessException("Invalid token. Please refresh the page and login again.");
 			return database.getRaavareBatch(rb_id);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a raavarebatch. Please contact your sysadmin.");

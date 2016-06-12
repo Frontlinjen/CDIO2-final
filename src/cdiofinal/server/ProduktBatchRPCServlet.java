@@ -7,6 +7,7 @@ import cdiofinal.shared.DALException;
 import cdiofinal.client.ProduktBatchRPCInterface;
 import cdiofinal.server.MySQLProduktbatchDAO;
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.ProduktBatchDTO;
 
 public class ProduktBatchRPCServlet extends RemoteServiceServlet implements ProduktBatchRPCInterface {
@@ -21,7 +22,7 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 	public ProduktBatchDTO getProduktBatch(int pbid, String token) throws Exception{
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
-				throw new DALException("Invalid token");
+				throw new InsufficientAccessException("Invalid token. Please refresh the page and login again.");
 			return database.getProduktBatch(pbid);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a produktbatch. Please contact your sysadmin.");

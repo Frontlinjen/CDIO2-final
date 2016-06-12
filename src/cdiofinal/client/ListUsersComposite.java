@@ -24,6 +24,7 @@ import com.google.gwt.view.client.ListDataProvider;
 
 import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.InsufficientAccessException;
 
 
 public class ListUsersComposite extends Composite implements AsyncCallback<AnsatDTO[]>, NewElementCreatedCallback<AnsatDTO> {
@@ -246,10 +247,14 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 		     } catch (IncompatibleRemoteServiceException e) {
 		       Window.alert("Incompatible");
 		     } catch (InvocationException e) {
-		       Window.alert("Failed to connect to database\n" + e.getMessage());
-		     } catch (Throwable e) {
+		       Window.alert("Failed to connect to server\n" + e.getMessage());
+		     } catch(InsufficientAccessException e)
+			{
+				    Window.alert(e.getMessage()); 
+			 }
+		 	catch (Throwable e) {
 		       // last resort -- a very unexpected exception
-		    	 Window.alert("Unknown error");
+		    	 Window.alert("Unknown error:\n" + e.getMessage());
 		     }
 	}
 	@Override

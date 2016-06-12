@@ -7,6 +7,7 @@ import cdiofinal.client.ReceptRPCInterface;
 import cdiofinal.server.MySQLReceptDAO;
 import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.ReceptDTO;
 
 public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCInterface {
@@ -16,10 +17,10 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 	
 	
 	@Override
-	public ReceptDTO getRecept(int recept_id, String token) throws DALException{
+	public ReceptDTO getRecept(int recept_id, String token) throws Exception{
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
-				throw new DALException("Invalid token");
+				throw new InsufficientAccessException("Invalid token. Please refresh the page and login again.");
 			return receptDAO.getRecept(recept_id);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a recept. Please contact your sysadmin.");
@@ -27,7 +28,7 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 	}
 
 	@Override
-	public ReceptDTO[] getReceptList(String token) throws DALException{
+	public ReceptDTO[] getReceptList(String token) throws Exception{
 					
 					try {
 						if(TokenHandler.getInstance().validateToken(token)==null)
@@ -41,7 +42,7 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 	}
 
 	@Override
-	public ReceptDTO createRecept(ReceptDTO ans, String token) throws DALException{
+	public ReceptDTO createRecept(ReceptDTO ans, String token) throws Exception{
 		if(FieldVerifier.isValidId(ans.getReceptId())==true || FieldVerifier.isValidName(ans.getReceptNavn()) == true)
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
@@ -56,7 +57,7 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 	}
 
 	@Override
-	public Integer updateRecept(ReceptDTO ans, String token) throws DALException{
+	public Integer updateRecept(ReceptDTO ans, String token) throws Exception{
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
 				throw new DALException("Invalid token");

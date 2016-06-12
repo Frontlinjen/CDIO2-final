@@ -7,6 +7,7 @@ import cdiofinal.client.RaavareRPCInterface;
 import cdiofinal.server.MySQLRaavareDAO;
 import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.RaavareDTO;
 
 public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRPCInterface {
@@ -19,7 +20,7 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 	public RaavareDTO getRaavare(int raavare_id, String token) throws Exception{
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
-				throw new DALException("Invalid token");
+				throw new InsufficientAccessException("Invalid token. Please refresh the page and login again.");
 			return database.getRaavare(raavare_id);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a raavare. Please contact your sysadmin.");

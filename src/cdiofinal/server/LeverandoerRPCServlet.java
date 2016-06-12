@@ -7,6 +7,7 @@ import cdiofinal.shared.DALException;
 import cdiofinal.client.LeverandoerRPCInterface;
 import cdiofinal.server.MySQLLeverandoerDAO;
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.LeverandoerDTO;
 
 public class LeverandoerRPCServlet extends RemoteServiceServlet implements LeverandoerRPCInterface {
@@ -19,7 +20,7 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 	public LeverandoerDTO getLeverandoer(int id, String token) throws Exception{
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
-				throw new DALException("Invalid token");
+				throw new InsufficientAccessException("Invalid token. Please refresh the page and login again.");
 			return database.getLeverandoer(id);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a leverandoer. Please contact your sysadmin.");
