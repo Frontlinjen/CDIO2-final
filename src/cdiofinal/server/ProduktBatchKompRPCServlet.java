@@ -18,6 +18,8 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 	@Override
 	public ProduktBatchKompDTO getProduktBatchKomp(int pbid, int rabaid, String token) throws DALException {
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return database.getProduktBatchKomp(pbid, rabaid);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a produktbatchkomp. Please contact your sysadmin.");
@@ -28,6 +30,8 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 	public ProduktBatchKompDTO[] getProduktBatchKompList(String token) throws DALException{
 					
 					try {
+						if(TokenHandler.getInstance().validateToken(token)==null)
+							throw new DALException("Invalid token");
 						List<ProduktBatchKompDTO> produktbatchkomponenter = database.getProduktBatchKompList();
 						ProduktBatchKompDTO[] produktbatchkomponenterArray = new ProduktBatchKompDTO[produktbatchkomponenter.size()];
 						return produktbatchkomponenter.toArray(produktbatchkomponenterArray);
@@ -40,6 +44,8 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 	public ProduktBatchKompDTO createProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws DALException{
 		if(FieldVerifier.isValidId(pbk.getPbId())==true || FieldVerifier.isValidId(pbk.getRaavarebatchId())==true || FieldVerifier.isValidCpr(Integer.parseInt(pbk.getCpr())))
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			if(database.createProduktBatchKomp(pbk)!=0){
 				return pbk;
 			}
@@ -53,6 +59,8 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 	public Integer updateProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws DALException{
 		if(FieldVerifier.isValidId(pbk.getPbId())==true || FieldVerifier.isValidId(pbk.getRaavarebatchId())==true || FieldVerifier.isValidCpr(Integer.parseInt(pbk.getCpr())))
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return database.updateProduktBatchKomp(pbk);
 			} catch (DALException e){
 				throw new DALException("An error occoured when uppdating a produktbatchkomp. Please contact your sysadmin.");

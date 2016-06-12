@@ -18,6 +18,8 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	@Override
 	public AnsatDTO getAnsat(String cpr, String token) throws DALException {
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return database.getAnsat(cpr);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a user. Please contact your sysadmin.");
@@ -27,6 +29,8 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	@Override
 	public AnsatDTO[] getAnsatList(String token) throws DALException{
 					try {
+						if(TokenHandler.getInstance().validateToken(token)==null)
+							throw new DALException("Invalid token");
 						List<AnsatDTO> ansatte = database.getAnsatList();
 						AnsatDTO[] ansatteArray = new AnsatDTO[ansatte.size()];
 						return ansatte.toArray(ansatteArray);
@@ -39,6 +43,8 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	public AnsatDTO createAnsat(AnsatDTO ans, String token) throws DALException{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 		if(database.createAnsat(ans)!=0)
 			return ans;
 		} catch (DALException e){
@@ -51,6 +57,8 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	public Integer updateAnsat(AnsatDTO ans, String token) throws DALException{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return database.updateAnsat(ans);
 			} catch (DALException e){
 				throw new DALException("An error occoured when updating a user. Please contact your sysadmin.");
@@ -63,6 +71,8 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	public Integer deleteAnsat(AnsatDTO ans, String token) throws DALException{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return database.deleteAnsat(ans);
 			} catch (DALException e){
 				throw new DALException("An error occoured when deleting a user. Please contact your sysadmin.");

@@ -20,6 +20,8 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 	@Override
 	public ProduktBatchDTO getProduktBatch(int pbid, String token) throws DALException{
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return database.getProduktBatch(pbid);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a produktbatch. Please contact your sysadmin.");
@@ -30,6 +32,8 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 	public ProduktBatchDTO[] getProduktBatchList(String token) throws DALException{
 
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			List<ProduktBatchDTO> produktbatches = database.getProduktBatchList();
 			ProduktBatchDTO[] produktbatchesArray = new ProduktBatchDTO[produktbatches.size()];
 			return produktbatches.toArray(produktbatchesArray);
@@ -45,6 +49,8 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 		}
 		else
 			try {
+				if(TokenHandler.getInstance().validateToken(token)==null)
+					throw new DALException("Invalid token");
 				if(database.createProduktBatch(prba)!=0){
 					return prba;
 				}
@@ -62,6 +68,8 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 		}
 		else
 			try {
+				if(TokenHandler.getInstance().validateToken(token)==null)
+					throw new DALException("Invalid token");
 				return database.updateProduktBatch(prba);
 			} catch (DALException e){
 				throw new DALException("An error occoured when updating a produktbatch. Please contact your sysadmin.");
