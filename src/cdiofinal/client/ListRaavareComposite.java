@@ -21,7 +21,7 @@ import com.google.gwt.view.client.ListDataProvider;
 
 import cdiofinal.shared.RaavareDTO;
 
-public class ListRaavareComposite extends Composite implements AsyncCallback<RaavareDTO[]> {
+public class ListRaavareComposite extends Composite implements AsyncCallback<RaavareDTO[]>, NewElementCreatedCallback<RaavareDTO> {
 	
 	final RaavareRPCInterfaceAsync database = (RaavareRPCInterfaceAsync)GWT.create(RaavareRPCInterface.class);
 	
@@ -40,7 +40,7 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 	@UiHandler("newElement")
 	public void onClick(ClickEvent e)
 	{
-		Popupcontainer p = new Popupcontainer(new NewRaavareComposite());
+		Popupcontainer p = new Popupcontainer(new NewRaavareComposite(this));
 		p.show();
 	}
 	
@@ -159,6 +159,12 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 		for (RaavareDTO RaavareDTO : result) {
 			gui.add(RaavareDTO);
 		}
+	}
+
+	@Override
+	public void onElementCreated(RaavareDTO object) {
+		gui.add(object);
+		
 	}
 	
 

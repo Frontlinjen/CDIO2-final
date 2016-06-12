@@ -59,7 +59,6 @@ public class NewUserComposite extends Composite implements AsyncCallback<AnsatDT
 		{
 			AnsatDTO newDTO = new AnsatDTO(cprBox.getText(), nameBox.getText(), iniBox.getText(), passBox.getText(), rankBox.getSelectedIndex());
 			database.createAnsat(newDTO, Token.getToken(), this);
-			callback.onElementCreated(newDTO);
 		}
 		
 	}
@@ -77,6 +76,7 @@ public class NewUserComposite extends Composite implements AsyncCallback<AnsatDT
 			iniBox.setValue("");
 			passBox.setValue("");
 			rankBox.setItemSelected(0, true);;
+			callback.onElementCreated(result);
 			
 		}
 
