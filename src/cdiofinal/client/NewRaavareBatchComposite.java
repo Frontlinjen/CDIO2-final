@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.LeverandoerDTO;
 import cdiofinal.shared.RaavareBatchDTO;
 
 
@@ -20,14 +21,17 @@ public class NewRaavareBatchComposite extends Composite implements AsyncCallback
 	interface NewRaavareBatchUIBinder extends UiBinder<Widget, NewRaavareBatchComposite> {}
 	private static NewRaavareBatchUIBinder newRaavareBatchUiBinder = GWT.create(NewRaavareBatchUIBinder.class);
 	
+	private NewElementCreatedCallback<RaavareBatchDTO> callback;
+	
 	@UiField IntegerBox batchNrBox;
 	@UiField IntegerBox raavareId;
 	@UiField IntegerBox supplierIdBox;
 	@UiField IntegerBox amountBox;
 	@UiField Label statusField;
 	
-	NewRaavareBatchComposite() {
+	NewRaavareBatchComposite(NewElementCreatedCallback<RaavareBatchDTO> callback) {
 		initWidget(newRaavareBatchUiBinder.createAndBindUi(this));
+		this.callback = callback;
 	}
 	
 	FieldVerifier f = new FieldVerifier();
@@ -58,6 +62,7 @@ public class NewRaavareBatchComposite extends Composite implements AsyncCallback
 		raavareId.setText("");
 		supplierIdBox.setText("");
 		amountBox.setText("");
+		callback.onElementCreated(result);
 		
 	}
 

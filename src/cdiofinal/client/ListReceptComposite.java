@@ -19,9 +19,10 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
+import cdiofinal.shared.ProduktBatchDTO;
 import cdiofinal.shared.ReceptDTO;
 
-public class ListReceptComposite extends Composite implements AsyncCallback<ReceptDTO[]> {
+public class ListReceptComposite extends Composite implements AsyncCallback<ReceptDTO[]>, NewElementCreatedCallback<ReceptDTO> {
 	
 	final ReceptRPCInterfaceAsync database = (ReceptRPCInterfaceAsync)GWT.create(ReceptRPCInterface.class);
 	
@@ -40,7 +41,7 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 	@UiHandler("newElement")
 	public void onClick(ClickEvent e)
 	{
-		Popupcontainer p = new Popupcontainer(new NewReceptComposite());
+		Popupcontainer p = new Popupcontainer(new NewReceptComposite(this));
 		p.show();
 	}
 	
@@ -163,6 +164,12 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 		for (ReceptDTO ReceptDTO : result) {
 			gui.add(ReceptDTO);
 		}
+	}
+
+	@Override
+	public void onElementCreated(ReceptDTO object) {
+		gui.add(object);
+		
 	}
 	
 

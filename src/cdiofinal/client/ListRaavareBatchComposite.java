@@ -19,10 +19,11 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
+import cdiofinal.shared.ProduktBatchDTO;
 import cdiofinal.shared.RaavareBatchDTO;
 
 
-public class ListRaavareBatchComposite extends Composite implements AsyncCallback<RaavareBatchDTO[]> {
+public class ListRaavareBatchComposite extends Composite implements AsyncCallback<RaavareBatchDTO[]>,NewElementCreatedCallback<RaavareBatchDTO> {
 	
 	final RaavareBatchRPCInterfaceAsync database = (RaavareBatchRPCInterfaceAsync)GWT.create(RaavareBatchRPCInterface.class);
 	
@@ -41,7 +42,7 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 	@UiHandler("newElement")
 	public void onClick(ClickEvent e)
 	{
-		Popupcontainer p = new Popupcontainer(new NewRaavareBatchComposite());
+		Popupcontainer p = new Popupcontainer(new NewRaavareBatchComposite(this));
 		p.show();
 	}
 	
@@ -205,6 +206,12 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 		for (RaavareBatchDTO RaavareBatchDTO : result) {
 			gui.add(RaavareBatchDTO);
 		}
+	}
+
+	@Override
+	public void onElementCreated(RaavareBatchDTO object) {
+		gui.add(object);
+		
 	}
 	
 

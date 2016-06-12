@@ -14,16 +14,23 @@ import com.google.gwt.user.client.ui.Widget;
 
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.LeverandoerDTO;
+import cdiofinal.shared.ProduktBatchDTO;
+import cdiofinal.shared.RaavareDTO;
 
 public class NewLeverandoerComposite extends Composite implements AsyncCallback<LeverandoerDTO>{
 	final LeverandoerRPCInterfaceAsync database = (LeverandoerRPCInterfaceAsync)GWT.create(LeverandoerRPCInterface.class);
 	interface NewLeverandoerUIBinder extends UiBinder<Widget, NewLeverandoerComposite> {}
 	private static NewLeverandoerUIBinder newLeverandoerUiBinder = GWT.create(NewLeverandoerUIBinder.class);
+
+	private NewElementCreatedCallback<LeverandoerDTO> callback;
+	
 	@UiField TextBox idBox;
 	@UiField TextBox navnBox;
 	@UiField Label statusField;
-	public NewLeverandoerComposite() {
+	
+	public NewLeverandoerComposite(NewElementCreatedCallback<LeverandoerDTO> callback) {
 		initWidget(newLeverandoerUiBinder.createAndBindUi(this));
+		this.callback = callback;
 	}
 
 	@UiHandler("submitButton")
@@ -52,6 +59,7 @@ public class NewLeverandoerComposite extends Composite implements AsyncCallback<
 		statusField.setText("Successfully created Leverandoer");		
 		idBox.setValue("");
 		navnBox.setValue("");
+		callback.onElementCreated(result);
 
 		
 	}

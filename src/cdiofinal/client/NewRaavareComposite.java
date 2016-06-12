@@ -43,8 +43,8 @@ public class NewRaavareComposite extends Composite implements AsyncCallback<Raav
 			statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver, med en l�ngde mellem 2-20 karaktere");
 		}
 		else
+			
 			database.createRaavare(new RaavareDTO(Integer.parseInt(idBox.getText()), navnBox.getText()), Token.getToken(), this);
-//		tilf�j r�vare
 	}
 
 	@Override

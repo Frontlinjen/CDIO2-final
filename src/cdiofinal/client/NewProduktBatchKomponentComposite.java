@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.Label;
 
 import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.LeverandoerDTO;
 import cdiofinal.shared.ProduktBatchKompDTO;
 
 
@@ -23,14 +24,19 @@ public class NewProduktBatchKomponentComposite extends Composite implements Asyn
 	final ProduktBatchKompRPCInterfaceAsync database = (ProduktBatchKompRPCInterfaceAsync)GWT.create(ProduktBatchKompRPCInterface.class);
 	interface NewProduktBatchKomponentUIBinder extends UiBinder<Widget, NewProduktBatchKomponentComposite>{}
 	private static NewProduktBatchKomponentUIBinder newProduktBatchKomponentUIBinder = GWT.create(NewProduktBatchKomponentUIBinder.class);
+	
+	private NewElementCreatedCallback<ProduktBatchKompDTO> callback;
+	
 	@UiField IntegerBox pb_idBox;
 	@UiField TextBox rb_id;
 	@UiField TextBox tara;
 	@UiField TextBox netto;
 	@UiField TextBox cprBox;
 	@UiField Label statusField;
-	public NewProduktBatchKomponentComposite() {
+	
+	public NewProduktBatchKomponentComposite(NewElementCreatedCallback<ProduktBatchKompDTO> callback) {
 		initWidget(newProduktBatchKomponentUIBinder.createAndBindUi(this));
+		this.callback = callback;
 	}
 
 	@UiHandler("submitButton")
@@ -41,8 +47,8 @@ public class NewProduktBatchKomponentComposite extends Composite implements Asyn
 			statusField.setText("Id'et er ugyldigt. (1-99999999");
 		}
 		else
+
 			database.createProduktBatchKomp(new ProduktBatchKompDTO(Integer.parseInt(pb_idBox.getText()), Integer.parseInt(rb_id.getText()), Double.parseDouble(tara.getText()), Double.parseDouble(netto.getText()), cprBox.getText()), Token.getToken(), this);
-//		tilf�j ProduktBatchKomponent
 	}
 
 	@Override
@@ -59,6 +65,7 @@ public class NewProduktBatchKomponentComposite extends Composite implements Asyn
 		tara.setValue("");
 		netto.setValue("");
 		cprBox.setValue("");
+		callback.onElementCreated(result);
 	}
 	
 }

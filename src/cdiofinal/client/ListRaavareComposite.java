@@ -24,7 +24,8 @@ import cdiofinal.shared.RaavareDTO;
 public class ListRaavareComposite extends Composite implements AsyncCallback<RaavareDTO[]>, NewElementCreatedCallback<RaavareDTO> {
 	
 	final RaavareRPCInterfaceAsync database = (RaavareRPCInterfaceAsync)GWT.create(RaavareRPCInterface.class);
-	
+
+
 	interface ListRaavareUiBinder extends UiBinder<Widget, ListRaavareComposite> {}
 	private static ListRaavareUiBinder listRaavareUiBinder = GWT.create(ListRaavareUiBinder.class);
 	@UiField(provided=true) CellTable<RaavareDTO> vPanel;
@@ -70,13 +71,13 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 		vPanel.addColumn(nameColumn, "Name");
 		vPanel.addColumn(saveColumn, "");
 		
-		ListDataProvider<RaavareDTO> userList = new ListDataProvider<RaavareDTO>();
+		ListDataProvider<RaavareDTO> raavareList = new ListDataProvider<RaavareDTO>();
 		
 		
 		
-		userList.addDataDisplay(vPanel);		
+		raavareList.addDataDisplay(vPanel);		
 		
-		return userList.getList();
+		return raavareList.getList();
 	}
 
 	private Column<RaavareDTO, String> getButtonColumn(final String value) {

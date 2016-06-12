@@ -21,9 +21,9 @@ import com.google.gwt.view.client.ListDataProvider;
 
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.LeverandoerDTO;
+import cdiofinal.shared.RaavareDTO;
 
-
-public class ListLeverandoerComposite extends Composite implements AsyncCallback<LeverandoerDTO[]> {
+public class ListLeverandoerComposite extends Composite implements AsyncCallback<LeverandoerDTO[]>, NewElementCreatedCallback<LeverandoerDTO> {
 	
 	final LeverandoerRPCInterfaceAsync database = (LeverandoerRPCInterfaceAsync)GWT.create(LeverandoerRPCInterface.class);
 	
@@ -42,7 +42,7 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 	@UiHandler("newElement")
 	public void onClick(ClickEvent e)
 	{
-		Popupcontainer p = new Popupcontainer(new NewLeverandoerComposite());
+		Popupcontainer p = new Popupcontainer(new NewLeverandoerComposite(this));
 		p.show();
 	}
 	
@@ -167,6 +167,12 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 		for (LeverandoerDTO leverandoerDTO : result) {
 			gui.add(leverandoerDTO);
 		}
+	}
+
+	@Override
+	public void onElementCreated(LeverandoerDTO object) {
+		gui.add(object);
+		
 	}
 	
 

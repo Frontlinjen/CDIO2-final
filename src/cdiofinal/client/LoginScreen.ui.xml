@@ -1,3 +1,4 @@
+
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
     xmlns:g='urn:import:com.google.gwt.user.client.ui'>
      <ui:style>
@@ -11,6 +12,6 @@
   		<g:Label text="Password:"/>
   		<g:PasswordTextBox ui:field="password"/>
   		<g:Label text="" ui:field="feedback"/>
-  		<g:Button ui:field="submit" text="submit"/>
+  		<g:Button ui:field="submit" text="Submit"/>
   	</g:VerticalPanel>	
   </ui:UiBinder>
