@@ -16,7 +16,7 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 	
 	
 	@Override
-	public RaavareBatchDTO getRaavareBatch(int rb_id, String token) throws DALException{
+	public RaavareBatchDTO getRaavareBatch(int rb_id, String token) throws Exception{
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
 				throw new DALException("Invalid token");
@@ -27,7 +27,7 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 	}
 
 	@Override
-	public RaavareBatchDTO[] getRaavareBatchList(String token) throws DALException{
+	public RaavareBatchDTO[] getRaavareBatchList(String token) throws Exception{
 					
 					try {
 						if(TokenHandler.getInstance().validateToken(token)==null)
@@ -41,7 +41,7 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 	}
 
 	@Override
-	public RaavareBatchDTO createRaavareBatch(RaavareBatchDTO ans, String token) throws DALException{
+	public RaavareBatchDTO createRaavareBatch(RaavareBatchDTO ans, String token) throws Exception{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidId(ans.getLeverandoerId())==true || FieldVerifier.isValidId(ans.getRaavarebatchId()))
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
@@ -56,7 +56,7 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 	}
 
 	@Override
-	public Integer updateRaavareBatch(RaavareBatchDTO ans, String token) throws DALException{
+	public Integer updateRaavareBatch(RaavareBatchDTO ans, String token) throws Exception{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidId(ans.getLeverandoerId())==true || FieldVerifier.isValidId(ans.getRaavarebatchId()))
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)

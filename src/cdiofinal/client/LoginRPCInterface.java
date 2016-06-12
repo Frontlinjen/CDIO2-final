@@ -8,5 +8,5 @@ import cdiofinal.shared.TokenRank;
 
 @RemoteServiceRelativePath("login")
 public interface LoginRPCInterface extends RemoteService{
-	TokenRank getLoginToken(long cpr, String password) throws DALException, Exception;
+	TokenRank getLoginToken(long cpr, String password) throws Exception;
 }

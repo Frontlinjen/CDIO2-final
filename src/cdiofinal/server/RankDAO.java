@@ -6,6 +6,6 @@ import cdiofinal.shared.DALException;
 import cdiofinal.shared.RankDTO;
 
 public interface RankDAO {
-	RankDTO getRank(int titel) throws DALException;
-	List<RankDTO> getRankList() throws DALException;
+	RankDTO getRank(int titel) throws Exception;
+	List<RankDTO> getRankList() throws Exception;
 }

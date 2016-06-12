@@ -18,7 +18,7 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 
 
 	@Override
-	public ProduktBatchDTO getProduktBatch(int pbid, String token) throws DALException{
+	public ProduktBatchDTO getProduktBatch(int pbid, String token) throws Exception{
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
 				throw new DALException("Invalid token");
@@ -29,7 +29,7 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 	}
 
 	@Override
-	public ProduktBatchDTO[] getProduktBatchList(String token) throws DALException{
+	public ProduktBatchDTO[] getProduktBatchList(String token) throws Exception{
 
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
@@ -43,7 +43,7 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 	}
 
 	@Override
-	public ProduktBatchDTO createProduktBatch(ProduktBatchDTO prba, String token) throws DALException{
+	public ProduktBatchDTO createProduktBatch(ProduktBatchDTO prba, String token) throws Exception{
 		if(!FieldVerifier.isValidId((prba.getReceptId()))==true || !FieldVerifier.isValidId(prba.getPbId())==true){
 			System.out.println("Id'et er ugyldigt. (1-99999999");
 		}
@@ -62,7 +62,7 @@ public class ProduktBatchRPCServlet extends RemoteServiceServlet implements Prod
 	}
 
 	@Override
-	public Integer updateProduktBatch(ProduktBatchDTO prba, String token) throws DALException{
+	public Integer updateProduktBatch(ProduktBatchDTO prba, String token) throws Exception{
 		if(!FieldVerifier.isValidId((prba.getReceptId()))==true || !FieldVerifier.isValidId(prba.getPbId())==true){
 			System.out.println("Id'et er ugyldigt. (1-99999999");
 		}

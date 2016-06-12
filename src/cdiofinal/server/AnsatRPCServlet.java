@@ -8,6 +8,7 @@ import cdiofinal.client.AnsatRPCInterface;
 import cdiofinal.server.MySQLAnsatDAO;
 import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.InsufficientAccessException;
 
 public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInterface {
 
@@ -16,10 +17,10 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	
 	
 	@Override
-	public AnsatDTO getAnsat(String cpr, String token) throws DALException {
+	public AnsatDTO getAnsat(String cpr, String token) throws Exception {
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
-				throw new DALException("Invalid token");
+				throw new InsufficientAccessException("Invalid token");
 			return database.getAnsat(cpr);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a user. Please contact your sysadmin.");

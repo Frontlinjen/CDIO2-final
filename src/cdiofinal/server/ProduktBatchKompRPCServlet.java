@@ -16,7 +16,7 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 	
 	
 	@Override
-	public ProduktBatchKompDTO getProduktBatchKomp(int pbid, int rabaid, String token) throws DALException {
+	public ProduktBatchKompDTO getProduktBatchKomp(int pbid, int rabaid, String token) throws Exception {
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
 				throw new DALException("Invalid token");
@@ -27,7 +27,7 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 	}
 
 	@Override
-	public ProduktBatchKompDTO[] getProduktBatchKompList(String token) throws DALException{
+	public ProduktBatchKompDTO[] getProduktBatchKompList(String token) throws Exception{
 					
 					try {
 						if(TokenHandler.getInstance().validateToken(token)==null)
@@ -41,7 +41,7 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 	}
 
 	@Override
-	public ProduktBatchKompDTO createProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws DALException{
+	public ProduktBatchKompDTO createProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws Exception{
 		if(FieldVerifier.isValidId(pbk.getPbId())==true || FieldVerifier.isValidId(pbk.getRaavarebatchId())==true || FieldVerifier.isValidCpr(Integer.parseInt(pbk.getCpr())))
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
@@ -56,7 +56,7 @@ public class ProduktBatchKompRPCServlet extends RemoteServiceServlet implements 
 	}
 
 	@Override
-	public Integer updateProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws DALException{
+	public Integer updateProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws Exception{
 		if(FieldVerifier.isValidId(pbk.getPbId())==true || FieldVerifier.isValidId(pbk.getRaavarebatchId())==true || FieldVerifier.isValidCpr(Integer.parseInt(pbk.getCpr())))
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)

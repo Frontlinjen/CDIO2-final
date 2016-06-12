@@ -13,7 +13,7 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 	MySQLReceptKompDAO receptKompDAO = new MySQLReceptKompDAO();
 	
 	@Override
-	public ReceptKompDTO getReceptKomp(int recId, int raavareId, String token) throws DALException{
+	public ReceptKompDTO getReceptKomp(int recId, int raavareId, String token) throws Exception{
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
 				throw new DALException("Invalid token");
@@ -24,7 +24,7 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 	}
 
 	@Override
-	public ReceptKompDTO[] getReceptKompList(String token) throws DALException{
+	public ReceptKompDTO[] getReceptKompList(String token) throws Exception{
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
 				throw new DALException("Invalid token");
@@ -37,7 +37,7 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 	}
 
 	@Override
-	public ReceptKompDTO createReceptKomp(ReceptKompDTO recKomp, String token) throws DALException{
+	public ReceptKompDTO createReceptKomp(ReceptKompDTO recKomp, String token) throws Exception{
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
 				throw new DALException("Invalid token");
@@ -51,7 +51,7 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 	}
 
 	@Override
-	public Integer updateReceptKomp(ReceptKompDTO recKomp, String token) throws DALException{
+	public Integer updateReceptKomp(ReceptKompDTO recKomp, String token) throws Exception{
 		try {
 			if(TokenHandler.getInstance().validateToken(token)==null)
 				throw new DALException("Invalid token");
