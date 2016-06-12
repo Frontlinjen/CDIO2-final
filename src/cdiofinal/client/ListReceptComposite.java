@@ -52,7 +52,7 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 		saveColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>() {
 					@Override
 					  public void update(final int index, ReceptDTO object, String value) {
-							database.updateRecept(object, new AsyncCallback<Integer>() {
+							database.updateRecept(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
 									Window.alert("Update unsuccessful");
@@ -136,7 +136,7 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 	//Fired when the recept clicks "list recepts"
 	@Override
 	public void onLoad() {
-		database.getReceptList(this);
+		database.getReceptList(Token.getToken(), this);
 	
 	}
 

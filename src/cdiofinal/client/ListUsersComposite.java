@@ -64,7 +64,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 		saveColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>() {
 					@Override
 					  public void update(final int index, AnsatDTO object, String value) {
-							database.updateAnsat(object, new AsyncCallback<Integer>() {
+							database.updateAnsat(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
 									Window.alert("Update unsuccessful");
@@ -84,7 +84,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 					@Override
 					  public void update(final int index, AnsatDTO object, String value) {
 						if(object.getTitel() != 0){
-							database.deleteAnsat(object, new AsyncCallback<Integer>() {
+							database.deleteAnsat(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
 									Window.alert("Deletion unsuccessful");
@@ -235,7 +235,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	//Fired when the user clicks "list users"
 	@Override
 	public void onLoad() {
-		database.getAnsatList(this);
+		database.getAnsatList(Token.getToken(), this);
 	
 	}
 

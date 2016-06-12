@@ -56,7 +56,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 		saveColumn.setFieldUpdater(new FieldUpdater<ProduktBatchDTO, String>() {
 					@Override
 					  public void update(final int index, ProduktBatchDTO object, String value) {
-							database.updateProduktBatch(object, new AsyncCallback<Integer>() {
+							database.updateProduktBatch(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
 									Window.alert("Update unsuccessful");
@@ -159,7 +159,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 	//Fired when the user clicks "list produktbatch"
 	@Override
 	public void onLoad() {
-		database.getProduktBatchList(this);
+		database.getProduktBatchList(Token.getToken(), this);
 	
 	}
 

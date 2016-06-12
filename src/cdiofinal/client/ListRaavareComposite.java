@@ -51,7 +51,7 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 		saveColumn.setFieldUpdater(new FieldUpdater<RaavareDTO, String>() {
 					@Override
 					  public void update(final int index, RaavareDTO object, String value) {
-							database.updateRaavare(object, new AsyncCallback<Integer>() {
+							database.updateRaavare(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
 									Window.alert("Update unsuccessful");
@@ -132,7 +132,7 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 	//Fired when the user clicks "list users"
 	@Override
 	public void onLoad() {
-		database.getRaavareList(this);
+		database.getRaavareList(Token.getToken(), this);
 	
 	}
 
