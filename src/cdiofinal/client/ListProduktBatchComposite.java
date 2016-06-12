@@ -20,14 +20,15 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
 import cdiofinal.shared.ProduktBatchDTO;
+import cdiofinal.shared.RaavareDTO;
 
 
-public class ListProduktBatchComposite extends Composite implements AsyncCallback<ProduktBatchDTO[]> {
+public class ListProduktBatchComposite extends Composite implements AsyncCallback<ProduktBatchDTO[]>, NewElementCreatedCallback<ProduktBatchDTO> {
 	
 	final ProduktBatchRPCInterfaceAsync database = (ProduktBatchRPCInterfaceAsync)GWT.create(ProduktBatchRPCInterface.class);
-	
 	interface ListProduktBatchUiBinder extends UiBinder<Widget, ListProduktBatchComposite> {}
 	private static ListProduktBatchUiBinder listProduktBatchUiBinder = GWT.create(ListProduktBatchUiBinder.class);
+	
 	@UiField(provided=true) CellTable<ProduktBatchDTO> vPanel;
 	List<ProduktBatchDTO> gui;
 	
@@ -41,7 +42,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 	@UiHandler("newElement")
 	public void onClick(ClickEvent e)
 	{
-		Popupcontainer p = new Popupcontainer(new NewProduktbatchComposite());
+		Popupcontainer p = new Popupcontainer(new NewProduktbatchComposite(this));
 		p.show();
 	}
 	
@@ -186,6 +187,12 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 		for (ProduktBatchDTO produktbatchDTO : result) {
 			gui.add(produktbatchDTO);
 		}
+	}
+
+	@Override
+	public void onElementCreated(ProduktBatchDTO object) {
+		gui.add(object);
+		
 	}
 	
 

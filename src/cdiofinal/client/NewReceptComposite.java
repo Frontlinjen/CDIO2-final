@@ -12,17 +12,22 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.ProduktBatchDTO;
 import cdiofinal.shared.ReceptDTO;
 
 public class NewReceptComposite extends Composite implements AsyncCallback<ReceptDTO>{
 	final ReceptRPCInterfaceAsync database = (ReceptRPCInterfaceAsync)GWT.create(ReceptRPCInterface.class);
 	interface NewReceptCompositeUiBinder extends UiBinder<Widget, NewReceptComposite> {}
 	private static NewReceptCompositeUiBinder newReceptUiBinder = GWT.create(NewReceptCompositeUiBinder.class);
+	
+	private NewElementCreatedCallback<ReceptDTO> callback;
+	
 	@UiField TextBox idBox;
 	@UiField TextBox navnBox;
 	@UiField Label statusField;
-	public NewReceptComposite() {
+	public NewReceptComposite(NewElementCreatedCallback<ReceptDTO> callback) {
 		initWidget(newReceptUiBinder.createAndBindUi(this));
+		this.callback = callback;
 	}
 
 	FieldVerifier f = new FieldVerifier();
@@ -54,5 +59,6 @@ public class NewReceptComposite extends Composite implements AsyncCallback<Recep
 		statusField.setText("Succesfully created Recept");
 		idBox.setValue("");
 		navnBox.setValue("");
+		callback.onElementCreated(result);
 	}
 }
