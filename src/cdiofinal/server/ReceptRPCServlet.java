@@ -18,6 +18,8 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 	@Override
 	public ReceptDTO getRecept(int recept_id, String token) throws DALException{
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return receptDAO.getRecept(recept_id);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a recept. Please contact your sysadmin.");
@@ -28,6 +30,8 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 	public ReceptDTO[] getReceptList(String token) throws DALException{
 					
 					try {
+						if(TokenHandler.getInstance().validateToken(token)==null)
+							throw new DALException("Invalid token");
 						List<ReceptDTO> recept = receptDAO.getReceptList();
 						ReceptDTO[] receptArray = new ReceptDTO[recept.size()];
 						return recept.toArray(receptArray);
@@ -40,6 +44,8 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 	public ReceptDTO createRecept(ReceptDTO ans, String token) throws DALException{
 		if(FieldVerifier.isValidId(ans.getReceptId())==true || FieldVerifier.isValidName(ans.getReceptNavn()) == true)
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			if(receptDAO.createRecept(ans)!=0){
 				return ans;
 			}
@@ -52,6 +58,8 @@ public class ReceptRPCServlet extends RemoteServiceServlet implements ReceptRPCI
 	@Override
 	public Integer updateRecept(ReceptDTO ans, String token) throws DALException{
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return receptDAO.updateRecept(ans);
 			} catch (DALException e){
 				throw new DALException("An error occoured when updating a recept. Please contact your sysadmin.");

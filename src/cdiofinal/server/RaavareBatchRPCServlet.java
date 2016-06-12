@@ -18,6 +18,8 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 	@Override
 	public RaavareBatchDTO getRaavareBatch(int rb_id, String token) throws DALException{
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return database.getRaavareBatch(rb_id);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a raavarebatch. Please contact your sysadmin.");
@@ -28,6 +30,8 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 	public RaavareBatchDTO[] getRaavareBatchList(String token) throws DALException{
 					
 					try {
+						if(TokenHandler.getInstance().validateToken(token)==null)
+							throw new DALException("Invalid token");
 						List<RaavareBatchDTO> raavarebatches = database.getRaavarebatchList();
 						RaavareBatchDTO[] raavarebatchesArray = new RaavareBatchDTO[raavarebatches.size()];
 						return raavarebatches.toArray(raavarebatchesArray);
@@ -40,6 +44,8 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 	public RaavareBatchDTO createRaavareBatch(RaavareBatchDTO ans, String token) throws DALException{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidId(ans.getLeverandoerId())==true || FieldVerifier.isValidId(ans.getRaavarebatchId()))
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			if(database.createRaavareBatch(ans)!=0){
 				return ans;
 			}
@@ -53,6 +59,8 @@ public class RaavareBatchRPCServlet extends RemoteServiceServlet implements Raav
 	public Integer updateRaavareBatch(RaavareBatchDTO ans, String token) throws DALException{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidId(ans.getLeverandoerId())==true || FieldVerifier.isValidId(ans.getRaavarebatchId()))
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return database.updateRaavareBatch(ans);
 			} catch (DALException e){
 				throw new DALException("An error occoured when updating a raavarebatch. Please contact your sysadmin.");

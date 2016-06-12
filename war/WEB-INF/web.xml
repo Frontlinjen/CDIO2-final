@@ -16,6 +16,16 @@
     <url-pattern>/cdio_final/ansatte</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>LoginService</servlet-name>
+    <servlet-class>cdiofinal.server.LoginRPCServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>LoginService</servlet-name>
+    <url-pattern>/cdio_final/login</url-pattern>
+  </servlet-mapping>
+  
    <servlet>
     <servlet-name>LeverandoerService</servlet-name>
     <servlet-class>cdiofinal.server.LeverandoerRPCServlet</servlet-class>
