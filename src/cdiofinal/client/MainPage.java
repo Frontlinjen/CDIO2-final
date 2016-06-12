@@ -31,12 +31,12 @@ public class MainPage extends Composite{
 	{
 		RootPanel container = RootPanel.get("options");
 		String[] buttons = {
-				"List users", 
-				"List r\u00E5varer", 
-				"List produktbatches", 
-				"List leverand\u00F8erer",
-				"List recepter",
-				"List r\u00E5varerbatches"};
+				"List Users", 
+				"List R\u00E5varer", 
+				"List Produktbatches", 
+				"List Leverand\u00F8erer",
+				"List Recepter",
+				"List R\u00E5varerbatches"};
 		final Composite[] compositeWidgets = {
 				new ListUsersComposite(), 
 				new ListRaavareComposite(), 
