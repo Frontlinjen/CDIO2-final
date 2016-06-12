@@ -3,7 +3,7 @@
     <g:HTMLPanel>
          <table cellspacing='0' style='border: 2px solid black; background-color: white'>
              <tr style=''>
-                 <th align='right' style='background-color: blue;'>
+                 <th align='right' style='background-color: #032336'>
                      <g:Button text='Close' ui:field="CloseButton"/>
                  </th>		
              </tr>
