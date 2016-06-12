@@ -5,6 +5,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import cdiofinal.client.LoginRPCInterface;
 import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.DALException;
+import cdiofinal.shared.TokenRank;
 
 public class LoginRPCServlet extends RemoteServiceServlet implements LoginRPCInterface{
 
@@ -12,16 +13,19 @@ public class LoginRPCServlet extends RemoteServiceServlet implements LoginRPCInt
 	MySQLAnsatDAO database = new MySQLAnsatDAO();
 	
 	@Override
-	public String getLoginToken(int cpr, String password) throws Exception{
+	public TokenRank getLoginToken(long cpr, String password) throws Exception{
 		AnsatDTO user;
 		try{
-			user = database.getAnsat(Integer.toString(cpr));
+			user = database.getAnsat(Long.toString(cpr));
 		} catch(DALException e){
 			throw new DALException("Brugeren kunne ikke findes");
 		}
 		if(user.getPassword().equals(password))
 		{
-			return TokenHandler.getInstance().createToken(user.getCpr());
+			TokenRank tr = new TokenRank();
+			tr.setToken(TokenHandler.getInstance().createToken(user.getCpr()));
+			tr.setRank(user.getTitel());
+			return tr;
 		}
 		else
 		{

@@ -14,8 +14,9 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.TokenRank;
 
-public class LoginScreen extends Composite  implements AsyncCallback<String>{
+public class LoginScreen extends Composite  implements AsyncCallback<TokenRank>{
 	interface LoginUIBinder extends UiBinder<Widget, LoginScreen>{}
 	private static LoginUIBinder loginUiBinder = GWT.create(LoginUIBinder.class);
 	final LoginRPCInterfaceAsync database = (LoginRPCInterfaceAsync)GWT.create(LoginRPCInterface.class);
@@ -57,9 +58,9 @@ public class LoginScreen extends Composite  implements AsyncCallback<String>{
 	}
 
 	@Override
-	public void onSuccess(String result) {
-		System.err.println(result);
-		Token.setToken(result);
+	public void onSuccess(TokenRank tr) {
+		System.err.println(tr);
+		Token.setToken(tr.getToken());
 		feedback.setText("Success!");
 		RootPanel.get("contents").clear();
 		RootPanel.get("contents").add(new MainPage());
