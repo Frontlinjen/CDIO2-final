@@ -10,6 +10,7 @@
   		<g:TextBox ui:field="username"/>
   		<g:Label text="Password:"/>
   		<g:PasswordTextBox ui:field="password"/>
+  		<g:Label text="" ui:field="feedback"/>
   		<g:Button ui:field="submit" text="submit"/>
   	</g:VerticalPanel>	
   </ui:UiBinder>
