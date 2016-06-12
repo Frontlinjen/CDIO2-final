@@ -1,8 +1,6 @@
 package cdiofinal.client;
 
 import cdiofinal.shared.AnsatDTO;
-import cdiofinal.shared.DALException;
-
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 

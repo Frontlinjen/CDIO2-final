@@ -8,7 +8,10 @@ public class InsufficientAccessException extends Exception implements Serializab
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	public InsufficientAccessException()
+	{
+		
+	}
 	public InsufficientAccessException(String s)
 	{
 		super(s);
