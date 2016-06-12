@@ -58,7 +58,7 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 		saveColumn.setFieldUpdater(new FieldUpdater<RaavareBatchDTO, String>() {
 					@Override
 					  public void update(final int index, RaavareBatchDTO object, String value) {
-							database.updateRaavareBatch(object, new AsyncCallback<Integer>() {
+							database.updateRaavareBatch(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
 									Window.alert("Update unsuccessful");
@@ -178,7 +178,7 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 	//Fired when the user clicks "list users"
 	@Override
 	public void onLoad() {
-		database.getRaavareBatchList(this);
+		database.getRaavareBatchList(Token.getToken(), this);
 	
 	}
 
