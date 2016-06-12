@@ -46,6 +46,7 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 		} catch (DALException e){
 			throw new DALException("An error occoured when creating a leverandoer. Please contact your sysadmin.");
 		}
+		return null;
 	}
 
 	@Override

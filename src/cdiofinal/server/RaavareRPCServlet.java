@@ -50,7 +50,7 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 	}
 
 	@Override
-	public Integer updateRaavare(RaavareDTO ans) throws DALException{
+	public Integer updateRaavare(RaavareDTO ans, String token) throws DALException{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidName(ans.getRaavareNavn())==true)
 		try {
 			return database.updateRaavare(ans);
