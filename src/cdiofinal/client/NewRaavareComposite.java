@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
+import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.RaavareDTO;
 
@@ -18,12 +19,16 @@ public class NewRaavareComposite extends Composite implements AsyncCallback<Raav
 	final RaavareRPCInterfaceAsync database = (RaavareRPCInterfaceAsync)GWT.create(RaavareRPCInterface.class);
 	interface NewRaavareUIBinder extends UiBinder<Widget, NewRaavareComposite>{}
 	private static NewRaavareUIBinder newRaavareUIBinder = GWT.create(NewRaavareUIBinder.class);
+	
+	private NewElementCreatedCallback<RaavareDTO> callback;
+	
 	@UiField TextBox idBox;
 	@UiField TextBox navnBox;
 	@UiField Label statusField;
 	
-	public NewRaavareComposite() {
+	public NewRaavareComposite(NewElementCreatedCallback<RaavareDTO> callback) {
 		initWidget(newRaavareUIBinder.createAndBindUi(this));
+		this.callback = callback;
 	}
 
 	@UiHandler("submitButton")
@@ -53,5 +58,6 @@ public class NewRaavareComposite extends Composite implements AsyncCallback<Raav
 		statusField.setText("Successfully created Raavare");
 		idBox.setValue("");
 		navnBox.setValue("");	
+		callback.onElementCreated(result);
 	}
 }
