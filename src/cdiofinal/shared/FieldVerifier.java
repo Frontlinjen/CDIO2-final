@@ -69,14 +69,8 @@ public class FieldVerifier {
 		else return true;
 	}
 	
-	public static boolean isValidCpr (int cpr){
-		for(int i = 0; i < String.valueOf(cpr).length(); i++){
-			if(!Character.isDigit(String.valueOf(cpr).charAt(i))){
-				return false;
-			}
-		}
-
-		return String.valueOf(cpr).length() == 10 && String.valueOf(cpr).charAt(0)!='0';
+	public static boolean isValidCpr (long cpr){
+		return String.valueOf(cpr).length() <= 3999999999L;
 	}
 	
 	public static boolean isValidIni (String ini){

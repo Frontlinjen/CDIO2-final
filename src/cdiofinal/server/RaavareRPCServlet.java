@@ -18,6 +18,8 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 	@Override
 	public RaavareDTO getRaavare(int raavare_id, String token) throws DALException{
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return database.getRaavare(raavare_id);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a raavare. Please contact your sysadmin.");
@@ -28,6 +30,8 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 	public RaavareDTO[] getRaavareList(String token) throws DALException{
 					
 					try {
+						if(TokenHandler.getInstance().validateToken(token)==null)
+							throw new DALException("Invalid token");
 						List<RaavareDTO> raavare = database.getRaavareList();
 						RaavareDTO[] raavareArray = new RaavareDTO[raavare.size()];
 						return raavare.toArray(raavareArray);
@@ -40,6 +44,8 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 	public RaavareDTO createRaavare(RaavareDTO ans, String token) throws DALException {
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidName(ans.getRaavareNavn())==true)
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			if(database.createRaavare(ans)!=0){
 				return ans;
 			}
@@ -53,6 +59,8 @@ public class RaavareRPCServlet extends RemoteServiceServlet implements RaavareRP
 	public Integer updateRaavare(RaavareDTO ans, String token) throws DALException{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidName(ans.getRaavareNavn())==true)
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return database.updateRaavare(ans);
 			} catch (DALException e){
 				throw new DALException("An error occoured when updating a raavare. Please contact your sysadmin.");

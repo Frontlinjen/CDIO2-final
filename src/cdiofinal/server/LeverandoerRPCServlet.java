@@ -18,6 +18,8 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 	@Override
 	public LeverandoerDTO getLeverandoer(int id, String token) throws DALException{
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return database.getLeverandoer(id);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a leverandoer. Please contact your sysadmin.");
@@ -28,6 +30,8 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 	public LeverandoerDTO[] getLeverandoerList(String token) throws DALException{
 					
 					try {
+						if(TokenHandler.getInstance().validateToken(token)==null)
+							throw new DALException("Invalid token");
 						List<LeverandoerDTO> leverandoerer = database.getLeverandoerList();
 						LeverandoerDTO[] leverandoerArray = new LeverandoerDTO[leverandoerer.size()];
 						return leverandoerer.toArray(leverandoerArray);
@@ -41,6 +45,8 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 		if(FieldVerifier.isValidId(lev.getLeverandoerId())==true || FieldVerifier.isValidName(lev.getLeverandoerNavn())==true)
 		try {
 			if(database.createLeverandoer(lev)!=0){
+				if(TokenHandler.getInstance().validateToken(token)==null)
+					throw new DALException("Invalid token");
 				return lev;
 			}
 		} catch (DALException e){
@@ -53,6 +59,8 @@ public class LeverandoerRPCServlet extends RemoteServiceServlet implements Lever
 	public Integer updateLeverandoer(LeverandoerDTO lev, String token) throws DALException{
 		if(FieldVerifier.isValidId(lev.getLeverandoerId())==true || FieldVerifier.isValidName(lev.getLeverandoerNavn())==true)
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return database.updateLeverandoer(lev);
 			} catch (DALException e){
 				throw new DALException("An error occoured when updating a leverandoer. Please contact your sysadmin.");
