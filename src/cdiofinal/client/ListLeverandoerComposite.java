@@ -56,7 +56,7 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 					@Override
 					  public void update(final int index, LeverandoerDTO object, String value) {
 						if(FieldVerifier.isValidName(object.getLeverandoerNavn())==true)	
-						database.updateLeverandoer(object, new AsyncCallback<Integer>() {
+						database.updateLeverandoer(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
 									Window.alert("Update unsuccessful");
@@ -140,7 +140,7 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 	//Fired when the user clicks "list leverandoer"
 	@Override
 	public void onLoad() {
-		database.getLeverandoerList(this);
+		database.getLeverandoerList(Token.getToken(), this);
 	
 	}
 

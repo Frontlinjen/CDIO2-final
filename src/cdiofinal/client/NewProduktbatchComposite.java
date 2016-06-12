@@ -11,8 +11,6 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-import cdiofinal.server.MySQLReceptDAO;
-import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
 
 

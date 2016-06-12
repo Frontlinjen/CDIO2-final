@@ -11,11 +11,10 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.ReceptDTO;
 
-public class NewReceptComposite extends Composite implements AsyncCallback<Integer>{
+public class NewReceptComposite extends Composite implements AsyncCallback<ReceptDTO>{
 	final ReceptRPCInterfaceAsync database = (ReceptRPCInterfaceAsync)GWT.create(ReceptRPCInterface.class);
 	interface NewReceptCompositeUiBinder extends UiBinder<Widget, NewReceptComposite> {}
 	private static NewReceptCompositeUiBinder newReceptUiBinder = GWT.create(NewReceptCompositeUiBinder.class);
@@ -41,7 +40,7 @@ public class NewReceptComposite extends Composite implements AsyncCallback<Integ
 		}
 		else
 			
-			database.createRecept(new ReceptDTO(Integer.parseInt(idBox.getText()), navnBox.getText()), this);
+			database.createRecept(new ReceptDTO(Integer.parseInt(idBox.getText()), navnBox.getText()), Token.getToken(), this);
 	}
 
 	@Override
@@ -51,7 +50,7 @@ public class NewReceptComposite extends Composite implements AsyncCallback<Integ
 	}
 
 	@Override
-	public void onSuccess(Integer result) {
+	public void onSuccess(ReceptDTO result) {
 		statusField.setText("Succesfully created Recept");
 		idBox.setValue("");
 		navnBox.setValue("");
