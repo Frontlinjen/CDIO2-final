@@ -15,6 +15,8 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 	@Override
 	public ReceptKompDTO getReceptKomp(int recId, int raavareId, String token) throws DALException{
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return receptKompDAO.getReceptKomp(recId, raavareId);
 		} catch (DALException e) {
 			throw new DALException("An error occoured when getting a receptkomp. Please contact your sysadmin.");
@@ -24,6 +26,8 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 	@Override
 	public ReceptKompDTO[] getReceptKompList(String token) throws DALException{
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			List<ReceptKompDTO> receptkomp = receptKompDAO.getReceptKompList();
 			ReceptKompDTO[] receptKompArray = new ReceptKompDTO[receptkomp.size()];
 			return receptkomp.toArray(receptKompArray);
@@ -35,6 +39,8 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 	@Override
 	public ReceptKompDTO createReceptKomp(ReceptKompDTO recKomp, String token) throws DALException{
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			if(receptKompDAO.createReceptKomp(recKomp)!=0){
 				return recKomp;
 			}
@@ -47,6 +53,8 @@ public class ReceptKomponentRPCServlet extends RemoteServiceServlet implements R
 	@Override
 	public Integer updateReceptKomp(ReceptKompDTO recKomp, String token) throws DALException{
 		try {
+			if(TokenHandler.getInstance().validateToken(token)==null)
+				throw new DALException("Invalid token");
 			return receptKompDAO.updateReceptKomp(recKomp);
 			} catch (DALException e){
 				throw new DALException("An error occoured when updating a receptkomp. Please contact your sysadmin.");
