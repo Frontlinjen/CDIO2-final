@@ -12,8 +12,8 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 
 	private static final long serialVersionUID = 1L;
 	MySQLAnsatDAO database = new MySQLAnsatDAO();
-	
-	
+
+
 	@Override
 	public AnsatDTO getAnsat(String cpr, String token) throws Exception {
 		try {
@@ -27,57 +27,57 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 
 	@Override
 	public AnsatDTO[] getAnsatList(String token) throws Exception{
-					try {
-						if(isValid(token, 3)){
-						List<AnsatDTO> ansatte = database.getAnsatList();
-						AnsatDTO[] ansatteArray = new AnsatDTO[ansatte.size()];
-						return ansatte.toArray(ansatteArray);
-						}
-					} catch (DALException e) {
-						throw new DALException(gettingListError("user"));
-					}
-					return null;			
+		try {
+			if(isValid(token, 3)){
+				List<AnsatDTO> ansatte = database.getAnsatList();
+				AnsatDTO[] ansatteArray = new AnsatDTO[ansatte.size()];
+				return ansatte.toArray(ansatteArray);
+			}
+		} catch (DALException e) {
+			throw new DALException(gettingListError("user"));
+		}
+		return null;			
 	}
 
 	@Override
 	public AnsatDTO createAnsat(AnsatDTO ans, String token) throws Exception{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
-		try {
-			if(isValid(token, 3)){
-				if(database.createAnsat(ans)!=0)
-					return ans;
+			try {
+				if(isValid(token, 3)){
+					if(database.createAnsat(ans)!=0)
+						return ans;
+				}
+			} catch (DALException e){
+				throw new DALException(creatingError("user"));
 			}
-		} catch (DALException e){
-			throw new DALException(creatingError("user"));
-		}
 		return null;
 	}
 
 	@Override
 	public Integer updateAnsat(AnsatDTO ans, String token) throws Exception{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
-		try {
-			if(isValid(token, 3))
-				return database.updateAnsat(ans);
+			try {
+				if(isValid(token, 3))
+					return database.updateAnsat(ans);
 			} catch (DALException e){
 				throw new DALException(updatingError("user"));
 			}
-			return null ;
-		
+		return null ;
+
 	}
 
 	@Override
 	public Integer deleteAnsat(AnsatDTO ans, String token) throws Exception{
 		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
-		try {
-			if(TokenHandler.getInstance().validateToken(token)==null)
-				throw new DALException("Invalid token");
-			return database.deleteAnsat(ans);
+			try {
+				if(TokenHandler.getInstance().validateToken(token)==null)
+					throw new DALException("Invalid token");
+				return database.deleteAnsat(ans);
 			} catch (DALException e){
 				throw new DALException(deletingError("user"));
 			}
-			return 0;
-		
+		return 0;
+
 	}
-	
+
 }

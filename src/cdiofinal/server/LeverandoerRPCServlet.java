@@ -1,13 +1,10 @@
 package cdiofinal.server;
 import java.util.List;
 
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-
 import cdiofinal.shared.DALException;
 import cdiofinal.client.LeverandoerRPCInterface;
 import cdiofinal.server.MySQLLeverandoerDAO;
 import cdiofinal.shared.FieldVerifier;
-import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.LeverandoerDTO;
 
 public class LeverandoerRPCServlet extends ValidationServlet implements LeverandoerRPCInterface {
@@ -61,7 +58,7 @@ public class LeverandoerRPCServlet extends ValidationServlet implements Leverand
 		if(FieldVerifier.isValidId(lev.getLeverandoerId())==true || FieldVerifier.isValidName(lev.getLeverandoerNavn())==true)
 			try {
 				if(isValid(token, 2))
-						return database.updateLeverandoer(lev);
+					return database.updateLeverandoer(lev);
 			} catch (DALException e){
 				throw new DALException(updatingError("leverandoer"));
 			}
