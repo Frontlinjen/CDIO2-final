@@ -63,7 +63,7 @@ public class LoginScreen extends Composite  implements AsyncCallback<TokenRank>{
 		Token.setToken(tr.getToken());
 		feedback.setText("Success!");
 		RootPanel.get("contents").clear();
-		RootPanel.get("contents").add(new MainPage(tr.getRank()));
+		RootPanel.get("contents").add(new MainPage(tr.getRank(), tr.getName()));
 	}
 
 }

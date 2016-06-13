@@ -4,7 +4,9 @@ import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -19,19 +21,20 @@ public class MainPage extends Composite{
 	 * The message displayed to the user when the server cannot be reached or
 	 * returns an error.
 	 */
-	private static final String SERVER_ERROR = "An error occurred while "
-			+ "attempting to contact the server. Please check your network " + "connection and try again.";
 
 	private int rank;
-	
+	@UiField
+	public Label greeter;
 	public int getRank(){
 		return this.rank;
 	}
 	
-	public MainPage(int rank)
+	public MainPage(int rank, String name)
 	{
 		this.rank = rank;
 		initWidget(mainPageUiBinder.createAndBindUi(this));
+		greeter.setText("Greetings, " + name + "!");
+		
 	}
 	@Override
 	public void onLoad() 

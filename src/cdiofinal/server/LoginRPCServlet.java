@@ -25,6 +25,7 @@ public class LoginRPCServlet extends RemoteServiceServlet implements LoginRPCInt
 			TokenRank tr = new TokenRank();
 			tr.setToken(TokenHandler.getInstance().createToken(user.getCpr()));
 			tr.setRank(user.getTitel());
+			tr.setName(user.getOprNavn());
 			return tr;
 		}
 		else

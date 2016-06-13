@@ -6,7 +6,7 @@
     <div style="height: 512px;">
     	<!-- max-height is 512px-25px-2px(padding)  -->
 	    <div style="max-height:485px; overflow-y: auto;">
-	    		<c:CellTable ui:field='vPanel'/>
+	    		<c:CellTable width="100%" ui:field='vPanel'/>
 	    </div>
 	 	
 	 	<div style='background-color:#E0E0E0; margin: 0; padding: 2px; height: 25px'>
