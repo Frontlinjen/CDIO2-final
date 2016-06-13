@@ -27,7 +27,7 @@ public class MainPage extends Composite{
 	private static final String SERVER_ERROR = "An error occurred while "
 			+ "attempting to contact the server. Please check your network " + "connection and try again.";
 
-	int rank;
+	private int rank;
 	
 	public int getRank(){
 		return this.rank;
