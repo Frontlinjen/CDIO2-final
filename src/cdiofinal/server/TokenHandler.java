@@ -21,13 +21,13 @@ public class TokenHandler {
 	private final static String KEY = "Summer petrichor"; //16 chars = 16 byte = 128 bit
 	private final static String SIGNATURE = "Tessaract, the four dimensional equivalent of a cube."; 
 	private final static String SIGNATURE_KEY = "Tetradecahedrons";
-	
+
 	public static TokenHandler getInstance(){
 		if(instance == null) instance = new TokenHandler();
 		return instance;
 	}
 
-	
+
 	public String createToken(String user_id){
 		if(user_id.contains("\n")) throw new IllegalArgumentException("User Id cannot contain line breaks!");
 		String signature = encrypt(SIGNATURE, SIGNATURE_KEY);
@@ -62,7 +62,7 @@ public class TokenHandler {
 			return null;
 		}
 	}
-	 
+
 	public String getUserID(String token){
 		try {
 			String _data = decrypt(token);
@@ -90,8 +90,11 @@ public class TokenHandler {
 			return null;
 		}
 	}
-		
-	public String encrypt(String token) { return encrypt(token, KEY); }
+
+	public String encrypt(String token) { 
+		return encrypt(token, KEY); 
+	}
+
 	public String encrypt(String token, String key) {
 		try {
 			Key aesKey = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
@@ -100,7 +103,7 @@ public class TokenHandler {
 
 			cipher.init(Cipher.ENCRYPT_MODE, aesKey, ivParameterSpec);
 			byte[] encrypted = cipher.doFinal(token.getBytes("UTF-8"));
-			
+
 			Base64.Encoder encoder = Base64.getEncoder();
 			return encoder.encodeToString(encrypted);
 
@@ -110,13 +113,16 @@ public class TokenHandler {
 		}
 		return null;
 	}
-	public String decrypt(String encrypted) { return decrypt(encrypted, KEY); } 
+	public String decrypt(String encrypted) { 
+		return decrypt(encrypted, KEY); 
+	} 
+
 	public String decrypt(String encrypted, String key) {
 		try {
 			Key aesKey = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
 			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 			IvParameterSpec ivParameterSpec = new IvParameterSpec(aesKey.getEncoded());;
-			
+
 			Base64.Decoder decoder = Base64.getDecoder();
 			cipher.init(Cipher.DECRYPT_MODE, aesKey, ivParameterSpec);
 			String token = new String(cipher.doFinal(decoder.decode(encrypted)));
@@ -128,7 +134,10 @@ public class TokenHandler {
 		return null;
 	}
 
-	private String prettyTime(){ return prettyTime(System.currentTimeMillis()); }
+	private String prettyTime(){ 
+		return prettyTime(System.currentTimeMillis()); 
+		}
+	
 	private String prettyTime(long millis){
 		Calendar cal = Calendar.getInstance();
 		cal.setTimeInMillis(millis);
