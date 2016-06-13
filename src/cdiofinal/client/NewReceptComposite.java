@@ -37,7 +37,7 @@ public class NewReceptComposite extends Composite implements AsyncCallback<Recep
 	{
 		if(!FieldVerifier.isValidId(Integer.parseInt(idBox.getText()))==true)
 		{
-			statusField.setText("Ikke et gyldigt id (1-99999999");
+			statusField.setText("Ikke et gyldigt id (1-99999999)");
 		}
 		else if(!FieldVerifier.isValidName(navnBox.getText())==true)
 		{
