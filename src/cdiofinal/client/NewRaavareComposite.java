@@ -11,7 +11,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.RaavareDTO;
 

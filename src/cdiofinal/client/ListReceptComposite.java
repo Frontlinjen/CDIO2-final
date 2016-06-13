@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
+import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.ReceptDTO;
 
 public class ListReceptComposite extends Composite implements AsyncCallback<ReceptDTO[]>, NewElementCreatedCallback<ReceptDTO> {
@@ -55,7 +56,11 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 							database.updateRecept(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
-									Window.alert("Update unsuccessful");
+									Window.alert(ErrorHandling.getError(caught));
+									if(caught instanceof InsufficientAccessException)
+									{
+										gui.clear();
+									}
 								}
 
 								@Override

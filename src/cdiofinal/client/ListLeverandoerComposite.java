@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.LeverandoerDTO;
 import cdiofinal.shared.RaavareDTO;
 
@@ -59,7 +60,11 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 						database.updateLeverandoer(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
-									Window.alert("Update unsuccessful");
+									Window.alert(ErrorHandling.getError(caught));
+									if(caught instanceof InsufficientAccessException)
+									{
+										gui.clear();
+									}
 								}
 
 								@Override

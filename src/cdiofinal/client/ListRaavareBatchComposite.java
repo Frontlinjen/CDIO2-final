@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
+import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.ProduktBatchDTO;
 import cdiofinal.shared.RaavareBatchDTO;
 
@@ -62,7 +63,11 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 							database.updateRaavareBatch(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
-									Window.alert("Update unsuccessful");
+									Window.alert(ErrorHandling.getError(caught));
+									if(caught instanceof InsufficientAccessException)
+									{
+										gui.clear();
+									}
 								}
 
 								@Override

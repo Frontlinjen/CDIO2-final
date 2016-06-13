@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
+import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.RaavareDTO;
 
 public class ListRaavareComposite extends Composite implements AsyncCallback<RaavareDTO[]>, NewElementCreatedCallback<RaavareDTO> {
@@ -55,7 +56,11 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 							database.updateRaavare(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
-									Window.alert("Update unsuccessful");
+									Window.alert(ErrorHandling.getError(caught));
+									if(caught instanceof InsufficientAccessException)
+									{
+										gui.clear();
+									}
 								}
 
 								@Override

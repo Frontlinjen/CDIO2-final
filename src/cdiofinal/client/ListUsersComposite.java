@@ -24,6 +24,7 @@ import com.google.gwt.view.client.ListDataProvider;
 import cdiofinal.client.ErrorHandling;
 import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.FieldVerifier;
+import cdiofinal.shared.InsufficientAccessException;
 
 public class ListUsersComposite extends Composite implements AsyncCallback<AnsatDTO[]>, NewElementCreatedCallback<AnsatDTO> {
 	
@@ -65,7 +66,11 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 							database.updateAnsat(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
-									Window.alert("Update unsuccessful");
+									Window.alert(ErrorHandling.getError(caught));
+									if(caught instanceof InsufficientAccessException)
+									{
+										gui.clear();
+									}
 								}
 
 								@Override
