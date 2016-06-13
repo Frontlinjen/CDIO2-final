@@ -1,7 +1,7 @@
 package cdiofinal.client;
 
 public class Token {
-	static String token;
+	private static String token;
 	
 	public Token(String token){
 		Token.token = token;
