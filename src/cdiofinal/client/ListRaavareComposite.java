@@ -139,16 +139,7 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 
 	@Override
 	public void onFailure(Throwable caught) {
-		 try {
-		       throw caught;
-		     } catch (IncompatibleRemoteServiceException e) {
-		       Window.alert("Incompatible");
-		     } catch (InvocationException e) {
-		       Window.alert("Failed to connect to database\n" + e.getMessage());
-		     } catch (Throwable e) {
-		       // last resort -- a very unexpected exception
-		    	 Window.alert("Unknown error");
-		     }
+		ErrorHandling.getError(caught);
 	}
 	@Override
 	public void onSuccess(RaavareDTO[] result) {

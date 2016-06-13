@@ -1,5 +1,6 @@
 package cdiofinal.client;
 import java.util.Arrays;
+
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
@@ -16,16 +17,13 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
-import com.google.gwt.user.client.rpc.InvocationException;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
+import cdiofinal.client.ErrorHandling;
 import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.FieldVerifier;
-import cdiofinal.shared.InsufficientAccessException;
-
 
 public class ListUsersComposite extends Composite implements AsyncCallback<AnsatDTO[]>, NewElementCreatedCallback<AnsatDTO> {
 	
@@ -35,7 +33,6 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	private static ListUsersUiBinder listUsersUiBinder = GWT.create(ListUsersUiBinder.class);
 	@UiField(provided=true) CellTable<AnsatDTO> vPanel;
 	private List<AnsatDTO> gui;
-	private FieldVerifier verifier = new FieldVerifier();
 	public ListUsersComposite()
 	{
 		vPanel = new CellTable<AnsatDTO>();
@@ -185,7 +182,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 				iniColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>(){
 					  @Override
 					public void update(int index, final AnsatDTO ansat, final String value) {
-						  if(verifier.isValidIni(value)){
+						  if(FieldVerifier.isValidIni(value)){
 						  	ansat.setIni(value);
 						  }
 						  else
@@ -242,21 +239,9 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 
 	@Override
 	public void onFailure(Throwable caught) {
-		 try {
-		       throw caught;
-		     } catch (IncompatibleRemoteServiceException e) {
-		       Window.alert("Incompatible");
-		     } catch (InvocationException e) {
-		       Window.alert("Failed to connect to server\n" + e.getMessage());
-		     } catch(InsufficientAccessException e)
-			{
-				    Window.alert(e.getMessage()); 
-			 }
-		 	catch (Throwable e) {
-		       // last resort -- a very unexpected exception
-		    	 Window.alert("Unknown error:\n" + e.getMessage());
-		     }
+		ErrorHandling.getError(caught);
 	}
+	
 	@Override
 	public void onSuccess(AnsatDTO[] result) {
 		if(result==null)
