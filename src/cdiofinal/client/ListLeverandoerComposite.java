@@ -59,7 +59,9 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 						database.updateLeverandoer(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
+									Window.alert(ErrorHandling.getError(caught));
 									Window.alert("Update unsuccessful");
+									gui.clear();
 								}
 
 								@Override

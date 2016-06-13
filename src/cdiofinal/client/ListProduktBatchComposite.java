@@ -60,7 +60,9 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 							database.updateProduktBatch(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
+									Window.alert(ErrorHandling.getError(caught));
 									Window.alert("Update unsuccessful");
+									gui.clear();
 								}
 
 								@Override
