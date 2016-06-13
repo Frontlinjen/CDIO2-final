@@ -1,73 +1,70 @@
 package cdiofinal.server;
 import java.util.List;
 
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-
 import cdiofinal.client.RaavareBatchRPCInterface;
 import cdiofinal.server.MySQLRaavareBatchDAO;
 import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
-import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.RaavareBatchDTO;
 
-public class RaavareBatchRPCServlet extends RemoteServiceServlet implements RaavareBatchRPCInterface {
+public class RaavareBatchRPCServlet extends ValidationServlet implements RaavareBatchRPCInterface {
 
 	private static final long serialVersionUID = 1L;
 	MySQLRaavareBatchDAO database = new MySQLRaavareBatchDAO();
-	
-	
+
+
 	@Override
 	public RaavareBatchDTO getRaavareBatch(int rb_id, String token) throws Exception{
 		try {
-			if(TokenHandler.getInstance().validateToken(token)==null)
-				throw new InsufficientAccessException("Invalid token. Please refresh the page and login again.");
-			return database.getRaavareBatch(rb_id);
+			if(isValid(token, 1))
+				return database.getRaavareBatch(rb_id);
 		} catch (DALException e) {
-			throw new DALException("An error occoured when getting a raavarebatch. Please contact your sysadmin.");
+			throw new DALException(gettingError("raavare batch"));
 		}
+		return null;
 	}
 
 	@Override
 	public RaavareBatchDTO[] getRaavareBatchList(String token) throws Exception{
-					
-					try {
-						if(TokenHandler.getInstance().validateToken(token)==null)
-							throw new DALException("Invalid token");
-						List<RaavareBatchDTO> raavarebatches = database.getRaavarebatchList();
-						RaavareBatchDTO[] raavarebatchesArray = new RaavareBatchDTO[raavarebatches.size()];
-						return raavarebatches.toArray(raavarebatchesArray);
-					} catch (DALException e) {
-						throw new DALException("An error occoured when getting raavarebatch list. Please contact your sysadmin.");
-					}			
+
+		try {
+			if(isValid(token, 1)){
+				List<RaavareBatchDTO> raavarebatches = database.getRaavarebatchList();
+				RaavareBatchDTO[] raavarebatchesArray = new RaavareBatchDTO[raavarebatches.size()];
+				return raavarebatches.toArray(raavarebatchesArray);
+			}
+		} catch (DALException e) {
+			throw new DALException(gettingListError("raavare batch"));
+		}
+		return null;			
 	}
 
 	@Override
 	public RaavareBatchDTO createRaavareBatch(RaavareBatchDTO ans, String token) throws Exception{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidId(ans.getLeverandoerId())==true || FieldVerifier.isValidId(ans.getRaavarebatchId()))
-		try {
-			if(TokenHandler.getInstance().validateToken(token)==null)
-				throw new DALException("Invalid token");
-			if(database.createRaavareBatch(ans)!=0){
-				return ans;
+			try {
+				if(isValid(token, 1)){
+					if(database.createRaavareBatch(ans)!=0){
+						return ans;
+					}
+				}
+			} catch (DALException e){
+				throw new DALException(creatingError("raavare batch"));
 			}
-		} catch (DALException e){
-			throw new DALException("An error occoured when creating a raavarebatch. Please contact your sysadmin.");
-		}
 		return null;
 	}
 
 	@Override
 	public Integer updateRaavareBatch(RaavareBatchDTO ans, String token) throws Exception{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidId(ans.getLeverandoerId())==true || FieldVerifier.isValidId(ans.getRaavarebatchId()))
-		try {
-			if(TokenHandler.getInstance().validateToken(token)==null)
-				throw new DALException("Invalid token");
-			return database.updateRaavareBatch(ans);
+			try {
+				if(isValid(token, 1))
+					return database.updateRaavareBatch(ans);
 			} catch (DALException e){
-				throw new DALException("An error occoured when updating a raavarebatch. Please contact your sysadmin.");
+				throw new DALException(updatingError("raavare batch"));
 			}
-			return 0;
-		
+		return 0;
+
 	}
 
 }
