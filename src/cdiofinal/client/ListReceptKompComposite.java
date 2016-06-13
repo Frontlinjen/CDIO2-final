@@ -44,7 +44,7 @@ public class ListReceptKompComposite extends Composite implements AsyncCallback<
 		p.show();
 	}
 	
-	public List<ReceptKompDTO> getLayoutList() { //TODO: Show users when clicked
+	public List<ReceptKompDTO> getLayoutList() {
 		Column<ReceptKompDTO, String> receptIDColumn = getReceptIDColumn();
 		//CPRColumn.setSortable(true);
 		Column<ReceptKompDTO, String> raavareIdColumn = getRaavareIdColumn();
@@ -53,8 +53,8 @@ public class ListReceptKompComposite extends Composite implements AsyncCallback<
 		Column<ReceptKompDTO, String> saveColumn = getButtonColumn("save");
 		saveColumn.setFieldUpdater(new FieldUpdater<ReceptKompDTO, String>() {
 					@Override
-					  public void update(final int index, ReceptKompDTO object, String value) {
-							database.updateReceptKomp(object, Token.getToken(), new AsyncCallback<Integer>() {
+					  public void update(final int index, ReceptKompDTO recKomp, String value) {
+							database.updateReceptKomp(recKomp, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
 									Window.alert("Update unsuccessful");
