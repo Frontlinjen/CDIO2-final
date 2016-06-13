@@ -4,7 +4,7 @@
     <g:HTMLPanel>
     <div style="height: 512px;">
     	<!-- max-height is 512px-25px-2px(padding)  -->
-	    <div style="max-height:485px; overflow-y: scroll;">
+	    <div style="max-height:485px; overflow-y: auto;">
 	    		<c:CellTable ui:field='vPanel'/>
 	    </div>
 	 	
