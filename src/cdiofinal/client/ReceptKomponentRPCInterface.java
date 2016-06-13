@@ -10,5 +10,5 @@ public interface ReceptKomponentRPCInterface {
 	ReceptKompDTO getReceptKomp(int recId, int raavareId, String token) throws Exception;
 	ReceptKompDTO[] getReceptKompList(String token) throws Exception;
 	ReceptKompDTO createReceptKomp(ReceptKompDTO recKomp, String token) throws Exception;
-	ReceptKompDTO updateReceptKomp(ReceptKompDTO recKomp, String token) throws Exception;
+	Integer updateReceptKomp(ReceptKompDTO recKomp, String token) throws Exception;
 }
