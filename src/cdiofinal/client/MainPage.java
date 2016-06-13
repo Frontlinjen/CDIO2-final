@@ -1,5 +1,7 @@
 package cdiofinal.client;
 
+import java.util.ArrayList;
+
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -41,21 +43,21 @@ public class MainPage extends Composite{
 	{
 		final Composite[] compositeWidgets = new Composite[6];
 		switch(rank){
-		case 3: 
-		{
-			compositeWidgets[0] = new ListUsersComposite();
-		}
-		case 2:
-		{
-			compositeWidgets[1] = new ListRaavareComposite();
-			compositeWidgets[2] = new ListLeverandoerComposite();
-			compositeWidgets[3] = new ListReceptComposite();
-		}
-		case 1:
-		{
-			compositeWidgets[4] = new ListProduktBatchComposite();
-			compositeWidgets[5] = new ListRaavareBatchComposite();
-		}
+			case 3: 
+			{
+				compositeWidgets[0] = new ListUsersComposite();
+			}
+			case 2:
+			{
+				compositeWidgets[1] = new ListRaavareComposite();
+				compositeWidgets[2] = new ListLeverandoerComposite();
+				compositeWidgets[3] = new ListReceptComposite();
+			}
+			case 1:
+			{
+				compositeWidgets[4] = new ListProduktBatchComposite();
+				compositeWidgets[5] = new ListRaavareBatchComposite();
+			}
 		}
 		RootPanel container = RootPanel.get("options");
 		String[] buttons = {
@@ -67,9 +69,9 @@ public class MainPage extends Composite{
 				"List R\u00E5varerbatches"};
 		ClickHandler[] clickHandlers = new ClickHandler[compositeWidgets.length];
 		for (int i = 0; i < compositeWidgets.length; i++) {
-			//if(compositeWidgets[i]==null){
-				//continue;
-			//}
+			if(compositeWidgets[i] == null){
+				continue;
+			}
 			final int constant = i;
 			clickHandlers[i] = new ClickHandler() {
 
@@ -79,12 +81,8 @@ public class MainPage extends Composite{
 					panel.clear();
 					Composite widget = compositeWidgets[constant];
 					panel.add(widget);
-				}
-				
+				}	
 			};
-		}
-		for(int i=0;i<buttons.length;++i)
-		{
 			PushButton t = new PushButton(buttons[i]);
 			t.addClickHandler(clickHandlers[i]);
 			container.add(t);
