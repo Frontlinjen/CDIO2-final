@@ -35,6 +35,7 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 	public ListRaavareComposite()
 	{
 		vPanel = new CellTable<RaavareDTO>();
+		vPanel.setVisibleRange(0, 1000000);
 		initWidget(listRaavareUiBinder.createAndBindUi(this));
 		gui = getLayoutList();
 	}

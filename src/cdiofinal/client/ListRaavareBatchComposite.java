@@ -36,6 +36,7 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 	public ListRaavareBatchComposite()
 	{
 		vPanel = new CellTable<RaavareBatchDTO>();
+		vPanel.setVisibleRange(0, 1000000);
 		initWidget(listRaavareBatchUiBinder.createAndBindUi(this));
 		gui = getLayoutList();
 	}

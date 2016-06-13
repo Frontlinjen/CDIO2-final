@@ -53,7 +53,7 @@ public class NewProduktBatchKomponentComposite extends Composite implements Asyn
 
 	@Override
 	public void onFailure(Throwable caught) {
-		statusField.setText("Failed to create ProduktBatchKomponent");
+		statusField.setText("Failed to create ProduktBatchKomponent" + ErrorHandling.getError(caught));
 		
 	}
 

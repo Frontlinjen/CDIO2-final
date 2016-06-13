@@ -48,7 +48,7 @@ public class NewProduktbatchComposite extends Composite implements AsyncCallback
 
 	@Override
 	public void onFailure(Throwable caught) {
-		statusField.setText("Failed to create leverandoer");
+		statusField.setText("Failed to create leverandoer" + ErrorHandling.getError(caught));
 		
 	}
 

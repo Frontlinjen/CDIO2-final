@@ -51,7 +51,7 @@ public class NewRaavareBatchComposite extends Composite implements AsyncCallback
 
 	@Override
 	public void onFailure(Throwable caught) {
-		statusField.setText("Failed to create RaavareBatch");
+		statusField.setText("Failed to create RaavareBatch" + ErrorHandling.getError(caught));
 		
 	}
 

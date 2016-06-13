@@ -34,6 +34,7 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 	public ListReceptComposite()
 	{
 		vPanel = new CellTable<ReceptDTO>();
+		vPanel.setVisibleRange(0, 1000000);
 		initWidget(listReceptUiBinder.createAndBindUi(this));
 		gui = getLayoutList();
 	}

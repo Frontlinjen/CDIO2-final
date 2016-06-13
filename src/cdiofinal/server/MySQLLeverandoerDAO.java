@@ -54,8 +54,9 @@ public class MySQLLeverandoerDAO implements LeverandoerDAO {
 
 	@Override
 	public int createLeverandoer(LeverandoerDTO leverandoer) throws DALException {
-		return Connector.doUpdate(String.format("INSERT INTO leverandoer(leverandoer_id, leverandoer_navn) VALUES(" + leverandoer.getLeverandoerId() + ", '" +
-		leverandoer.getLeverandoerNavn() + ");"));
+		return Connector.doUpdate("INSERT INTO leverandoer(leverandoer_id, leverandoer_navn) VALUES " + 
+				"(" + leverandoer.getLeverandoerId() + ", '" + leverandoer.getLeverandoerNavn() + "');");
+				
 	}
 
 	@Override

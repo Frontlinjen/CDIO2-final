@@ -37,6 +37,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	public ListUsersComposite()
 	{
 		vPanel = new CellTable<AnsatDTO>();
+		vPanel.setVisibleRange(0, 1000000);
 		initWidget(listUsersUiBinder.createAndBindUi(this));
 		gui = getLayoutList();
 	}

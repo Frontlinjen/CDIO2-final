@@ -50,7 +50,7 @@ public class NewReceptComposite extends Composite implements AsyncCallback<Recep
 
 	@Override
 	public void onFailure(Throwable caught) {
-		statusField.setText("Failed to create Recept");
+		statusField.setText("Failed to create Recept" + ErrorHandling.getError(caught));
 		
 	}
 

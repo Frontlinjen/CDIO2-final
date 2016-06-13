@@ -42,14 +42,7 @@ public class FieldVerifier {
 		{
 			return false;
 		}
-		else
-			for(int i = 0; i < name.length(); i++){
-				if(Character.isDigit(name.charAt(i))){
-					return false;
-				}
-				i++;
-				}
-		return true;
+		else return true;
 	}
 	
 	public static boolean isValidNomNetto(double nom){
@@ -81,6 +74,9 @@ public class FieldVerifier {
 	
 	public static boolean isValidId (int id){
 		if(id < 1){
+			return false;
+		}
+		else if (id == 0){
 			return false;
 		}
 		else if(id > 99999999){
