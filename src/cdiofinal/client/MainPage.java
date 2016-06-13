@@ -1,7 +1,5 @@
 package cdiofinal.client;
 
-import java.util.ArrayList;
-
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -10,9 +8,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
-
-import cdiofinal.server.MySQLAnsatDAO;
-import cdiofinal.shared.AnsatDTO;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
