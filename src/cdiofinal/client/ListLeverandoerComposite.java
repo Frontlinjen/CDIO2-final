@@ -36,6 +36,7 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 	public ListLeverandoerComposite()
 	{
 		vPanel = new CellTable<LeverandoerDTO>();
+		vPanel.setVisibleRange(0, 10000);
 		initWidget(listLeverandoerUiBinder.createAndBindUi(this));
 		gui = getLayoutList();	
 	}
@@ -103,8 +104,6 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 				
 		return buttonColumn;
 	}
-
-
 
 	private Column<LeverandoerDTO, String> getIDColumn() {
 		EditTextCell idCell = new EditTextCell();

@@ -60,7 +60,7 @@ public class NewReceptKompComposite extends Composite implements AsyncCallback<R
 
 		@Override
 		public void onFailure(Throwable caught) {
-			statusField.setText("Fejlede i at oprette ReceptKomp");
+			statusField.setText("Fejlede i at oprette ReceptKomp" + ErrorHandling.getError(caught));
 			
 		}
 

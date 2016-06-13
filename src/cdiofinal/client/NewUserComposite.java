@@ -64,7 +64,7 @@ public class NewUserComposite extends Composite implements AsyncCallback<AnsatDT
 	}
 		@Override
 		public void onFailure(Throwable caught) {
-			statusField.setText("Failed to create user");
+			statusField.setText("Failed to create user" + ErrorHandling.getError(caught));
 			
 		}
 	

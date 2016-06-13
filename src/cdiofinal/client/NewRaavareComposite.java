@@ -37,7 +37,7 @@ public class NewRaavareComposite extends Composite implements AsyncCallback<Raav
 		{
 			statusField.setText("Id'et er ugyldigt. (1-99999999");
 		}
-		if(!FieldVerifier.isValidName(navnBox.getText())==true)
+		else if(!FieldVerifier.isValidName(navnBox.getText())==true)
 		{
 			statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver, med en l�ngde mellem 2-20 karaktere");
 		}
@@ -48,7 +48,7 @@ public class NewRaavareComposite extends Composite implements AsyncCallback<Raav
 
 	@Override
 	public void onFailure(Throwable caught) {
-		statusField.setText("Failed to create Raavare");
+		statusField.setText("Failed to create Raavare" + ErrorHandling.getError(caught));;
 		
 	}
 
