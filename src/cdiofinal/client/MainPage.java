@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PushButton;
@@ -23,6 +24,7 @@ public class MainPage extends Composite{
 	 */
 
 	private int rank;
+	private String name;
 	@UiField
 	public Label greeter;
 	public int getRank(){
@@ -33,12 +35,16 @@ public class MainPage extends Composite{
 	{
 		this.rank = rank;
 		initWidget(mainPageUiBinder.createAndBindUi(this));
-		greeter.setText("Greetings, " + name + "!");
+		this.name = name;
+		
 		
 	}
 	@Override
 	public void onLoad() 
 	{
+		
+		
+		
 		final Composite[] compositeWidgets = new Composite[6];
 		switch(rank){
 			case 3: 
@@ -57,7 +63,7 @@ public class MainPage extends Composite{
 				compositeWidgets[5] = new ListRaavareBatchComposite();
 			}
 		}
-		RootPanel container = RootPanel.get("options");
+		final RootPanel container = RootPanel.get("options");
 		String[] buttons = {
 				"List Users", 
 				"List R\u00E5varer", 
@@ -85,5 +91,22 @@ public class MainPage extends Composite{
 			t.addClickHandler(clickHandlers[i]);
 			container.add(t);
 		}
+		//Sets up the logout button:
+				Button logout = new Button("Logout");
+				logout.addClickHandler(new ClickHandler() {
+					
+					@Override
+					public void onClick(ClickEvent event) {
+						Token.setToken("");
+						container.clear();
+						RootPanel.get("contents").clear();
+						RootPanel.get("contents").add(new LoginScreen());
+						
+					}
+				});
+				container.add(logout);
+				logout.getElement().getStyle().setProperty("position", "absolute");
+				logout.getElement().getStyle().setProperty("bottom", "0px");
+				logout.getElement().getStyle().setProperty("left", "0px");
 	}
 }
