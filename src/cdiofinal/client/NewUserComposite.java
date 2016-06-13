@@ -19,7 +19,7 @@ import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.FieldVerifier;
 
 public class NewUserComposite extends Composite implements AsyncCallback<AnsatDTO>{
-	final AnsatRPCInterfaceAsync database = (AnsatRPCInterfaceAsync)GWT.create(AnsatRPCInterface.class);
+	private final AnsatRPCInterfaceAsync database = (AnsatRPCInterfaceAsync)GWT.create(AnsatRPCInterface.class);
 	interface NewUserUIBinder extends UiBinder<Widget, NewUserComposite> {}
 	private static NewUserUIBinder newUserUiBinder = GWT.create(NewUserUIBinder.class);
 	
