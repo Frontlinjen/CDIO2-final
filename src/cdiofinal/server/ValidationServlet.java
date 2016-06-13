@@ -14,7 +14,7 @@ public class ValidationServlet extends RemoteServiceServlet{
 	public boolean isValid(String token, int rank) throws Exception{
 		if(TokenHandler.getInstance().validateToken(token)==null)
 			throw new InsufficientAccessException("Invalid token. Please refresh the page and login again.");
-		else if(database.getAnsat(TokenHandler.getInstance().getUserID(token)).getTitel() < 3)
+		else if(database.getAnsat(TokenHandler.getInstance().getUserID(token)).getTitel() < rank)
 		{
 			throw new InsufficientAccessException("You dont have the required access to view this page");
 		}
