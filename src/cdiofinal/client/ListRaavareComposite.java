@@ -139,7 +139,8 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 
 	@Override
 	public void onFailure(Throwable caught) {
-		ErrorHandling.getError(caught);
+		Window.alert(ErrorHandling.getError(caught));
+		gui.clear();
 	}
 	@Override
 	public void onSuccess(RaavareDTO[] result) {

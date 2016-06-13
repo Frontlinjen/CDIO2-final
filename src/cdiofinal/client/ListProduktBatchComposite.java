@@ -166,7 +166,8 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 
 	@Override
 	public void onFailure(Throwable caught) {
-		ErrorHandling.getError(caught);
+		Window.alert(ErrorHandling.getError(caught));
+		gui.clear();
 	}
 	
 	@Override

@@ -2,7 +2,7 @@ package cdiofinal.client;
 
 import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.InvocationException;
-
+	
 import cdiofinal.shared.InsufficientAccessException;
 
 public class ErrorHandling {

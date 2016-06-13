@@ -142,7 +142,8 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 
 	@Override
 	public void onFailure(Throwable caught) {
-		ErrorHandling.getError(caught);
+		Window.alert(ErrorHandling.getError(caught));
+		gui.clear();
 	}
 	@Override
 	public void onSuccess(ReceptDTO[] result) {
