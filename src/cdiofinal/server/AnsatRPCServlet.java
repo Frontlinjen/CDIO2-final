@@ -9,8 +9,9 @@ import cdiofinal.server.MySQLAnsatDAO;
 import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.InsufficientAccessException;
+import cdiofinal.server.ValidationServlet;
 
-public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInterface {
+public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterface {
 
 	private static final long serialVersionUID = 1L;
 	MySQLAnsatDAO database = new MySQLAnsatDAO();
@@ -19,32 +20,24 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 	@Override
 	public AnsatDTO getAnsat(String cpr, String token) throws Exception {
 		try {
-			if(TokenHandler.getInstance().validateToken(token)==null)
-				throw new InsufficientAccessException("Invalid token. Please refresh the page and login again.");
-			else if(database.getAnsat(TokenHandler.getInstance().getUserID(token)).getTitel() < 3)
-			{
-				throw new InsufficientAccessException("You dont have the required access to view this page");
-			}
-			return database.getAnsat(cpr);
+			if(isValid(token, getAnsat(cpr, token).getTitel()))
+				return database.getAnsat(cpr);
 		} catch (DALException e) {
-			throw new DALException("An error occoured when getting a user. Please contact your sysadmin.");
+			throw new DALException(gettingError("user"));
 		}
+		return null;
 	}
 
 	@Override
 	public AnsatDTO[] getAnsatList(String token) throws Exception{
 					try {
-						if(TokenHandler.getInstance().validateToken(token)==null)
-							throw new InsufficientAccessException("Invalid token. Please refresh the page and login again.");
-						else if(database.getAnsat(TokenHandler.getInstance().getUserID(token)).getTitel() < 3)
-						{
-							throw new InsufficientAccessException("You dont have the required access to view this page");
-						}
+						if(isValid(token, getAnsat(cpr., token).getTitel()))
+							return database.getAnsat(cpr);
 						List<AnsatDTO> ansatte = database.getAnsatList();
 						AnsatDTO[] ansatteArray = new AnsatDTO[ansatte.size()];
 						return ansatte.toArray(ansatteArray);
 					} catch (DALException e) {
-						throw new DALException("An error occoured when getting ansat list. Please contact your sysadmin.");
+						throw new DALException(gettingListError("user"));
 					}			
 	}
 
@@ -57,7 +50,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 		if(database.createAnsat(ans)!=0)
 			return ans;
 		} catch (DALException e){
-			throw new DALException("An error occoured when creating a new user. Please contact your sysadmin.");
+			throw new DALException(creatingError("user"));
 		}
 		return null;
 	}
@@ -70,7 +63,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 				throw new DALException("Invalid token");
 			return database.updateAnsat(ans);
 			} catch (DALException e){
-				throw new DALException("An error occoured when updating a user. Please contact your sysadmin.");
+				throw new DALException(updatingError("user"));
 			}
 			return 0;
 		
@@ -84,7 +77,7 @@ public class AnsatRPCServlet extends RemoteServiceServlet implements AnsatRPCInt
 				throw new DALException("Invalid token");
 			return database.deleteAnsat(ans);
 			} catch (DALException e){
-				throw new DALException("An error occoured when deleting a user. Please contact your sysadmin.");
+				throw new DALException(deletingError("user"));
 			}
 			return 0;
 		
