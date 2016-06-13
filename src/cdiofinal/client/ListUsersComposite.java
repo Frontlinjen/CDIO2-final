@@ -239,7 +239,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 
 	@Override
 	public void onFailure(Throwable caught) {
-		ErrorHandling.getError(caught);
+		Window.alert(ErrorHandling.getError(caught));
+		gui.clear();
 	}
 	
 	@Override

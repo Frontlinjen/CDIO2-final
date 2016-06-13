@@ -146,7 +146,8 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 
 	@Override
 	public void onFailure(Throwable caught) {
-		ErrorHandling.getError(caught);
+		Window.alert(ErrorHandling.getError(caught));
+		gui.clear();
 	}
 	
 	@Override
