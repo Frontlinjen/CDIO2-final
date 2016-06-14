@@ -13,10 +13,10 @@ public class LoginRPCServlet extends RemoteServiceServlet implements LoginRPCInt
 	MySQLAnsatDAO database = new MySQLAnsatDAO();
 	
 	@Override
-	public TokenRank getLoginToken(long cpr, String password) throws Exception{
+	public TokenRank getLoginToken(String cpr, String password) throws Exception{
 		AnsatDTO user;
 		try{
-			user = database.getAnsat(Long.toString(cpr));
+			user = database.getAnsat(cpr);
 		} catch(DALException e){
 			throw new DALException("Brugeren kunne ikke findes");
 		}

@@ -77,15 +77,13 @@ public class FieldVerifier {
 		else return true;
 	}
 
-	public static boolean isValidCpr (long cpr){
-		if (!Long.toString(cpr).matches("[0-9]+"))
+	public static boolean isValidCpr (String cpr){
+		
+		if (cpr.length() > 10)
 		{
 			return false;
 		}
-		if (Long.toString(cpr).length() != 10)
-		{
-			return false;
-		}
+		
 		else return true;
 	}
 	

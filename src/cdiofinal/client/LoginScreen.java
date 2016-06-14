@@ -36,7 +36,7 @@ public class LoginScreen extends Composite  implements AsyncCallback<TokenRank>{
 		String pass = password.getText();
 		String usr = username.getText();
 		try{
-			int cpr = Integer.parseInt(usr);
+			String cpr = null;
 			if(!FieldVerifier.isValidCpr(cpr))
 			{
 				feedback.setText("CPR skal v\u00E6re 10 langt.");

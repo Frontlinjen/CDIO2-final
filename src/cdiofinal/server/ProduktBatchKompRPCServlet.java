@@ -43,7 +43,7 @@ public class ProduktBatchKompRPCServlet extends ValidationServlet implements Pro
 	public ProduktBatchKompDTO createProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws Exception{
 		if(FieldVerifier.isValidId(pbk.getPbId())==true 
 		|| FieldVerifier.isValidId(pbk.getRaavarebatchId())==true 
-		|| FieldVerifier.isValidCpr(Integer.parseInt(pbk.getCpr())))
+		|| FieldVerifier.isValidCpr(pbk.getCpr()))
 			try {
 				if(isValid(token, 0)){
 					if(database.createProduktBatchKomp(pbk)!=0){
@@ -69,7 +69,9 @@ public class ProduktBatchKompRPCServlet extends ValidationServlet implements Pro
 
 	@Override
 	public Integer updateProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws Exception{
-		if(FieldVerifier.isValidId(pbk.getPbId())==true || FieldVerifier.isValidId(pbk.getRaavarebatchId())==true || FieldVerifier.isValidCpr(Integer.parseInt(pbk.getCpr())))
+		if(FieldVerifier.isValidId(pbk.getPbId())==true
+		&& FieldVerifier.isValidId(pbk.getRaavarebatchId())==true 
+		&& FieldVerifier.isValidCpr(pbk.getCpr()))
 			try {
 				if(isValid(token, 0))
 					return database.updateProduktBatchKomp(pbk);

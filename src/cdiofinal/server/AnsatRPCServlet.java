@@ -41,7 +41,7 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 
 	@Override
 	public AnsatDTO createAnsat(AnsatDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true 
+		if(FieldVerifier.isValidCpr(ans.getCpr())==true 
 		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
 		&& FieldVerifier.isValidIni(ans.getIni())==true 
 		&& FieldVerifier.isValidPassword(ans.getPassword())==true)
@@ -63,7 +63,7 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 
 	@Override
 	public Integer updateAnsat(AnsatDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true 
+		if(FieldVerifier.isValidCpr(ans.getCpr())==true 
 		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
 		&& FieldVerifier.isValidIni(ans.getIni())==true 
 		&& FieldVerifier.isValidPassword(ans.getPassword())==true)
@@ -79,7 +79,7 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 
 	@Override
 	public Integer deleteAnsat(AnsatDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true 
+		if(FieldVerifier.isValidCpr(ans.getCpr())==true 
 		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
 		&& FieldVerifier.isValidIni(ans.getIni())==true 
 		&& FieldVerifier.isValidPassword(ans.getPassword()))
