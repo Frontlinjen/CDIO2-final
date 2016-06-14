@@ -50,22 +50,7 @@ public class RaavareBatchRPCServlet extends ValidationServlet implements Raavare
 					}
 				}
 			} catch (DALException e){
-				
-					try
-					{
-					if (raavareBatches.getRaavareBatch(ans.getRaavarebatchId()).getRaavarebatchId()==ans.getRaavarebatchId()) {
-						throw new DALException("Dette ravarebatch id eksisterer allerede");
-					}
-					}
-					catch(DALException ex)
-					{
-						//getRaavareBatch throws an exception if rbID doesnt work; 
-					}
-					raavare.getRaavare(ans.getRaavareId()); //Throws an exception to be caught by the client 
-															//if raavare doesnt exists. 
-					leverandorer.getLeverandoer(ans.getLeverandoerId());
-
-					throw new DALException(creatingError("raavare batch"));
+				throw new DALException(creatingError("raavare batch"));
 			}
 		return null;
 	}
@@ -73,19 +58,12 @@ public class RaavareBatchRPCServlet extends ValidationServlet implements Raavare
 	@Override
 	public Integer updateRaavareBatch(RaavareBatchDTO ans, String token) throws Exception{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true
-		&& FieldVerifier.isValidId(ans.getLeverandoerId())==true 
-		&& FieldVerifier.isValidId(ans.getRaavarebatchId()))
+				&& FieldVerifier.isValidId(ans.getLeverandoerId())==true 
+				&& FieldVerifier.isValidId(ans.getRaavarebatchId())==true)
 			try {
 				if(isValid(token, 1))
 					return raavareBatches.updateRaavareBatch(ans);
 			} catch (DALException e){
-				if(raavareBatches.getRaavareBatch(ans.getRaavareId()).getRaavareId()==ans.getRaavareId()) {
-					throw new DALException("Denne raavare eksisterer ikke");
-				}
-				else if(raavareBatches.getRaavareBatch(ans.getRaavareId()).getLeverandoerId() == ans.getLeverandoerId()) {
-					throw new DALException("Denne leverandoer eksisterer ikke");
-				}
-				else
 				throw new DALException(updatingError("raavare batch"));
 			}
 		return 0;

@@ -50,11 +50,6 @@ public class RaavareRPCServlet extends ValidationServlet implements RaavareRPCIn
 					}
 				}
 			} catch (DALException e){
-				if(database.getRaavare(ans.getRaavareId()).getRaavareId()==ans.getRaavareId())
-				{
-					throw new DALException("En raavare med dette id eksisterer allerede");
-				}
-				else
 				throw new DALException(creatingError("raavare"));
 			}
 		return null;
@@ -68,11 +63,6 @@ public class RaavareRPCServlet extends ValidationServlet implements RaavareRPCIn
 				if(isValid(token, 2))
 					return database.updateRaavare(ans);
 			} catch (DALException e){
-				if(database.getRaavare(ans.getRaavareId()).getRaavareId()!=ans.getRaavareId())
-				{
-					throw new DALException("En raavare med dette ID eksisterer ikke");
-				}
-				else
 				throw new DALException(updatingError("raavare"));
 			}
 		return null;

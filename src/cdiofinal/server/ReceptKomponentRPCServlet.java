@@ -44,14 +44,6 @@ public class ReceptKomponentRPCServlet extends ValidationServlet implements Rece
 				}
 			}
 		} catch (DALException e){
-			if (database.getReceptKomp(recKomp.getReceptId(), recKomp.getRaavareId()).getRaavareId()!=recKomp.getRaavareId()) {
-				throw new DALException("En raavare med dette ID eksisterer ikke");
-			}
-			else if(database.getReceptKomp(recKomp.getReceptId(), recKomp.getRaavareId()).getReceptId() != recKomp.getReceptId())
-			{
-				throw new DALException("En recept med dette ID eksisterer ikke");
-			}
-			else
 			throw new DALException(creatingError("recept component"));
 		}
 		return null;
@@ -63,14 +55,6 @@ public class ReceptKomponentRPCServlet extends ValidationServlet implements Rece
 			if(isValid(token, 2))
 				return database.updateReceptKomp(recKomp);
 		} catch (DALException e){
-			if (database.getReceptKomp(recKomp.getReceptId(), recKomp.getRaavareId()).getRaavareId()!=recKomp.getRaavareId()) {
-				throw new DALException("En raavare med dette ID eksisterer ikke");
-			}
-			else if(database.getReceptKomp(recKomp.getReceptId(), recKomp.getRaavareId()).getReceptId() != recKomp.getReceptId())
-			{
-				throw new DALException("En recept med dette ID eksisterer ikke");
-			}
-			else
 			throw new DALException(updatingError("recept component"));
 		}
 		return null;
