@@ -57,38 +57,31 @@ public class Connector
 				Constant.username, Constant.password);
 	}
 
-	public static ResultSet doQuery(String cmd) throws DALException
+	public static ResultSet doQuery(String cmd) throws SQLException
 	{
-		try
-		{
-			if(conn==null)
-			{
-				new Connector();
-			}
-		}
-		catch(Exception e)
-		{
-			throw new DALException(e.getMessage());
-		}
-		try { return stm.executeQuery(cmd); }
-		catch (SQLException e) { throw new DALException(e); }
+		connector();
+		return stm.executeQuery(cmd); 
 	}
 
-	public static int doUpdate(String cmd) throws DALException
+	public static int doUpdate(String cmd) throws SQLException
 	{
-		try
-		{
+		connector();
+		return stm.executeUpdate(cmd); 
+
+	}
+
+	private static void connector() throws SQLException {
 			if(conn==null)
 			{
-				new Connector();
+				try {
+					new Connector();
+				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+					System.err.println("Failed to setup MySQL!");
+					e.printStackTrace();
+				}
 			}
-		}
-		catch(Exception e)
-		{
-			throw new DALException(e.getMessage());
-		}
-		try { return stm.executeUpdate(cmd); }
-		catch (SQLException e) { throw new DALException(e); }
+		
+
 	}
 
 

@@ -38,18 +38,8 @@ public class NewUserComposite extends Composite implements AsyncCallback<AnsatDT
 	
 	@UiHandler("submitButton")
 	public void onSubmitPressed(ClickEvent e)
-	{
-	Long id;
-	try
-	{
-		id = Long.parseLong(cprBox.getValue());
-	}
-		catch(NumberFormatException ex)
-	{
-		statusField.setText("ID skal være en integer!");
-			return;
-	}		
-	if(FieldVerifier.isValidCpr(id)==true)
+	{	
+	if(FieldVerifier.isValidCpr(cprBox.getText())==true)
 	{
 		if(FieldVerifier.isValidName(nameBox.getValue())==true)
 		{

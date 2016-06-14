@@ -41,21 +41,32 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 
 	@Override
 	public AnsatDTO createAnsat(AnsatDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
+		if(FieldVerifier.isValidCpr(ans.getCpr())==true 
+		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
+		&& FieldVerifier.isValidIni(ans.getIni())==true 
+		&& FieldVerifier.isValidPassword(ans.getPassword())==true)
 			try {
 				if(isValid(token, 3)){
 					if(database.createAnsat(ans)!=0)
 						return ans;
 				}
 			} catch (DALException e){
+				if (database.getAnsat(ans.getCpr()).getCpr()==ans.getCpr()) 
+				{
+					throw new DALException("En person med dette CPR nummer eksisterer allerede.");
+				}
+				else
 				throw new DALException(creatingError("user"));
-			}
+			}		
 		return null;
 	}
 
 	@Override
 	public Integer updateAnsat(AnsatDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
+		if(FieldVerifier.isValidCpr(ans.getCpr())==true 
+		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
+		&& FieldVerifier.isValidIni(ans.getIni())==true 
+		&& FieldVerifier.isValidPassword(ans.getPassword())==true)
 			try {
 				if(isValid(token, 3))
 					return database.updateAnsat(ans);
@@ -68,7 +79,10 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 
 	@Override
 	public Integer deleteAnsat(AnsatDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidCpr(Integer.parseInt(ans.getCpr()))==true || FieldVerifier.isValidName(ans.getOprNavn())==true || FieldVerifier.isValidIni(ans.getIni())==true || FieldVerifier.isValidPassword(ans.getPassword()))
+		if(FieldVerifier.isValidCpr(ans.getCpr())==true 
+		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
+		&& FieldVerifier.isValidIni(ans.getIni())==true 
+		&& FieldVerifier.isValidPassword(ans.getPassword()))
 			try {
 				if(TokenHandler.getInstance().validateToken(token)==null)
 					throw new DALException("Invalid token");

@@ -77,16 +77,38 @@ public class FieldVerifier {
 		else return true;
 	}
 
-	public static boolean isValidCpr (long cpr){
-		if (!Long.toString(cpr).matches("[0-9]+"))
+	public static boolean isValidCpr (String cpr){
+		if (cpr == null) {
+			return false;
+		} 
+		else if(cpr.matches("\\D"))
 		{
 			return false;
 		}
-		if (Long.toString(cpr).length() != 10)
+		else if (cpr.length() != 10)
 		{
 			return false;
 		}
-		else return true;
+		else
+		{
+			String date = cpr.substring(0, 1);
+			String month = cpr.substring(2, 3);
+			String year = cpr.substring(4, 5);
+			if(Integer.parseInt(date) > 31 && Integer.parseInt(date)< 1)
+			{
+				return false;
+			}
+			else if(Integer.parseInt(month) > 12 && Integer.parseInt(month) < 1)
+			{
+				return false;
+			}
+			else if(Integer.parseInt(year) > 99 && Integer.parseInt(year) > 0)
+			{
+				return false;
+			}
+			else return true;
+				
+		}
 	}
 	
 	public static boolean isValidIni (String ini){

@@ -41,7 +41,8 @@ public class RaavareRPCServlet extends ValidationServlet implements RaavareRPCIn
 
 	@Override
 	public RaavareDTO createRaavare(RaavareDTO ans, String token) throws Exception {
-		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidName(ans.getRaavareNavn())==true)
+		if(FieldVerifier.isValidId(ans.getRaavareId())==true 
+		&& FieldVerifier.isValidName(ans.getRaavareNavn())==true)
 			try {
 				if(isValid(token, 2)){
 					if(database.createRaavare(ans)!=0){
@@ -56,7 +57,8 @@ public class RaavareRPCServlet extends ValidationServlet implements RaavareRPCIn
 
 	@Override
 	public Integer updateRaavare(RaavareDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidName(ans.getRaavareNavn())==true)
+		if(FieldVerifier.isValidId(ans.getRaavareId())==true
+		&& FieldVerifier.isValidName(ans.getRaavareNavn())==true)
 			try {
 				if(isValid(token, 2))
 					return database.updateRaavare(ans);
