@@ -20,7 +20,7 @@ public class ErrorHandling {
 			 }
 		 	catch (Throwable e) {
 		       // last resort -- a very unexpected exception
-		    	 return("Unknown error:\n" + e.getMessage());
+		    	 return(e.getMessage());
 		     }
 	}
 }
