@@ -17,6 +17,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.InvocationException;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
@@ -51,7 +52,8 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 		Column<ReceptDTO, String> receptIDColumn = getReceptIDColumn();
 		//CPRColumn.setSortable(true);
 		Column<ReceptDTO, String> receptNameColumn = getReceptNameColumn();
-		Column<ReceptDTO, String> saveColumn = getButtonColumn("save");
+		Column<ReceptDTO, String> saveColumn = getButtonColumn("Save");
+		Column<ReceptDTO, String> componentColumn = getButtonColumn("Komponenter");
 		saveColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>() {
 					@Override
 					  public void update(final int index, ReceptDTO object, String value) {
@@ -73,10 +75,19 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 							});
 					  }
 				});
+		componentColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>() {
+			@Override
+			  public void update(final int index, ReceptDTO object, String value) {
+				ListReceptKompComposite reckomp = new ListReceptKompComposite();
+				RootPanel.get("contents").clear();
+				RootPanel.get("contents").add(reckomp);
+			  }
+		});
 				
-		vPanel.addColumn(receptIDColumn, "recept_id");
-		vPanel.addColumn(receptNameColumn, "recept_name");
+		vPanel.addColumn(receptIDColumn, "Recept ID");
+		vPanel.addColumn(receptNameColumn, "Recept Navn");
 		vPanel.addColumn(saveColumn, "");
+		vPanel.addColumn(componentColumn, "");
 		
 		
 		ListDataProvider<ReceptDTO> receptList = new ListDataProvider<ReceptDTO>();
