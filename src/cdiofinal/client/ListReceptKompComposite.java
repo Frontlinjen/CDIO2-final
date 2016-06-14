@@ -31,12 +31,15 @@ public class ListReceptKompComposite extends Composite implements AsyncCallback<
 	@UiField(provided=true) CellTable<ReceptKompDTO> vPanel;
 	List<ReceptKompDTO> gui;
 	
-	public ListReceptKompComposite()
+	private int recept;
+	
+	public ListReceptKompComposite(int recept)
 	{
+		this.recept = recept;
 		vPanel = new CellTable<ReceptKompDTO>();
 		vPanel.setVisibleRange(0, 1000000);
 		initWidget(listReceptUiBinder.createAndBindUi(this));
-		gui = getLayoutList();
+		gui = getLayoutList(recept);
 	}
 	
 	@UiHandler("newElement")
@@ -46,7 +49,7 @@ public class ListReceptKompComposite extends Composite implements AsyncCallback<
 		p.show();
 	}
 	
-	public List<ReceptKompDTO> getLayoutList() {
+	public List<ReceptKompDTO> getLayoutList(int recept) {
 		Column<ReceptKompDTO, String> receptIDColumn = getReceptIDColumn();
 		//CPRColumn.setSortable(true);
 		Column<ReceptKompDTO, String> raavareIdColumn = getRaavareIdColumn();
@@ -182,7 +185,7 @@ public class ListReceptKompComposite extends Composite implements AsyncCallback<
 	//Fired when the recept clicks "list receptcomponents"
 	@Override
 	public void onLoad() {
-		database.getReceptKompList(Token.getToken(), this);
+		database.getReceptKompList(recept, Token.getToken(), this);
 	
 	}
 

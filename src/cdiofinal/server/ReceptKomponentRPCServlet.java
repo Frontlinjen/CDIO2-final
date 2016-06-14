@@ -18,9 +18,9 @@ public class ReceptKomponentRPCServlet extends ValidationServlet implements Rece
 	}
 
 	@Override
-	public ReceptKompDTO[] getReceptKompList(String token) throws Exception{
+	public ReceptKompDTO[] getReceptKompList(int recept, String token) throws Exception{
 			if(isValid(token, 2)){
-				List<ReceptKompDTO> receptkomp = database.getReceptKompList();
+				List<ReceptKompDTO> receptkomp = database.getReceptKompList(recept);
 				ReceptKompDTO[] receptKompArray = new ReceptKompDTO[receptkomp.size()];
 				return receptkomp.toArray(receptKompArray);
 			}

@@ -78,7 +78,7 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 		componentColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>() {
 			@Override
 			  public void update(final int index, ReceptDTO object, String value) {
-				ListReceptKompComposite reckomp = new ListReceptKompComposite();
+				ListReceptKompComposite reckomp = new ListReceptKompComposite(object.getReceptId());
 				RootPanel.get("contents").clear();
 				RootPanel.get("contents").add(reckomp);
 			  }
