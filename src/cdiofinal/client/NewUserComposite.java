@@ -19,7 +19,7 @@ import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.FieldVerifier;
 
 public class NewUserComposite extends Composite implements AsyncCallback<AnsatDTO>{
-	final AnsatRPCInterfaceAsync database = (AnsatRPCInterfaceAsync)GWT.create(AnsatRPCInterface.class);
+	private final AnsatRPCInterfaceAsync database = (AnsatRPCInterfaceAsync)GWT.create(AnsatRPCInterface.class);
 	interface NewUserUIBinder extends UiBinder<Widget, NewUserComposite> {}
 	private static NewUserUIBinder newUserUiBinder = GWT.create(NewUserUIBinder.class);
 	
@@ -39,32 +39,39 @@ public class NewUserComposite extends Composite implements AsyncCallback<AnsatDT
 	@UiHandler("submitButton")
 	public void onSubmitPressed(ClickEvent e)
 	{
-		if(!FieldVerifier.isValidCpr(Integer.parseInt(cprBox.getText())))
-		{
-			statusField.setText("CPR nummeret er ugyldigt.");
-		}
-		else if(!FieldVerifier.isValidName(nameBox.getValue()))
-		{
-			statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver, med en lï¿½ngde mellem 2-20 karaktere");
-		}
-		else if(!FieldVerifier.isValidIni(iniBox.getValue()))
-		{
-			statusField.setText("Initialerne er ugyldige. Benyt kun bogstaver, med en lï¿½ngde mellem 2-20 karaktere");
-		}
-		else if(!FieldVerifier.isValidPassword(passBox.getValue()))
-		{
-			statusField.setText("Passwordet er ugyldigt, hold det mellem 3-8 karakterer");
-		}
-		else
-		{
-			AnsatDTO newDTO = new AnsatDTO(cprBox.getText(), nameBox.getText(), iniBox.getText(), passBox.getText(), rankBox.getSelectedIndex());
-			database.createAnsat(newDTO, Token.getToken(), this);
-		}
-		
+	Long id;
+	try
+	{
+		id = Long.parseLong(cprBox.getValue());
 	}
+		catch(NumberFormatException ex)
+	{
+		statusField.setText("ID skal være en integer!");
+			return;
+	}		
+	if(FieldVerifier.isValidCpr(id)==true)
+	{
+		if(FieldVerifier.isValidName(nameBox.getValue())==true)
+		{
+			if(FieldVerifier.isValidIni(iniBox.getValue())==true)
+			{
+				if(FieldVerifier.isValidPassword(passBox.getValue())==true)
+				{
+					AnsatDTO newDTO = new AnsatDTO(cprBox.getText(), nameBox.getText(), iniBox.getText(), passBox.getText(), rankBox.getSelectedIndex());
+					database.createAnsat(newDTO, Token.getToken(), this);
+				}
+				else statusField.setText("Passwordet er ugyldigt, hold det mellem 3-8 karakterer"); 
+			}
+			else statusField.setText("Initialerne er ugyldige. Benyt kun bogstaver, med en laengde mellem 2-4 karaktere");
+		}
+		else statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver, med en lï¿½ngde mellem 2-20 karaktere");
+	}
+	else statusField.setText("CPR nummeret er ugyldigt.");		
+}
+		
 		@Override
 		public void onFailure(Throwable caught) {
-			statusField.setText("Failed to create user");
+			statusField.setText("Failed to create user" + ErrorHandling.getError(caught));
 			
 		}
 	

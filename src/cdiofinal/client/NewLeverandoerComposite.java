@@ -1,5 +1,7 @@
 package cdiofinal.client;
 
+import org.eclipse.jetty.server.handler.ErrorHandler;
+
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -12,6 +14,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
+import cdiofinal.shared.DALException;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.LeverandoerDTO;
 import cdiofinal.shared.ProduktBatchDTO;
@@ -36,7 +39,17 @@ public class NewLeverandoerComposite extends Composite implements AsyncCallback<
 	@UiHandler("submitButton")
 	public void onSubmitPressed(ClickEvent e)
 	{
-		if(!FieldVerifier.isValidId(Integer.parseInt(idBox.getValue()))==true)
+		int id;
+		try
+		{
+			id = Integer.parseInt(idBox.getValue());
+		}
+		catch(NumberFormatException ex)
+		{
+			statusField.setText("ID skal være en integer!");
+			return;
+		}
+		if(!FieldVerifier.isValidId(id)==true)
 		{
 			statusField.setText("Id'et er ikke inde for intervallet 1-99999999");
 		}
@@ -51,7 +64,8 @@ public class NewLeverandoerComposite extends Composite implements AsyncCallback<
 
 	@Override
 	public void onFailure(Throwable caught) {
-		statusField.setText("Failed to create leverandoer");
+		
+		statusField.setText("Failed to create leverandoer " + ErrorHandling.getError(caught));
 		
 	}
 	@Override

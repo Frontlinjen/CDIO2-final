@@ -33,11 +33,22 @@ public class NewRaavareComposite extends Composite implements AsyncCallback<Raav
 	@UiHandler("submitButton")
 	public void onSubmitPressed(ClickEvent e)
 	{
-		if(!FieldVerifier.isValidId(Integer.parseInt(idBox.getValue()))==true)
+		int id;
+		try
+		{
+			id = Integer.parseInt(idBox.getValue());
+		}
+		catch(NumberFormatException ex)
+		{
+			statusField.setText("ID skal være en integer!");
+			return;
+		}
+		
+		if(!FieldVerifier.isValidId(id)==true)
 		{
 			statusField.setText("Id'et er ugyldigt. (1-99999999");
 		}
-		if(!FieldVerifier.isValidName(navnBox.getText())==true)
+		else if(!FieldVerifier.isValidName(navnBox.getText())==true)
 		{
 			statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver, med en lï¿½ngde mellem 2-20 karaktere");
 		}
@@ -48,7 +59,7 @@ public class NewRaavareComposite extends Composite implements AsyncCallback<Raav
 
 	@Override
 	public void onFailure(Throwable caught) {
-		statusField.setText("Failed to create Raavare");
+		statusField.setText("Failed to create Raavare" + ErrorHandling.getError(caught));;
 		
 	}
 

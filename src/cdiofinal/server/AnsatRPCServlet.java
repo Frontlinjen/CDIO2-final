@@ -11,7 +11,7 @@ import cdiofinal.server.ValidationServlet;
 public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterface {
 
 	private static final long serialVersionUID = 1L;
-	MySQLAnsatDAO database = new MySQLAnsatDAO();
+	private MySQLAnsatDAO database = new MySQLAnsatDAO();
 
 
 	@Override

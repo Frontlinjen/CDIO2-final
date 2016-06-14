@@ -42,7 +42,17 @@ public class NewProduktBatchKomponentComposite extends Composite implements Asyn
 	@UiHandler("submitButton")
 	public void onSubmitPressed(ClickEvent e) throws NumberFormatException, DALException
 	{
-		if(!FieldVerifier.isValidId(Integer.parseInt(pb_idBox.getText()))==true)
+		int id;
+		try
+		{
+			id = Integer.parseInt(pb_idBox.getText());
+		}
+		catch(NumberFormatException ex)
+		{
+			statusField.setText("ID skal være en integer!");
+			return;
+		}
+		if(!FieldVerifier.isValidId(id)==true)
 		{
 			statusField.setText("Id'et er ugyldigt. (1-99999999");
 		}
@@ -53,7 +63,7 @@ public class NewProduktBatchKomponentComposite extends Composite implements Asyn
 
 	@Override
 	public void onFailure(Throwable caught) {
-		statusField.setText("Failed to create ProduktBatchKomponent");
+		statusField.setText("Failed to create ProduktBatchKomponent" + ErrorHandling.getError(caught));
 		
 	}
 

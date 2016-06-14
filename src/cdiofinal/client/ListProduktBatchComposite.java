@@ -36,6 +36,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 	public ListProduktBatchComposite()
 	{
 		vPanel = new CellTable<ProduktBatchDTO>();
+		vPanel.setVisibleRange(0, 1000000);
 		initWidget(listProduktBatchUiBinder.createAndBindUi(this));
 		gui = getLayoutList();
 	}

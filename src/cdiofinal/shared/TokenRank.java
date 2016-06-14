@@ -9,6 +9,7 @@ public class TokenRank implements Serializable {
 	private static final long serialVersionUID = 1L;
 	int rank;
 	String token;
+	String name;
 	public TokenRank()
 	{
 		
@@ -22,6 +23,14 @@ public class TokenRank implements Serializable {
 		return rank;
 	}
 	
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+	public String getName()
+	{
+		return this.name;
+	}
 	public void setRank(int rank){
 		this.rank = rank;
 	}

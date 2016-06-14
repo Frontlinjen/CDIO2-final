@@ -19,7 +19,7 @@ import cdiofinal.shared.TokenRank;
 public class LoginScreen extends Composite  implements AsyncCallback<TokenRank>{
 	interface LoginUIBinder extends UiBinder<Widget, LoginScreen>{}
 	private static LoginUIBinder loginUiBinder = GWT.create(LoginUIBinder.class);
-	final LoginRPCInterfaceAsync database = (LoginRPCInterfaceAsync)GWT.create(LoginRPCInterface.class);
+	private final LoginRPCInterfaceAsync database = (LoginRPCInterfaceAsync)GWT.create(LoginRPCInterface.class);
 	@UiField Button submit;
 	@UiField TextBox username;
 	@UiField TextBox password;
@@ -63,7 +63,7 @@ public class LoginScreen extends Composite  implements AsyncCallback<TokenRank>{
 		Token.setToken(tr.getToken());
 		feedback.setText("Success!");
 		RootPanel.get("contents").clear();
-		RootPanel.get("contents").add(new MainPage(tr.getRank()));
+		RootPanel.get("contents").add(new MainPage(tr.getRank(), tr.getName()));
 	}
 
 }
