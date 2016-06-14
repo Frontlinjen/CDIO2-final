@@ -1,7 +1,7 @@
 package cdiofinal.server;
 
 public class SQLStates {
-	public static final int INTEGRITY_FAILED = 23000;
+	public static final int INTEGRITY_FAILED = 1452;
 	public static final int DUPLICATE_PRIMARY = 1062;
 	public static boolean isRecoverable(String s)
 	{
