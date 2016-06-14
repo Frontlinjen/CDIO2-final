@@ -1,9 +1,11 @@
 package cdiofinal.client;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.FieldUpdater;
+import com.google.gwt.cell.client.SelectionCell;
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -124,7 +126,8 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 	}
 	
 	private Column<ProduktBatchDTO, String> getStatusColumn() {
-		EditTextCell statusCell = new EditTextCell();
+		final String[] statuses = new String[] {"Startet", "I Produktion", "Afsluttet"};
+		SelectionCell statusCell = new SelectionCell(Arrays.asList(statuses));
 		Column<ProduktBatchDTO, String> statusColumn = new Column<ProduktBatchDTO, String>(statusCell)
 				{
 					@Override
@@ -136,7 +139,20 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 
 			  @Override
 			public void update(int index, final ProduktBatchDTO produktbatch, final String value) {
-				  		produktbatch.setStatus(Integer.parseInt(value));
+				  
+				  		switch(value)
+						{
+						case "Startet":
+							produktbatch.setStatus(1);
+							break;
+						case "I Produktion":
+							produktbatch.setStatus(2);
+							break;
+						case "Afslutet":
+							produktbatch.setStatus(3);
+							break;
+						
+						}
 			  }});
 		return statusColumn;
 	}
