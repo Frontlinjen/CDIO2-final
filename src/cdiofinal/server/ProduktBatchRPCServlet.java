@@ -55,14 +55,6 @@ public class ProduktBatchRPCServlet extends ValidationServlet implements Produkt
 					}
 				}
 			} catch (DALException e){
-				if (database.getProduktBatch(prba.getPbId()).getPbId()==prba.getPbId()) {
-					throw new DALException("En produktbatch med dette ID eksisterer allerede");					
-				}
-				else if(database.getProduktBatch(prba.getPbId()).getReceptId()!=prba.getReceptId())
-				{
-					throw new DALException("Denne recept, eksisterer ikke i systemet");
-				}
-				else
 				throw new DALException(creatingError("product batch"));
 			}
 		return null;
@@ -79,14 +71,6 @@ public class ProduktBatchRPCServlet extends ValidationServlet implements Produkt
 				if(isValid(token, 1))
 					return database.updateProduktBatch(prba);
 			} catch (DALException e){
-				if (database.getProduktBatch(prba.getPbId()).getPbId()==prba.getPbId()) {
-					throw new DALException("En produktbatch med dette ID eksisterer allerede");					
-				}
-				else if(database.getProduktBatch(prba.getPbId()).getReceptId()!=prba.getReceptId())
-				{
-					throw new DALException("Denne recept, eksisterer ikke i systemet");
-				}
-				else
 				throw new DALException(deletingError("product batch"));
 			}
 		return null;
