@@ -1,0 +1,74 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+  	  <g:HTMLPanel>
+    	   <table style="border-spacing: 20px 0px;">
+		<tr>
+			<td>
+				Udskrevet:
+			</td>
+			<td>
+				<g:Label ui:field="print_date"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Produkt Batch nr.
+			</td>
+			<td>
+				<g:Label ui:field="pb_nr"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Recept nr:
+			</td>
+			<td>
+				<g:Label ui:field="recept_nr"/>
+			</td>
+		</tr>
+	</table>
+
+	<br/>
+	<br/>
+	<div>
+	</div>
+	<br/>
+	<br/>
+	<table  style="border-spacing: 20px 0px;">
+			<tr>
+				<td>
+					Sum Tara: 
+				</td>
+				<td>
+					Sum Netto:
+				</td>
+				<td>
+					Produktion Status:
+				</td>
+				<td>
+					Produktion startet:
+				</td>
+				<td>
+					Produktion slut:
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<g:Label ui:field="sum_tara"/>
+				</td>
+				<td>
+					<g:Label ui:field="sum_netto"/>
+				</td>
+				<td>
+					<g:Label ui:field="status"/>
+				</td>
+				<td>
+				<g:Label ui:field="start_date"/>
+				</td>
+				<td>
+					<g:Label ui:field="end_date"/>
+				</td>
+			</tr>
+	</table>
+    </g:HTMLPanel>
+</ui:UiBinder>
