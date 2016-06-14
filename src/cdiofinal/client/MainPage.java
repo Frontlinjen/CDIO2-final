@@ -42,7 +42,7 @@ public class MainPage extends Composite{
 	@Override
 	public void onLoad() 
 	{
-		
+		greeter.setText("Greetings, " + name + "!");
 		
 		
 		final Composite[] compositeWidgets = new Composite[6];
@@ -92,7 +92,7 @@ public class MainPage extends Composite{
 			container.add(t);
 		}
 		//Sets up the logout button:
-				Button logout = new Button("Logout");
+				PushButton logout = new PushButton("Logout");
 				logout.addClickHandler(new ClickHandler() {
 					
 					@Override
@@ -108,5 +108,6 @@ public class MainPage extends Composite{
 				logout.getElement().getStyle().setProperty("position", "absolute");
 				logout.getElement().getStyle().setProperty("bottom", "0px");
 				logout.getElement().getStyle().setProperty("left", "0px");
+				logout.getElement().getStyle().setProperty("padding", "2px");
 	}
 }
