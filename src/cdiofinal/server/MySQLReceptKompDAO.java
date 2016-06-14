@@ -70,10 +70,9 @@ public class MySQLReceptKompDAO implements ReceptKompDAO{
 			{
 				throw new DALException("receptkomp eksisterer allerede!");
 			}
-			RaavareDAO raaverer = new MySQLRaavareDAO();
-			if(raaverer.getRaavare(receptkomponent.getRaavareId())==null)
+			if(SQLStates.isIntegrityFailure(e.getSQLState()))
 			{
-				throw new DALException("Raavare eksisterer ikke!");
+				throw new DALException(getIntergrityError(receptkomponent));
 			}
 			throw new DALException(e.getMessage());
 		}
@@ -85,8 +84,21 @@ public class MySQLReceptKompDAO implements ReceptKompDAO{
 			return Connector.doUpdate("UPDATE receptkomponent SET nom_netto = '" + receptkomponent.getNomNetto() + "', tolerance = '"
 					+ receptkomponent.getTolerance() + "' WHERE recept_id = " + receptkomponent.getReceptId() + " AND raavare_id = " + receptkomponent.getRaavareId() + ";");
 		} catch(SQLException e) {
+			if(SQLStates.isIntegrityFailure(e.getSQLState()))
+			{
+				throw new DALException(getIntergrityError(receptkomponent));
+			}
 			throw new DALException(e.getMessage());
 		}
+	}
+	
+	public String getIntergrityError(ReceptKompDTO receptkomponent) throws DALException{
+		RaavareDAO raaverer = new MySQLRaavareDAO();
+		if(raaverer.getRaavare(receptkomponent.getRaavareId())==null)
+		{
+			return "Raavare eksisterer ikke!";
+		}
+		return "Fejl i raavare!";
 	}
 
 }
