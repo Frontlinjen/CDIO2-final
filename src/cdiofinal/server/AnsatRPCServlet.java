@@ -16,27 +16,20 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 
 	@Override
 	public AnsatDTO getAnsat(String cpr, String token) throws Exception {
-		try {
-			if(isValid(token, 3))
-				return database.getAnsat(cpr);
-		} catch (DALException e) {
-			throw new DALException(gettingError("user"));
-		}
-		return null;
+			if(isValid(token, 3)){
+				database.getAnsat(cpr);
+			}
+			return null;
 	}
 
 	@Override
 	public AnsatDTO[] getAnsatList(String token) throws Exception{
-		try {
 			if(isValid(token, 3)){
 				List<AnsatDTO> ansatte = database.getAnsatList();
 				AnsatDTO[] ansatteArray = new AnsatDTO[ansatte.size()];
-				return ansatte.toArray(ansatteArray);
+				ansatte.toArray(ansatteArray);
 			}
-		} catch (DALException e) {
-			throw new DALException(gettingListError("user"));
-		}
-		return null;			
+			return null;
 	}
 
 	@Override
@@ -45,19 +38,9 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
 		&& FieldVerifier.isValidIni(ans.getIni())==true 
 		&& FieldVerifier.isValidPassword(ans.getPassword())==true)
-			try {
 				if(isValid(token, 3)){
-					if(database.createAnsat(ans)!=0)
-						return ans;
+					database.createAnsat(ans);
 				}
-			} catch (DALException e){
-				if (database.getAnsat(ans.getCpr()).getCpr()==ans.getCpr()) 
-				{
-					throw new DALException("En person med dette CPR nummer eksisterer allerede.");
-				}
-				else
-				throw new DALException(creatingError("user"));
-			}		
 		return null;
 	}
 
@@ -67,12 +50,9 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
 		&& FieldVerifier.isValidIni(ans.getIni())==true 
 		&& FieldVerifier.isValidPassword(ans.getPassword())==true)
-			try {
-				if(isValid(token, 3))
-					return database.updateAnsat(ans);
-			} catch (DALException e){
-				throw new DALException(updatingError("user"));
-			}
+				if(isValid(token, 3)){
+					database.updateAnsat(ans);
+				}
 		return null ;
 
 	}
@@ -83,13 +63,10 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
 		&& FieldVerifier.isValidIni(ans.getIni())==true 
 		&& FieldVerifier.isValidPassword(ans.getPassword()))
-			try {
-				if(TokenHandler.getInstance().validateToken(token)==null)
-					throw new DALException("Invalid token");
-				return database.deleteAnsat(ans);
-			} catch (DALException e){
-				throw new DALException(deletingError("user"));
-			}
+				if(TokenHandler.getInstance().validateToken(token)==null){
+					database.deleteAnsat(ans);	
+				}
+			
 		return 0;
 
 	}
