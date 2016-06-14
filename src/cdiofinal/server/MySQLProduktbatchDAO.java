@@ -14,12 +14,13 @@ public class MySQLProduktbatchDAO implements ProduktBatchDAO {
 
 	@Override
 	public ProduktBatchDTO getProduktBatch(int pbId) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM produktbatch WHERE pb_id = " + pbId + ";");
 	    try {
-	    	if (!rs.first()) throw new DALException("Det produktbatch med pb_id'et " + pbId + " findes ikke");
+			ResultSet rs = Connector.doQuery("SELECT * FROM produktbatch WHERE pb_id = " + pbId + ";");
+
+	    	if (!rs.first()) return null;
 	    	return new ProduktBatchDTO (rs.getInt("pb_id"), rs.getInt("status"), rs.getInt("recept_id"));
 	    }
-	    catch (SQLException e) {throw new DALException(e); }
+	    catch (SQLException e) {throw new DALException(e.getMessage()); }
 		
 	}
 	
@@ -27,9 +28,10 @@ public class MySQLProduktbatchDAO implements ProduktBatchDAO {
 	@Override
 	public List<ProduktBatchDTO> getProduktBatchList() throws DALException {
 		List<ProduktBatchDTO> list = new ArrayList<ProduktBatchDTO>();
-		ResultSet rs = Connector.doQuery("SELECT * FROM produktbatch;");
+		ResultSet rs;
 		try
 		{
+			rs = Connector.doQuery("SELECT * FROM produktbatch;");
 			while (rs.next()) 
 			{
 				list.add(new ProduktBatchDTO(rs.getInt("pb_id"), rs.getInt("status"), rs.getInt("recept_id")));
@@ -41,20 +43,41 @@ public class MySQLProduktbatchDAO implements ProduktBatchDAO {
 
 	@Override
 	public int createProduktBatch(ProduktBatchDTO ans) throws DALException {
-		return Connector.doUpdate(
-				"INSERT INTO produktbatch(pb_id, status, recept_id) VALUES " +
-				"(" + ans.getPbId() + ", " + ans.getStatus() + ", " + ans.getReceptId() + ");"
-			);
+		try {
+			return Connector.doUpdate(
+					"INSERT INTO produktbatch(pb_id, status, recept_id) VALUES " +
+					"(" + ans.getPbId() + ", " + ans.getStatus() + ", " + ans.getReceptId() + ");"
+				);
+		} catch (SQLException e) {
+			if(SQLStates.isDuplicateFailure(e.getSQLState()))
+			{
+				throw new DALException("Productbatch eksisterer allerede.");
+			}
+			else if(SQLStates.isIntegrityFailure(e.getSQLState()))
+			{
+				throw new DALException("Recept id'en eksisterer allerede.");
+			}
+			else throw new DALException(e.getMessage());
+		}
+		
 		
 	}
 
 	@Override
 	public int updateProduktBatch(ProduktBatchDTO ans) throws DALException {
-		return Connector.doUpdate(
-				"UPDATE produktbatch SET  pb_id = " + ans.getPbId() + ", status =  " + ans.getStatus() + 
-				", recept_id = " + ans.getReceptId() + " WHERE pb_id = " + ans.getPbId() + ";"
-				);
-		
+		try {
+			return Connector.doUpdate(
+					"UPDATE produktbatch SET  pb_id = " + ans.getPbId() + ", status =  " + ans.getStatus() + 
+					", recept_id = " + ans.getReceptId() + " WHERE pb_id = " + ans.getPbId() + ";"
+					);
+			
+		} catch (SQLException e) {
+			if(SQLStates.isIntegrityFailure(e.getSQLState()))
+			{
+				throw new DALException("Recept id'en eksisterer allerede.");
+			}
+			else throw new DALException(e.getMessage());
+		}		
 	}
 
 }
