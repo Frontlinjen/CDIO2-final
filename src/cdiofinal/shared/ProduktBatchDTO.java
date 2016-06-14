@@ -9,7 +9,7 @@ public class ProduktBatchDTO implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 	int pbId;                     // i omraadet 1-99999999
-	int status;					// 0: ikke paabegyndt, 1: under produktion, 2: afsluttet
+	int status;
 	int receptId;
 	
 	public ProduktBatchDTO()
@@ -27,7 +27,7 @@ public class ProduktBatchDTO implements Serializable
 	public int getPbId() { return pbId; }
 	public void setPbId(int pbId) { this.pbId = pbId; }
 	public int getStatus() { return status; }
-	public void setStatus(int status) { this.status = status; }
+	public void setStatus(int i) { this.status = i; }
 	public int getReceptId() { return receptId; }
 	public void setReceptId(int receptId) { this.receptId = receptId; }
 	@Override
