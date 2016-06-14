@@ -40,7 +40,7 @@ public class MySQLAnsatDAO implements AnsatDAO {
 					"(" + ans.getCpr() + ", '" + ans.getOprNavn() + "', '" + ans.getIni() + "', '" + 
 					ans.getPassword() + "', '" + ans.getTitel() + "');");
 		} catch (SQLException e) {
-			if (SQLStates.isDuplicateFailure(e.getSQLState())) {
+			if (SQLStates.isDuplicateFailure(e.getErrorCode())) {
 				throw new DALException("En ansat med dette CPR nummer eksisterer allerede");
 			}
 			else throw new DALException(e.getMessage());

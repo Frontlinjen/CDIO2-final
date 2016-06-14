@@ -66,11 +66,11 @@ public class MySQLReceptKompDAO implements ReceptKompDAO{
 			return Connector.doUpdate("INSERT INTO receptkomponent(recept_id, raavare_id, nom_netto, tolerance) VALUES (" + receptkomponent.getReceptId() + ","
 					+ receptkomponent.getRaavareId() + "," + receptkomponent.getNomNetto() + "," + receptkomponent.getTolerance() + ");");
 		} catch (SQLException e){
-			if(SQLStates.isDuplicateFailure(e.getSQLState()))
+			if(SQLStates.isDuplicateFailure(e.getErrorCode()))
 			{
 				throw new DALException("receptkomp eksisterer allerede!");
 			}
-			if(SQLStates.isIntegrityFailure(e.getSQLState()))
+			if(SQLStates.isIntegrityFailure(e.getErrorCode()))
 			{
 				throw new DALException(getIntergrityError(receptkomponent));
 			}
@@ -84,7 +84,7 @@ public class MySQLReceptKompDAO implements ReceptKompDAO{
 			return Connector.doUpdate("UPDATE receptkomponent SET nom_netto = '" + receptkomponent.getNomNetto() + "', tolerance = '"
 					+ receptkomponent.getTolerance() + "' WHERE recept_id = " + receptkomponent.getReceptId() + " AND raavare_id = " + receptkomponent.getRaavareId() + ";");
 		} catch(SQLException e) {
-			if(SQLStates.isIntegrityFailure(e.getSQLState()))
+			if(SQLStates.isIntegrityFailure(e.getErrorCode()))
 			{
 				throw new DALException(getIntergrityError(receptkomponent));
 			}

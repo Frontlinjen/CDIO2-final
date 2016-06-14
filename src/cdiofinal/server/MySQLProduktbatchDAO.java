@@ -49,15 +49,15 @@ public class MySQLProduktbatchDAO implements ProduktBatchDAO {
 					"(" + ans.getPbId() + ", " + ans.getStatus() + ", " + ans.getReceptId() + ");"
 				);
 		} catch (SQLException e) {
-			if(SQLStates.isDuplicateFailure(e.getSQLState()))
+			if(SQLStates.isDuplicateFailure(e.getErrorCode()))
 			{
 				throw new DALException("Productbatch eksisterer allerede.");
 			}
-			else if(SQLStates.isIntegrityFailure(e.getSQLState()))
+			else if(SQLStates.isIntegrityFailure(e.getErrorCode()))
 			{
-				throw new DALException("Recept id'en eksisterer allerede.");
+				throw new DALException("Recept id'en eksisterer ikke	.");
 			}
-			else throw new DALException(e.getMessage());
+			else throw new DALException(e.getMessage()  + " " + e.getSQLState() + " " + e.getErrorCode());
 		}
 		
 		
@@ -72,7 +72,7 @@ public class MySQLProduktbatchDAO implements ProduktBatchDAO {
 					);
 			
 		} catch (SQLException e) {
-			if(SQLStates.isIntegrityFailure(e.getSQLState()))
+			if(SQLStates.isIntegrityFailure(e.getErrorCode()))
 			{
 				throw new DALException("Recept id'en eksisterer allerede.");
 			}

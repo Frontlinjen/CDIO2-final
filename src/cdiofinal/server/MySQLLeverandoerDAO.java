@@ -61,7 +61,7 @@ public class MySQLLeverandoerDAO implements LeverandoerDAO {
 					"(" + leverandoer.getLeverandoerId() + ", '" + leverandoer.getLeverandoerNavn() + "');");
 			
 		} catch (SQLException e) {
-			if(SQLStates.isDuplicateFailure(e.getSQLState()))
+			if(SQLStates.isDuplicateFailure(e.getErrorCode()))
 			{
 				throw new DALException("En leverandoer med dette ID eksisterer allerede");
 			}

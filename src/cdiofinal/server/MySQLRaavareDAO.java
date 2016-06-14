@@ -61,12 +61,12 @@ public class MySQLRaavareDAO implements RaavareDAO{
 					"(" + raavare.getRaavareId() + ", '" + raavare.getRaavareNavn() + "');");
 		}catch(SQLException e){
 			
-			if(SQLStates.isDuplicateFailure(e.getSQLState()))
+			if(SQLStates.isDuplicateFailure(e.getErrorCode()))
 			{
 				throw new DALException("raavare eksisterer allerede!");
 				//Figure out what constraint failed
 			}
-			throw new DALException(e.getMessage() + " " + e.getSQLState() + " " + e.getErrorCode());
+			throw new DALException(e.getMessage());
 		}
 		
 		

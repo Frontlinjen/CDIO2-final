@@ -50,12 +50,12 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO{
 					+ raavarebatch.getRaavareId() + "," + raavarebatch.getLeverandoerId() + "," + raavarebatch.getMaengde() + ");");
 		}catch(SQLException e){
 
-			if(SQLStates.isDuplicateFailure(e.getSQLState()))
+			if(SQLStates.isDuplicateFailure(e.getErrorCode()))
 			{
 				throw new DALException("raavarebatch eksisterer allerede!");
 				//Figure out what constraint failed
 			}
-			if(SQLStates.isIntegrityFailure(e.getSQLState()))
+			if(SQLStates.isIntegrityFailure(e.getErrorCode()))
 			{
 				throw new DALException(getIntegrityError(raavarebatch));
 			}
@@ -72,7 +72,7 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO{
 					+ raavarebatch.getLeverandoerId() + "', maengde = '" + raavarebatch.getMaengde() + "' WHERE raavarebatch_id = " + raavarebatch.getRaavarebatchId() + ";");
 		}catch(SQLException e)
 		{
-			if(SQLStates.isIntegrityFailure(e.getSQLState()))
+			if(SQLStates.isIntegrityFailure(e.getErrorCode()))
 			{
 				throw new DALException(getIntegrityError(raavarebatch));
 			}

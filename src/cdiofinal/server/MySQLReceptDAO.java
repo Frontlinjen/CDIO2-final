@@ -50,7 +50,7 @@ public class MySQLReceptDAO implements ReceptDAO {
 		}
 		catch(SQLException e)
 		{
-			if(SQLStates.isDuplicateFailure(e.getSQLState()))
+			if(SQLStates.isDuplicateFailure(e.getErrorCode()))
 			{
 				throw new DALException("Recepten eksisterer allerede!");
 			}
@@ -67,10 +67,6 @@ public class MySQLReceptDAO implements ReceptDAO {
 		}
 		catch(SQLException e)
 		{
-			if(SQLStates.isDuplicateFailure(e.getSQLState()))
-			{
-				throw new DALException("Produktbatchkomponenten eksisterer allerede!");
-			}
 			throw new DALException(e.getMessage());
 		}
 	}
