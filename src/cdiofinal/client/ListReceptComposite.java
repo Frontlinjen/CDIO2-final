@@ -4,6 +4,7 @@ import java.util.List;
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.FieldUpdater;
+import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -104,7 +105,7 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 	
 
 	private Column<ReceptDTO, String> getReceptIDColumn() {
-		EditTextCell idCell = new EditTextCell();
+		TextCell idCell = new TextCell();
 		Column<ReceptDTO, String> idColumn = new Column<ReceptDTO, String>(idCell)
 				{
 					@Override
@@ -112,12 +113,7 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 						return Integer.toString(recept.getReceptId());
 					}
 				};
-				idColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>(){
-
-					  @Override
-					public void update(int index, final ReceptDTO Recept, final String value) {
-						  		Recept.setReceptId(Integer.parseInt(value));
-					  }});
+				
 		return idColumn;
 	}
 

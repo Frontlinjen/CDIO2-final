@@ -4,6 +4,7 @@ import java.util.List;
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.FieldUpdater;
+import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -106,7 +107,7 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 	}
 
 	private Column<LeverandoerDTO, String> getIDColumn() {
-		EditTextCell idCell = new EditTextCell();
+		TextCell idCell = new TextCell();
 		Column<LeverandoerDTO, String> idColumn = new Column<LeverandoerDTO, String>(idCell)
 				{
 					@Override
@@ -114,12 +115,7 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 						return Integer.toString(leverandoer.getLeverandoerId());
 					}
 				};
-				idColumn.setFieldUpdater(new FieldUpdater<LeverandoerDTO, String>(){
-
-					  @Override
-					public void update(int index, final LeverandoerDTO leverandoer, final String value) {
-						  		leverandoer.setLeverandoerId(Integer.parseInt(value));
-					  }});
+				
 		return idColumn;
 	}
 	

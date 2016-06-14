@@ -7,9 +7,9 @@ public class TokenRank implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	int rank;
-	String token;
-	String name;
+	private int rank;
+	private String token;
+	private String name;
 	public TokenRank()
 	{
 		

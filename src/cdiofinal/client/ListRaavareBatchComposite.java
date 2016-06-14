@@ -4,6 +4,7 @@ import java.util.List;
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.FieldUpdater;
+import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -111,7 +112,7 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 	}
 		
 	private Column<RaavareBatchDTO, String> getRaavareBatchIDColumn() {
-		EditTextCell raavareBatchIDCell = new EditTextCell();
+		TextCell raavareBatchIDCell = new TextCell();
 		Column<RaavareBatchDTO, String> raavareBatchIDColumn = new Column<RaavareBatchDTO, String>(raavareBatchIDCell)
 				{
 					@Override
@@ -119,17 +120,12 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 						return Integer.toString(RaavareBatch.getRaavarebatchId());
 					}
 				};
-		raavareBatchIDColumn.setFieldUpdater(new FieldUpdater<RaavareBatchDTO, String>(){
-
-			  @Override
-			public void update(int index, final RaavareBatchDTO RaavareBatch, final String value) {
-				  	RaavareBatch.setRaavarebatchId(Integer.parseInt(value));
-			  }});
+		
 		return raavareBatchIDColumn;
 	}
 	
 	private Column<RaavareBatchDTO, String> getRaavareIDColumn() {
-		EditTextCell raavareIDCell = new EditTextCell();
+		TextCell raavareIDCell = new TextCell();
 		Column<RaavareBatchDTO, String> raavareIDColumn = new Column<RaavareBatchDTO, String>(raavareIDCell)
 				{
 					@Override
@@ -137,17 +133,12 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 						return Integer.toString(RaavareBatch.getRaavareId());
 					}
 				};
-		raavareIDColumn.setFieldUpdater(new FieldUpdater<RaavareBatchDTO, String>(){
-
-			  @Override
-			public void update(int index, final RaavareBatchDTO RaavareBatch, final String value) {
-				  	RaavareBatch.setRaavareId(Integer.parseInt(value));
-			  }});
+		
 		return raavareIDColumn;
 	}
 	
 	private Column<RaavareBatchDTO, String> getLeverandoerIDColumn() {
-		EditTextCell leverandoerIDCell = new EditTextCell();
+		TextCell leverandoerIDCell = new TextCell();
 		Column<RaavareBatchDTO, String> leverandoerIDColumn = new Column<RaavareBatchDTO, String>(leverandoerIDCell)
 				{
 					@Override
@@ -155,12 +146,7 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 						return Integer.toString(RaavareBatch.getLeverandoerId());
 					}
 				};
-		leverandoerIDColumn.setFieldUpdater(new FieldUpdater<RaavareBatchDTO, String>(){
-
-			  @Override
-			public void update(int index, final RaavareBatchDTO RaavareBatch, final String value) {
-				  	RaavareBatch.setLeverandoerId(Integer.parseInt(value));
-			  }});
+		
 		return leverandoerIDColumn;
 	}
 	

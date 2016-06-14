@@ -4,6 +4,7 @@ import java.util.List;
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.FieldUpdater;
+import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -110,7 +111,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 
 
 	private Column<ProduktBatchDTO, String> getPbIDColumn() {
-		EditTextCell pbIDCell = new EditTextCell();
+		TextCell pbIDCell = new TextCell();
 		Column<ProduktBatchDTO, String> pbIDColumn = new Column<ProduktBatchDTO, String>(pbIDCell)
 				{
 					@Override
@@ -118,12 +119,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 						return Integer.toString(produktbatch.getPbId());
 					}
 				};
-				pbIDColumn.setFieldUpdater(new FieldUpdater<ProduktBatchDTO, String>(){
-
-					@Override
-					public void update(int index, final ProduktBatchDTO produktbatch, final String value) {
-						produktbatch.setPbId(Integer.parseInt(value));
-					}});
+				
 				return pbIDColumn;
 	}
 	
@@ -146,7 +142,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 	}
 	
 	private Column<ProduktBatchDTO, String> getReceptIDColumn() {
-		EditTextCell receptIDCell = new EditTextCell();
+		TextCell receptIDCell = new TextCell();
 		Column<ProduktBatchDTO, String> receptIDColumn = new Column<ProduktBatchDTO, String>(receptIDCell)
 				{
 					@Override
@@ -154,12 +150,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 						return Integer.toString(produktbatch.getReceptId());
 					}
 				};
-				receptIDColumn.setFieldUpdater(new FieldUpdater<ProduktBatchDTO, String>(){
-
-					  @Override
-					public void update(int index, final ProduktBatchDTO produktbatch, final String value) {
-						  		produktbatch.setReceptId(Integer.parseInt(value));
-					  }});
+				
 		return receptIDColumn;
 	}
 
