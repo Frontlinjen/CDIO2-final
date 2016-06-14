@@ -37,7 +37,18 @@ public class NewProduktbatchComposite extends Composite implements AsyncCallback
 	@UiHandler("submitButton")
 	public void onSubmitPressed(ClickEvent e)
 	{
-		if (!FieldVerifier.isValidId(Integer.parseInt(idBox.getText()))) 
+		int id;
+		try
+		{
+			id = Integer.parseInt(idBox.getValue());
+		}
+		catch(NumberFormatException ex)
+		{
+			statusField.setText("ID skal være en integer!");
+			return;
+		}
+		
+		if(!FieldVerifier.isValidId(id)==true)
 		{
 			statusField.setText("Id'et er ugyldigt. (1-99999999");
 		}

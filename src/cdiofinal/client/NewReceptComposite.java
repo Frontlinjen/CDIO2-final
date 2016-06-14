@@ -35,7 +35,17 @@ public class NewReceptComposite extends Composite implements AsyncCallback<Recep
 	@UiHandler("submitButton")
 	public void onSubmitPressed(ClickEvent e)
 	{
-		if(!FieldVerifier.isValidId(Integer.parseInt(idBox.getText()))==true)
+		int id;
+		try
+		{
+			id = Integer.parseInt(idBox.getValue());
+		}
+		catch(NumberFormatException ex)
+		{
+			statusField.setText("ID skal være en integer!");
+			return;
+		}
+		if(!FieldVerifier.isValidId(id)==true)
 		{
 			statusField.setText("Ikke et gyldigt id (1-99999999)");
 		}

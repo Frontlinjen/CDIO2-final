@@ -33,7 +33,18 @@ public class NewRaavareComposite extends Composite implements AsyncCallback<Raav
 	@UiHandler("submitButton")
 	public void onSubmitPressed(ClickEvent e)
 	{
-		if(!FieldVerifier.isValidId(Integer.parseInt(idBox.getValue()))==true)
+		int id;
+		try
+		{
+			id = Integer.parseInt(idBox.getValue());
+		}
+		catch(NumberFormatException ex)
+		{
+			statusField.setText("ID skal være en integer!");
+			return;
+		}
+		
+		if(!FieldVerifier.isValidId(id)==true)
 		{
 			statusField.setText("Id'et er ugyldigt. (1-99999999");
 		}

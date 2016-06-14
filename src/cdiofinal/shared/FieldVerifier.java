@@ -41,8 +41,23 @@ public class FieldVerifier {
 		else if (name.length() < 2 || name.length() > 20)
 		{
 			return false;
-		}
+		}	
 		else return true;
+	}
+	
+	public static boolean containsNumbers(String name) {
+		boolean containsNumbers = false;
+		for (char c:name.toCharArray())
+		{
+			if(Character.isDigit(c))
+			{
+				containsNumbers = true;
+			}
+		}
+		if (containsNumbers = true){
+			return true;
+		}
+		else return false;
 	}
 	
 	public static boolean isValidNomNetto(double nom){
@@ -61,9 +76,17 @@ public class FieldVerifier {
 		}
 		else return true;
 	}
-	
+
 	public static boolean isValidCpr (long cpr){
-		return String.valueOf(cpr).length() <= 3999999999L;
+		if (!Long.toString(cpr).matches("[0-9]+"))
+		{
+			return false;
+		}
+		if (Long.toString(cpr).length() != 10)
+		{
+			return false;
+		}
+		else return true;
 	}
 	
 	public static boolean isValidIni (String ini){
