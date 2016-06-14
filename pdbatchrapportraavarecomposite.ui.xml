@@ -1,0 +1,78 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <g:HTMLPanel>
+        <table>
+		<tr >
+			<td>
+				Råvare nr.
+			</td>
+			<td>
+				<g:Label ui:field="raavareNrLabel"/>
+			</td>
+		</tr>
+		<tr >
+			<td>
+				Råvare navn.
+			</td>
+			<td>
+			    <g:Label ui:field="raavareNameLabel"/>
+			</td>
+		</tr>
+		</table>
+		<table style="border-spacing: 20px 2px; border-top: 1px dashed black;"> 
+		<tr>
+			<td>
+				Del
+			</td>
+			<td>
+				Mængde
+			</td>
+			<td>
+				Tolerance
+			</td>
+			<td>
+				Tara
+			</td>
+			<td>
+				Netto(kg)
+			</td>
+			<td>
+				Batch
+			</td>
+			<td>
+				Opr.
+			</td>
+			<td>
+				Terminal
+			</td>
+		</tr>
+	    <tr>
+	    	<td>
+	    		<g:Label ui:field="del"/>
+	    	</td>
+	    	<td>
+	    		<<g:Label ui:field="amount"/>
+	    	</td>
+	    	<td>
+	    		<g:Label ui:field="tolerance"/>
+	    	</td>
+	    	<td>
+	    		<g:Label ui:field="tare"/>
+	    	</td>
+	    	<td>
+	    		<g:Label ui:field="netto"/>
+	    	</td>
+	    	<td>
+	    		<g:Label ui:field="batch"/>
+	    	</td>
+	    	<td>
+	    		<g:Label ui:field="opr"/>
+	    	</td>
+	    	<td>
+	    		<g:Label ui:field="terminal"/>
+	    	</td>
+	    </tr>
+	</table>
+        
+    </g:HTMLPanel>
+</ui:UiBinder>
