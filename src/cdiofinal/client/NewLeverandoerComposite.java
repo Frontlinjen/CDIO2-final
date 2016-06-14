@@ -1,6 +1,6 @@
 package cdiofinal.client;
 
-import org.eclipse.jetty.server.handler.ErrorHandler;
+
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
