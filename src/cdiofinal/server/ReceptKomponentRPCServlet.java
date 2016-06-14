@@ -8,13 +8,13 @@ import cdiofinal.shared.ReceptKompDTO;
 
 public class ReceptKomponentRPCServlet extends ValidationServlet implements ReceptKomponentRPCInterface{
 	private static final long serialVersionUID = 1L;
-	MySQLReceptKompDAO receptKompDAO = new MySQLReceptKompDAO();
+	MySQLReceptKompDAO database = new MySQLReceptKompDAO();
 
 	@Override
 	public ReceptKompDTO getReceptKomp(int recId, int raavareId, String token) throws Exception{
 		try {
 			if(isValid(token, 2))
-				return receptKompDAO.getReceptKomp(recId, raavareId);
+				return database.getReceptKomp(recId, raavareId);
 		} catch (DALException e) {
 			throw new DALException(gettingError("recept component"));
 		}
@@ -25,7 +25,7 @@ public class ReceptKomponentRPCServlet extends ValidationServlet implements Rece
 	public ReceptKompDTO[] getReceptKompList(String token) throws Exception{
 		try {
 			if(isValid(token, 2)){
-				List<ReceptKompDTO> receptkomp = receptKompDAO.getReceptKompList();
+				List<ReceptKompDTO> receptkomp = database.getReceptKompList();
 				ReceptKompDTO[] receptKompArray = new ReceptKompDTO[receptkomp.size()];
 				return receptkomp.toArray(receptKompArray);
 			}
@@ -39,11 +39,19 @@ public class ReceptKomponentRPCServlet extends ValidationServlet implements Rece
 	public ReceptKompDTO createReceptKomp(ReceptKompDTO recKomp, String token) throws Exception{
 		try {
 			if(isValid(token, 2)){
-				if(receptKompDAO.createReceptKomp(recKomp)!=0){
+				if(database.createReceptKomp(recKomp)!=0){
 					return recKomp;
 				}
 			}
 		} catch (DALException e){
+			if (database.getReceptKomp(recKomp.getReceptId(), recKomp.getRaavareId()).getRaavareId()!=recKomp.getRaavareId()) {
+				throw new DALException("En raavare med dette ID eksisterer ikke");
+			}
+			else if(database.getReceptKomp(recKomp.getReceptId(), recKomp.getRaavareId()).getReceptId() != recKomp.getReceptId())
+			{
+				throw new DALException("En recept med dette ID eksisterer ikke");
+			}
+			else
 			throw new DALException(creatingError("recept component"));
 		}
 		return null;
@@ -53,8 +61,16 @@ public class ReceptKomponentRPCServlet extends ValidationServlet implements Rece
 	public Integer updateReceptKomp(ReceptKompDTO recKomp, String token) throws Exception{
 		try {
 			if(isValid(token, 2))
-				return receptKompDAO.updateReceptKomp(recKomp);
+				return database.updateReceptKomp(recKomp);
 		} catch (DALException e){
+			if (database.getReceptKomp(recKomp.getReceptId(), recKomp.getRaavareId()).getRaavareId()!=recKomp.getRaavareId()) {
+				throw new DALException("En raavare med dette ID eksisterer ikke");
+			}
+			else if(database.getReceptKomp(recKomp.getReceptId(), recKomp.getRaavareId()).getReceptId() != recKomp.getReceptId())
+			{
+				throw new DALException("En recept med dette ID eksisterer ikke");
+			}
+			else
 			throw new DALException(updatingError("recept component"));
 		}
 		return null;

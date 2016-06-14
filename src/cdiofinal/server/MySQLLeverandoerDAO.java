@@ -9,7 +9,6 @@ import cdiofinal.server.Connector;
 import cdiofinal.server.LeverandoerDAO;
 import cdiofinal.shared.DALException;
 import cdiofinal.shared.LeverandoerDTO;
-import cdiofinal.shared.RaavareDTO;
 
 public class MySQLLeverandoerDAO implements LeverandoerDAO {
 

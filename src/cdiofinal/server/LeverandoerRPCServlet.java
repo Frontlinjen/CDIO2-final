@@ -40,7 +40,8 @@ public class LeverandoerRPCServlet extends ValidationServlet implements Leverand
 
 	@Override
 	public LeverandoerDTO createLeverandoer(LeverandoerDTO lev, String token) throws Exception{
-		if(FieldVerifier.isValidId(lev.getLeverandoerId())==true || FieldVerifier.isValidName(lev.getLeverandoerNavn())==true)
+		if(FieldVerifier.isValidId(lev.getLeverandoerId())==true 
+		&& FieldVerifier.isValidName(lev.getLeverandoerNavn())==true)
 			try {
 				if(isValid(token, 2)){
 					if(database.createLeverandoer(lev)!=0){
@@ -50,6 +51,11 @@ public class LeverandoerRPCServlet extends ValidationServlet implements Leverand
 			} catch (DALException e){
 				throw new DALException(creatingError("leverandoer"));
 			}
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return null;
 	}
 
@@ -60,6 +66,11 @@ public class LeverandoerRPCServlet extends ValidationServlet implements Leverand
 				if(isValid(token, 2))
 					return database.updateLeverandoer(lev);
 			} catch (DALException e){
+				if(database.getLeverandoer(lev.getLeverandoerId()).getLeverandoerId() == lev.getLeverandoerId())
+				{
+					throw new DALException("Leverandoer Id'et eksisterer allerede");
+				}
+				else
 				throw new DALException(updatingError("leverandoer"));
 			}
 		return null;
