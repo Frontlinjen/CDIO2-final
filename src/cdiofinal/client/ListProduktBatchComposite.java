@@ -80,11 +80,19 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 							});
 					  }
 				});
-				
+		Column<ProduktBatchDTO, String> printColumn = getButtonColumn("print");
+		printColumn.setFieldUpdater(new FieldUpdater<ProduktBatchDTO, String>() {
+			@Override
+			  public void update(final int index, ProduktBatchDTO object, String value) {
+					Window.print();
+			  }
+		});
+		
 		vPanel.addColumn(pbIDColumn, "pb_id");
 		vPanel.addColumn(statusColumn, "status");
 		vPanel.addColumn(receptIDColumn, "recept_id");
 		vPanel.addColumn(saveColumn, "");
+		vPanel.addColumn(printColumn, "");
 		
 		
 		ListDataProvider<ProduktBatchDTO> produktbatchList = new ListDataProvider<ProduktBatchDTO>();
