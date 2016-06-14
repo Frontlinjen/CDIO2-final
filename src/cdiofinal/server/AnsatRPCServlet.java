@@ -1,6 +1,8 @@
 package cdiofinal.server;
 import java.util.List;
 
+import com.google.gwt.user.client.Window;
+
 import cdiofinal.shared.DALException;
 import cdiofinal.client.AnsatRPCInterface;
 import cdiofinal.server.MySQLAnsatDAO;
@@ -17,7 +19,7 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 	@Override
 	public AnsatDTO getAnsat(String cpr, String token) throws Exception {
 			if(isValid(token, 3)){
-				database.getAnsat(cpr);
+				return database.getAnsat(cpr);
 			}
 			return null;
 	}
@@ -27,7 +29,7 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 			if(isValid(token, 3)){
 				List<AnsatDTO> ansatte = database.getAnsatList();
 				AnsatDTO[] ansatteArray = new AnsatDTO[ansatte.size()];
-				ansatte.toArray(ansatteArray);
+				return ansatte.toArray(ansatteArray);
 			}
 			return null;
 	}
@@ -38,9 +40,15 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
 		&& FieldVerifier.isValidIni(ans.getIni())==true 
 		&& FieldVerifier.isValidPassword(ans.getPassword())==true)
+		{
 				if(isValid(token, 3)){
 					database.createAnsat(ans);
 				}
+		}
+		else
+		{
+			Window.alert("Kunne ikke oprette ny Ansat, tjek informationerne igen");
+		}
 		return null;
 	}
 
@@ -50,9 +58,15 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
 		&& FieldVerifier.isValidIni(ans.getIni())==true 
 		&& FieldVerifier.isValidPassword(ans.getPassword())==true)
+		{
 				if(isValid(token, 3)){
 					database.updateAnsat(ans);
 				}
+	}
+	else
+	{
+		Window.alert("Kunne ikke opdatere den Ansatte, tjek informationerne igen");
+	}
 		return null ;
 
 	}

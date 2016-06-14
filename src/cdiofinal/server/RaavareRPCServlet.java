@@ -1,6 +1,8 @@
 package cdiofinal.server;
 import java.util.List;
 
+import com.google.gwt.user.client.Window;
+
 import cdiofinal.client.RaavareRPCInterface;
 import cdiofinal.server.MySQLRaavareDAO;
 import cdiofinal.shared.DALException;
@@ -34,21 +36,29 @@ public class RaavareRPCServlet extends ValidationServlet implements RaavareRPCIn
 	@Override
 	public RaavareDTO createRaavare(RaavareDTO ans, String token) throws Exception {
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true 
-				&& FieldVerifier.isValidName(ans.getRaavareNavn())==true)
+		&& FieldVerifier.isValidName(ans.getRaavareNavn())==true)
+		{
 			if(isValid(token, 2)){
-				if(database.createRaavare(ans)!=0){
-					return ans;
+				database.createRaavare(ans);
 				}
+			else
+			{
+				Window.alert("Kunne ikke oprette raavaren, tjek informationerne igen.");
 			}
+		}	
 		return null;
 	}
 
 	@Override
 	public Integer updateRaavare(RaavareDTO ans, String token) throws Exception{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true
-				&& FieldVerifier.isValidName(ans.getRaavareNavn())==true)
+		&& FieldVerifier.isValidName(ans.getRaavareNavn())==true)
+			
 			if(isValid(token, 2)){
-				return database.updateRaavare(ans);
+				database.updateRaavare(ans);
+			}
+			else{
+				Window.alert("Kunne ikke opdatere raavaren, tjek oplysningerne igen.");
 			}
 		return null;
 

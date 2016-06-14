@@ -1,6 +1,8 @@
 package cdiofinal.server;
 import java.util.List;
 
+import com.google.gwt.user.client.Window;
+
 import cdiofinal.shared.DALException;
 import cdiofinal.client.LeverandoerRPCInterface;
 import cdiofinal.server.MySQLLeverandoerDAO;
@@ -15,8 +17,9 @@ public class LeverandoerRPCServlet extends ValidationServlet implements Leverand
 
 	@Override
 	public LeverandoerDTO getLeverandoer(int id, String token) throws Exception{
-		if(isValid(token, 2))
+		if(isValid(token, 2)){
 			return database.getLeverandoer(id);
+		}
 		return null;
 	}
 
@@ -33,19 +36,24 @@ public class LeverandoerRPCServlet extends ValidationServlet implements Leverand
 	@Override
 	public LeverandoerDTO createLeverandoer(LeverandoerDTO lev, String token) throws Exception{
 		if(FieldVerifier.isValidId(lev.getLeverandoerId())==true 
-				&& FieldVerifier.isValidName(lev.getLeverandoerNavn())==true)
+		&& FieldVerifier.isValidName(lev.getLeverandoerNavn())==true){
+	
 			if(isValid(token, 2)){
-				if(database.createLeverandoer(lev)!=0){
-					return lev;
+				database.createLeverandoer(lev);
 				}
+		else
+		{
+			Window.alert("Kunne ikke lave ny Leverandoer, tjek oplysningerne igen");
+		}
 			}
 		return null;
 	}
 
 	@Override
 	public Integer updateLeverandoer(LeverandoerDTO lev, String token) throws Exception{
-		if(isValid(token, 2))
-			return database.updateLeverandoer(lev);
+		if(isValid(token, 2)){
+			database.updateLeverandoer(lev);
+		}
 		return null;
 
 	}
