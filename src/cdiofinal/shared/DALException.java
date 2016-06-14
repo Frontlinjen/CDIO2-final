@@ -10,6 +10,11 @@ public class DALException extends Exception implements Serializable
 
 	}
 	
-	public DALException(String message) { super(message); }    
-	public DALException(Exception e) { super(e.getMessage()); }
+	public DALException(String message) { 
+		super(message); 
+		}
+	
+	public DALException(Exception e) { 
+		super(e.getMessage()); 
+		}
 }
