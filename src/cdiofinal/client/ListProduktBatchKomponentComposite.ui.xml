@@ -1,0 +1,20 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'
+    xmlns:c='urn:import:com.google.gwt.user.cellview.client'>
+    <g:HTMLPanel>
+ 
+    <div style="height: 512px;">
+    	<!-- max-height is 512px-25px-2px(padding)  -->
+	    <div style="max-height:485px; overflow-y: auto;">
+	    		<c:CellTable width="100%" ui:field='vPanel'/>
+	    </div>
+	 	
+	 	<div style='background-color:#E0E0E0; margin: 0; padding: 2px; height: 25px'>
+	 		<div style="margin: 0 auto; display: table;">
+		    		<g:Button text='Add new' ui:field='newElement'/>
+		    </div>
+		</div>	    
+    </div>
+    	           
+ 	</g:HTMLPanel>
+  </ui:UiBinder>

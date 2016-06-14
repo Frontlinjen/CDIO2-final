@@ -49,7 +49,7 @@ public class NewProduktBatchKomponentComposite extends Composite implements Asyn
 		}
 		catch(NumberFormatException ex)
 		{
-			statusField.setText("ID skal være en integer!");
+			statusField.setText("ID skal vï¿½re en integer!");
 			return;
 		}
 		if(!FieldVerifier.isValidId(id)==true)
