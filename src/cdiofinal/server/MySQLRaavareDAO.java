@@ -66,7 +66,7 @@ public class MySQLRaavareDAO implements RaavareDAO{
 				throw new DALException("raavare eksisterer allerede!");
 				//Figure out what constraint failed
 			}
-			throw new DALException(e.getMessage());
+			throw new DALException(e.getMessage() + " " + e.getSQLState() + " " + e.getErrorCode());
 		}
 		
 		

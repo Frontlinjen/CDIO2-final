@@ -19,7 +19,7 @@ public class RaavareBatchRPCServlet extends ValidationServlet implements Raavare
 	@Override
 	public RaavareBatchDTO getRaavareBatch(int rb_id, String token) throws Exception{
 			if(isValid(token, 1)){
-				raavareBatches.getRaavareBatch(rb_id);
+				return raavareBatches.getRaavareBatch(rb_id);
 			}
 		return null;
 	}
@@ -41,6 +41,7 @@ public class RaavareBatchRPCServlet extends ValidationServlet implements Raavare
 		&& FieldVerifier.isValidId(ans.getLeverandoerId())==true){
 				if(isValid(token, 1)){
 					raavareBatches.createRaavareBatch(ans);
+					return ans;
 					}
 				}
 		else
@@ -64,7 +65,7 @@ public class RaavareBatchRPCServlet extends ValidationServlet implements Raavare
 		{
 			Window.alert("Kunne ikke opdatere RaavareBatchen, tjek oplysningerne igen.");
 		}
-	return null;
+		return 0;
 }
 
 }

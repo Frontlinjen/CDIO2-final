@@ -19,7 +19,7 @@ public class ProduktBatchRPCServlet extends ValidationServlet implements Produkt
 	public ProduktBatchDTO getProduktBatch(int pbid, String token) throws Exception{
 			if(isValid(token, 1))
 			{
-				database.getProduktBatch(pbid);
+				return database.getProduktBatch(pbid);
 			}
 		return null;
 	}
@@ -30,7 +30,7 @@ public class ProduktBatchRPCServlet extends ValidationServlet implements Produkt
 			if(isValid(token, 1)){
 				List<ProduktBatchDTO> produktbatches = database.getProduktBatchList();
 				ProduktBatchDTO[] produktbatchesArray = new ProduktBatchDTO[produktbatches.size()];
-				produktbatches.toArray(produktbatchesArray);
+				return produktbatches.toArray(produktbatchesArray);
 			}	
 			return null;			
 	}
@@ -45,6 +45,7 @@ public class ProduktBatchRPCServlet extends ValidationServlet implements Produkt
 			{
 				if(isValid(token, 1)){
 					database.createProduktBatch(prba);
+					return prba;
 					}
 			}
 		return null;
@@ -58,8 +59,8 @@ public class ProduktBatchRPCServlet extends ValidationServlet implements Produkt
 		}
 		else
 				if(isValid(token, 1)) {
-					database.updateProduktBatch(prba);
+					return database.updateProduktBatch(prba);
 				}
-		return null;
+		return 0;
 	}
 }

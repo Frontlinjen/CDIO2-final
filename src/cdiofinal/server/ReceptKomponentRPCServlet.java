@@ -40,6 +40,6 @@ public class ReceptKomponentRPCServlet extends ValidationServlet implements Rece
 		if(isValid(token, 2)){
 			return database.updateReceptKomp(recKomp);
 		}
-		return null;
+		return 0;
 	}
 }

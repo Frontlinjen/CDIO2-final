@@ -40,6 +40,7 @@ public class LeverandoerRPCServlet extends ValidationServlet implements Leverand
 	
 			if(isValid(token, 2)){
 				database.createLeverandoer(lev);
+				return lev;
 				}
 		else
 		{
@@ -52,9 +53,9 @@ public class LeverandoerRPCServlet extends ValidationServlet implements Leverand
 	@Override
 	public Integer updateLeverandoer(LeverandoerDTO lev, String token) throws Exception{
 		if(isValid(token, 2)){
-			database.updateLeverandoer(lev);
+			return database.updateLeverandoer(lev);
 		}
-		return null;
+		return 0;
 
 	}
 

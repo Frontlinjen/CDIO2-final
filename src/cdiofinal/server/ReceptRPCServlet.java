@@ -36,7 +36,8 @@ public class ReceptRPCServlet extends ValidationServlet implements ReceptRPCInte
 		&& FieldVerifier.isValidName(ans.getReceptNavn()) == true)
 		{
 				if(isValid(token, 2)){
-					receptDAO.createRecept(ans);					
+					receptDAO.createRecept(ans);	
+					return ans;
 				}
 			}
 		return null;
@@ -46,8 +47,8 @@ public class ReceptRPCServlet extends ValidationServlet implements ReceptRPCInte
 	public Integer updateRecept(ReceptDTO ans, String token) throws Exception{
 			if(isValid(token, 2))
 			{
-				receptDAO.updateRecept(ans);
+				return receptDAO.updateRecept(ans);
 			}
-		return null;
+		return 0;
 	}
 }

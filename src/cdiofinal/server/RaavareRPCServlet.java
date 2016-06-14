@@ -40,6 +40,7 @@ public class RaavareRPCServlet extends ValidationServlet implements RaavareRPCIn
 		{
 			if(isValid(token, 2)){
 				database.createRaavare(ans);
+				return ans;
 				}
 			else
 			{
@@ -55,12 +56,12 @@ public class RaavareRPCServlet extends ValidationServlet implements RaavareRPCIn
 		&& FieldVerifier.isValidName(ans.getRaavareNavn())==true)
 			
 			if(isValid(token, 2)){
-				database.updateRaavare(ans);
+				return database.updateRaavare(ans);
 			}
 			else{
 				Window.alert("Kunne ikke opdatere raavaren, tjek oplysningerne igen.");
 			}
-		return null;
+		return 0;
 
 	}
 

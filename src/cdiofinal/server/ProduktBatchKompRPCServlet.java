@@ -41,8 +41,9 @@ public class ProduktBatchKompRPCServlet extends ValidationServlet implements Pro
 		{
 				if(isValid(token, 0)){
 					database.createProduktBatchKomp(pbk);
+					return pbk;
 					}
-		}
+				}
 		else
 		{
 			Window.alert("Kunne ikke oprette ny ProduktBatchKomponent, tjek oplysningerne igen.");
@@ -64,6 +65,6 @@ public class ProduktBatchKompRPCServlet extends ValidationServlet implements Pro
 		{
 			Window.alert("Kunne ikke opdatere produktBatchKomponenten, tjek oplysningerne igen");
 		}
-		return null;
+		return 0;
 		}
 }

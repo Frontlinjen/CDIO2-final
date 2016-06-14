@@ -67,7 +67,7 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 	{
 		Window.alert("Kunne ikke opdatere den Ansatte, tjek informationerne igen");
 	}
-		return null ;
+		return 0 ;
 
 	}
 
