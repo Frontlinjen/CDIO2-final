@@ -39,9 +39,20 @@ public class NewRaavareBatchComposite extends Composite implements AsyncCallback
 	@UiHandler("submitButton")
 	public void onSubmitPressed(ClickEvent e)
 	{
-		if(!FieldVerifier.isValidId(Integer.parseInt(batchNrBox.getText()))==true)
+		int id;
+		try
 		{
-			statusField.setText("Batch ID'en eksisterer ikke gyldig. (1-99999999");
+			id = Integer.parseInt(batchNrBox.getText());
+		}
+		catch(NumberFormatException ex)
+		{
+			statusField.setText("ID skal være en integer!");
+			return;
+		}
+		
+		if(!FieldVerifier.isValidId(id)==true)
+		{
+			statusField.setText("Id'et er ugyldigt. (1-99999999");
 		}
 		else
 			

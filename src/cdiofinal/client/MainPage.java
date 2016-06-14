@@ -4,7 +4,10 @@ import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -19,23 +22,29 @@ public class MainPage extends Composite{
 	 * The message displayed to the user when the server cannot be reached or
 	 * returns an error.
 	 */
-	private static final String SERVER_ERROR = "An error occurred while "
-			+ "attempting to contact the server. Please check your network " + "connection and try again.";
 
 	private int rank;
-	
+	private String name;
+	@UiField
+	public Label greeter;
 	public int getRank(){
 		return this.rank;
 	}
 	
-	public MainPage(int rank)
+	public MainPage(int rank, String name)
 	{
 		this.rank = rank;
 		initWidget(mainPageUiBinder.createAndBindUi(this));
+		this.name = name;
+		
+		
 	}
 	@Override
 	public void onLoad() 
 	{
+		greeter.setText("Greetings, " + name + "!");
+		
+		
 		final Composite[] compositeWidgets = new Composite[6];
 		switch(rank){
 			case 3: 
@@ -54,7 +63,7 @@ public class MainPage extends Composite{
 				compositeWidgets[5] = new ListRaavareBatchComposite();
 			}
 		}
-		RootPanel container = RootPanel.get("options");
+		final RootPanel container = RootPanel.get("options");
 		String[] buttons = {
 				"List Users", 
 				"List R\u00E5varer", 
@@ -82,5 +91,23 @@ public class MainPage extends Composite{
 			t.addClickHandler(clickHandlers[i]);
 			container.add(t);
 		}
+		//Sets up the logout button:
+				PushButton logout = new PushButton("Logout");
+				logout.addClickHandler(new ClickHandler() {
+					
+					@Override
+					public void onClick(ClickEvent event) {
+						Token.setToken("");
+						container.clear();
+						RootPanel.get("contents").clear();
+						RootPanel.get("contents").add(new LoginScreen());
+						
+					}
+				});
+				container.add(logout);
+				logout.getElement().getStyle().setProperty("position", "absolute");
+				logout.getElement().getStyle().setProperty("bottom", "0px");
+				logout.getElement().getStyle().setProperty("left", "0px");
+				logout.getElement().getStyle().setProperty("padding", "2px");
 	}
 }
