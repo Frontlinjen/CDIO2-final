@@ -4,6 +4,7 @@ import java.util.List;
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.FieldUpdater;
+import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -119,7 +120,7 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 	}
 	
 	private Column<RaavareDTO, String> getIDColumn(){
-		EditTextCell IDCell = new EditTextCell();
+		TextCell IDCell = new TextCell();
 		Column<RaavareDTO, String> IDColumn = new Column<RaavareDTO, String>(IDCell)
 				{
 					@Override
@@ -127,12 +128,7 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 						return Integer.toString(raavare.getRaavareId());
 					}
 				};
-		IDColumn.setFieldUpdater(new FieldUpdater<RaavareDTO, String>(){
-
-			  @Override
-			public void update(int index, final RaavareDTO Raavare, final String value) {
-				  		Raavare.setRaavareId(Integer.parseInt(value));
-			  }});
+		
 		return IDColumn;
 	}
 
