@@ -1,6 +1,8 @@
 package cdiofinal.server;
 import java.util.List;
 
+import com.google.gwt.user.client.Window;
+
 import cdiofinal.client.RaavareBatchRPCInterface;
 import cdiofinal.server.MySQLRaavareBatchDAO;
 import cdiofinal.shared.DALException;
@@ -17,7 +19,7 @@ public class RaavareBatchRPCServlet extends ValidationServlet implements Raavare
 	@Override
 	public RaavareBatchDTO getRaavareBatch(int rb_id, String token) throws Exception{
 			if(isValid(token, 1)){
-				return raavareBatches.getRaavareBatch(rb_id);
+				raavareBatches.getRaavareBatch(rb_id);
 			}
 		return null;
 	}
@@ -34,25 +36,35 @@ public class RaavareBatchRPCServlet extends ValidationServlet implements Raavare
 
 	@Override
 	public RaavareBatchDTO createRaavareBatch(RaavareBatchDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidId(ans.getRaavarebatchId()) || FieldVerifier.isValidId(ans.getRaavareId())==true || FieldVerifier.isValidId(ans.getLeverandoerId())==true)
+		if(FieldVerifier.isValidId(ans.getRaavarebatchId()) 
+		&& FieldVerifier.isValidId(ans.getRaavareId())==true
+		&& FieldVerifier.isValidId(ans.getLeverandoerId())==true){
 				if(isValid(token, 1)){
-					if(raavareBatches.createRaavareBatch(ans)!=0){
-						return ans;
+					raavareBatches.createRaavareBatch(ans);
 					}
 				}
+		else
+		{
+			Window.alert("Kunne ikke oprette ny RaavareBatch, tjek oplysningerne igen");
+		}
 		return null;
 	}
 
 	@Override
 	public Integer updateRaavareBatch(RaavareBatchDTO ans, String token) throws Exception{
 		if(FieldVerifier.isValidId(ans.getRaavareId())==true
-				&& FieldVerifier.isValidId(ans.getLeverandoerId())==true 
-				&& FieldVerifier.isValidId(ans.getRaavarebatchId())==true)
+		&& FieldVerifier.isValidId(ans.getLeverandoerId())==true 
+		&& FieldVerifier.isValidId(ans.getRaavarebatchId())==true)
+		{
 				if(isValid(token, 1)){
 					return raavareBatches.updateRaavareBatch(ans);
 				}
-		return 0;
-
-	}
+		}
+		else
+		{
+			Window.alert("Kunne ikke opdatere RaavareBatchen, tjek oplysningerne igen.");
+		}
+	return null;
+}
 
 }

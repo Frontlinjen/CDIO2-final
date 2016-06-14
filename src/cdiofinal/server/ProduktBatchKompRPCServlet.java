@@ -1,6 +1,8 @@
 package cdiofinal.server;
 import java.util.List;
 
+import com.google.gwt.user.client.Window;
+
 import cdiofinal.client.ProduktBatchKompRPCInterface;
 import cdiofinal.server.MySQLProduktBatchKompDAO;
 import cdiofinal.shared.DALException;
@@ -15,60 +17,53 @@ public class ProduktBatchKompRPCServlet extends ValidationServlet implements Pro
 
 	@Override
 	public ProduktBatchKompDTO getProduktBatchKomp(int pbid, int rabaid, String token) throws Exception {
-		try {
-			if(isValid(token, 0))
+			if(isValid(token, 0)){
 				return database.getProduktBatchKomp(pbid, rabaid);
-		} catch (DALException e) {
-			throw new DALException(gettingError("product batch component"));
-		}
+			}
 		return null;
 	}
 
 	@Override
 	public ProduktBatchKompDTO[] getProduktBatchKompList(String token) throws Exception{
-
-		try {
 			if(isValid(token, 0)){
 				List<ProduktBatchKompDTO> produktbatchkomponenter = database.getProduktBatchKompList();
 				ProduktBatchKompDTO[] produktbatchkomponenterArray = new ProduktBatchKompDTO[produktbatchkomponenter.size()];
 				return produktbatchkomponenter.toArray(produktbatchkomponenterArray);
 			}
-		} catch (DALException e) {
-			throw new DALException(gettingListError("product batch component"));
-		}
 		return null;			
 	}
 
 	@Override
 	public ProduktBatchKompDTO createProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws Exception{
 		if(FieldVerifier.isValidId(pbk.getPbId())==true 
-				&& FieldVerifier.isValidId(pbk.getRaavarebatchId())==true 
-				&& FieldVerifier.isValidCpr(pbk.getCpr()))
-			try {
+		&& FieldVerifier.isValidId(pbk.getRaavarebatchId())==true 
+		&& FieldVerifier.isValidCpr(pbk.getCpr()))
+		{
 				if(isValid(token, 0)){
-					if(database.createProduktBatchKomp(pbk)!=0){
-						return pbk;
+					database.createProduktBatchKomp(pbk);
 					}
-				}
-			} catch (DALException e){
-				throw new DALException(creatingError("product batch component"));
-			}
+		}
+		else
+		{
+			Window.alert("Kunne ikke oprette ny ProduktBatchKomponent, tjek oplysningerne igen.");
+		}
 		return null;
 	}
 
 	@Override
 	public Integer updateProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws Exception{
 		if(FieldVerifier.isValidId(pbk.getPbId())==true
-				&& FieldVerifier.isValidId(pbk.getRaavarebatchId())==true 
-				&& FieldVerifier.isValidCpr(pbk.getCpr()))
-			try {
-				if(isValid(token, 0))
+		&& FieldVerifier.isValidId(pbk.getRaavarebatchId())==true 
+		&& FieldVerifier.isValidCpr(pbk.getCpr()))
+		{
+				if(isValid(token, 0)){
 					return database.updateProduktBatchKomp(pbk);
-			} catch (DALException e){
-				throw new DALException(updatingError("product batch component"));
-			}
-		return 0;
-
-	}
-
+				}
+		}
+		else
+		{
+			Window.alert("Kunne ikke opdatere produktBatchKomponenten, tjek oplysningerne igen");
+		}
+		return null;
+		}
 }
