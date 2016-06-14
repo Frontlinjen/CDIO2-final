@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import cdiofinal.server.SQLStates;
 import cdiofinal.shared.DALException;
 import cdiofinal.shared.RaavareBatchDTO;
 
@@ -12,39 +13,84 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO{
 
 	@Override
 	public RaavareBatchDTO getRaavareBatch(int raavarebatchId) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM raavarebatch WHERE raavarebatch_id = " + raavarebatchId + ";");
-		try{
-			if (!rs.first()) throw new DALException("Raavarebatchen med raavarebatchId " + raavarebatchId + " findes ikke");
+		ResultSet rs;
+		try {
+			rs = Connector.doQuery("SELECT * FROM raavarebatch WHERE raavarebatch_id = " + raavarebatchId + ";");
+			if (!rs.first()) 
+				return null;
+
 			return new RaavareBatchDTO(rs.getInt("raavarebatch_id"), rs.getInt("raavare_id"), rs.getInt("leverandoer_id"), rs.getDouble("maengde"));
+		} catch (SQLException e) {
+			throw new DALException(e.getMessage());
 		}
-		catch (SQLException e) {throw new DALException(e); }
 	}
 
 	@Override
 	public List<RaavareBatchDTO> getRaavarebatchList() throws DALException {
 		List<RaavareBatchDTO> list = new ArrayList<RaavareBatchDTO>();
-		ResultSet rs = Connector.doQuery("SELECT * FROM raavarebatch;");
+
 		try
 		{
+			ResultSet rs = Connector.doQuery("SELECT * FROM raavarebatch;");
 			while (rs.next()) 
 			{
 				list.add(new RaavareBatchDTO(rs.getInt("raavarebatch_id"), rs.getInt("raavare_id"), rs.getInt("leverandoer_id"), rs.getDouble("maengde")));
 			}
 		}
-		catch (SQLException e) { throw new DALException(e); }
+		catch (SQLException e) { 
+			throw new DALException(e.getMessage()); 
+		}
 		return list;
 	}
 
 	@Override
 	public int createRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
-		return Connector.doUpdate("INSERT INTO raavarebatch(raavarebatch_id, raavare_id, leverandoer_id, maengde) VALUES (" + raavarebatch.getRaavarebatchId() + ","
-				+ raavarebatch.getRaavareId() + "," + raavarebatch.getLeverandoerId() + "," + raavarebatch.getMaengde() + ");");
+		try{
+			return Connector.doUpdate("INSERT INTO raavarebatch(raavarebatch_id, raavare_id, leverandoer_id, maengde) VALUES (" + raavarebatch.getRaavarebatchId() + ","
+					+ raavarebatch.getRaavareId() + "," + raavarebatch.getLeverandoerId() + "," + raavarebatch.getMaengde() + ");");
+		}catch(SQLException e){
+
+			if(SQLStates.isDuplicateFailure(e.getSQLState()))
+			{
+				throw new DALException("raavarebatch eksisterer allerede!");
+				//Figure out what constraint failed
+			}
+			if(SQLStates.isIntegrityFailure(e.getSQLState()))
+			{
+				throw new DALException(getIntegrityError(raavarebatch));
+			}
+			throw new DALException(e.getMessage());
+		}
+		
+
 	}
 
 	@Override
 	public int updateRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
-		return Connector.doUpdate("UPDATE raavarebatch SET raavare_id = '" + raavarebatch.getRaavareId() + "', leverandoer_id = '"
-				+ raavarebatch.getLeverandoerId() + "', maengde = '" + raavarebatch.getMaengde() + "' WHERE raavarebatch_id = " + raavarebatch.getRaavarebatchId() + ";");
+		try{
+			return Connector.doUpdate("UPDATE raavarebatch SET raavare_id = '" + raavarebatch.getRaavareId() + "', leverandoer_id = '"
+					+ raavarebatch.getLeverandoerId() + "', maengde = '" + raavarebatch.getMaengde() + "' WHERE raavarebatch_id = " + raavarebatch.getRaavarebatchId() + ";");
+		}catch(SQLException e)
+		{
+			if(SQLStates.isIntegrityFailure(e.getSQLState()))
+			{
+				throw new DALException(getIntegrityError(raavarebatch));
+			}
+			throw new DALException(e.getMessage());
+		}
 	}
+	
+	public String getIntegrityError(RaavareBatchDTO raavarebatch) throws DALException{
+		RaavareDAO raaverer = new MySQLRaavareDAO();
+		if(raaverer.getRaavare(raavarebatch.getRaavareId())==null)
+		{
+			return "Raavare eksisterer ikke!";
+		}
 
+		LeverandoerDAO leverandoer = new MySQLLeverandoerDAO();
+		if(leverandoer.getLeverandoer(raavarebatch.getLeverandoerId())==null){
+			return "leverandoer eksisterer ikke!";
+		}
+		return "Fejl i raavarebatch";
+	}
 }

@@ -13,23 +13,25 @@ import cdiofinal.shared.LeverandoerDTO;
 public class MySQLLeverandoerDAO implements LeverandoerDAO {
 
 	@Override
-	public LeverandoerDTO getLeverandoer(int leverandoerId) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM leverandoer WHERE leverandoer_id = " + leverandoerId + "';");
-		
+	public LeverandoerDTO getLeverandoer(int leverandoerId) throws DALException {		
 		try{
-			if(!rs.first()) 
-				throw new DALException("Leverandoeren med leverandoer_id " + leverandoerId + " findes ikke.");
+			ResultSet rs = Connector.doQuery("SELECT * FROM leverandoer WHERE leverandoer_id = " + leverandoerId + "';");
+			
+			if(!rs.first()) return null; 
 			return new LeverandoerDTO(rs.getInt("leverandoer_id"), rs.getString("leverandoer_navn"));
 		}
-		catch(SQLException e) 
-		{
-			throw new DALException(e);
+		catch(SQLException e) {throw new DALException(e.getMessage());
 		}
 	}
 
 	@Override
 	public List<LeverandoerDTO> getLeverandoerList() throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM leverandoer;");
+		ResultSet rs;
+		try {
+			rs = Connector.doQuery("SELECT * FROM leverandoer;");
+		} catch (SQLException e) {
+			throw new DALException(e.getMessage());
+		}
 		return populateList(rs);
 	}
 	public List<LeverandoerDTO> populateList(ResultSet rs) throws DALException
@@ -54,14 +56,26 @@ public class MySQLLeverandoerDAO implements LeverandoerDAO {
 
 	@Override
 	public int createLeverandoer(LeverandoerDTO leverandoer) throws DALException {
-		return Connector.doUpdate("INSERT INTO leverandoer(leverandoer_id, leverandoer_navn) VALUES " + 
-				"(" + leverandoer.getLeverandoerId() + ", '" + leverandoer.getLeverandoerNavn() + "');");
-				
+		try {
+			return Connector.doUpdate("INSERT INTO leverandoer(leverandoer_id, leverandoer_navn) VALUES " + 
+					"(" + leverandoer.getLeverandoerId() + ", '" + leverandoer.getLeverandoerNavn() + "');");
+			
+		} catch (SQLException e) {
+			if(SQLStates.isDuplicateFailure(e.getSQLState()))
+			{
+				throw new DALException("En leverandoer med dette ID eksisterer allerede");
+			}
+			else throw new DALException(e.getMessage());
+		}
 	}
 
 	@Override
-	public int updateLeverandoer(LeverandoerDTO leverandoer) throws DALException {
-		return Connector.doUpdate("UPDATE leverandoer SET leverandoer_navn = '" + 
-		leverandoer.getLeverandoerNavn() + "' WHERE leverandoer_id = " + leverandoer.getLeverandoerId() + ";");
+	public int updateLeverandoer(LeverandoerDTO leverandoer) throws DALException{
+			try {
+				return Connector.doUpdate("UPDATE leverandoer SET leverandoer_navn = '" + 
+						leverandoer.getLeverandoerNavn() + "' WHERE leverandoer_id = " + leverandoer.getLeverandoerId() + ";");
+			} catch (SQLException e) {
+				throw new DALException("");
+			}
 	}
 }
