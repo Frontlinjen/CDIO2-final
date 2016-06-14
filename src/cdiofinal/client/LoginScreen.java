@@ -36,13 +36,13 @@ public class LoginScreen extends Composite  implements AsyncCallback<TokenRank>{
 		String pass = password.getText();
 		String usr = username.getText();
 		try{
-			String cpr = null;
-			if(!FieldVerifier.isValidCpr(cpr))
+
+			if(!FieldVerifier.isValidCpr(usr))
 			{
 				feedback.setText("CPR skal v\u00E6re 10 langt.");
 				return;
 			}
-			database.getLoginToken(cpr, pass, this);
+			database.getLoginToken(usr, pass, this);
 		} 
 		catch(NumberFormatException ex)
 		{
