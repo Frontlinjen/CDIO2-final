@@ -9,29 +9,30 @@ import cdiofinal.shared.DALException;
 import cdiofinal.shared.RankDTO;
 
 public class MySQLRankDAO implements RankDAO{
-
 	@Override
 	public RankDTO getRank(int titel) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM rank WHERE titel = " + titel + ";");
 		try {
-			if(!rs.first()) throw new DALException("Ranken med titel " + titel + " findes ikke");
+		ResultSet rs = Connector.doQuery("SELECT * FROM rank WHERE titel = " + titel + ";");
+		
+			if(!rs.first()) return null;
 	    	return new RankDTO (rs.getInt("titel"), rs.getString("rank"));
 	    }
-	    catch (SQLException e) {throw new DALException(e); }
+	    catch (SQLException e) {throw new DALException(e.getMessage()); }
 	}
 
 	@Override
 	public List<RankDTO> getRankList() throws DALException {
 		List<RankDTO> list = new ArrayList<RankDTO>();
-		ResultSet rs = Connector.doQuery("SELECT * FROM rank;");
 		try
 		{
+		ResultSet rs = Connector.doQuery("SELECT * FROM rank;");
+		
 			while (rs.next()) 
 			{
 				list.add(new RankDTO(rs.getInt("titel"), rs.getString("rank")));
 			}
 		}
-		catch (SQLException e) { throw new DALException(e); }
+		catch (SQLException e) { throw new DALException(e.getMessage()); }
 		return list;
 	}
 
