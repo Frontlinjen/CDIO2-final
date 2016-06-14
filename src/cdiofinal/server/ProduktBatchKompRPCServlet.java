@@ -42,8 +42,8 @@ public class ProduktBatchKompRPCServlet extends ValidationServlet implements Pro
 	@Override
 	public ProduktBatchKompDTO createProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws Exception{
 		if(FieldVerifier.isValidId(pbk.getPbId())==true 
-		|| FieldVerifier.isValidId(pbk.getRaavarebatchId())==true 
-		|| FieldVerifier.isValidCpr(pbk.getCpr()))
+				&& FieldVerifier.isValidId(pbk.getRaavarebatchId())==true 
+				&& FieldVerifier.isValidCpr(pbk.getCpr()))
 			try {
 				if(isValid(token, 0)){
 					if(database.createProduktBatchKomp(pbk)!=0){
@@ -51,18 +51,7 @@ public class ProduktBatchKompRPCServlet extends ValidationServlet implements Pro
 					}
 				}
 			} catch (DALException e){
-
-				if (database.getProduktBatchKomp(pbk.getPbId(), pbk.getRaavarebatchId()).getPbId()==pbk.getPbId()) {
-					throw new DALException("Denne produktbatch eksisterer allerede");
-				}
-				else if(database.getProduktBatchKomp(pbk.getPbId(), pbk.getRaavarebatchId()).getRaavarebatchId()!=pbk.getRaavarebatchId()) {
-					throw new DALException("Denne raavareBatch findes ikke i systemet");
-				}
-				else if(database.getProduktBatchKomp(pbk.getPbId(), pbk.getRaavarebatchId()).getCpr()!=pbk.getCpr()) {
-					throw new DALException("En bruger med dette CPR nummer eksisterer ikke");
-				}
-				else
-					throw new DALException(creatingError("product batch component"));
+				throw new DALException(creatingError("product batch component"));
 			}
 		return null;
 	}
@@ -70,8 +59,8 @@ public class ProduktBatchKompRPCServlet extends ValidationServlet implements Pro
 	@Override
 	public Integer updateProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws Exception{
 		if(FieldVerifier.isValidId(pbk.getPbId())==true
-		&& FieldVerifier.isValidId(pbk.getRaavarebatchId())==true 
-		&& FieldVerifier.isValidCpr(pbk.getCpr()))
+				&& FieldVerifier.isValidId(pbk.getRaavarebatchId())==true 
+				&& FieldVerifier.isValidCpr(pbk.getCpr()))
 			try {
 				if(isValid(token, 0))
 					return database.updateProduktBatchKomp(pbk);
