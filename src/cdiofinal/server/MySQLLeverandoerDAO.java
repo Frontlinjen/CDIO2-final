@@ -9,6 +9,7 @@ import cdiofinal.server.Connector;
 import cdiofinal.server.LeverandoerDAO;
 import cdiofinal.shared.DALException;
 import cdiofinal.shared.LeverandoerDTO;
+import cdiofinal.shared.RaavareDTO;
 
 public class MySQLLeverandoerDAO implements LeverandoerDAO {
 
@@ -61,9 +62,7 @@ public class MySQLLeverandoerDAO implements LeverandoerDAO {
 
 	@Override
 	public int updateLeverandoer(LeverandoerDTO leverandoer) throws DALException {
-		return Connector.doUpdate(String.format("UPDATE leverandoer SET leverandoer_navn = " + leverandoer.getLeverandoerNavn() +
-		"WHERE raavare_id = " + leverandoer.getLeverandoerId() + "';"));
+		return Connector.doUpdate(String.format("UPDATE leverandoer SET leverandoer_navn = '" + 
+		leverandoer.getLeverandoerNavn() + "' WHERE raavare_id = " + leverandoer.getLeverandoerId() + ";"));
 	}
-
-	
 }
