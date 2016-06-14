@@ -57,16 +57,7 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO{
 			}
 			if(SQLStates.isIntegrityFailure(e.getSQLState()))
 			{
-				RaavareDAO raaverer = new MySQLRaavareDAO();
-				if(raaverer.getRaavare(raavarebatch.getRaavareId())==null)
-				{
-					throw new DALException("Raavare eksisterer ikke!");
-				}
-
-				LeverandoerDAO leverandoer = new MySQLLeverandoerDAO();
-				if(leverandoer.getLeverandoer(raavarebatch.getLeverandoerId())==null){
-					throw new DALException("leverandoer eksisterer ikke!");
-				}
+				throw new DALException(getIntegrityError(raavarebatch));
 			}
 			throw new DALException(e.getMessage());
 		}
@@ -81,26 +72,25 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO{
 					+ raavarebatch.getLeverandoerId() + "', maengde = '" + raavarebatch.getMaengde() + "' WHERE raavarebatch_id = " + raavarebatch.getRaavarebatchId() + ";");
 		}catch(SQLException e)
 		{
-
-			if(SQLStates.isDuplicateFailure(e.getSQLState()))
-			{
-				throw new DALException("raavarebatch eksisterer allerede!");
-				//Figure out what constraint failed
-			}
 			if(SQLStates.isIntegrityFailure(e.getSQLState()))
 			{
-				RaavareDAO raaverer = new MySQLRaavareDAO();
-				if(raaverer.getRaavare(raavarebatch.getRaavareId())==null)
-				{
-					throw new DALException("Raavare eksisterer ikke!");
-				}
-
-				LeverandoerDAO leverandoer = new MySQLLeverandoerDAO();
-				if(leverandoer.getLeverandoer(raavarebatch.getLeverandoerId())==null){
-					throw new DALException("leverandoer eksisterer ikke!");
-				}
+				throw new DALException(getIntegrityError(raavarebatch));
 			}
 			throw new DALException(e.getMessage());
 		}
+	}
+	
+	public String getIntegrityError(RaavareBatchDTO raavarebatch) throws DALException{
+		RaavareDAO raaverer = new MySQLRaavareDAO();
+		if(raaverer.getRaavare(raavarebatch.getRaavareId())==null)
+		{
+			return "Raavare eksisterer ikke!";
+		}
+
+		LeverandoerDAO leverandoer = new MySQLLeverandoerDAO();
+		if(leverandoer.getLeverandoer(raavarebatch.getLeverandoerId())==null){
+			return "leverandoer eksisterer ikke!";
+		}
+		return "Fejl i raavarebatch";
 	}
 }
