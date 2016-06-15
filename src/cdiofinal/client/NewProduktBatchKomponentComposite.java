@@ -49,7 +49,7 @@ public class NewProduktBatchKomponentComposite extends Composite implements Asyn
 		}
 		catch(NumberFormatException ex)
 		{
-			statusField.setText("ID skal v�re en integer!");
+			statusField.setText("ID skal v\u00E6re en integer!");
 			return;
 		}
 		if(!FieldVerifier.isValidId(id)==true)
@@ -63,13 +63,13 @@ public class NewProduktBatchKomponentComposite extends Composite implements Asyn
 
 	@Override
 	public void onFailure(Throwable caught) {
-		statusField.setText("Failed to create ProduktBatchKomponent" + ErrorHandling.getError(caught));
+		statusField.setText("Kunne ikke oprette ProduktBatchKomponent" + ErrorHandling.getError(caught));
 		
 	}
 
 	@Override
 	public void onSuccess(ProduktBatchKompDTO result) {
-		statusField.setText("Successfully created ProduktBatchKomponent");
+		statusField.setText("Succesfuldt oprettet ProduktBatchKomponent");
 		pb_idBox.setText("");
 		rb_id.setValue("");
 		tara.setValue("");

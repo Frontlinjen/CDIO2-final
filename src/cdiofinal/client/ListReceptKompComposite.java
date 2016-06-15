@@ -55,7 +55,7 @@ public class ListReceptKompComposite extends Composite implements AsyncCallback<
 		Column<ReceptKompDTO, String> raavareIdColumn = getRaavareIdColumn();
 		Column<ReceptKompDTO, String> nettoColumn = getNetto();
 		Column<ReceptKompDTO, String> tolColumn = getTolerance();
-		Column<ReceptKompDTO, String> saveColumn = getButtonColumn("save");
+		Column<ReceptKompDTO, String> saveColumn = getButtonColumn("gem");
 		saveColumn.setFieldUpdater(new FieldUpdater<ReceptKompDTO, String>() {
 					@Override
 					  public void update(final int index, ReceptKompDTO recKomp, String value) {
@@ -71,15 +71,15 @@ public class ListReceptKompComposite extends Composite implements AsyncCallback<
 
 								@Override
 								public void onSuccess(Integer result) {
-									Window.alert("Successfully updated");
+									Window.alert("Successfuldt opdateret!");
 								}
 								
 							});
 					  }
 				});
 				
-		vPanel.addColumn(receptIDColumn, "recept_id");
-		vPanel.addColumn(raavareIdColumn, "raavare_id");
+		vPanel.addColumn(receptIDColumn, "recept id");
+		vPanel.addColumn(raavareIdColumn, "r\u00E5vare id");
 		vPanel.addColumn(nettoColumn, "netto");
 		vPanel.addColumn(tolColumn, "tolerance");
 		vPanel.addColumn(saveColumn, "");
@@ -198,7 +198,7 @@ public class ListReceptKompComposite extends Composite implements AsyncCallback<
 	public void onSuccess(ReceptKompDTO[] result) {
 		if(result==null)
 		{
-			Window.alert("No data recieved.");
+			Window.alert("Ingen data modtaget.");
 		}
 		gui.clear();
 		for (ReceptKompDTO ReceptKompDTO : result) {

@@ -54,7 +54,7 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 		//IDColumn.setSortable(true);
 		Column<LeverandoerDTO, String> nameColumn = getNameColumn();
 		//nameColumn.setSortable(true);
-		Column<LeverandoerDTO, String> saveColumn = getButtonColumn("save");
+		Column<LeverandoerDTO, String> saveColumn = getButtonColumn("gem");
 		saveColumn.setFieldUpdater(new FieldUpdater<LeverandoerDTO, String>() {
 					@Override
 					  public void update(final int index, LeverandoerDTO object, String value) {
@@ -71,7 +71,7 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 
 								@Override
 								public void onSuccess(Integer result) {
-									Window.alert("Successfully updated");
+									Window.alert("Successfuldt opdateret");
 								}
 								
 							});
@@ -79,7 +79,7 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 				});
 				
 		vPanel.addColumn(IDColumn, "ID");
-		vPanel.addColumn(nameColumn, "Name");
+		vPanel.addColumn(nameColumn, "Navn");
 		vPanel.addColumn(saveColumn, "");
 		
 		
@@ -154,7 +154,7 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 	public void onSuccess(LeverandoerDTO[] result) {
 		if(result==null)
 		{
-			Window.alert("No data recieved.");
+			Window.alert("Ingen Data modtaget.");
 		}
 		gui.clear();
 		for (LeverandoerDTO leverandoerDTO : result) {

@@ -60,7 +60,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 		//nameColumn.setSortable(true);
 		Column<AnsatDTO, String> rankColumn = getRankColumn();
 		//nameColumn.setSortable(true);
-		Column<AnsatDTO, String> saveColumn = getButtonColumn("save");
+		Column<AnsatDTO, String> saveColumn = getButtonColumn("gem");
 		saveColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>() {
 					@Override
 					  public void update(final int index, AnsatDTO object, String value) {
@@ -76,14 +76,14 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 
 								@Override
 								public void onSuccess(Integer result) {
-									Window.alert("Successfully updated");
+									Window.alert("Successfuldt opdateret.");
 								}
 								
 							});
 					  }
 				});
 				
-				Column<AnsatDTO, String> removeColumn = getButtonColumn("remove");
+				Column<AnsatDTO, String> removeColumn = getButtonColumn("Slet");
 				removeColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>() {
 					@Override
 					  public void update(final int index, AnsatDTO object, String value) {
@@ -110,8 +110,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 				});
 				
 		vPanel.addColumn(CPRColumn, "CPR");
-		vPanel.addColumn(nameColumn, "Name");
-		vPanel.addColumn(iniColumn, "Ini");
+		vPanel.addColumn(nameColumn, "Navn");
+		vPanel.addColumn(iniColumn, "Initialer");
 		vPanel.addColumn(rankColumn, "Rank");
 		vPanel.addColumn(saveColumn, "");
 		vPanel.addColumn(removeColumn, "");
@@ -210,7 +210,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 					@Override
 					public String getValue(AnsatDTO user) {
 						if (user==null) 
-							return "�v";
+							return "\u00F8v";
 						return user.getCpr();
 					}
 				};
@@ -257,7 +257,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	public void onSuccess(AnsatDTO[] result) {
 		if(result==null)
 		{
-			Window.alert("No data recieved.");
+			Window.alert("Ingen data modtaget.");
 		}
 		gui.clear();
 		for (AnsatDTO ansatDTO : result) {
