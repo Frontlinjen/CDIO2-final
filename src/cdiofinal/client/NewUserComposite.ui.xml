@@ -15,7 +15,7 @@
 	  		<g:Label text="Indsaet INI:"/>
 	  		<g:TextBox ui:field="iniBox"/>
 	  		<g:Label text="Vælg rank:"/>
-	  		<g:ListBox ui:field='rankBox'>
+	  		<g:ListBox ui:field='rankBox' selectedIndex='0'>
 	  			<g:item>
 	  				Operatoer
 	  			</g:item>

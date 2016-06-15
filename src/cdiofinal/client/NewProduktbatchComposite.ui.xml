@@ -4,7 +4,7 @@
 		<g:Label text="Indsaet Produktbatchens Id:"/>
 		<g:TextBox ui:field="idBox"/>
 		<g:Label text="Sæt Produktbatchens status:"/>
-		<g:ListBox ui:field='statusBox'>
+		<g:ListBox ui:field='statusBox' selectedIndex='0'>
 			<g:item>
 				Ikke påbegyndt
 			</g:item>
