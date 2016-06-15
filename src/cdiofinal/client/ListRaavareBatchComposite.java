@@ -83,8 +83,8 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 				
 		vPanel.addColumn(raavareBatchIDColumn, "R\u00E5varebatch ID");
 		vPanel.addColumn(raavareIDColumn, "R\u00E5vare ID");
-		vPanel.addColumn(leverandoerIDColumn, "Leverand\00F8rID");
-		vPanel.addColumn(maengdeColumn, "Mu00E6ngde");
+		vPanel.addColumn(leverandoerIDColumn, "Leverand\u00F8rID");
+		vPanel.addColumn(maengdeColumn, "M\u00E6ngde");
 		vPanel.addColumn(saveColumn, "");
 		
 		
