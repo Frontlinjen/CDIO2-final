@@ -84,7 +84,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 		printColumn.setFieldUpdater(new FieldUpdater<ProduktBatchDTO, String>() {
 			@Override
 			  public void update(final int index, ProduktBatchDTO object, String value) {
-					Window.print();
+					Window.open(GWT.getHostPageBaseURL() + "cdio_final/batchStatus?pbID="+object.getPbId() , "Printout", "");
 			  }
 		});
 		
