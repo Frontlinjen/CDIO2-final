@@ -141,7 +141,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	}
 
 	private Column<AnsatDTO, String> getRankColumn() {
-		final String[] ranks = new String[] {"Operat\u00F8r", "V\u00E6rkf\u00F8rer", "Farmaceut", "Administrator"};
+		final String[] ranks = new String[] {"Operat\u00F8r", "V\u00E6rkf\u00F8rer", "Farmaceut", "Administrator", "Inaktiv"};
 		SelectionCell rankCell = new SelectionCell(Arrays.asList(ranks));
 		Column<AnsatDTO, String> rankColumn = new Column<AnsatDTO, String>(rankCell)
 				{
@@ -170,7 +170,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 						case "Administrator":
 							ansat.setTitel(3);
 							break;
-						
+						case "Inaktiv":
+							ansat.setTitel(4);
 						}
 						  		
 					  }});
