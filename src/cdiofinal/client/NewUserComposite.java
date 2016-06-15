@@ -41,7 +41,7 @@ public class NewUserComposite extends Composite implements AsyncCallback<AnsatDT
 	{	
 	if(FieldVerifier.isValidCpr(cprBox.getText())==true)
 	{
-		if(FieldVerifier.isValidName(nameBox.getValue())==true)
+		if(FieldVerifier.isValidName(nameBox.getValue())==true || FieldVerifier.isChar(nameBox.getValue()))
 		{
 			if(FieldVerifier.isValidIni(iniBox.getValue())==true)
 			{
