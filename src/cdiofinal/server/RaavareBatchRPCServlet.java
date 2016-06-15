@@ -35,13 +35,13 @@ public class RaavareBatchRPCServlet extends ValidationServlet implements Raavare
 	}
 
 	@Override
-	public RaavareBatchDTO createRaavareBatch(RaavareBatchDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidId(ans.getRaavarebatchId()) 
-		&& FieldVerifier.isValidId(ans.getRaavareId())==true
-		&& FieldVerifier.isValidId(ans.getLeverandoerId())==true){
+	public RaavareBatchDTO createRaavareBatch(RaavareBatchDTO recB, String token) throws Exception{
+		if(FieldVerifier.isValidId(recB.getRaavarebatchId()) 
+		&& FieldVerifier.isValidId(recB.getRaavareId())==true
+		&& FieldVerifier.isValidId(recB.getLeverandoerId())==true){
 				if(isValid(token, 1)){
-					raavareBatches.createRaavareBatch(ans);
-					return ans;
+					raavareBatches.createRaavareBatch(recB);
+					return recB;
 					}
 				}
 		else
@@ -52,13 +52,13 @@ public class RaavareBatchRPCServlet extends ValidationServlet implements Raavare
 	}
 
 	@Override
-	public Integer updateRaavareBatch(RaavareBatchDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidId(ans.getRaavareId())==true
-		&& FieldVerifier.isValidId(ans.getLeverandoerId())==true 
-		&& FieldVerifier.isValidId(ans.getRaavarebatchId())==true)
+	public Integer updateRaavareBatch(RaavareBatchDTO recB, String token) throws Exception{
+		if(FieldVerifier.isValidId(recB.getRaavareId())==true
+		&& FieldVerifier.isValidId(recB.getLeverandoerId())==true 
+		&& FieldVerifier.isValidId(recB.getRaavarebatchId())==true)
 		{
 				if(isValid(token, 1)){
-					return raavareBatches.updateRaavareBatch(ans);
+					return raavareBatches.updateRaavareBatch(recB);
 				}
 		}
 		else

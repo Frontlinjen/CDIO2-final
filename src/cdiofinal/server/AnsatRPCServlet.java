@@ -43,6 +43,7 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 		{
 				if(isValid(token, 3)){
 					database.createAnsat(ans);
+					return ans;
 				}
 		}
 		else

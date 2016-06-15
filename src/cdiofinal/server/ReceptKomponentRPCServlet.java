@@ -31,6 +31,7 @@ public class ReceptKomponentRPCServlet extends ValidationServlet implements Rece
 	public ReceptKompDTO createReceptKomp(ReceptKompDTO recKomp, String token) throws Exception{
 		if(isValid(token, 2)){
 				database.createReceptKomp(recKomp);
+				return recKomp;
 				}
 		return null;
 	}
