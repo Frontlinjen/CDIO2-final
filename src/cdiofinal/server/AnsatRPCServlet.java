@@ -61,7 +61,7 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 		&& FieldVerifier.isValidPassword(ans.getPassword())==true)
 		{
 				if(isValid(token, 3)){
-					database.updateAnsat(ans);
+					return database.updateAnsat(ans);
 				}
 	}
 	else
@@ -74,12 +74,9 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 
 	@Override
 	public Integer deleteAnsat(AnsatDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidCpr(ans.getCpr())==true 
-		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
-		&& FieldVerifier.isValidIni(ans.getIni())==true 
-		&& FieldVerifier.isValidPassword(ans.getPassword()))
-				if(TokenHandler.getInstance().validateToken(token)==null){
-					database.deleteAnsat(ans);	
+		
+				if(isValid(token, 3)){
+					return database.deleteAnsat(ans);	
 				}
 			
 		return 0;

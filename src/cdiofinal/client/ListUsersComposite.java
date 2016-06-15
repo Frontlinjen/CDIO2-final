@@ -91,13 +91,16 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 							database.deleteAnsat(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
-									Window.alert("Deletion unsuccessful");
+									Window.alert("Brugeren kunne ikke slettes");
 								}
 
 								@Override
 								public void onSuccess(Integer result) {
 									gui.remove(index);
-									Window.alert("Successfully deleted user");
+									if(result>0)
+										Window.alert("Brugeren blev slettet");
+									else
+										Window.alert("Brugeren blev ikke fundet");
 								}
 								
 							});
