@@ -140,7 +140,14 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 				{
 					@Override
 					public String getValue(ProduktBatchDTO produktbatch) {
-						return Integer.toString(produktbatch.getStatus());
+						try
+						{
+						return statuses[produktbatch.getStatus()-1];
+						}
+						catch(IndexOutOfBoundsException e)
+						{
+							return "Unknown(" + (produktbatch.getStatus()-1) + ")";
+						}
 					}
 				};
 		statusColumn.setFieldUpdater(new FieldUpdater<ProduktBatchDTO, String>(){
