@@ -46,7 +46,7 @@ public class NewLeverandoerComposite extends Composite implements AsyncCallback<
 		}
 		catch(NumberFormatException ex)
 		{
-			statusField.setText("ID skal være en integer!");
+			statusField.setText("ID skal v\u00E5re et tal!");
 			return;
 		}
 		if(!FieldVerifier.isValidId(id)==true)
@@ -55,7 +55,7 @@ public class NewLeverandoerComposite extends Composite implements AsyncCallback<
 		}
 		else if (!FieldVerifier.isValidName(navnBox.getValue())==true)
 		{
-			statusField.setText("Navnet skal vï¿½re mellem 2-20 karaktere. Benyt kun bogstaver");
+			statusField.setText("Navnet skal v\u00E5re mellem 2-20 karakterer. Benyt kun bogstaver");
 		}
 		else
 
@@ -65,12 +65,12 @@ public class NewLeverandoerComposite extends Composite implements AsyncCallback<
 	@Override
 	public void onFailure(Throwable caught) {
 		
-		statusField.setText("Failed to create leverandoer " + ErrorHandling.getError(caught));
+		statusField.setText("Kunne ikke oprette leverand\u00F8r." + ErrorHandling.getError(caught));
 		
 	}
 	@Override
 	public void onSuccess(LeverandoerDTO result) {
-		statusField.setText("Successfully created Leverandoer");		
+		statusField.setText("Leverand\u00F8r oprettet.");		
 		idBox.setValue("");
 		navnBox.setValue("");
 		callback.onElementCreated(result);
