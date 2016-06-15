@@ -40,7 +40,7 @@ public class NewRaavareBatchComposite extends Composite implements AsyncCallback
 	@UiHandler("submitButton")
 	public void onSubmitPressed(ClickEvent e) 
 	{		
-		if(FieldVerifier.isNumber(batchNrBox.getText())!=true || FieldVerifier.isValidId(Integer.parseInt(batchNrBox.getText()))!=true)
+		if(FieldVerifier.isNumber(batchNrBox.getText())==false || FieldVerifier.isValidId(Integer.parseInt(batchNrBox.getText()))==false)
 		{
 			statusField.setText("Batchnummeret skal v\u00E6re en integer mellem 1-99999999!");
 		}		
@@ -57,13 +57,13 @@ public class NewRaavareBatchComposite extends Composite implements AsyncCallback
 
 	@Override
 	public void onFailure(Throwable caught) {
-		statusField.setText("Failed to create RaavareBatch " + ErrorHandling.getError(caught));
+		statusField.setText("Kunne ikke oprette R\u00E5varebatch da " + ErrorHandling.getError(caught));
 		
 	}
 
 	@Override
 	public void onSuccess(RaavareBatchDTO result) {
-		statusField.setText("Successful to create RaavareBatch");
+		statusField.setText("Successfuldt oprettet R\u00E5varebatch!");
 		batchNrBox.setText("");
 		raavareId.setText("");
 		supplierIdBox.setText("");

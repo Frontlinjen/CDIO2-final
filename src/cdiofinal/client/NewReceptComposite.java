@@ -12,7 +12,6 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 import cdiofinal.shared.FieldVerifier;
-import cdiofinal.shared.ProduktBatchDTO;
 import cdiofinal.shared.ReceptDTO;
 
 public class NewReceptComposite extends Composite implements AsyncCallback<ReceptDTO>{
@@ -35,23 +34,13 @@ public class NewReceptComposite extends Composite implements AsyncCallback<Recep
 	@UiHandler("submitButton")
 	public void onSubmitPressed(ClickEvent e)
 	{
-		int id;
-		try
+		if(FieldVerifier.isNumber(idBox.getText())==false || FieldVerifier.isValidId(Integer.parseInt(idBox.getText()))==false)
 		{
-			id = Integer.parseInt(idBox.getValue());
-		}
-		catch(NumberFormatException ex)
+			statusField.setText("Id'et skal v\u00E6re en integer mellem 1-99999999!");
+		}		
+		if(FieldVerifier.isValidName(navnBox.getText())==false)
 		{
-			statusField.setText("ID skal være en integer!");
-			return;
-		}
-		if(!FieldVerifier.isValidId(id)==true)
-		{
-			statusField.setText("Ikke et gyldigt id (1-99999999)");
-		}
-		else if(!FieldVerifier.isValidName(navnBox.getText())==true)
-		{
-			statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver, med en lï¿½ngde mellem 2-20");
+			statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver, med en l\u00E6ngde mellem 2-20");
 		}
 		else
 			
@@ -60,13 +49,13 @@ public class NewReceptComposite extends Composite implements AsyncCallback<Recep
 
 	@Override
 	public void onFailure(Throwable caught) {
-		statusField.setText("Failed to create Recept" + ErrorHandling.getError(caught));
+		statusField.setText("Kunne ikke oprette Recept da " + ErrorHandling.getError(caught));
 		
 	}
 
 	@Override
 	public void onSuccess(ReceptDTO result) {
-		statusField.setText("Succesfully created Recept");
+		statusField.setText("Recepten oprettet!");
 		idBox.setValue("");
 		navnBox.setValue("");
 		callback.onElementCreated(result);

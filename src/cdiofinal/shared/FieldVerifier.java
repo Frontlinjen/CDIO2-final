@@ -48,9 +48,9 @@ public class FieldVerifier {
 	public static boolean isNumber(String id) {
 		if(id.matches("\\D"))
 		{
-			return true;
+			return false;
 		}
-		else return false;
+		else return true;
 	}
 	
 	public static boolean containsNumbers(String name) {
