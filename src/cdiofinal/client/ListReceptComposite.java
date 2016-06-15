@@ -52,7 +52,7 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 		Column<ReceptDTO, String> receptIDColumn = getReceptIDColumn();
 		//CPRColumn.setSortable(true);
 		Column<ReceptDTO, String> receptNameColumn = getReceptNameColumn();
-		Column<ReceptDTO, String> saveColumn = getButtonColumn("Save");
+		Column<ReceptDTO, String> saveColumn = getButtonColumn("Gem");
 		Column<ReceptDTO, String> componentColumn = getButtonColumn("Komponenter");
 		saveColumn.setFieldUpdater(new FieldUpdater<ReceptDTO, String>() {
 					@Override
@@ -69,7 +69,7 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 
 								@Override
 								public void onSuccess(Integer result) {
-									Window.alert("Successfully updated");
+									Window.alert("Successfuldt opdateret");
 								}
 								
 							});
@@ -162,7 +162,7 @@ public class ListReceptComposite extends Composite implements AsyncCallback<Rece
 	public void onSuccess(ReceptDTO[] result) {
 		if(result==null)
 		{
-			Window.alert("No data recieved.");
+			Window.alert("Ingen data recieved.");
 		}
 		gui.clear();
 		for (ReceptDTO ReceptDTO : result) {

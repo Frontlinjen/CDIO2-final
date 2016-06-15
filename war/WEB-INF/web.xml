@@ -7,6 +7,14 @@
 
   <!-- Servlets -->
   <servlet>
+      <servlet-name>ProduktBatchStatus</servlet-name>
+      <servlet-class>cdiofinal.server.ProduktBatchStatusServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ProduktBatchStatus</servlet-name>
+      <url-pattern>/cdio_final/batchStatus</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>AnsatService</servlet-name>
     <servlet-class>cdiofinal.server.AnsatRPCServlet</servlet-class>
   </servlet>

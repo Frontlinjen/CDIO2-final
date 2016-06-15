@@ -58,7 +58,7 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 		//nameColumn.setSortable(true);
 		Column<RaavareBatchDTO, String> maengdeColumn = getMaengdeColumn();
 		//nameColumn.setSortable(true);
-		Column<RaavareBatchDTO, String> saveColumn = getButtonColumn("save");
+		Column<RaavareBatchDTO, String> saveColumn = getButtonColumn("gem");
 		saveColumn.setFieldUpdater(new FieldUpdater<RaavareBatchDTO, String>() {
 					@Override
 					  public void update(final int index, RaavareBatchDTO object, String value) {
@@ -74,17 +74,17 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 
 								@Override
 								public void onSuccess(Integer result) {
-									Window.alert("Successfully updated");
+									Window.alert("Successfuldt opdateret");
 								}
 								
 							});
 					  }
 				});
 				
-		vPanel.addColumn(raavareBatchIDColumn, "raavareBatchID");
-		vPanel.addColumn(raavareIDColumn, "RaavareID");
-		vPanel.addColumn(leverandoerIDColumn, "LeverandoerID");
-		vPanel.addColumn(maengdeColumn, "Maengde");
+		vPanel.addColumn(raavareBatchIDColumn, "R\u00E5varebatch ID");
+		vPanel.addColumn(raavareIDColumn, "R\u00E5vare ID");
+		vPanel.addColumn(leverandoerIDColumn, "Leverand\00F8rID");
+		vPanel.addColumn(maengdeColumn, "Mu00E6ngde");
 		vPanel.addColumn(saveColumn, "");
 		
 		
@@ -184,7 +184,7 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 	public void onSuccess(RaavareBatchDTO[] result) {
 		if(result==null)
 		{
-			Window.alert("No data recieved.");
+			Window.alert("Ingen data modtaget.");
 		}
 		gui.clear();
 		for (RaavareBatchDTO RaavareBatchDTO : result) {

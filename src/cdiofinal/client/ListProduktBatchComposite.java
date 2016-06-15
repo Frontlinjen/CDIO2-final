@@ -74,7 +74,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 
 								@Override
 								public void onSuccess(Integer result) {
-									Window.alert("Successfully updated");
+									Window.alert("Successfuldt opdateret");
 								}
 								
 							});
@@ -88,9 +88,9 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 			  }
 		});
 		
-		vPanel.addColumn(pbIDColumn, "pb_id");
+		vPanel.addColumn(pbIDColumn, "ProduktBatch ID");
 		vPanel.addColumn(statusColumn, "status");
-		vPanel.addColumn(receptIDColumn, "recept_id");
+		vPanel.addColumn(receptIDColumn, "Recept ID");
 		vPanel.addColumn(saveColumn, "");
 		vPanel.addColumn(printColumn, "");
 		
@@ -195,7 +195,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 	public void onSuccess(ProduktBatchDTO[] result) {
 		if(result==null)
 		{
-			Window.alert("No data recieved.");
+			Window.alert("Ingen data modtaget.");
 		}
 		gui.clear();
 		for (ProduktBatchDTO produktbatchDTO : result) {
