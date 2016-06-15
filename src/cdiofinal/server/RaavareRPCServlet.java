@@ -34,13 +34,13 @@ public class RaavareRPCServlet extends ValidationServlet implements RaavareRPCIn
 	}
 
 	@Override
-	public RaavareDTO createRaavare(RaavareDTO ans, String token) throws Exception {
-		if(FieldVerifier.isValidId(ans.getRaavareId())==true 
-		&& FieldVerifier.isValidName(ans.getRaavareNavn())==true)
+	public RaavareDTO createRaavare(RaavareDTO raa, String token) throws Exception {
+		if(FieldVerifier.isValidId(raa.getRaavareId())==true 
+		&& FieldVerifier.isValidName(raa.getRaavareNavn())==true)
 		{
 			if(isValid(token, 2)){
-				database.createRaavare(ans);
-				return ans;
+				database.createRaavare(raa);
+				return raa;
 				}
 			else
 			{
@@ -51,12 +51,12 @@ public class RaavareRPCServlet extends ValidationServlet implements RaavareRPCIn
 	}
 
 	@Override
-	public Integer updateRaavare(RaavareDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidId(ans.getRaavareId())==true
-		&& FieldVerifier.isValidName(ans.getRaavareNavn())==true)
+	public Integer updateRaavare(RaavareDTO raa, String token) throws Exception{
+		if(FieldVerifier.isValidId(raa.getRaavareId())==true
+		&& FieldVerifier.isValidName(raa.getRaavareNavn())==true)
 			
 			if(isValid(token, 2)){
-				return database.updateRaavare(ans);
+				return database.updateRaavare(raa);
 			}
 			else{
 				Window.alert("Kunne ikke opdatere raavaren, tjek oplysningerne igen.");

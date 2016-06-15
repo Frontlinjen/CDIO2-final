@@ -37,29 +37,23 @@ public class NewProduktbatchComposite extends Composite implements AsyncCallback
 	@UiHandler("submitButton")
 	public void onSubmitPressed(ClickEvent e)
 	{
-		int id;
-		try
+		if(FieldVerifier.isNumber(idBox.getText())==false || FieldVerifier.isValidId(Integer.parseInt(idBox.getText()))==false)
 		{
-			id = Integer.parseInt(idBox.getValue());
-		}
-		catch(NumberFormatException ex)
-		{
-			statusField.setText("ID skal være en integer!");
-			return;
+			statusField.setText("Batch id'et skal v\u00E6re en integer mellem 1-99999999!");
+		}		
+		if (FieldVerifier.isNumber(recIdBox.getText()) == false ||  FieldVerifier.isValidId(Integer.parseInt(recIdBox.getText())) == false)
+		{	
+			statusField.setText("Id'et m\u00E5 kun best\u00E5 af tal mellem 1-99999999");
 		}
 		
-		if(!FieldVerifier.isValidId(id)==true)
-		{
-			statusField.setText("Id'et er ugyldigt. (1-99999999");
-		}
-		else 
+		else
 			
 			database.createProduktBatch(new ProduktBatchDTO(Integer.parseInt(idBox.getText()), statusBox.getSelectedIndex(), Integer.parseInt(recIdBox.getText())), Token.getToken(), this);
 	}
 
 	@Override
 	public void onFailure(Throwable caught) {
-		statusField.setText("Failed to create leverandoer" + ErrorHandling.getError(caught));
+		statusField.setText("Kunne ikke oprette produktbatch da " + ErrorHandling.getError(caught));
 		
 	}
 

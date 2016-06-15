@@ -51,7 +51,7 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 	public List<RaavareDTO> getLayoutList() { //TODO: Show users when clicked
 		Column<RaavareDTO, String> IDColumn = getIDColumn();
 		Column<RaavareDTO, String> nameColumn = getNameColumn();
-		Column<RaavareDTO, String> saveColumn = getButtonColumn("save");
+		Column<RaavareDTO, String> saveColumn = getButtonColumn("gem");
 		saveColumn.setFieldUpdater(new FieldUpdater<RaavareDTO, String>() {
 					@Override
 					  public void update(final int index, RaavareDTO object, String value) {
@@ -75,7 +75,7 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 				});
 				
 		vPanel.addColumn(IDColumn, "ID");
-		vPanel.addColumn(nameColumn, "Name");
+		vPanel.addColumn(nameColumn, "Navn");
 		vPanel.addColumn(saveColumn, "");
 		
 		ListDataProvider<RaavareDTO> raavareList = new ListDataProvider<RaavareDTO>();
@@ -148,7 +148,7 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 	public void onSuccess(RaavareDTO[] result) {
 		if(result==null)
 		{
-			Window.alert("No data recieved.");
+			Window.alert("Ingen data modtaget.");
 		}
 		gui.clear();
 		for (RaavareDTO RaavareDTO : result) {

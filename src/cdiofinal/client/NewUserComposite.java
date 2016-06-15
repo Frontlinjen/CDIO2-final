@@ -52,22 +52,22 @@ public class NewUserComposite extends Composite implements AsyncCallback<AnsatDT
 				}
 				else statusField.setText("Passwordet er ugyldigt, hold det mellem 3-8 karakterer"); 
 			}
-			else statusField.setText("Initialerne er ugyldige. Benyt kun bogstaver, med en laengde mellem 2-4 karaktere");
+			else statusField.setText("Initialerne er ugyldige. Benyt kun bogstaver, med en lngde mellem 2-4 karaktere");
 		}
-		else statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver, med en l�ngde mellem 2-20 karaktere");
+		else statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver, med en lngde mellem 2-20 karaktere");
 	}
 	else statusField.setText("CPR nummeret er ugyldigt.");		
 }
 		
 		@Override
 		public void onFailure(Throwable caught) {
-			statusField.setText("Failed to create user" + ErrorHandling.getError(caught));
+			statusField.setText("Oprettelse fejlede" + ErrorHandling.getError(caught));
 			
 		}
 	
 		@Override
 		public void onSuccess(AnsatDTO result) {
-			statusField.setText("Successfully created user");		
+			statusField.setText("Bruger oprettet");		
 			cprBox.setValue("");
 			nameBox.setValue("");
 			iniBox.setValue("");

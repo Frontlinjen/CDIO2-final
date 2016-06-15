@@ -30,8 +30,7 @@ public class AnsatDTO implements Serializable
 	{
 
 	}
-	public AnsatDTO(String cpr, String oprNavn, String ini, String password, int titel)
-	{
+	public AnsatDTO(String cpr, String oprNavn, String ini, String password, int titel){
 		this.cpr = cpr;
 		this.oprNavn = oprNavn;
 		this.ini = ini;

@@ -60,7 +60,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 		//nameColumn.setSortable(true);
 		Column<AnsatDTO, String> rankColumn = getRankColumn();
 		//nameColumn.setSortable(true);
-		Column<AnsatDTO, String> saveColumn = getButtonColumn("save");
+		Column<AnsatDTO, String> saveColumn = getButtonColumn("gem");
 		saveColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>() {
 					@Override
 					  public void update(final int index, AnsatDTO object, String value) {
@@ -76,14 +76,14 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 
 								@Override
 								public void onSuccess(Integer result) {
-									Window.alert("Successfully updated");
+									Window.alert("Successfuldt opdateret.");
 								}
 								
 							});
 					  }
 				});
 				
-				Column<AnsatDTO, String> removeColumn = getButtonColumn("remove");
+				Column<AnsatDTO, String> removeColumn = getButtonColumn("Slet");
 				removeColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>() {
 					@Override
 					  public void update(final int index, AnsatDTO object, String value) {
@@ -91,13 +91,16 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 							database.deleteAnsat(object, Token.getToken(), new AsyncCallback<Integer>() {
 								@Override
 								public void onFailure(Throwable caught) {
-									Window.alert("Deletion unsuccessful");
+									Window.alert("Brugeren kunne ikke slettes");
 								}
 
 								@Override
 								public void onSuccess(Integer result) {
 									gui.remove(index);
-									Window.alert("Successfully deleted user");
+									if(result>0)
+										Window.alert("Brugeren blev slettet");
+									else
+										Window.alert("Brugeren blev ikke fundet");
 								}
 								
 							});
@@ -107,8 +110,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 				});
 				
 		vPanel.addColumn(CPRColumn, "CPR");
-		vPanel.addColumn(nameColumn, "Name");
-		vPanel.addColumn(iniColumn, "Ini");
+		vPanel.addColumn(nameColumn, "Navn");
+		vPanel.addColumn(iniColumn, "Initialer");
 		vPanel.addColumn(rankColumn, "Rank");
 		vPanel.addColumn(saveColumn, "");
 		vPanel.addColumn(removeColumn, "");
@@ -138,7 +141,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	}
 
 	private Column<AnsatDTO, String> getRankColumn() {
-		final String[] ranks = new String[] {"Operat\u00F8r", "V\u00E6rkf\u00F8rer", "Farmaceut", "Administrator"};
+		final String[] ranks = new String[] {"Operat\u00F8r", "V\u00E6rkf\u00F8rer", "Farmaceut", "Administrator", "Inaktiv"};
 		SelectionCell rankCell = new SelectionCell(Arrays.asList(ranks));
 		Column<AnsatDTO, String> rankColumn = new Column<AnsatDTO, String>(rankCell)
 				{
@@ -167,7 +170,8 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 						case "Administrator":
 							ansat.setTitel(3);
 							break;
-						
+						case "Inaktiv":
+							ansat.setTitel(4);
 						}
 						  		
 					  }});
@@ -206,7 +210,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 					@Override
 					public String getValue(AnsatDTO user) {
 						if (user==null) 
-							return "�v";
+							return "\u00F8v";
 						return user.getCpr();
 					}
 				};
@@ -253,7 +257,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	public void onSuccess(AnsatDTO[] result) {
 		if(result==null)
 		{
-			Window.alert("No data recieved.");
+			Window.alert("Ingen data modtaget.");
 		}
 		gui.clear();
 		for (AnsatDTO ansatDTO : result) {

@@ -1,9 +1,9 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
    xmlns:g='urn:import:com.google.gwt.user.client.ui'>
     <g:VerticalPanel>
-		<g:Label text="Indsaet Råvarebatchens Id:"/>
+		<g:Label text="Indsaet Produktbatchens Id:"/>
 		<g:TextBox ui:field="idBox"/>
-		<g:Label text="Sæt Råvarebatchens status:"/>
+		<g:Label text="Sæt Produktbatchens status:"/>
 		<g:ListBox ui:field='statusBox'>
 			<g:item>
 				Ikke påbegyndt
@@ -15,7 +15,7 @@
 				Afsluttet
 			</g:item>
 		</g:ListBox>
-		<g:Label text="Indsæt receptens Id tilhørende Råvarebatchens"/>
+		<g:Label text="Indsæt receptens Id tilhørende Produktbatchens"/>
 		<g:TextBox ui:field='recIdBox'/>
         <g:Label ui:field="statusField" text="Enter Field"/>
         <g:Button ui:field="submitButton" text="Create"/>

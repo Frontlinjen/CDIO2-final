@@ -31,23 +31,23 @@ public class ReceptRPCServlet extends ValidationServlet implements ReceptRPCInte
 	}
 
 	@Override
-	public ReceptDTO createRecept(ReceptDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidId(ans.getReceptId())==true 
-		&& FieldVerifier.isValidName(ans.getReceptNavn()) == true)
+	public ReceptDTO createRecept(ReceptDTO rec, String token) throws Exception{
+		if(FieldVerifier.isValidId(rec.getReceptId())==true 
+		&& FieldVerifier.isValidName(rec.getReceptNavn()) == true)
 		{
 				if(isValid(token, 2)){
-					receptDAO.createRecept(ans);	
-					return ans;
+					receptDAO.createRecept(rec);	
+					return rec;
 				}
 			}
 		return null;
 	}
 
 	@Override
-	public Integer updateRecept(ReceptDTO ans, String token) throws Exception{
+	public Integer updateRecept(ReceptDTO rec, String token) throws Exception{
 			if(isValid(token, 2))
 			{
-				return receptDAO.updateRecept(ans);
+				return receptDAO.updateRecept(rec);
 			}
 		return 0;
 	}

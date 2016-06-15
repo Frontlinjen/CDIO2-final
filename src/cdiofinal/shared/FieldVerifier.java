@@ -45,6 +45,14 @@ public class FieldVerifier {
 		else return true;
 	}
 	
+	public static boolean isNumber(String id) {
+		if(id.matches("\\D"))
+		{
+			return false;
+		}
+		else return true;
+	}
+	
 	public static boolean containsNumbers(String name) {
 		boolean containsNumbers = false;
 		for (char c:name.toCharArray())

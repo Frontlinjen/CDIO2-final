@@ -1,6 +1,7 @@
 package cdiofinal.client;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dev.protobuf.UnknownFieldSet.Field;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -37,23 +38,17 @@ public class NewRaavareBatchComposite extends Composite implements AsyncCallback
 	FieldVerifier f = new FieldVerifier();
 
 	@UiHandler("submitButton")
-	public void onSubmitPressed(ClickEvent e)
-	{
-		int id;
-		try
+	public void onSubmitPressed(ClickEvent e) 
+	{		
+		if(FieldVerifier.isNumber(batchNrBox.getText())==false || FieldVerifier.isValidId(Integer.parseInt(batchNrBox.getText()))==false)
 		{
-			id = Integer.parseInt(batchNrBox.getText());
-		}
-		catch(NumberFormatException ex)
-		{
-			statusField.setText("ID skal være en integer!");
-			return;
+			statusField.setText("Batchnummeret skal v\u00E6re en integer mellem 1-99999999!");
+		}		
+		if (!FieldVerifier.isNumber(raavareId.getText()) == true  || !FieldVerifier.isNumber(supplierIdBox.getText()) == true)
+		{	
+			statusField.setText("Id'et m\u00E5 kun best\u00E5 af tal mellem 1-99999999");
 		}
 		
-		if(!FieldVerifier.isValidId(id)==true)
-		{
-			statusField.setText("Id'et er ugyldigt. (1-99999999");
-		}
 		else
 			
 			database.createRaavareBatch(new RaavareBatchDTO(Integer.parseInt(batchNrBox.getText()), Integer.parseInt(raavareId.getText()), Integer.parseInt(supplierIdBox.getText()), Double.parseDouble(amountBox.getText())), Token.getToken(), this);
@@ -62,13 +57,13 @@ public class NewRaavareBatchComposite extends Composite implements AsyncCallback
 
 	@Override
 	public void onFailure(Throwable caught) {
-		statusField.setText("Failed to create RaavareBatch" + ErrorHandling.getError(caught));
+		statusField.setText("Kunne ikke oprette R\u00E5varebatch da " + ErrorHandling.getError(caught));
 		
 	}
 
 	@Override
 	public void onSuccess(RaavareBatchDTO result) {
-		statusField.setText("Successful to create RaavareBatch");
+		statusField.setText("Successfuldt oprettet R\u00E5varebatch!");
 		batchNrBox.setText("");
 		raavareId.setText("");
 		supplierIdBox.setText("");
