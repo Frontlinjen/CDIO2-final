@@ -31,6 +31,7 @@ public class ProduktBatchStatusKomponent {
 			layout = layout.replace("PLACEHOLDER_NETTO", "");
 			layout = layout.replace("PLACEHOLDER_BATCH", "");
 			layout = layout.replace("PLACEHOLDER_OPERATOR", "");
+			layout = layout.replace("PLACEHOLDER_TERMINAL", "");
 		}
 		System.out.println("Statuskomponent created");
 	}
