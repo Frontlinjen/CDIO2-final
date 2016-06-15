@@ -40,7 +40,7 @@ public class NewRaavareComposite extends Composite implements AsyncCallback<Raav
 		}
 		catch(NumberFormatException ex)
 		{
-			statusField.setText("ID skal være en integer!");
+			statusField.setText("ID skal v\u00E6re et tal!");
 			return;
 		}
 		
@@ -50,7 +50,7 @@ public class NewRaavareComposite extends Composite implements AsyncCallback<Raav
 		}
 		else if(!FieldVerifier.isValidName(navnBox.getText())==true)
 		{
-			statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver, med en lï¿½ngde mellem 2-20 karaktere");
+			statusField.setText("Navnet er ugyldigt. Benyt kun bogstaver med en l\u00E6ngde mellem 2-20 karakterer");
 		}
 		else
 			
@@ -59,13 +59,13 @@ public class NewRaavareComposite extends Composite implements AsyncCallback<Raav
 
 	@Override
 	public void onFailure(Throwable caught) {
-		statusField.setText("Failed to create Raavare" + ErrorHandling.getError(caught));;
+		statusField.setText("Kunne ikke oprette r\u00E5vare." + ErrorHandling.getError(caught));;
 		
 	}
 
 	@Override
 	public void onSuccess(RaavareDTO result) {
-		statusField.setText("Successfully created Raavare");
+		statusField.setText("R\u00E5vare oprettet.");
 		idBox.setValue("");
 		navnBox.setValue("");	
 		callback.onElementCreated(result);
