@@ -74,7 +74,7 @@ public class ProduktBatchStatusBody {
 				ProduktBatchStatusKomponent bodyPart = factory.getPbKomponent(raavare.getRaavare(ingredient.getRaavareId()), ingredient, addedIngredients.get(ingredient.getRaavareId()));
 				body += bodyPart.getLayout() + "<br>";
 			}
-			DecimalFormat df = new DecimalFormat("0.00000"); 
+			DecimalFormat df = new DecimalFormat("0.0000"); 
 			fileContent = fileContent.replace("PLACEHOLDER_RECEPT_KOMPONENTS", body);
 			fileContent = fileContent.replace("PLACEHOLDER_SUM_TARA", df.format(taraSum));
 			fileContent = fileContent.replace("PLACEHOLDER_SUM_NETTO", df.format(nettoSum));

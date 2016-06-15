@@ -17,13 +17,13 @@ public class ProduktBatchStatusKomponent {
 		layout = layout.replace("PLACEHOLDER_AMOUNT", Double.toString(receptKomp.getNomNetto()));
 		layout = layout.replace("PLACEHOLDER_TOLERANCE", Double.toString(receptKomp.getTolerance()));
 		layout = layout.replace("PLACEHOLDER_PART", "1");
-		layout = layout.replace("PLACEHOLDER_TERMINAL", "1");
 		if(pdBatch!=null)
 		{
 			layout = layout.replace("PLACEHOLDER_TARA", Double.toString(pdBatch.getTara()));
 			layout = layout.replace("PLACEHOLDER_NETTO", Double.toString(pdBatch.getNetto()));
 			layout = layout.replace("PLACEHOLDER_BATCH", Integer.toString(pdBatch.getRaavarebatchId()));
 			layout = layout.replace("PLACEHOLDER_OPERATOR", pdBatch.getCpr());
+			layout = layout.replace("PLACEHOLDER_TERMINAL", "1");
 		}
 		else
 		{
