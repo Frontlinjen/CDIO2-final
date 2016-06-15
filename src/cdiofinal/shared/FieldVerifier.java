@@ -33,6 +33,15 @@ public class FieldVerifier {
 	 * @param name the name to validate
 	 * @return true if valid, false if invalid
 	 */
+	
+	public static boolean isChar(String name) {
+		if(name.matches("\\D"))
+		{
+			return true;
+		}
+		else return false;
+	}
+	
 	public static boolean isValidName(String name) {
 		if (name == null) 
 		{
