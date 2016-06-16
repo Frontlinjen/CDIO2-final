@@ -12,6 +12,7 @@ import cdiofinal.shared.RaavareBatchDTO;
 public class RaavareBatchRPCServlet extends ValidationServlet implements RaavareBatchRPCInterface {
 
 	private static final long serialVersionUID = 1L;
+	final String fail ="Kunne ikke %s , r\u00E5varebatchen tjek informationerne igen.";
 	RaavareBatchDAO raavareBatches = new MySQLRaavareBatchDAO();
 	RaavareDAO raavare = new MySQLRaavareDAO();
 	LeverandoerDAO leverandorer = new MySQLLeverandoerDAO();
@@ -36,9 +37,7 @@ public class RaavareBatchRPCServlet extends ValidationServlet implements Raavare
 
 	@Override
 	public RaavareBatchDTO createRaavareBatch(RaavareBatchDTO recB, String token) throws Exception{
-		if(FieldVerifier.isValidId(recB.getRaavarebatchId()) 
-		&& FieldVerifier.isValidId(recB.getRaavareId())==true
-		&& FieldVerifier.isValidId(recB.getLeverandoerId())==true){
+		if(recB.isValid()){
 				if(isValid(token, 1)){
 					raavareBatches.createRaavareBatch(recB);
 					return recB;
@@ -46,16 +45,14 @@ public class RaavareBatchRPCServlet extends ValidationServlet implements Raavare
 				}
 		else
 		{
-			Window.alert("Kunne ikke oprette ny RaavareBatch, tjek oplysningerne igen");
+			throw new DALException(String.format(fail, "oprette"));
 		}
 		return null;
 	}
 
 	@Override
 	public Integer updateRaavareBatch(RaavareBatchDTO recB, String token) throws Exception{
-		if(FieldVerifier.isValidId(recB.getRaavareId())==true
-		&& FieldVerifier.isValidId(recB.getLeverandoerId())==true 
-		&& FieldVerifier.isValidId(recB.getRaavarebatchId())==true)
+		if(recB.isValid())
 		{
 				if(isValid(token, 1)){
 					return raavareBatches.updateRaavareBatch(recB);
@@ -63,7 +60,7 @@ public class RaavareBatchRPCServlet extends ValidationServlet implements Raavare
 		}
 		else
 		{
-			Window.alert("Kunne ikke opdatere RaavareBatchen, tjek oplysningerne igen.");
+			throw new DALException(String.format(fail, "opdatere"));
 		}
 		return 0;
 }
