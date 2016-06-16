@@ -20,7 +20,8 @@ public class RaavareBatchDTO implements Serializable{
 	public boolean isValid(){
 		if(FieldVerifier.isValidId(this.getRaavarebatchId()) 
 		&& FieldVerifier.isValidId(this.getRaavareId())==true
-		&& FieldVerifier.isValidId(this.getLeverandoerId())==true){
+		&& FieldVerifier.isValidId(this.getLeverandoerId())==true
+		&& FieldVerifier.isNumber(Double.toString(this.maengde))){
 			return true;
 		}
 		else return false;

@@ -11,7 +11,6 @@ public class FieldVerifierTest {
 
 	@Test
 	public void testIsAlphabetic() {
-		
 		assertTrue("Succes @ test 0",
 				FieldVerifier.isAlphabetic("a3lphabetical")==false
 				&& FieldVerifier.isAlphabetic("asd")==true
@@ -32,7 +31,7 @@ public class FieldVerifierTest {
 	@Test
 	public void testIsNumber() {
 		assertTrue("Succes @ test 2", 
-				FieldVerifier.isNumber("k")==false 
+				FieldVerifier.isNumber("k1k")==false 
 				&& FieldVerifier.isNumber("2222")==true);
 	}
 

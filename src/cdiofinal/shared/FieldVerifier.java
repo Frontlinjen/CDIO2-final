@@ -35,7 +35,8 @@ public class FieldVerifier {
 	 */
 	
 	public static boolean isAlphabetic(String name) {
-		if(name.matches("\\[a-\u00E5\u00E6\u00F8A-\u00C5\u00E6\u00D8]+"))
+//		String check = name 
+		if(name.matches("[a-\u00E5]+"))
 		{
 			return true;
 		}
@@ -55,7 +56,7 @@ public class FieldVerifier {
 	}
 	
 	public static boolean isNumber(String id) {
-		if(id.matches("\\D"))
+		if(!id.matches("[0-9]+"))
 		{
 			return false;
 		}
