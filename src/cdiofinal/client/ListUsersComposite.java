@@ -171,7 +171,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 							ansat.setTitel(3);
 							break;
 						case "Inaktiv":
-							ansat.setTitel(4);
+							ansat.setTitel(-1);
 						}
 						  		
 					  }});
