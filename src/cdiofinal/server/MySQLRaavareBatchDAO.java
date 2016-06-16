@@ -68,8 +68,8 @@ public class MySQLRaavareBatchDAO implements RaavareBatchDAO{
 	@Override
 	public int updateRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
 		try{
-			return Connector.doUpdate("UPDATE raavarebatch SET raavare_id = '" + raavarebatch.getRaavareId() + "', leverandoer_id = '"
-					+ raavarebatch.getLeverandoerId() + "', maengde = '" + raavarebatch.getMaengde() + "' WHERE raavarebatch_id = " + raavarebatch.getRaavarebatchId() + ";");
+			return Connector.doUpdate("UPDATE raavarebatch SET raavare_id = " + raavarebatch.getRaavareId() + ", leverandoer_id = "
+					+ raavarebatch.getLeverandoerId() + ", maengde = " + raavarebatch.getMaengde() + " WHERE raavarebatch_id = " + raavarebatch.getRaavarebatchId() + ";");
 		}catch(SQLException e)
 		{
 			if(SQLStates.isIntegrityFailure(e.getErrorCode()))

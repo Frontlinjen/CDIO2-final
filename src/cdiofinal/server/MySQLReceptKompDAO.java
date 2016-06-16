@@ -81,8 +81,8 @@ public class MySQLReceptKompDAO implements ReceptKompDAO{
 	@Override
 	public int updateReceptKomp(ReceptKompDTO receptkomponent) throws DALException {
 		try{
-			return Connector.doUpdate("UPDATE receptkomponent SET nom_netto = '" + receptkomponent.getNomNetto() + "', tolerance = '"
-					+ receptkomponent.getTolerance() + "' WHERE recept_id = " + receptkomponent.getReceptId() + " AND raavare_id = " + receptkomponent.getRaavareId() + ";");
+			return Connector.doUpdate("UPDATE receptkomponent SET nom_netto = " + receptkomponent.getNomNetto() + ", tolerance = "
+					+ receptkomponent.getTolerance() + " WHERE recept_id = " + receptkomponent.getReceptId() + " AND raavare_id = " + receptkomponent.getRaavareId() + ";");
 		} catch(SQLException e) {
 			if(SQLStates.isIntegrityFailure(e.getErrorCode()))
 			{
