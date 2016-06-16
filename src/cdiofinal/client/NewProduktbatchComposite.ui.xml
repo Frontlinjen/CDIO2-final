@@ -18,6 +18,6 @@
 		<g:Label text="Indsæt receptens Id tilhørende Produktbatchens"/>
 		<g:TextBox ui:field='recIdBox'/>
         <g:Label ui:field="statusField" text="Enter Field"/>
-        <g:Button ui:field="submitButton" text="Create"/>
+        <g:Button ui:field="submitButton" text="Tilføj"/>
     </g:VerticalPanel>
   </ui:UiBinder>

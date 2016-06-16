@@ -12,6 +12,6 @@
 		<g:Label text="Indsæt dit CPR:"/>
 		<g:TextBox ui:field="cprBox"/>
 		<g:Label ui:field="statusField" text="Enter Fields"/>
-        <g:Button ui:field="submitButton" text="Create"/>
+        <g:Button ui:field="submitButton" text="Tilføj"/>
     </g:VerticalPanel>
   </ui:UiBinder>

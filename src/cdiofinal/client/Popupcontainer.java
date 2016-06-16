@@ -14,8 +14,8 @@ import com.google.gwt.user.client.ui.Widget;
 public class Popupcontainer extends Composite {
 	interface PopupContainerUiBinder extends UiBinder<Widget, Popupcontainer> {}
 	private static PopupContainerUiBinder popupContainerUiBinder = GWT.create(PopupContainerUiBinder.class);
-	DialogBox d = new DialogBox();
-	@UiField SimplePanel container;
+	public DialogBox d = new DialogBox();
+	@UiField public SimplePanel container;
 
 	public Popupcontainer(Widget w)
 	{

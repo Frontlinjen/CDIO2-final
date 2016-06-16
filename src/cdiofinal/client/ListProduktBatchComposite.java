@@ -25,12 +25,12 @@ import cdiofinal.shared.ProduktBatchDTO;
 
 public class ListProduktBatchComposite extends Composite implements AsyncCallback<ProduktBatchDTO[]>, NewElementCreatedCallback<ProduktBatchDTO> {
 	
-	final ProduktBatchRPCInterfaceAsync database = (ProduktBatchRPCInterfaceAsync)GWT.create(ProduktBatchRPCInterface.class);
+	private final ProduktBatchRPCInterfaceAsync database = (ProduktBatchRPCInterfaceAsync)GWT.create(ProduktBatchRPCInterface.class);
 	interface ListProduktBatchUiBinder extends UiBinder<Widget, ListProduktBatchComposite> {}
 	private static ListProduktBatchUiBinder listProduktBatchUiBinder = GWT.create(ListProduktBatchUiBinder.class);
 	
-	@UiField(provided=true) CellTable<ProduktBatchDTO> vPanel;
-	List<ProduktBatchDTO> gui;
+	public @UiField(provided=true) CellTable<ProduktBatchDTO> vPanel;
+	private List<ProduktBatchDTO> gui;
 	
 	public ListProduktBatchComposite()
 	{

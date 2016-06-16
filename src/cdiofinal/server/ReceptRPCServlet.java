@@ -10,8 +10,8 @@ import cdiofinal.shared.ReceptDTO;
 public class ReceptRPCServlet extends ValidationServlet implements ReceptRPCInterface {
 
 	private static final long serialVersionUID = 1L;
-	MySQLReceptDAO receptDAO = new MySQLReceptDAO();
-	final String fail ="Kunne ikke %s recepten, tjek informationerne igen.";
+	private MySQLReceptDAO receptDAO = new MySQLReceptDAO();
+	final private String fail ="Kunne ikke %s recepten, tjek informationerne igen.";
 
 
 	@Override

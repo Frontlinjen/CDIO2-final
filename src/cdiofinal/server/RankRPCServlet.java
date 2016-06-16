@@ -11,7 +11,7 @@ public class RankRPCServlet extends RemoteServiceServlet implements RankDAO{
 
 	private static final long serialVersionUID = 1L;
 	
-	MySQLRankDAO dao = new MySQLRankDAO();
+	private MySQLRankDAO dao = new MySQLRankDAO();
 
 	@Override
 	public RankDTO getRank(int titel) throws DALException {
@@ -21,7 +21,7 @@ public class RankRPCServlet extends RemoteServiceServlet implements RankDAO{
 		catch(DALException e){
 			throw new DALException("An error occoured when getting a rank. Please contact your sysadmin.");
 		}
-	}
+	}	
 
 	@Override
 	public List<RankDTO> getRankList() throws DALException {

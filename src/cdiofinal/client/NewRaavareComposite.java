@@ -15,15 +15,15 @@ import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.RaavareDTO;
 
 public class NewRaavareComposite extends Composite implements AsyncCallback<RaavareDTO>{
-	final RaavareRPCInterfaceAsync database = (RaavareRPCInterfaceAsync)GWT.create(RaavareRPCInterface.class);
+	private final RaavareRPCInterfaceAsync database = (RaavareRPCInterfaceAsync)GWT.create(RaavareRPCInterface.class);
 	interface NewRaavareUIBinder extends UiBinder<Widget, NewRaavareComposite>{}
 	private static NewRaavareUIBinder newRaavareUIBinder = GWT.create(NewRaavareUIBinder.class);
 	
 	private NewElementCreatedCallback<RaavareDTO> callback;
 	
-	@UiField TextBox idBox;
-	@UiField TextBox navnBox;
-	@UiField Label statusField;
+	@UiField public TextBox idBox;
+	@UiField public TextBox navnBox;
+	@UiField public Label statusField;
 	
 	public NewRaavareComposite(NewElementCreatedCallback<RaavareDTO> callback) {
 		initWidget(newRaavareUIBinder.createAndBindUi(this));

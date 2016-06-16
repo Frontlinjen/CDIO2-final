@@ -16,9 +16,9 @@ public class RaavareDTO implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 	/** i omraadet 1-99999999 vaelges af brugerne */
-    int raavareId;                     
+	private int raavareId;                     
     /** min. 2 max. 20 karakterer */
-    String raavareNavn;                        
+	private String raavareNavn;                        
 	
     public RaavareDTO(){
     	

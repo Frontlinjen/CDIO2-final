@@ -14,7 +14,7 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 
 	private static final long serialVersionUID = 1L;
 	private MySQLAnsatDAO database = new MySQLAnsatDAO();
-	final String fail ="Kunne ikke %s , den ansatte tjek informationerne igen.";
+	private final String fail ="Kunne ikke %s , den ansatte tjek informationerne igen.";
 
 
 	@Override

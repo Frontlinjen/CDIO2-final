@@ -4,7 +4,6 @@ import java.util.List;
 import cdiofinal.shared.DALException;
 import cdiofinal.client.ProduktBatchRPCInterface;
 import cdiofinal.server.MySQLProduktbatchDAO;
-import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.ProduktBatchDTO;
 
 public class ProduktBatchRPCServlet extends ValidationServlet implements ProduktBatchRPCInterface {

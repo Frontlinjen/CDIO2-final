@@ -12,8 +12,8 @@ import cdiofinal.shared.ProduktBatchKompDTO;
 public class ProduktBatchKompRPCServlet extends ValidationServlet implements ProduktBatchKompRPCInterface {
 
 	private static final long serialVersionUID = 1L;
-	MySQLProduktBatchKompDAO database = new MySQLProduktBatchKompDAO();
-	final String fail ="Kunne ikke %s , produktbatchkomponenten tjek informationerne igen.";
+	private MySQLProduktBatchKompDAO database = new MySQLProduktBatchKompDAO();
+	final private String fail ="Kunne ikke %s , produktbatchkomponenten tjek informationerne igen.";
 
 
 	@Override

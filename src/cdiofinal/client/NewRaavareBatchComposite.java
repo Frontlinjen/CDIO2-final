@@ -18,24 +18,23 @@ import cdiofinal.shared.RaavareBatchDTO;
 
 
 public class NewRaavareBatchComposite extends Composite implements AsyncCallback<RaavareBatchDTO>{
-	final RaavareBatchRPCInterfaceAsync database = (RaavareBatchRPCInterfaceAsync)GWT.create(RaavareBatchRPCInterface.class);
+	private final RaavareBatchRPCInterfaceAsync database = (RaavareBatchRPCInterfaceAsync)GWT.create(RaavareBatchRPCInterface.class);
 	interface NewRaavareBatchUIBinder extends UiBinder<Widget, NewRaavareBatchComposite> {}
 	private static NewRaavareBatchUIBinder newRaavareBatchUiBinder = GWT.create(NewRaavareBatchUIBinder.class);
 	
 	private NewElementCreatedCallback<RaavareBatchDTO> callback;
 	
-	@UiField IntegerBox batchNrBox;
-	@UiField IntegerBox raavareId;
-	@UiField IntegerBox supplierIdBox;
-	@UiField IntegerBox amountBox;
-	@UiField Label statusField;
+	@UiField public IntegerBox batchNrBox;
+	@UiField public IntegerBox raavareId;
+	@UiField public IntegerBox supplierIdBox;
+	@UiField public IntegerBox amountBox;
+	@UiField public Label statusField;
 	
 	NewRaavareBatchComposite(NewElementCreatedCallback<RaavareBatchDTO> callback) {
 		initWidget(newRaavareBatchUiBinder.createAndBindUi(this));
 		this.callback = callback;
 	}
 	
-	FieldVerifier f = new FieldVerifier();
 
 	@UiHandler("submitButton")
 	public void onSubmitPressed(ClickEvent e) 

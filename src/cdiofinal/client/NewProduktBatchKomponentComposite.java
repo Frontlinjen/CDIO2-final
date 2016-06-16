@@ -21,18 +21,18 @@ import cdiofinal.shared.ProduktBatchKompDTO;
 
 
 public class NewProduktBatchKomponentComposite extends Composite implements AsyncCallback<ProduktBatchKompDTO>{
-	final ProduktBatchKompRPCInterfaceAsync database = (ProduktBatchKompRPCInterfaceAsync)GWT.create(ProduktBatchKompRPCInterface.class);
+	private final ProduktBatchKompRPCInterfaceAsync database = (ProduktBatchKompRPCInterfaceAsync)GWT.create(ProduktBatchKompRPCInterface.class);
 	interface NewProduktBatchKomponentUIBinder extends UiBinder<Widget, NewProduktBatchKomponentComposite>{}
 	private static NewProduktBatchKomponentUIBinder newProduktBatchKomponentUIBinder = GWT.create(NewProduktBatchKomponentUIBinder.class);
 	
 	private NewElementCreatedCallback<ProduktBatchKompDTO> callback;
 	
-	@UiField IntegerBox pb_idBox;
-	@UiField TextBox rb_id;
-	@UiField TextBox tara;
-	@UiField TextBox netto;
-	@UiField TextBox cprBox;
-	@UiField Label statusField;
+	@UiField public IntegerBox pb_idBox;
+	@UiField public TextBox rb_id;
+	@UiField public TextBox tara;
+	@UiField public TextBox netto;
+	@UiField public TextBox cprBox;
+	@UiField public Label statusField;
 	
 	public NewProduktBatchKomponentComposite(NewElementCreatedCallback<ProduktBatchKompDTO> callback) {
 		initWidget(newProduktBatchKomponentUIBinder.createAndBindUi(this));

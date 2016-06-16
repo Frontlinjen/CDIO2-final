@@ -44,7 +44,7 @@ public class MainPage extends Composite{
 	{
 		greeter.setText("Greetings, " + name + "!");
 		
-		
+
 		final Composite[] compositeWidgets = new Composite[6];
 		switch(rank){
 			case 3: 
@@ -92,7 +92,7 @@ public class MainPage extends Composite{
 			container.add(t);
 		}
 		//Sets up the logout button:
-				PushButton logout = new PushButton("Logout");
+				PushButton logout = new PushButton("Log ud");
 				logout.addClickHandler(new ClickHandler() {
 					
 					@Override
@@ -109,5 +109,6 @@ public class MainPage extends Composite{
 				logout.getElement().getStyle().setProperty("bottom", "0px");
 				logout.getElement().getStyle().setProperty("left", "0px");
 				logout.getElement().getStyle().setProperty("padding", "2px");
+	
 	}
 }

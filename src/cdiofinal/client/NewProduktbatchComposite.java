@@ -18,16 +18,16 @@ import cdiofinal.shared.ProduktBatchDTO;
 
 
 public class NewProduktbatchComposite extends Composite implements AsyncCallback<ProduktBatchDTO> {
-	final ProduktBatchRPCInterfaceAsync database = (ProduktBatchRPCInterfaceAsync)GWT.create(ProduktBatchRPCInterface.class);
+	private final ProduktBatchRPCInterfaceAsync database = (ProduktBatchRPCInterfaceAsync)GWT.create(ProduktBatchRPCInterface.class);
 	interface NewProduktbatchUIBinder extends UiBinder<Widget, NewProduktbatchComposite> {}
 	private static NewProduktbatchUIBinder newProduktBatchUiBinder = GWT.create(NewProduktbatchUIBinder.class);
 	
 	private NewElementCreatedCallback<ProduktBatchDTO> callback;
 	
-	@UiField TextBox idBox;
-	@UiField ListBox statusBox;
-	@UiField TextBox recIdBox;
-	@UiField Label statusField;
+	@UiField public TextBox idBox;
+	@UiField public ListBox statusBox;
+	@UiField public TextBox recIdBox;
+	@UiField public Label statusField;
 	public NewProduktbatchComposite(NewElementCreatedCallback<ProduktBatchDTO> callback) {
 		initWidget(newProduktBatchUiBinder.createAndBindUi(this));
 		this.callback = callback;

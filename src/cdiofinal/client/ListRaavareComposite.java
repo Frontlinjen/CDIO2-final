@@ -23,13 +23,13 @@ import cdiofinal.shared.RaavareDTO;
 
 public class ListRaavareComposite extends Composite implements AsyncCallback<RaavareDTO[]>, NewElementCreatedCallback<RaavareDTO> {
 	
-	final RaavareRPCInterfaceAsync database = (RaavareRPCInterfaceAsync)GWT.create(RaavareRPCInterface.class);
+	private final RaavareRPCInterfaceAsync database = (RaavareRPCInterfaceAsync)GWT.create(RaavareRPCInterface.class);
 
 
 	interface ListRaavareUiBinder extends UiBinder<Widget, ListRaavareComposite> {}
 	private static ListRaavareUiBinder listRaavareUiBinder = GWT.create(ListRaavareUiBinder.class);
-	@UiField(provided=true) CellTable<RaavareDTO> vPanel;
-	List<RaavareDTO> gui;
+	public @UiField(provided=true) CellTable<RaavareDTO> vPanel;
+	private List<RaavareDTO> gui;
 	
 	public ListRaavareComposite()
 	{

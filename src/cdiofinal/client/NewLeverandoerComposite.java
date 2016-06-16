@@ -21,15 +21,15 @@ import cdiofinal.shared.ProduktBatchDTO;
 import cdiofinal.shared.RaavareDTO;
 
 public class NewLeverandoerComposite extends Composite implements AsyncCallback<LeverandoerDTO>{
-	final LeverandoerRPCInterfaceAsync database = (LeverandoerRPCInterfaceAsync)GWT.create(LeverandoerRPCInterface.class);
+	private final LeverandoerRPCInterfaceAsync database = (LeverandoerRPCInterfaceAsync)GWT.create(LeverandoerRPCInterface.class);
 	interface NewLeverandoerUIBinder extends UiBinder<Widget, NewLeverandoerComposite> {}
 	private static NewLeverandoerUIBinder newLeverandoerUiBinder = GWT.create(NewLeverandoerUIBinder.class);
 
 	private NewElementCreatedCallback<LeverandoerDTO> callback;
 	
-	@UiField TextBox idBox;
-	@UiField TextBox navnBox;
-	@UiField Label statusField;
+	@UiField public TextBox idBox;
+	@UiField public TextBox navnBox;
+	@UiField public Label statusField;
 	
 	public NewLeverandoerComposite(NewElementCreatedCallback<LeverandoerDTO> callback) {
 		initWidget(newLeverandoerUiBinder.createAndBindUi(this));

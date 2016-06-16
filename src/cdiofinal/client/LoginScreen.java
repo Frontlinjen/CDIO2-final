@@ -1,5 +1,7 @@
 package cdiofinal.client;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
+
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -20,10 +22,10 @@ public class LoginScreen extends Composite  implements AsyncCallback<TokenRank>{
 	interface LoginUIBinder extends UiBinder<Widget, LoginScreen>{}
 	private static LoginUIBinder loginUiBinder = GWT.create(LoginUIBinder.class);
 	private final LoginRPCInterfaceAsync database = (LoginRPCInterfaceAsync)GWT.create(LoginRPCInterface.class);
-	@UiField Button submit;
-	@UiField TextBox username;
-	@UiField TextBox password;
-	@UiField Label feedback;
+	public @UiField Button submit;
+	public @UiField TextBox username;
+	public @UiField TextBox password;
+	public @UiField Label feedback;
 	
 	public LoginScreen(){
 		initWidget(loginUiBinder.createAndBindUi(this));

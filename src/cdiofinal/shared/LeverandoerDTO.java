@@ -8,8 +8,8 @@ public class LeverandoerDTO implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	int leverandoerId;             // i omraadet 1-99999999
-	String leverandoerNavn;
+	private int leverandoerId;             // i omraadet 1-99999999
+	private String leverandoerNavn;
 
 	public LeverandoerDTO()
 	{

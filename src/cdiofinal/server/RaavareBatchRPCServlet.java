@@ -12,10 +12,8 @@ import cdiofinal.shared.RaavareBatchDTO;
 public class RaavareBatchRPCServlet extends ValidationServlet implements RaavareBatchRPCInterface {
 
 	private static final long serialVersionUID = 1L;
-	final String fail ="Kunne ikke %s , r\u00E5varebatchen tjek informationerne igen.";
-	RaavareBatchDAO raavareBatches = new MySQLRaavareBatchDAO();
-	RaavareDAO raavare = new MySQLRaavareDAO();
-	LeverandoerDAO leverandorer = new MySQLLeverandoerDAO();
+	private final String fail ="Kunne ikke %s , r\u00E5varebatchen tjek informationerne igen.";
+	private RaavareBatchDAO raavareBatches = new MySQLRaavareBatchDAO();
 
 	@Override
 	public RaavareBatchDTO getRaavareBatch(int rb_id, String token) throws Exception{

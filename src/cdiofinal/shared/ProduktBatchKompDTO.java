@@ -8,11 +8,11 @@ public class ProduktBatchKompDTO implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	int pbId; 	  // produktbatchets id
-	int raavarebatchId;        // raavarebatchens id
-	double tara;
-	double netto;
-	String cpr;					// cpr-nummer for operatøren
+	private int pbId; 	  // produktbatchets id
+	private int raavarebatchId;        // raavarebatchens id
+	private double tara;
+	private double netto;
+	private String cpr;					// cpr-nummer for operatøren
 
 	public ProduktBatchKompDTO()
 	{

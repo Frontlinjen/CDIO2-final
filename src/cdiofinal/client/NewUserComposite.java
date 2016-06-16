@@ -25,12 +25,12 @@ public class NewUserComposite extends Composite implements AsyncCallback<AnsatDT
 	
 	private NewElementCreatedCallback<AnsatDTO> callback;
 	
-	@UiField TextBox cprBox;
-	@UiField TextBox nameBox;
-	@UiField TextBox iniBox;
-	@UiField ListBox rankBox;
-	@UiField PasswordTextBox passBox;
-	@UiField Label statusField;
+	@UiField public TextBox cprBox;
+	@UiField public TextBox nameBox;
+	@UiField public TextBox iniBox;
+	@UiField public ListBox rankBox;
+	@UiField public PasswordTextBox passBox;
+	@UiField public Label statusField;
 	public NewUserComposite(NewElementCreatedCallback<AnsatDTO> callback) {
 		initWidget(newUserUiBinder.createAndBindUi(this));
 		this.callback = callback;

@@ -21,7 +21,7 @@ public class LoginRPCServlet extends RemoteServiceServlet implements LoginRPCInt
 			if(user==null)
 			{
 				throw new DALException();
-			}
+			}	
 		} catch(DALException e){
 			throw new DALException("Brugeren kunne ikke findes");
 		}
