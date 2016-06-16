@@ -10,12 +10,13 @@ public class FieldVerifierTest {
 	
 
 	@Test
-	public void testIsChar() {
+	public void testIsAlphabetic() {
 		
 		assertTrue("Succes @ test 0",
-				FieldVerifier.isChar("3")==false
-				&& FieldVerifier.isChar("a")==true
-				&& FieldVerifier.isChar("test")==false); 
+				FieldVerifier.isAlphabetic("a3lphabetical")==false
+				&& FieldVerifier.isAlphabetic("asd")==true
+				&& FieldVerifier.isAlphabetic("test")==true
+				); 
 				
 	}
 	
@@ -32,7 +33,7 @@ public class FieldVerifierTest {
 	public void testIsNumber() {
 		assertTrue("Succes @ test 2", 
 				FieldVerifier.isNumber("k")==false 
-				&& FieldVerifier.isNumber("2")==true);
+				&& FieldVerifier.isNumber("2222")==true);
 	}
 
 //	@Test
@@ -67,11 +68,12 @@ public class FieldVerifierTest {
 		assertTrue("Succes @ test 6",
 				FieldVerifier.isValidCpr("3201010101")==false
 				&& FieldVerifier.isValidCpr("0113010101")==false
-				&& FieldVerifier.isValidCpr("k101010101")==false
+				&& FieldVerifier.isValidCpr("111kk00101")==false
 				&& FieldVerifier.isValidCpr("010101010")==false
 				&& FieldVerifier.isValidCpr("01010101010")==false
 				&& FieldVerifier.isValidCpr("")==false
-				&& FieldVerifier.isValidCpr("0101010101")==true);
+				&& FieldVerifier.isValidCpr("0101010101")==true
+				);
 	}
 
 	@Test

@@ -56,7 +56,8 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 	@Override
 	public Integer updateAnsat(AnsatDTO ans, String token) throws Exception{
 	if(FieldVerifier.isValidCpr(ans.getCpr())==true 
-		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
+		&& FieldVerifier.isValidName(ans.getOprNavn())==true
+		&& FieldVerifier.isAlphabetic(ans.getOprNavn())==true
 		&& FieldVerifier.isValidIni(ans.getIni())==true 
 		&& FieldVerifier.isValidPassword(ans.getPassword())==true)
 		{

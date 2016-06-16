@@ -34,8 +34,8 @@ public class FieldVerifier {
 	 * @return true if valid, false if invalid
 	 */
 	
-	public static boolean isChar(String name) {
-		if(name.matches("\\D"))
+	public static boolean isAlphabetic(String name) {
+		if(name.matches("\\[a-\u00E5\u00E6\u00F8A-\u00C5\u00E6\u00D8]+"))
 		{
 			return true;
 		}
@@ -98,7 +98,7 @@ public class FieldVerifier {
 		if (cpr == null) {
 			return false;
 		} 
-		else if(cpr.matches("\\D"))
+		else if(!cpr.matches("\\d+"))
 		{
 			return false;
 		}
@@ -108,18 +108,13 @@ public class FieldVerifier {
 		}
 		else
 		{
-			String date = cpr.substring(0, 1);
-			String month = cpr.substring(2, 3);
-			String year = cpr.substring(4, 5);
-			if(Integer.parseInt(date) > 31 && Integer.parseInt(date)< 1)
+			String date = cpr.substring(0, 2);
+			String month = cpr.substring(2, 4);
+			if(Integer.parseInt(date) > 31 || Integer.parseInt(date)< 1)
 			{
 				return false;
 			}
-			else if(Integer.parseInt(month) > 12 && Integer.parseInt(month) < 1)
-			{
-				return false;
-			}
-			else if(Integer.parseInt(year) > 99 && Integer.parseInt(year) > 0)
+			else if(Integer.parseInt(month) > 12 || Integer.parseInt(month) < 1)
 			{
 				return false;
 			}
@@ -152,6 +147,16 @@ public class FieldVerifier {
 			return false;
 		else return true;
 	}
+	
+	public static boolean isValidStatus(int s){
+		if(s<0 || s>2)
+		{
+			return false;
+		}
+		else return true;
+	}
+	
+	
 
 }
 

@@ -16,6 +16,15 @@ public class LeverandoerDTO implements Serializable
 		
 	}
 	
+	public boolean isValid()
+	{
+		if(FieldVerifier.isValidId(this.getLeverandoerId())==true 
+		&& FieldVerifier.isValidName(this.getLeverandoerNavn())==true){
+			return true;
+		}
+		else return false;
+	}
+	
 	public LeverandoerDTO(int leverandoerId, String leverandoerNavn)
 	{
 		this.leverandoerId = leverandoerId;

@@ -19,6 +19,16 @@ public class ProduktBatchKompDTO implements Serializable
 		
 	}
 	
+	public boolean isValid()
+	{
+		if (FieldVerifier.isValidId(this.pbId)==true &&
+			FieldVerifier.isValidId(this.raavarebatchId) &&
+			FieldVerifier.isValidCpr(this.cpr)) {
+			return true;
+		}
+		else return false;
+	}
+	
 	public ProduktBatchKompDTO(int pbId, int raavarebatchId, double tara, double netto, String cpr)
 	{
 		this.pbId = pbId;

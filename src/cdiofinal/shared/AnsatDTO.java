@@ -30,6 +30,20 @@ public class AnsatDTO implements Serializable
 	{
 
 	}
+	
+	public boolean isValid()
+	{
+		if(FieldVerifier.isValidCpr(this.getCpr())==true 
+				&& FieldVerifier.isValidName(this.getOprNavn())==true
+				&& FieldVerifier.isAlphabetic(this.getOprNavn())==true
+				&& FieldVerifier.isValidIni(this.getIni())==true 
+				&& FieldVerifier.isValidPassword(this.getPassword())==true)
+				{
+			return true;
+				}
+		else return false;
+	}
+	
 	public AnsatDTO(String cpr, String oprNavn, String ini, String password, int titel){
 		this.cpr = cpr;
 		this.oprNavn = oprNavn;
