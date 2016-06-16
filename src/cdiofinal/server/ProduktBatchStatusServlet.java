@@ -37,7 +37,7 @@ public class ProduktBatchStatusServlet extends HttpServlet {
 			stream.write(e.getMessage());
 		} catch (IOException e)
 		{
-			stream.write("Internal server error.");
+			stream.write("Internal server error: " + e.getMessage());
 		}
 		
 				

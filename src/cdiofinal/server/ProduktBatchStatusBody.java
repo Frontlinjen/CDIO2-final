@@ -28,6 +28,7 @@ public class ProduktBatchStatusBody {
 	private double nettoSum;
 	private ProduktBatchDTO pbBatch;
 	private String[] batchStatuses = {"Oprettet", "Startet", "Afsluttet"};
+	private SimpleDateFormat dateFormatter = new SimpleDateFormat("HH:mm:ss, EEEE, d/MM/yy");
 	public ProduktBatchStatusBody(int pbID) throws FileNotFoundException, DALException
 	{
 		pbBatch = produktbatches.getProduktBatch(pbID);
@@ -79,6 +80,24 @@ public class ProduktBatchStatusBody {
 			fileContent = fileContent.replace("PLACEHOLDER_SUM_TARA", df.format(taraSum));
 			fileContent = fileContent.replace("PLACEHOLDER_SUM_NETTO", df.format(nettoSum));
 			
+			Date startDate = pbBatch.getStartDate();
+			Date endDate = pbBatch.getEndDate();
+			if(startDate!=null)
+			{
+				fileContent = fileContent.replace("PLACEHOLDER_PROD_STARTET", dateFormatter.format(startDate));
+			}
+			else
+			{
+				fileContent = fileContent.replace("PLACEHOLDER_PROD_STARTET", "Ikke startet");
+			}
+			if(endDate!=null)
+			{
+				fileContent = fileContent.replace("PLACEHOLDER_PROD_ENDED ", dateFormatter.format(endDate));
+			}
+			else
+			{
+				fileContent = fileContent.replace("PLACEHOLDER_PROD_ENDED ", "Ikke afsluttet");
+			}
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -94,10 +113,7 @@ public class ProduktBatchStatusBody {
 		Date date = new Date();
 		if(date!=null)
 		{
-			SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss, EEEE, d/MM/yy");
-			if(formatter!=null)
-			{
-				String currDate = formatter.format(date);
+				String currDate = dateFormatter.format(date);
 				if(currDate!=null)
 				{
 					fileContent = fileContent.replace("PLACEHOLDER_PRINT_DATE", currDate);
@@ -106,7 +122,6 @@ public class ProduktBatchStatusBody {
 				{
 					fileContent = fileContent.replace("PLACEHOLDER_PRINT_DATE", "Ukendt");
 				}
-			}
 		}
 		
 	}
