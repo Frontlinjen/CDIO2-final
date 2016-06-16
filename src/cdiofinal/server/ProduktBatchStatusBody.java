@@ -92,11 +92,11 @@ public class ProduktBatchStatusBody {
 			}
 			if(endDate!=null)
 			{
-				fileContent = fileContent.replace("PLACEHOLDER_PROD_ENDED ", dateFormatter.format(endDate));
+				fileContent = fileContent.replace("PLACEHOLDER_PROD_ENDED", dateFormatter.format(endDate));
 			}
 			else
 			{
-				fileContent = fileContent.replace("PLACEHOLDER_PROD_ENDED ", "Ikke afsluttet");
+				fileContent = fileContent.replace("PLACEHOLDER_PROD_ENDED", "Ikke afsluttet");
 			}
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
