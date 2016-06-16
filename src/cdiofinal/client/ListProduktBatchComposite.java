@@ -3,7 +3,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
-import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.cell.client.SelectionCell;
 import com.google.gwt.cell.client.TextCell;
@@ -16,15 +15,12 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
-import com.google.gwt.user.client.rpc.InvocationException;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
 import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.ProduktBatchDTO;
-import cdiofinal.shared.RaavareDTO;
 
 
 public class ListProduktBatchComposite extends Composite implements AsyncCallback<ProduktBatchDTO[]>, NewElementCreatedCallback<ProduktBatchDTO> {
@@ -58,7 +54,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 		//nameColumn.setSortable(true);
 		Column<ProduktBatchDTO, String> receptIDColumn = getReceptIDColumn();
 		//IDColumn.setSortable(true);
-		Column<ProduktBatchDTO, String> saveColumn = getButtonColumn("save");
+		Column<ProduktBatchDTO, String> saveColumn = getButtonColumn("Gem");
 		saveColumn.setFieldUpdater(new FieldUpdater<ProduktBatchDTO, String>() {
 					@Override
 					  public void update(final int index, ProduktBatchDTO object, String value) {
@@ -80,7 +76,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 							});
 					  }
 				});
-		Column<ProduktBatchDTO, String> printColumn = getButtonColumn("print");
+		Column<ProduktBatchDTO, String> printColumn = getButtonColumn("Print");
 		printColumn.setFieldUpdater(new FieldUpdater<ProduktBatchDTO, String>() {
 			@Override
 			  public void update(final int index, ProduktBatchDTO object, String value) {
@@ -89,7 +85,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 		});
 		
 		vPanel.addColumn(pbIDColumn, "ProduktBatch ID");
-		vPanel.addColumn(statusColumn, "status");
+		vPanel.addColumn(statusColumn, "Status");
 		vPanel.addColumn(receptIDColumn, "Recept ID");
 		vPanel.addColumn(saveColumn, "");
 		vPanel.addColumn(printColumn, "");
@@ -146,7 +142,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 						}
 						catch(IndexOutOfBoundsException e)
 						{
-							return "Unknown(" + (produktbatch.getStatus()-1) + ")";
+							return "Ukendt(" + (produktbatch.getStatus()-1) + ")";
 						}
 					}
 				};
