@@ -70,7 +70,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 
 								@Override
 								public void onSuccess(Integer result) {
-									Window.alert("Successfuldt opdateret");
+									Window.alert("Succesfuldt opdateret");
 								}
 								
 							});
@@ -159,7 +159,7 @@ public class ListProduktBatchComposite extends Composite implements AsyncCallbac
 						case "I Produktion":
 							produktbatch.setStatus(2);
 							break;
-						case "Afslutet":
+						case "Afsluttet":
 							produktbatch.setStatus(3);
 							break;
 						

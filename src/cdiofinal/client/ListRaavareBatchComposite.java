@@ -14,14 +14,11 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
-import com.google.gwt.user.client.rpc.InvocationException;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
 import cdiofinal.shared.InsufficientAccessException;
-import cdiofinal.shared.ProduktBatchDTO;
 import cdiofinal.shared.RaavareBatchDTO;
 
 
@@ -58,7 +55,7 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 		//nameColumn.setSortable(true);
 		Column<RaavareBatchDTO, String> maengdeColumn = getMaengdeColumn();
 		//nameColumn.setSortable(true);
-		Column<RaavareBatchDTO, String> saveColumn = getButtonColumn("gem");
+		Column<RaavareBatchDTO, String> saveColumn = getButtonColumn("Gem");
 		saveColumn.setFieldUpdater(new FieldUpdater<RaavareBatchDTO, String>() {
 					@Override
 					  public void update(final int index, RaavareBatchDTO object, String value) {
@@ -74,7 +71,7 @@ public class ListRaavareBatchComposite extends Composite implements AsyncCallbac
 
 								@Override
 								public void onSuccess(Integer result) {
-									Window.alert("Successfuldt opdateret");
+									Window.alert("Succesfuldt opdateret");
 								}
 								
 							});

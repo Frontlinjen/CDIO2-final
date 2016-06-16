@@ -60,7 +60,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 		//nameColumn.setSortable(true);
 		Column<AnsatDTO, String> rankColumn = getRankColumn();
 		//nameColumn.setSortable(true);
-		Column<AnsatDTO, String> saveColumn = getButtonColumn("gem");
+		Column<AnsatDTO, String> saveColumn = getButtonColumn("Gem");
 		saveColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>() {
 					@Override
 					  public void update(final int index, AnsatDTO object, String value) {
@@ -76,7 +76,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 
 								@Override
 								public void onSuccess(Integer result) {
-									Window.alert("Successfuldt opdateret.");
+									Window.alert("Succesfuldt opdateret.");
 								}
 								
 							});
