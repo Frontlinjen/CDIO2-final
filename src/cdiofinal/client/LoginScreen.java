@@ -53,7 +53,7 @@ public class LoginScreen extends Composite  implements AsyncCallback<TokenRank>{
 	@Override
 	public void onFailure(Throwable caught) {
 		System.out.println("Failed to login");
-		feedback.setText("Brugernavn eller password er forkert! Pr\u00F8v igen.");
+		feedback.setText(caught.getMessage());
 		
 	}
 
