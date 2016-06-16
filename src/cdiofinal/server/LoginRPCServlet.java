@@ -5,6 +5,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import cdiofinal.client.LoginRPCInterface;
 import cdiofinal.shared.AnsatDTO;
 import cdiofinal.shared.DALException;
+import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.TokenRank;
 
 public class LoginRPCServlet extends RemoteServiceServlet implements LoginRPCInterface{
@@ -20,6 +21,10 @@ public class LoginRPCServlet extends RemoteServiceServlet implements LoginRPCInt
 		} catch(DALException e){
 			throw new DALException("Brugeren kunne ikke findes");
 		}
+		if(user.getTitel() < 0) //Inactive users
+		{
+			throw new InsufficientAccessException("Denne konto er ikke længere aktiv");
+		}
 		if(user.getPassword().equals(password))
 		{
 			TokenRank tr = new TokenRank();
@@ -30,7 +35,7 @@ public class LoginRPCServlet extends RemoteServiceServlet implements LoginRPCInt
 		}
 		else
 		{
-			throw new Exception("Brugernavn eller password forkert!");
+			throw new InsufficientAccessException("Brugernavn eller password forkert!");
 		}	
 	}
 
