@@ -15,15 +15,15 @@ import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.ReceptDTO;
 
 public class NewReceptComposite extends Composite implements AsyncCallback<ReceptDTO>{
-	final ReceptRPCInterfaceAsync database = (ReceptRPCInterfaceAsync)GWT.create(ReceptRPCInterface.class);
+	private final ReceptRPCInterfaceAsync database = (ReceptRPCInterfaceAsync)GWT.create(ReceptRPCInterface.class);
 	interface NewReceptCompositeUiBinder extends UiBinder<Widget, NewReceptComposite> {}
 	private static NewReceptCompositeUiBinder newReceptUiBinder = GWT.create(NewReceptCompositeUiBinder.class);
 	
 	private NewElementCreatedCallback<ReceptDTO> callback;
 	
-	@UiField TextBox idBox;
-	@UiField TextBox navnBox;
-	@UiField Label statusField;
+	@UiField public TextBox idBox;
+	@UiField public TextBox navnBox;
+	@UiField public Label statusField;
 	public NewReceptComposite(NewElementCreatedCallback<ReceptDTO> callback) {
 		initWidget(newReceptUiBinder.createAndBindUi(this));
 		this.callback = callback;

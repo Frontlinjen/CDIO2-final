@@ -23,12 +23,12 @@ import cdiofinal.shared.ReceptKompDTO;
 
 public class ListReceptKompComposite extends Composite implements AsyncCallback<ReceptKompDTO[]>, NewElementCreatedCallback<ReceptKompDTO> {
 	
-	final ReceptKomponentRPCInterfaceAsync database = (ReceptKomponentRPCInterfaceAsync)GWT.create(ReceptKomponentRPCInterface.class);
+	private final ReceptKomponentRPCInterfaceAsync database = (ReceptKomponentRPCInterfaceAsync)GWT.create(ReceptKomponentRPCInterface.class);
 	
 	interface ListReceptKompUiBinder extends UiBinder<Widget, ListReceptKompComposite> {}
 	private static ListReceptKompUiBinder listReceptUiBinder = GWT.create(ListReceptKompUiBinder.class);
-	@UiField(provided=true) CellTable<ReceptKompDTO> vPanel;
-	List<ReceptKompDTO> gui;
+	public @UiField(provided=true) CellTable<ReceptKompDTO> vPanel;
+	private List<ReceptKompDTO> gui;
 	
 	private int recept;
 	

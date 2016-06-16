@@ -24,12 +24,12 @@ import cdiofinal.shared.LeverandoerDTO;
 
 public class ListLeverandoerComposite extends Composite implements AsyncCallback<LeverandoerDTO[]>, NewElementCreatedCallback<LeverandoerDTO> {
 	
-	final LeverandoerRPCInterfaceAsync database = (LeverandoerRPCInterfaceAsync)GWT.create(LeverandoerRPCInterface.class);
+	private final LeverandoerRPCInterfaceAsync database = (LeverandoerRPCInterfaceAsync)GWT.create(LeverandoerRPCInterface.class);
 	
 	interface ListLeverandoerUiBinder extends UiBinder<Widget, ListLeverandoerComposite> {}
 	private static ListLeverandoerUiBinder listLeverandoerUiBinder = GWT.create(ListLeverandoerUiBinder.class);
 	@UiField(provided=true) CellTable<LeverandoerDTO> vPanel;
-	List<LeverandoerDTO> gui;
+	private List<LeverandoerDTO> gui;
 	
 	public ListLeverandoerComposite()
 	{

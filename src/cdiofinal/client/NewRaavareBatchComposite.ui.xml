@@ -10,6 +10,6 @@
 		<g:Label text="Indtast mængde"/>
 		<g:IntegerBox ui:field="amountBox"/>
         <g:Label ui:field="statusField" text="Enter Fields"/>
-        <g:Button ui:field="submitButton" text="Create"/>
+        <g:Button ui:field="submitButton" text="Tilføj"/>
     </g:VerticalPanel>
   </ui:UiBinder>

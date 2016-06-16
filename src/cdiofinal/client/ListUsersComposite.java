@@ -32,7 +32,7 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 	
 	interface ListUsersUiBinder extends UiBinder<Widget, ListUsersComposite> {}
 	private static ListUsersUiBinder listUsersUiBinder = GWT.create(ListUsersUiBinder.class);
-	@UiField(provided=true) CellTable<AnsatDTO> vPanel;
+	public @UiField(provided=true) CellTable<AnsatDTO> vPanel;
 	private List<AnsatDTO> gui;
 	public ListUsersComposite()
 	{

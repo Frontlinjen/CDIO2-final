@@ -8,10 +8,10 @@ public class RaavareBatchDTO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	int raavarebatchId;
-	int raavareId;
-	int leverandoerId;
-	double maengde;
+	private int raavarebatchId;
+	private int raavareId;
+	private int leverandoerId;
+	private double maengde;
 	
 	public RaavareBatchDTO(){
 		

@@ -8,8 +8,8 @@ public class RankDTO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	int titel;
-	String rank;
+	private int titel;
+	private String rank;
 	
 	public RankDTO()
 	{

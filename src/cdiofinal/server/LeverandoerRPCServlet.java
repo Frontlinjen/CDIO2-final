@@ -12,8 +12,8 @@ import cdiofinal.shared.LeverandoerDTO;
 public class LeverandoerRPCServlet extends ValidationServlet implements LeverandoerRPCInterface {
 
 	private static final long serialVersionUID = 1L;
-	MySQLLeverandoerDAO database = new MySQLLeverandoerDAO();
-	final String fail ="Kunne ikke %s leverand\u00F8ren, tjek informationerne igen.";
+	private MySQLLeverandoerDAO database = new MySQLLeverandoerDAO();
+	final private String fail ="Kunne ikke %s leverand\u00F8ren, tjek informationerne igen.";
 
 
 	@Override

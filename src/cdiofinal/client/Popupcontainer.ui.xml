@@ -4,7 +4,7 @@
          <table cellspacing='0' style='border: 2px solid black; background-color: white; width: 200px;'>
              <tr style=''>
                  <th align='right' style='background-color: #032336'>
-                     <g:Button text='Close' ui:field="CloseButton"/>
+                     <g:Button text='Luk' ui:field="CloseButton"/>
                  </th>		
              </tr>
              <tr>

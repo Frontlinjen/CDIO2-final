@@ -12,8 +12,8 @@ import cdiofinal.shared.RaavareDTO;
 public class RaavareRPCServlet extends ValidationServlet implements RaavareRPCInterface {
 
 	private static final long serialVersionUID = 1L;
-	MySQLRaavareDAO database = new MySQLRaavareDAO();
-	final String fail ="Kunne ikke %s , r\u00E5varen tjek informationerne igen.";
+	private MySQLRaavareDAO database = new MySQLRaavareDAO();
+	final private String fail ="Kunne ikke %s , r\u00E5varen tjek informationerne igen.";
 
 
 	@Override

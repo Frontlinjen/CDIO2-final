@@ -16,17 +16,17 @@ import cdiofinal.shared.ReceptKompDTO;
 
 public class NewReceptKompComposite extends Composite implements AsyncCallback<ReceptKompDTO>{
 	
-		final ReceptKomponentRPCInterfaceAsync database = (ReceptKomponentRPCInterfaceAsync)GWT.create(ReceptKomponentRPCInterface.class);
+		private final ReceptKomponentRPCInterfaceAsync database = (ReceptKomponentRPCInterfaceAsync)GWT.create(ReceptKomponentRPCInterface.class);
 		interface NewReceptKompCompositeUiBinder extends UiBinder<Widget, NewReceptKompComposite> {}
 		private static NewReceptKompCompositeUiBinder NewReceptKompUiBinder = GWT.create(NewReceptKompCompositeUiBinder.class);
 		
 		private NewElementCreatedCallback<ReceptKompDTO> callback;
 		
-		@UiField TextBox re_idBox;
-		@UiField TextBox raa_idBox;
-		@UiField TextBox nom_nettoBox;
-		@UiField TextBox tolBox;
-		@UiField Label statusField;
+		@UiField public TextBox re_idBox;
+		@UiField public TextBox raa_idBox;
+		@UiField public TextBox nom_nettoBox;
+		@UiField public TextBox tolBox;
+		@UiField public Label statusField;
 		public NewReceptKompComposite(NewElementCreatedCallback<ReceptKompDTO> callback) {
 			initWidget(NewReceptKompUiBinder.createAndBindUi(this));
 			this.callback = callback;

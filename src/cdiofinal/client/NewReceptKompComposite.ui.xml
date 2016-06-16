@@ -10,6 +10,6 @@
 		<g:Label text="Indsaet tolerancen:"/>
         <g:TextBox ui:field="tolBox"/>
         <g:Label ui:field="statusField" text="Enter Fields"/>
-        <g:Button ui:field="submitButton" text="Create"/>
+        <g:Button ui:field="submitButton" text="Tilføj"/>
     </g:VerticalPanel>
   </ui:UiBinder>

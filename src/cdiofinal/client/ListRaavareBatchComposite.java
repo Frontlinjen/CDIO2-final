@@ -24,12 +24,12 @@ import cdiofinal.shared.RaavareBatchDTO;
 
 public class ListRaavareBatchComposite extends Composite implements AsyncCallback<RaavareBatchDTO[]>,NewElementCreatedCallback<RaavareBatchDTO> {
 	
-	final RaavareBatchRPCInterfaceAsync database = (RaavareBatchRPCInterfaceAsync)GWT.create(RaavareBatchRPCInterface.class);
+	private final RaavareBatchRPCInterfaceAsync database = (RaavareBatchRPCInterfaceAsync)GWT.create(RaavareBatchRPCInterface.class);
 	
 	interface ListRaavareBatchUiBinder extends UiBinder<Widget, ListRaavareBatchComposite> {}
 	private static ListRaavareBatchUiBinder listRaavareBatchUiBinder = GWT.create(ListRaavareBatchUiBinder.class);
-	@UiField(provided=true) CellTable<RaavareBatchDTO> vPanel;
-	List<RaavareBatchDTO> gui;
+	public @UiField(provided=true) CellTable<RaavareBatchDTO> vPanel;
+	private List<RaavareBatchDTO> gui;
 	
 	public ListRaavareBatchComposite()
 	{
