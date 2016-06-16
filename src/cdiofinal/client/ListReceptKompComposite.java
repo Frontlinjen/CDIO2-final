@@ -55,7 +55,7 @@ public class ListReceptKompComposite extends Composite implements AsyncCallback<
 		Column<ReceptKompDTO, String> raavareIdColumn = getRaavareIdColumn();
 		Column<ReceptKompDTO, String> nettoColumn = getNetto();
 		Column<ReceptKompDTO, String> tolColumn = getTolerance();
-		Column<ReceptKompDTO, String> saveColumn = getButtonColumn("gem");
+		Column<ReceptKompDTO, String> saveColumn = getButtonColumn("Gem");
 		saveColumn.setFieldUpdater(new FieldUpdater<ReceptKompDTO, String>() {
 					@Override
 					  public void update(final int index, ReceptKompDTO recKomp, String value) {
@@ -78,10 +78,10 @@ public class ListReceptKompComposite extends Composite implements AsyncCallback<
 					  }
 				});
 				
-		vPanel.addColumn(receptIDColumn, "recept id");
-		vPanel.addColumn(raavareIdColumn, "r\u00E5vare id");
-		vPanel.addColumn(nettoColumn, "netto");
-		vPanel.addColumn(tolColumn, "tolerance");
+		vPanel.addColumn(receptIDColumn, "Recept ID");
+		vPanel.addColumn(raavareIdColumn, "R\u00E5vare ID");
+		vPanel.addColumn(nettoColumn, "Nom. Netto");
+		vPanel.addColumn(tolColumn, "Tolerance");
 		vPanel.addColumn(saveColumn, "");
 		
 		
