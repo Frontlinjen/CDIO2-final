@@ -17,6 +17,15 @@ public class RaavareBatchDTO implements Serializable{
 		
 	}
 	
+	public boolean isValid(){
+		if(FieldVerifier.isValidId(this.getRaavarebatchId()) 
+		&& FieldVerifier.isValidId(this.getRaavareId())==true
+		&& FieldVerifier.isValidId(this.getLeverandoerId())==true){
+			return true;
+		}
+		else return false;
+	}
+	
 	public RaavareBatchDTO(int raavarebatchId, int raavareId, int leverandoerId, double maengde){
 		this.raavarebatchId = raavarebatchId;
 		this.raavareId = raavareId;

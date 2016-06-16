@@ -17,6 +17,16 @@ public class ReceptKompDTO implements Serializable
 	{
 		
 	}
+	
+	public boolean isValid()
+	{
+		if (FieldVerifier.isValidId(this.receptId)==true && FieldVerifier.isValidId(this.raavareId)==true
+			&& FieldVerifier.isValidNomNetto(this.nomNetto)== true && FieldVerifier.isValidTolerance(this.tolerance) ==true) {
+			return true;
+		}
+		else return false;
+	}
+	
 	public ReceptKompDTO(int receptId, int raavareId, double nomNetto, double tolerance)
 	{
 		this.receptId = receptId;

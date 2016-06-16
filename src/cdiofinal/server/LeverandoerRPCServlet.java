@@ -44,7 +44,7 @@ public class LeverandoerRPCServlet extends ValidationServlet implements Leverand
 				}
 		else
 		{
-			Window.alert("Kunne ikke lave ny Leverandoer, tjek oplysningerne igen");
+			throw new DALException("Kunne ikke lave ny Leverandoer, tjek oplysningerne igen");
 		}
 			}
 		return null;

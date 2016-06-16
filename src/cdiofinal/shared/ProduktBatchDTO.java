@@ -19,6 +19,16 @@ public class ProduktBatchDTO implements Serializable
 	{
 		
 	}
+	
+	public boolean isValid(){
+		if(FieldVerifier.isValidId((this.getReceptId()))==true 
+		&& FieldVerifier.isValidId(this.getPbId())==true
+		&& FieldVerifier.isValidStatus(this.status)==true){
+			return true;
+		}
+		else return false;
+	}
+	
 	public ProduktBatchDTO(int pbId, int status, int receptId)
 	{
 		this(pbId, status, receptId, null, null);

@@ -25,6 +25,14 @@ public class ReceptDTO implements Serializable
     {
     	
     }
+    
+    public boolean isValid()
+    {
+    	if (FieldVerifier.isValidId(this.receptId)==true && FieldVerifier.isValidName(this.receptNavn)==true) {
+			return true;
+		}
+    	else return false;
+    }
 	
 	public ReceptDTO(int receptId, String receptNavn)
 	{
