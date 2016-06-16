@@ -27,7 +27,7 @@ public class ProduktBatchStatusBody {
 	private double taraSum;
 	private double nettoSum;
 	private ProduktBatchDTO pbBatch;
-	private String[] batchStatuses = {"Oprettet", "Startet", "Afsluttet"};
+	private String[] batchStatuses = {"Startet", "Under produktion", "Afsluttet"};
 	private SimpleDateFormat dateFormatter = new SimpleDateFormat("HH:mm:ss, EEEE, d/MM/yy");
 	public ProduktBatchStatusBody(int pbID) throws FileNotFoundException, DALException
 	{
