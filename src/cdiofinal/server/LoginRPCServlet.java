@@ -18,6 +18,10 @@ public class LoginRPCServlet extends RemoteServiceServlet implements LoginRPCInt
 		AnsatDTO user;
 		try{
 			user = database.getAnsat(cpr);
+			if(user==null)
+			{
+				throw new DALException();
+			}
 		} catch(DALException e){
 			throw new DALException("Brugeren kunne ikke findes");
 		}
