@@ -13,6 +13,7 @@ public class RaavareRPCServlet extends ValidationServlet implements RaavareRPCIn
 
 	private static final long serialVersionUID = 1L;
 	MySQLRaavareDAO database = new MySQLRaavareDAO();
+	final String fail ="Kunne ikke %s , r\u00E5varen tjek informationerne igen.";
 
 
 	@Override
@@ -35,8 +36,7 @@ public class RaavareRPCServlet extends ValidationServlet implements RaavareRPCIn
 
 	@Override
 	public RaavareDTO createRaavare(RaavareDTO raa, String token) throws Exception {
-		if(FieldVerifier.isValidId(raa.getRaavareId())==true 
-		&& FieldVerifier.isValidName(raa.getRaavareNavn())==true)
+		if(raa.isValid())
 		{
 			if(isValid(token, 2)){
 				database.createRaavare(raa);
@@ -44,7 +44,7 @@ public class RaavareRPCServlet extends ValidationServlet implements RaavareRPCIn
 				}
 			else
 			{
-				Window.alert("Kunne ikke oprette raavaren, tjek informationerne igen.");
+				throw new DALException(String.format(fail, "oprette"));
 			}
 		}	
 		return null;
@@ -52,14 +52,14 @@ public class RaavareRPCServlet extends ValidationServlet implements RaavareRPCIn
 
 	@Override
 	public Integer updateRaavare(RaavareDTO raa, String token) throws Exception{
-		if(FieldVerifier.isValidId(raa.getRaavareId())==true
-		&& FieldVerifier.isValidName(raa.getRaavareNavn())==true)
-			
+		if(raa.isValid())
+		{
 			if(isValid(token, 2)){
 				return database.updateRaavare(raa);
 			}
-			else{
-				Window.alert("Kunne ikke opdatere raavaren, tjek oplysningerne igen.");
+		}
+		else{
+				throw new DALException(String.format(fail, "opdatere"));
 			}
 		return 0;
 

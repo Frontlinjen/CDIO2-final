@@ -11,6 +11,7 @@ public class ReceptRPCServlet extends ValidationServlet implements ReceptRPCInte
 
 	private static final long serialVersionUID = 1L;
 	MySQLReceptDAO receptDAO = new MySQLReceptDAO();
+	final String fail ="Kunne ikke %s recepten, tjek informationerne igen.";
 
 
 	@Override
@@ -32,23 +33,31 @@ public class ReceptRPCServlet extends ValidationServlet implements ReceptRPCInte
 
 	@Override
 	public ReceptDTO createRecept(ReceptDTO rec, String token) throws Exception{
-		if(FieldVerifier.isValidId(rec.getReceptId())==true 
-		&& FieldVerifier.isValidName(rec.getReceptNavn()) == true)
+		if(rec.isValid())
 		{
 				if(isValid(token, 2)){
 					receptDAO.createRecept(rec);	
 					return rec;
 				}
-			}
+		}
+		else{
+			throw new DALException(String.format(fail, "oprette"));
+		}
 		return null;
 	}
 
 	@Override
 	public Integer updateRecept(ReceptDTO rec, String token) throws Exception{
+		if(rec.isValid()){
+	
 			if(isValid(token, 2))
-			{
-				return receptDAO.updateRecept(rec);
-			}
+				{
+					return receptDAO.updateRecept(rec);
+				}
+		}
+		else{
+			throw new DALException(String.format(fail, "opdatere"));
+		}
 		return 0;
 	}
 }

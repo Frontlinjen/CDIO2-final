@@ -14,6 +14,7 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 
 	private static final long serialVersionUID = 1L;
 	private MySQLAnsatDAO database = new MySQLAnsatDAO();
+	final String fail ="Kunne ikke %s , den ansatte tjek informationerne igen.";
 
 
 	@Override
@@ -36,10 +37,7 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 
 	@Override
 	public AnsatDTO createAnsat(AnsatDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidCpr(ans.getCpr())==true 
-		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
-		&& FieldVerifier.isValidIni(ans.getIni())==true 
-		&& FieldVerifier.isValidPassword(ans.getPassword())==true)
+		if(ans.isValid())
 		{
 				if(isValid(token, 3)){
 					database.createAnsat(ans);
@@ -48,18 +46,14 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 		}
 		else
 		{
-			throw new DALException("Kunne ikke oprette ny Ansat, tjek informationerne igen");
+			throw new DALException(String.format(fail, "oprette"));
 		}
 		return null;
 	}
 
 	@Override
 	public Integer updateAnsat(AnsatDTO ans, String token) throws Exception{
-	if(FieldVerifier.isValidCpr(ans.getCpr())==true 
-		&& FieldVerifier.isValidName(ans.getOprNavn())==true
-		&& FieldVerifier.isAlphabetic(ans.getOprNavn())==true
-		&& FieldVerifier.isValidIni(ans.getIni())==true 
-		&& FieldVerifier.isValidPassword(ans.getPassword())==true)
+	if(ans.isValid())
 		{
 				if(isValid(token, 3)){
 					return database.updateAnsat(ans);
@@ -67,7 +61,7 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 	}
 	else
 	{
-		throw new DALException("Kunne ikke opdatere den Ansatte, tjek informationerne igen");
+		throw new DALException(String.format(fail, "opdatere"));
 	}
 		return 0 ;
 
@@ -75,13 +69,13 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 
 	@Override
 	public Integer deleteAnsat(AnsatDTO ans, String token) throws Exception{
-		
-				if(isValid(token, 3)){
-					return database.deleteAnsat(ans);	
-				}
-			
-		return 0;
-
+//Legacy code. You should not be able to delete users.
+//				if(isValid(token, 3)){
+//					return database.deleteAnsat(ans);	
+//				}
+//			
+//		return 0;
+		return -1;
 	}
 
 }

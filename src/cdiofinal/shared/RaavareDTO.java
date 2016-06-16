@@ -24,12 +24,19 @@ public class RaavareDTO implements Serializable
     	
     }
     
+    public boolean isValid()
+	{
+		if (FieldVerifier.isValidId(this.getRaavareId())==true && FieldVerifier.isValidName(this.getRaavareNavn())==true){
+			return true;
+		}
+		else return false;
+	}
+    
 	public RaavareDTO(int raavareId, String raavareNavn)
 	{
 		this.raavareId = raavareId;
 		this.raavareNavn = raavareNavn;
 	}
-	
     public int getRaavareId() { return raavareId; }
     public void setRaavareId(int raavareId) { this.raavareId = raavareId; }
     public String getRaavareNavn() { return raavareNavn; }

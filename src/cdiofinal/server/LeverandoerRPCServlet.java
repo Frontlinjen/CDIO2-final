@@ -13,6 +13,7 @@ public class LeverandoerRPCServlet extends ValidationServlet implements Leverand
 
 	private static final long serialVersionUID = 1L;
 	MySQLLeverandoerDAO database = new MySQLLeverandoerDAO();
+	final String fail ="Kunne ikke %s leverand\u00F8ren, tjek informationerne igen.";
 
 
 	@Override
@@ -35,8 +36,7 @@ public class LeverandoerRPCServlet extends ValidationServlet implements Leverand
 
 	@Override
 	public LeverandoerDTO createLeverandoer(LeverandoerDTO lev, String token) throws Exception{
-		if(FieldVerifier.isValidId(lev.getLeverandoerId())==true 
-		&& FieldVerifier.isValidName(lev.getLeverandoerNavn())==true){
+		if(lev.isValid()){
 	
 			if(isValid(token, 2)){
 				database.createLeverandoer(lev);
@@ -44,7 +44,7 @@ public class LeverandoerRPCServlet extends ValidationServlet implements Leverand
 				}
 		else
 		{
-			throw new DALException("Kunne ikke lave ny Leverandoer, tjek oplysningerne igen");
+			throw new DALException(String.format(fail, "oprette"));
 		}
 			}
 		return null;
@@ -52,8 +52,14 @@ public class LeverandoerRPCServlet extends ValidationServlet implements Leverand
 
 	@Override
 	public Integer updateLeverandoer(LeverandoerDTO lev, String token) throws Exception{
-		if(isValid(token, 2)){
-			return database.updateLeverandoer(lev);
+		if(lev.isValid()){
+			
+			if(isValid(token, 2)){
+				return database.updateLeverandoer(lev);
+			}
+		}
+		else {
+			throw new DALException(String.format(fail, "opdatere"));
 		}
 		return 0;
 

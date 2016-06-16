@@ -83,39 +83,12 @@ public class ListUsersComposite extends Composite implements AsyncCallback<Ansat
 					  }
 				});
 				
-				Column<AnsatDTO, String> removeColumn = getButtonColumn("Slet");
-				removeColumn.setFieldUpdater(new FieldUpdater<AnsatDTO, String>() {
-					@Override
-					  public void update(final int index, AnsatDTO object, String value) {
-						if(object.getTitel() != 0){
-							database.deleteAnsat(object, Token.getToken(), new AsyncCallback<Integer>() {
-								@Override
-								public void onFailure(Throwable caught) {
-									Window.alert("Brugeren kunne ikke slettes");
-								}
-
-								@Override
-								public void onSuccess(Integer result) {
-									gui.remove(index);
-									if(result>0)
-										Window.alert("Brugeren blev slettet");
-									else
-										Window.alert("Brugeren blev ikke fundet");
-								}
-								
-							});
-						}
-						else Window.alert("You cannot delete operators!");
-					  }
-				});
-				
+			
 		vPanel.addColumn(CPRColumn, "CPR");
 		vPanel.addColumn(nameColumn, "Navn");
 		vPanel.addColumn(iniColumn, "Initialer");
 		vPanel.addColumn(rankColumn, "Rank");
-		vPanel.addColumn(saveColumn, "");
-		vPanel.addColumn(removeColumn, "");
-		
+		vPanel.addColumn(saveColumn, "");		
 		
 		ListDataProvider<AnsatDTO> userList = new ListDataProvider<AnsatDTO>();
 		
