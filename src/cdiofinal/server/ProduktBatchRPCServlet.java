@@ -10,6 +10,7 @@ import cdiofinal.shared.ProduktBatchDTO;
 public class ProduktBatchRPCServlet extends ValidationServlet implements ProduktBatchRPCInterface {
 
 	private static final long serialVersionUID = 1L;
+	final String fail ="Kunne ikke %s , produktbatchen tjek informationerne igen.";
 	MySQLProduktbatchDAO database = new MySQLProduktbatchDAO();
 	MySQLReceptDAO rdao = new MySQLReceptDAO();
 
@@ -37,30 +38,30 @@ public class ProduktBatchRPCServlet extends ValidationServlet implements Produkt
 
 	@Override
 	public ProduktBatchDTO createProduktBatch(ProduktBatchDTO prba, String token) throws Exception{
-		if(!FieldVerifier.isValidId((prba.getReceptId()))==true 
-		|| !FieldVerifier.isValidId(prba.getPbId())==true){
-			System.out.println("Id'et er ugyldigt. (1-99999999");
-		}
-		else
-			{
+		if(prba.isValid())
+		{
 				if(isValid(token, 1)){
 					database.createProduktBatch(prba);
 					return prba;
 					}
 			}
+		else {
+			throw new DALException(String.format(fail, "oprette"));
+		}
 		return null;
 	}
 
 	@Override
 	public Integer updateProduktBatch(ProduktBatchDTO prba, String token) throws Exception{
-		if(!FieldVerifier.isValidId((prba.getReceptId()))==true 
-		|| !FieldVerifier.isValidId(prba.getPbId())==true){
-			System.out.println("Id'et er ugyldigt. (1-99999999");
-		}
-		else
+		if(prba.isValid())
+		{
 				if(isValid(token, 1)) {
 					return database.updateProduktBatch(prba);
 				}
+		}
+		else {
+			throw new DALException(String.format(fail, "opdatere"));
+		}
 		return 0;
 	}
 }

@@ -13,6 +13,7 @@ public class ProduktBatchKompRPCServlet extends ValidationServlet implements Pro
 
 	private static final long serialVersionUID = 1L;
 	MySQLProduktBatchKompDAO database = new MySQLProduktBatchKompDAO();
+	final String fail ="Kunne ikke %s , produktbatchkomponenten tjek informationerne igen.";
 
 
 	@Override
@@ -35,9 +36,7 @@ public class ProduktBatchKompRPCServlet extends ValidationServlet implements Pro
 
 	@Override
 	public ProduktBatchKompDTO createProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws Exception{
-		if(FieldVerifier.isValidId(pbk.getPbId())==true 
-		&& FieldVerifier.isValidId(pbk.getRaavarebatchId())==true 
-		&& FieldVerifier.isValidCpr(pbk.getCpr()))
+		if(pbk.isValid())
 		{
 				if(isValid(token, 0)){
 					database.createProduktBatchKomp(pbk);
@@ -46,16 +45,14 @@ public class ProduktBatchKompRPCServlet extends ValidationServlet implements Pro
 				}
 		else
 		{
-			Window.alert("Kunne ikke oprette ny ProduktBatchKomponent, tjek oplysningerne igen.");
+			throw new DALException(String.format(fail, "oprette"));
 		}
 		return null;
 	}
 
 	@Override
 	public Integer updateProduktBatchKomp(ProduktBatchKompDTO pbk, String token) throws Exception{
-		if(FieldVerifier.isValidId(pbk.getPbId())==true
-		&& FieldVerifier.isValidId(pbk.getRaavarebatchId())==true 
-		&& FieldVerifier.isValidCpr(pbk.getCpr()))
+		if(pbk.isValid())
 		{
 				if(isValid(token, 0)){
 					return database.updateProduktBatchKomp(pbk);
@@ -63,7 +60,7 @@ public class ProduktBatchKompRPCServlet extends ValidationServlet implements Pro
 		}
 		else
 		{
-			Window.alert("Kunne ikke opdatere produktBatchKomponenten, tjek oplysningerne igen");
+			throw new DALException(String.format(fail, "opdatere"));
 		}
 		return 0;
 		}
