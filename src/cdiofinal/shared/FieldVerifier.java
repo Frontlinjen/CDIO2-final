@@ -150,7 +150,7 @@ public class FieldVerifier {
 	}
 	
 	public static boolean isValidStatus(int s){
-		if(s<0 || s>2)
+		if(s<1 || s>3)
 		{
 			return false;
 		}
