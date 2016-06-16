@@ -48,7 +48,7 @@ public class NewProduktbatchComposite extends Composite implements AsyncCallback
 		
 		else
 			
-			database.createProduktBatch(new ProduktBatchDTO(Integer.parseInt(idBox.getText()), statusBox.getSelectedIndex(), Integer.parseInt(recIdBox.getText())), Token.getToken(), this);
+			database.createProduktBatch(new ProduktBatchDTO(Integer.parseInt(idBox.getText()), statusBox.getSelectedIndex()+1, Integer.parseInt(recIdBox.getText())), Token.getToken(), this);
 	}
 
 	@Override
