@@ -11,7 +11,7 @@
 	 	
 	 	<div style='background-color:#E0E0E0; margin: 0; padding: 2px; height: 25px'>
 	 		<div style="margin: 0 auto; display: table;">
-		    		<g:Button text='Add new' ui:field='newElement'/>
+		    		<g:Button text='Tilføj ny' ui:field='newElement'/>
 		    </div>
 		</div>	    
     </div>

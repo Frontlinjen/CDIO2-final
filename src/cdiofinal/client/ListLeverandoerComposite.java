@@ -14,8 +14,6 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
-import com.google.gwt.user.client.rpc.InvocationException;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
@@ -23,7 +21,6 @@ import com.google.gwt.view.client.ListDataProvider;
 import cdiofinal.shared.FieldVerifier;
 import cdiofinal.shared.InsufficientAccessException;
 import cdiofinal.shared.LeverandoerDTO;
-import cdiofinal.shared.RaavareDTO;
 
 public class ListLeverandoerComposite extends Composite implements AsyncCallback<LeverandoerDTO[]>, NewElementCreatedCallback<LeverandoerDTO> {
 	
@@ -54,7 +51,7 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 		//IDColumn.setSortable(true);
 		Column<LeverandoerDTO, String> nameColumn = getNameColumn();
 		//nameColumn.setSortable(true);
-		Column<LeverandoerDTO, String> saveColumn = getButtonColumn("gem");
+		Column<LeverandoerDTO, String> saveColumn = getButtonColumn("Gem");
 		saveColumn.setFieldUpdater(new FieldUpdater<LeverandoerDTO, String>() {
 					@Override
 					  public void update(final int index, LeverandoerDTO object, String value) {
@@ -71,7 +68,7 @@ public class ListLeverandoerComposite extends Composite implements AsyncCallback
 
 								@Override
 								public void onSuccess(Integer result) {
-									Window.alert("Successfuldt opdateret");
+									Window.alert("Succesfuldt opdateret");
 								}
 								
 							});
