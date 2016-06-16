@@ -14,8 +14,6 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
-import com.google.gwt.user.client.rpc.InvocationException;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
@@ -51,7 +49,7 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 	public List<RaavareDTO> getLayoutList() { //TODO: Show users when clicked
 		Column<RaavareDTO, String> IDColumn = getIDColumn();
 		Column<RaavareDTO, String> nameColumn = getNameColumn();
-		Column<RaavareDTO, String> saveColumn = getButtonColumn("gem");
+		Column<RaavareDTO, String> saveColumn = getButtonColumn("Gem");
 		saveColumn.setFieldUpdater(new FieldUpdater<RaavareDTO, String>() {
 					@Override
 					  public void update(final int index, RaavareDTO object, String value) {
@@ -67,7 +65,7 @@ public class ListRaavareComposite extends Composite implements AsyncCallback<Raa
 
 								@Override
 								public void onSuccess(Integer result) {
-									Window.alert("Successfully updated");
+									Window.alert("Succesfuldt updateret");
 								}
 								
 							});
