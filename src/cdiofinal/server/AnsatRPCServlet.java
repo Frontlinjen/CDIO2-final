@@ -48,14 +48,14 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 		}
 		else
 		{
-			Window.alert("Kunne ikke oprette ny Ansat, tjek informationerne igen");
+			throw new DALException("Kunne ikke oprette ny Ansat, tjek informationerne igen");
 		}
 		return null;
 	}
 
 	@Override
 	public Integer updateAnsat(AnsatDTO ans, String token) throws Exception{
-		if(FieldVerifier.isValidCpr(ans.getCpr())==true 
+	if(FieldVerifier.isValidCpr(ans.getCpr())==true 
 		&& FieldVerifier.isValidName(ans.getOprNavn())==true 
 		&& FieldVerifier.isValidIni(ans.getIni())==true 
 		&& FieldVerifier.isValidPassword(ans.getPassword())==true)
@@ -66,7 +66,7 @@ public class AnsatRPCServlet extends ValidationServlet implements AnsatRPCInterf
 	}
 	else
 	{
-		Window.alert("Kunne ikke opdatere den Ansatte, tjek informationerne igen");
+		throw new DALException("Kunne ikke opdatere den Ansatte, tjek informationerne igen");
 	}
 		return 0 ;
 
