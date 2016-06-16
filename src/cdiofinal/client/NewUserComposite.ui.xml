@@ -17,16 +17,16 @@
 	  		<g:Label text="Vælg rank:"/>
 	  		<g:ListBox ui:field='rankBox' selectedIndex='0'>
 	  			<g:item>
-	  				Operatoer
+	  				Operatør
 	  			</g:item>
 	  			<g:item>
-	  				Vaerkfoerer
+	  				Vaerkfører
 	  			</g:item>
 	  			<g:item>
 	  				Farmaceut
 	  			</g:item>
 	  			<g:item>
-	  				Administration
+	  				Admin
 	  			</g:item>
 	  		</g:ListBox>
 	  		<g:Label text="Password:"/>
